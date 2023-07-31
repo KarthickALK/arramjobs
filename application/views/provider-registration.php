@@ -10,8 +10,6 @@
          .bg-primary{
         background-color: rgb(16, 16, 99) !important;
          }
-         
-
     </style>
    
     
