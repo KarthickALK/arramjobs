@@ -1,8 +1,10 @@
 <?php
-class RegistrationController extends CI_Controller {
+class Registrationcontroller extends CI_Controller {
 
     public function __construct() {
         parent::__construct();
+   
+        $this->load->view('provider-registration');
         $this->load->model('RegistrationModel');
     }
 
