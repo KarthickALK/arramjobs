@@ -84,15 +84,15 @@ button[type="submit"] {
 <body>
     <div class="container" id="page1">
     <h1>Personal Details</h1>
-    <form name="application_form_page1" method="post" onsubmit="return validateFormPage1()">
+    <form name="registration_form" method="post" onsubmit="return validateForm()" action="<?= base_url('RegistrationController/process_registration') ?>">
     <div class="form-group">
-        <label for="fullName">Full Name *</label>
-        <input type="text" class="form-control" id="fullName" name="fullName" placeholder="Enter your full name">
-        <div id="fullName_error" class="error"></div>
+        <label for="Name">Name *</label>
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name">
+        <div id="Name_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="emailid">Email *</label><br>
-        <input type="text" style="width: 100%;" class="form-control" id="emailid" name="emailid" placeholder="Enter your email">
+        <input type="text" style="width: 100%;" class="form-control" id="email" name="email" placeholder="Enter your email">
         <div id="emailid_error" class="error"></div>
       </div>
       <div class="form-group">
@@ -204,7 +204,7 @@ button[type="submit"] {
 
   <script>
     function validateFormPage1() {
-  var fullName = document.getElementById('fullName').value;
+  var Name = document.getElementById('Name').value;
   var email = document.getElementById('emailid').value;
   var phoneNumber = document.getElementById('phonenumber').value;
   var dob = document.getElementById('dob').value;
@@ -214,12 +214,12 @@ button[type="submit"] {
   var nameRegex = /^[A-Za-z\s]/;
   clearErrorMessages();
    
-   if (fullName.trim() === '') {
-         displayError('Name is required.', 'fullName_error');
+   if (Name.trim() === '') {
+         displayError('Name is required.', 'Name_error');
          return false;
        } 
-       else if (!nameRegex.test(fullName)) {
-      displayError('Please enter a valid name.', 'fullName_error');
+       else if (!nameRegex.test(Name)) {
+      displayError('Please enter a valid name.', 'Name_error');
       return false;
     }
 
