@@ -25,6 +25,9 @@ class RegistrationController extends CI_Controller {
             echo "Data inserted with ID: " . $inserted_id;
         } else {
             echo "Failed to insert data.";
+        }else {
+            // If the form is not yet submitted, load the registration form view
+            $this->load->view('provider_registration_form');
         }
     }
 
