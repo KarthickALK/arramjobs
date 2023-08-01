@@ -3,11 +3,13 @@ class RegistrationController extends CI_Controller {
 
 public function __construct() {
     parent::__construct();
+    $this->load->database();
     $this->load->model('Registration_model');
+    $this->load->helper('url');
 }
 
 public function register() {
-    $this->load->view('registration_form');
+    $this->load->view('profileform');
 }
 
 public function process_registration() {
