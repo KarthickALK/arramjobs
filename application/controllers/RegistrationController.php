@@ -22,10 +22,8 @@ class RegistrationController extends CI_Controller {
         $inserted_id = $this->RegistrationModel->insert_data($data);
 
         if ($inserted_id) {
-            // Data successfully inserted
             echo "Data inserted with ID: " . $inserted_id;
         } else {
-            // Failed to insert data
             echo "Failed to insert data.";
         }
     }
