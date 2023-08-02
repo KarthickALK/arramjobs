@@ -35,18 +35,21 @@
     // }
     class registration extends CI_Controller
     {
-        public function index()
-        (
+        public function provider_registration()
+        {
             $this->load->view('provider-registration');
-        )
+        }
         public function register()
         {
             $this->load->model('RegistrationModel');
             $this->RegistrationModel->insert_data();
+             $this->provider_registration();
+            //  $this->register();
+            
         }
-        {
-            $this->index();
-        }
+        
+       
+        
     }
 
 

@@ -47,7 +47,8 @@
 
     class RegistrationModel extends CI_Model
     {
-        public function insert_data()
+        
+         public function insert_data()
         {
             $data = array('company_name'=>$this->input->post('name'),
                           'company_mobile_number'=>$this->input->post('phno'),
@@ -57,9 +58,11 @@
                           'name'=>$this->input->post('name1'),
                           'mobile_number'=>$this->input->post('phno1'),
                           'email'=>$this->input->post('mail1'),
-                          'role'=>$this->input->post('role')
-            
-            )
+                          'role'=>$this->input->post('role') );     
         }
+            // $this->db->insert('register',$data)
+            
+        
+        
     }
 ?>
