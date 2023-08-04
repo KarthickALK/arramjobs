@@ -13,9 +13,5 @@
             $response=$this->RegistrationModel->register();
             $this->load->view('provider_login.php');
         }
-
-        
-
-
     }
 ?>
