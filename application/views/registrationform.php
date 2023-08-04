@@ -75,10 +75,10 @@ h1 {
 <body>
   <div class="container">
     <h1>Registration Form</h1>
-    <form name="registration_form" method="post" onsubmit="return validateForm()" action="login_form.php">
+    <form name="registration_form" method="post" onsubmit="return validateForm()" action="process_registration">
       <div class="form-group">
         <label for="username">Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your username">
         <div id="username_error" class="error"></div>
       </div>
       <div class="form-group">
@@ -88,18 +88,18 @@ h1 {
       </div>
       <div class="form-group">
         <label for="phonenumber">Phone number</label>
-        <input type="tel" class="form-control" id="phone" name="phone" placeholder="Enter your phone number">
+        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number">
         <div id="phone_error" class="error"></div>
       </div>
-      <button type="submit" class="btn btn-primary">Register</button>
+      <button type="Submit" class="btn btn-primary">Register</button>
 </form>
   
   </div>
   <script>
    function validateForm() {
-      var username = document.getElementById('username').value;
+      var username = document.getElementById('name').value;
       var email = document.getElementById('email').value;
-      var phone = document.getElementById('phone').value;
+      var phone = document.getElementById('phonenumber').value;
 
       clearErrors();
 

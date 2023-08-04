@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -84,7 +85,7 @@ button[type="submit"] {
 <body>
     <div class="container" id="page1">
     <h1>Personal Details</h1>
-    <form name="registration_form" method="post" onsubmit="return validateForm()" action="<?= base_url('RegistrationController/process_registration') ?>">
+    <form name="registration_form" method="post" onsubmit="return validateFormPage1()" action="<?php echo site_url('registration/process_registration'); ?>">
     <div class="form-group">
         <label for="Name">Name *</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name">
@@ -204,12 +205,11 @@ button[type="submit"] {
 
   <script>
     function validateFormPage1() {
-  var Name = document.getElementById('Name').value;
-  var email = document.getElementById('emailid').value;
+  var Name = document.getElementById('name').value;
+  var email = document.getElementById('email').value;
   var phoneNumber = document.getElementById('phonenumber').value;
   var dob = document.getElementById('dob').value;
   var address = document.getElementById('address').value;
-  // var district = document.getElementById('District').value;
   var educational_qualification = document.getElementById('educational_qualification').value;
   var nameRegex = /^[A-Za-z\s]/;
   clearErrorMessages();
