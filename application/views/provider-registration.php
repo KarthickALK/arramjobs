@@ -47,7 +47,7 @@
         <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
         <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
         <!-- <form  name="forms" action="Registrationcontroller.php" method="post"> -->
-        <form  name="forms" action="<?php echo site_url('registration/register');?>  method="post">     
+        <form  name="forms" action="http://localhost/arramjobs/registration"  method="post">     
        
             <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
                 <label for="name" class="form-label">Name:</label>
@@ -56,7 +56,7 @@
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="phno" class="form-label">Mobile Number:</label>
-                <input type="number" class="form-control"  id="phno" name="phno">
+                <input type="number" class="form-control"  id="phno" name="mobile">
                 <p id="pherr"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
@@ -66,12 +66,12 @@
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >Address:</label>
-                <input type="address" class="form-control"  id="addr" name="addr" placeholder="enter address">
+                <input type="address" class="form-control"  id="addr" name="address" placeholder="enter address">
                 <p id="adderr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="file" class="form-label" >Logo:</label>
-                <input type="file" class="form-control" id="file" name="file" required>
+                <input type="file" class="form-control" id="file" name="logo" required>
                 <p id="logerr" style="color: red;"></p>
             </div>
             <br>
@@ -86,13 +86,13 @@
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="phno1" class="form-label">Mobile Number:</label>
-                <input type="number" class="form-control"  id="phno1" name="phno1" >
+                <input type="number" class="form-control"  id="phno1" name="mobile1" >
                 <p id="pherr1"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="mail1" class="form-label">Email-ID:</label>
-                <input type="email" class="form-control"  id="mail1" name="mail1" placeholder="enter email">
-                <p id="mailerr1" style="color: red;"></p>
+                <input type="email" class="form-control"  id="mail1" name="email1" placeholder="enter email">
+                <p id="mailerr1" style="color: red;"></p>      
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55">
                 <label for="role" class="form-label">Role:</label>
@@ -100,7 +100,8 @@
                 <p id="rolerr" style="color: red;"></p>
             </div> 
             <div>
-                <button value="save" name="save" class="btn bg-primary ms-5 mt-3 mb-5 shadow-sm text-white" onclick="return group()"><center>Register</center></button>
+                <button value="save" type="submit" name="save" class="btn bg-primary ms-5 mt-3 mb-5 shadow-sm text-white" onclick="return group()"><center>Register</center></button>
+
                 
              </div>
         </form>
