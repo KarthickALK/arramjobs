@@ -73,15 +73,15 @@
 <body>
   <div class="container">
     <h1>Provider Login Form</h1>
-    <form name="login_form" method="post" onsubmit="return validateForm()">
+    <form name="login_form" method="post" action="http://localhost/arramjobs/registration/login    "  onsubmit="return validateForm()">
       <div class="form-group">
         <label for="userID">User ID</label>
-        <input type="text" class="form-control" id="userID" placeholder="Enter your user ID">
+        <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user ID">
         <div id="userID_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" placeholder="Enter your password">
+        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
         <div id="password_error" class="error"></div>
       </div>
       <button type="submit" class="btn btn-primary">Login</button>

@@ -71,7 +71,7 @@
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="file" class="form-label" >Logo:</label>
-                <input type="file" class="form-control" id="file" name="logo" required>
+                <input type="file" class="form-control" id="file" name="logo" >
                 <p id="logerr" style="color: red;"></p>
             </div>
             <br>
@@ -184,9 +184,9 @@ function group()
 
     if(x != "")
     {
-        if(x.length<4)
+        if(x.length<2)
         {
-            document.getElementById("nameerr").innerHTML="* Name should be in atleast 4 characters";
+            document.getElementById("nameerr").innerHTML="* Name should be in atleast 2 characters";
             return false;
         }
         else if(x.length>50)
@@ -300,17 +300,17 @@ function group()
             
         }
     }
-    if(l=="")
-    {
-        var logsms="*Please upload your file";
-        document.getElementById("logerr").innerHTML=logsms;
-        document.forms.file.focus();
-        return false;
-    }
-    else{
-        document.getElementById("logerr").innerHTML="";
+    // if(l=="")
+    // {
+    //     var logsms="*Please upload your file";
+    //     document.getElementById("logerr").innerHTML=logsms;
+    //     document.forms.file.focus();
+    //     return false;
+    // }
+    // else{
+    //     document.getElementById("logerr").innerHTML="";
         
-    }
+    // }
     if(x1=="")
     {
         var namesms2="* Name must be filled out";

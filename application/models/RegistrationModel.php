@@ -9,7 +9,6 @@
 
             
         }
-
         public function register()
         {
             $postData=$this->input->post(null,true);
@@ -21,8 +20,19 @@
                             'role' =>$postData['role']);
 
             $this->db->insert('provider_registration_form',$insert);
+         }
 
-    
+
+
+         public function login()
+         { 
+             $postData1=$this->input->post(null,true);
+ 
+            $login=array('user_id' => $postData1['userID'], 'password' => $postData1['password']);
+ 
+            $this->db->insert('provider_login_form',$login);
         }
+
+     
     }
 ?>
