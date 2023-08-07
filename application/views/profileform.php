@@ -84,7 +84,7 @@ button[type="submit"] {
 <body>
     <div class="container" id="page1">
     <h1>Personal Details</h1>
-    <form name="registration_form" method="post" onsubmit="return validateFormPage1()" action="index.php/RegisterController/registration">
+    <form name="registration_form" method="post" onsubmit="return validateFormPage1()" action="index.php/ProfileformController/index">
     <div class="form-group">
         <label for="Name">Name *</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" required>
@@ -121,7 +121,7 @@ button[type="submit"] {
 
   <div class="container" id="page2" style="display: none;">
     <h1>Educational Details</h1>
-    <form name="application_form_page2" method="post" onsubmit="return validateFormPage2()"  >
+    <!-- <form name="application_form_page2" method="post" onsubmit="return validateFormPage2()"  > -->
     <div class="form-group">
       <label for="educational_qualification">Educational qualification</label>
      <select class="form-control" id="educational_qualification" name="educational_qualification">
@@ -181,7 +181,7 @@ button[type="submit"] {
 
   <div class="container" id="page3" style="display: none;">
     <h1>Identification Details </h1>
-    <form name="application_form_page3" method="post" onsubmit="return validateFormPage3()"  >
+    <form name="application_form_page3" method="post" onsubmit="return validateFormPage3()" action="index.php/RegisterController/registration" >
     <div class="form-group">
         <label for="aadharfrontphoto">Aadhar front photo </label>
         <input type="file" class="form-control-file" id="aadharfrontphoto" name="aadharfrontphoto">
@@ -200,7 +200,7 @@ button[type="submit"] {
       <button type="button" class="btn btn-primary" onclick="previousPage('page3', 'page2')">Previous</button>
       <button type="submit" class="btn btn-primary">Submit</button>
     </form>
-  </div>
+</div>
 
   <script>
     function validateFormPage1() {
