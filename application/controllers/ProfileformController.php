@@ -10,7 +10,7 @@ class ProfileformController extends CI_Controller
     public function index()
     {
         $postData = $this->input->post(); 
-        $response = $this->ProfileformModel->register($postData);
+        $response = $this->ProfileformModel->register();
         $this->load->view('profileform.php');
     }
 }

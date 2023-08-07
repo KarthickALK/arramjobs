@@ -54,4 +54,5 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['arramjobs/reg']='reg';
 $route['arramjobs/logincontroller']='LoginController';
-$route['arramjobs/profileformcontroller'] ='ProfileformController';
+$route['arramjobs/educationalController']='educationalController';
+$route['arramjobs/educationalController']='educationalController';

@@ -48,19 +48,6 @@ label {
   padding: 10px;
 }
 
-.form-control-file {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-
-.form-control[type="file"] {
-  border: none;
-  background-color: transparent;
-  color: #4285f4;
-  cursor: pointer;
-}
-
 button[type="submit"] {
   width: 75%;
   margin-top: 20px;
@@ -79,7 +66,7 @@ button[type="submit"] {
 <body>
 <div class="form-group">
 <h1>Identification Details </h1>
-    <form name="application_form_page3" method="post" onsubmit="return validateFormPage3()" action="index.php/RegisterController/registration" >
+    <form name="application_form_page3" method="post" onsubmit="return validateFormPage3()" action="index.php/idenController/registration">
     <div class="form-group">
         <label for="aadharfrontphoto">Aadhar front photo </label>
         <input type="file" class="form-control-file" id="aadharfrontphoto" name="aadharfrontphoto">
@@ -121,7 +108,7 @@ button[type="submit"] {
       return true; // Form submission for Page 3 is valid
     }
 
-        function clearErrorMessages() {
+    function clearErrorMessages() {
   var errorElements = document.querySelectorAll('.error');
   errorElements.forEach(function (errorElement) {
     errorElement.textContent = '';

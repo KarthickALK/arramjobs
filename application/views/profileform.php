@@ -115,93 +115,9 @@ button[type="submit"] {
         <input type="text" class="form-control" id="district" name="district" value="Erode" disabled>
         <div id="district_error" class="error"></div>
       </div>
-      <button type="button" name="submit-page1" class="btn btn-primary" onclick="nextPage('page1', 'page2')">Next</button>
+      <button type="submit" name="submit-page1" class="btn btn-primary" >submit</button>
     </form>
   </div>
-
-  <div class="container" id="page2" style="display: none;">
-    <h1>Educational Details</h1>
-    <!-- <form name="application_form_page2" method="post" onsubmit="return validateFormPage2()"  > -->
-    <div class="form-group">
-      <label for="educational_qualification">Educational qualification</label>
-     <select class="form-control" id="educational_qualification" name="educational_qualification">
-     <option value="">Select your Educational qualification</option>
-          <option value="8th">8th</option>
-          <option value="sslc">SSLC</option>
-          <option value="HSC">HSC</option>
-          <option value="bachelor">Bachelor's Degree</option>
-          <option value="master">Master's Degree</option>
-          <option value="BE/BTech">BE/BTech</option>
-          <option value="ME/MTech">ME/MTech</option>
-          <option value="doctorate">Doctorate</option>
-        </select>
-        <div id="eductional_qualification_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="department">Department</label>
-        <select class="form-control" id="department" name="department">
-          <option value="">Select your department</option>
-          <option value="computer_science">Computer Science engineering</option>
-          <option value="EEE">EEE</option>
-        </select>
-        </div>
-        <div class="form-group">
-        <label for="skills">Skills</label>
-        <input type="text" class="form-control" id="skills" name="skills" placeholder="Enter your skills">
-        <div id="skills_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="experience">Experience</label>
-        <select class="form-control" id="experience" name="experience">
-          <option value="">select your experience</option>
-          <option value="fresher">Fresher</option>
-          <option value="0-2">0-2</option>
-          <option value="3-5">3-5</option>
-          <option value="5-10">5-10</option>
-          <option value="10-15">10-15</option>
-          <option value="15-20">15-20</option>
-          <option value="above 20 years">above 20 years</option>
-</select>
-<div id="experience_error" class="error"></div>
-</div>
-      <div class="form-group">
-        <label for="interest">Area of Interest</label>
-        <input type="text" class="form-control" id="interest" name="interest" placeholder="Enter your area of interest">
-        <div id="interest_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="resume">Upload Resume</label>
-        <input type="file" class="form-control-file" id="resume" name="resume" >
-        <div id="resume_error" class="error"></div>
-      </div>
-      <button type="button" class="btn btn-primary" onclick="previousPage('page2', 'page1')">Previous</button>
-      <button type="button" name="submit-page2" class="btn btn-primary next-button" onclick="nextPage('page2', 'page3')">Next</button>
-    </form>
-  </div>
-
-  <div class="container" id="page3" style="display: none;">
-    <h1>Identification Details </h1>
-    <form name="application_form_page3" method="post" onsubmit="return validateFormPage3()" action="index.php/RegisterController/registration" >
-    <div class="form-group">
-        <label for="aadharfrontphoto">Aadhar front photo </label>
-        <input type="file" class="form-control-file" id="aadharfrontphoto" name="aadharfrontphoto">
-        <div id="aadharfrontphoto_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="aadharbackphoto">Aadhar back Photo</label>
-        <input type="file" class="form-control-file" id="aadharbackphoto" name="aadharbackphoto">
-        <div id="aadharbackphoto_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="photo">Photo</label>
-        <input type="file" class="form-control-file" id="photo" name="photo">
-        <div id="photo_error" class="error"></div>
-      </div> 
-      <button type="button" class="btn btn-primary" onclick="previousPage('page3', 'page2')">Previous</button>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-</div>
-
   <script>
     function validateFormPage1() {
   var Name = document.getElementById('name').value;
@@ -265,85 +181,8 @@ function validatePhoneNumber(phoneNumber) {
   return regex.test(phoneNumber);
 }
 
-    function validateFormPage2() {
-        var educational_qualification = document.getElementById('educational_qualification').value;
-        var skills = document.getElementById('skills').value;
-        var experience=document.getElementById('experience').value;
-        var interest = document.getElementById('interest').value;
-        var resume = document.getElementById('resume').value;
- 
-
-        clearErrorMessages();
-
-    if (educational_qualification.trim() === '') {
-    displayError('Educational qualification is required.', 'eductional_qualification_error');
-    return false;
-  }
-  if (skills.trim() === '') {
-    displayError('Skills are required.', 'skills_error');
-    return false;
-  }
-
-  if(experience.trim()===''){
-    displayError('select the experience.', 'experience_error');
-    return false;
-  }
-
-  if (interest.trim() === '') {
-    displayError('Area of Interest is required.', 'interest_error');
-    return false;
-  }
-
-  if (resume.trim() === '') {
-    displayError('Resume is required.', 'resume_error');
-    return false;
-  }
-      return true; // Form submission for Page 2 is valid
-    }
-
-    function validateFormPage3() {
-        var aadharFrontPhoto = document.getElementById('aadharfrontphoto').value;
-        var aadharBackPhoto = document.getElementById('aadharbackphoto').value;
-        var photo = document.getElementById('photo').value;
-
-        clearErrorMessages();
-        if (aadharFrontPhoto.trim() === '') {
-    displayError('Aadhar front photo is required.', 'aadharfrontphoto_error');
-    return false;
-  }
-
-  if (aadharBackPhoto.trim() === '') {
-    displayError('Aadhar back photo is required.', 'aadharbackphoto_error');
-    return false;
-  }
-
-  if (photo.trim() === '') {
-    displayError('Photo is required.', 'photo_error');
-    return false;
-  }
-      return true; // Form submission for Page 3 is valid
-    }
-
-    function previousPage(currentPageId, previousPageId) {
-      document.getElementById(currentPageId).style.display = 'none';
-      document.getElementById(previousPageId).style.display = 'block';
-    }
-
-    function nextPage(currentPageId, nextPageId) {
-      var isValid = false;
-
-      if (currentPageId === 'page1') {
-        isValid = validateFormPage1();
-      } else if (currentPageId === 'page2') {
-        isValid = validateFormPage2();
-      }
-
-      if (isValid) {
-        document.getElementById(currentPageId).style.display = 'none';
-        document.getElementById(nextPageId).style.display = 'block';
-      }
-    }
-    function clearErrorMessages() {
+    
+   function clearErrorMessages() {
   var errorElements = document.querySelectorAll('.error');
   errorElements.forEach(function (errorElement) {
     errorElement.textContent = '';

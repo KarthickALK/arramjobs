@@ -1,5 +1,5 @@
 <?php
-class ProfileformModel extends CI_Model
+class profileformModel extends CI_Model
 {
     public function __construct()
     {
@@ -8,29 +8,23 @@ class ProfileformModel extends CI_Model
 
     public function register()
     {
-        $educationalqualification = $postData['educational_qualification'];
-        $department = $postData['department'];
-        $skills = $postData['skills'];
-        $experience = $postData['experience'];
-        $areaofinterest = $postData['interest'];
-        $resume = $postData['resume'];
-        $aadharfrontphoto = $postData['aadharfrontphoto'];
-        $aadharbackphoto = $postData['aadharbackphoto'];
-        $photo = $postData['photo'];
-
+        $name = $this->input->post('name');
+        $email = $this->input->post('email');
+        $phonenumber = $this->input->post('phonenumber');
+        $dateofbirth=$this->input->post('dob');
+        $address=$this->input->post('address');
+        $district=$this->input->post('district');
+        
         $insert = array(
-            'educationalqualification' => $educationalqualification,
-            'department' => $department,
-            'skills' => $skills,
-            'experience' => $experience,
-            'areaofinterest' => $areaofinterest,
-            'resume' => $resume,
-            'aadharfrontphoto' => $aadharfrontphoto,
-            'aadharbackphoto' => $aadharbackphoto,
-            'photo' => $photo 
+            'name'=>$name,
+            'email'=>$email,
+            'phonenumber'=>$phonenumber,
+            'dateofbirth'=>$dateofbirth,
+            'address'=>$address,
+            'district'=>$district
         );
 
-        $this->db->insert('profile_form', $insert);
+        $this->db->insert('registration_form', $insert);
     }
 }
 ?>

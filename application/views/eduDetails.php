@@ -8,29 +8,28 @@
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  margin-left:-200px;
-  margin-right:290px;
-}
-
-.container {
-  background-color: #fff;
-  padding: 30px;
-  border-radius: 5px;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-  width: 50%; 
-  margin: 50px auto; 
+  margin-left:100px;
+  margin-right:590px;
+  margin-top:30px;
 }
 
 h1 {
   text-align: center;
   margin-bottom: 30px;
   margin-left:-90px;
+  margin-top:20px;
   color:navy;
 }
 
 
 .form-group {
   margin-bottom: 20px;
+  background-color: #fff;
+  padding: 5px;
+  border-radius: 5px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
+  width: 80%; 
+  margin-left:60px;
 }
 
 label {
@@ -47,45 +46,25 @@ label {
   border-radius: 3px;
   border: 1px solid #ccc;
   padding: 10px;
-}
 
-.form-control-file {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
-.btn-primary {
-  background-color: #4285f4;
-  border: none;
-}
-
-.btn-primary:hover {
-  background-color: #2d76d9;
-}
-
-.form-control[type="file"] {
-  border: none;
-  background-color: transparent;
-  color: #4285f4;
-  cursor: pointer;
 }
 
 button[type="submit"] {
-  width: 100%;
+  width: 75%;
   margin-top: 20px;
   padding: 12px;
   font-weight: bold;
+  margin-left:60px;
+  margin-bottom:10px;
 }
-.next-button {
-    float: right;
-  }
   </style>
 </head> 
 <body>
-<div class="container" id="page2" style="display: none;">
-    <h1>Educational Details</h1>
-    <form name="application_form_page2" method="post" onsubmit="return validateFormPage2()">
-    <div class="form-group">
+<div class="form-group">
+<h1>Educational Details </h1>
+    <form name="application_form_page3" method="post" onsubmit="return validateFormPage()" action="index.php/educationalController/registration">
+
+<div class="form-group">
       <label for="educational_qualification">Educational qualification</label>
      <select class="form-control" id="educational_qualification" name="educational_qualification">
      <option value="">Select your Educational qualification</option>
@@ -98,7 +77,7 @@ button[type="submit"] {
           <option value="ME/MTech">ME/MTech</option>
           <option value="doctorate">Doctorate</option>
         </select>
-        <div id="eductional_qualification_error" class="error"></div>
+        <div id="educational_qualification_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="department">Department</label>
@@ -124,9 +103,9 @@ button[type="submit"] {
           <option value="10-15">10-15</option>
           <option value="15-20">15-20</option>
           <option value="above 20 years">above 20 years</option>
-</select>
-<div id="experience_error" class="error"></div>
-</div>
+          </select>
+          <div id="experience_error" class="error"></div>
+      </div>
       <div class="form-group">
         <label for="interest">Area of Interest</label>
         <input type="text" class="form-control" id="interest" name="interest" placeholder="Enter your area of interest">
@@ -137,10 +116,11 @@ button[type="submit"] {
         <input type="file" class="form-control-file" id="resume" name="resume" >
         <div id="resume_error" class="error"></div>
       </div>
-      <button type="submit" name="submit-page2" class="btn btn-primary next-button">Next</button>
-    </form>
-    <script>
-        function validateFormPage2() {
+      <div class="form-group">
+        <button type="submit" class="btn btn-primary">Submit</button>
+</div>
+<script>
+function validateFormPage() {
         var educational_qualification = document.getElementById('educational_qualification').value;
         var skills = document.getElementById('skills').value;
         var experience=document.getElementById('experience').value;
@@ -151,7 +131,7 @@ button[type="submit"] {
         clearErrorMessages();
 
     if (educational_qualification.trim() === '') {
-    displayError('Educational qualification is required.', 'eductional_qualification_error');
+    displayError('Educational qualification is required.', 'educational_qualification_error');
     return false;
   }
   if (skills.trim() === '') {
@@ -174,7 +154,7 @@ button[type="submit"] {
     return false;
   }
       return true; // Form submission for Page 2 is valid
-    }
+} 
     function clearErrorMessages() {
   var errorElements = document.querySelectorAll('.error');
   errorElements.forEach(function (errorElement) {
@@ -193,8 +173,9 @@ function resetForm() {
       document.getElementById('submitBtn').disabled = false;
     }
 </script>
-  <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-  <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+</form>
 </body>
 </html>
