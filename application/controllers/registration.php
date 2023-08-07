@@ -21,7 +21,7 @@
         {
            $postData1=$this->input->post(null,true);
             $responses=$this->RegistrationModel->login();
-            $this->load->view('provider_update_registration.php');
+            $this->load->view('Dashboard.php');
         }
 
         
