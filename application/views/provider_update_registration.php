@@ -197,7 +197,7 @@ button[type="submit"] {
             </div>
            
             <div>
-                <button class="btn bg-primary ms-5 mt-3 mb-5  text-white" ><center>Submit</center></button> <!--onclick="return group()"-->
+                <button class="btn bg-primary ms-5 mt-3 mb-5  text-white" onclick="return group()" ><center>Submit</center></button> 
                 
             </div>
         </form>

@@ -5,6 +5,7 @@
         {
             parent::__construct();
             $this->load->model('RegistrationModel');
+            
            
         }
         public function index()
@@ -34,10 +35,10 @@
         {
             $this->load->view('provider_update_registration.php');
         }
-    //    public function view_provider_addjob()
-    //    {
-    //         $this->load->view('addnew_jobs.php');
-    //    }
+       public function view_provider_addjob()
+       {
+             $this->load->view('addnew_jobs.php');
+       }
 
 
        
