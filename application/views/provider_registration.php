@@ -66,27 +66,27 @@
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >Street address:</label>
-                <input type="address" class="form-control"  id="addr" name="address" placeholder="enter address">
+                <input type="text" class="form-control"  id="addr" name="address" placeholder="enter address">
                 <p id="adderr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >Landmark:</label>
-                <input type="address" class="form-control"  id="landmark" name="landmark" placeholder="enter address">
+                <input type="text" class="form-control"  id="landmark" name="landmark" placeholder="enter address">
                 <p id="landerr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >City:</label>
-                <input type="address" class="form-control"  id="city" name="city" placeholder="enter city">
+                <input type="text" class="form-control"  id="city" name="city" placeholder="enter city">
                 <p id="cityerr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >District:</label>
-                <input type="address" class="form-control"  id="district" name="district" placeholder="enter district">
+                <input type="text" class="form-control"  id="district" name="district" placeholder="enter district">
                 <p id="diserr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >State:</label>
-                <input type="address" class="form-control"  id="state" name="state" placeholder="enter state">
+                <input type="text" class="form-control"  id="state" name="state" placeholder="enter state">
                 <p id="stateerr" style="color: red;"></p>
             </div>
            
