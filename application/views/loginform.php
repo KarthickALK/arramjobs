@@ -59,30 +59,34 @@
   </style>
 </head>
 <body>
-  <div class="container">
-    <h1>Login Form</h1>
-    <form id="phoneForm" action="index.php/LoginController/index" method="post" onsubmit="submitForm(event)">
-      <div class="form-group">
-        <label for="phone">Phone Number</label>
-        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" required>
-      </div>
-      <button type="button" class="btn btn-link" onclick="registrationpage()">New User</button>
-      <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
-  </div>
+    <div class="container">
+        <h1>Login Form</h1>
+        <form id="phoneForm" method="post" onsubmit="return validateForm()" action="otpregister">
+            <div class="form-group">
+                <label for="phone">Phone Number</label>
+                <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" required>
+            </div>
+            <!--  <button type="button" class="btn btn-link">New User</a> -->
+            <button type="submit" class="btn btn-primary">Submit</button> 
+            
+        </form>
+    </div>
 
-  <script>
-    function submitForm(event) {
-      const phoneInput = document.getElementById('phonenumber').value;
-      // If you want to send the phone number to the 'otp.php' page, you can use URL parameters
-      window.location.href = 'index.php/LoginController/otp';
-      event.preventDefault(); // Prevents the default form submission behavior
-    }
+    <script>
+        function validateForm() {
+            var phoneNumber = document.getElementById("phonenumber").value;
+            var phoneRegex = /^\d{10}$/;
 
-    function registrationpage() {
-      window.location.href = 'index.php/LoginController/registration';
-    }
-  </script>
+            if (!phoneRegex.test(phoneNumber)) {
+                alert("Please enter a valid 10-digit phone number.");
+                return false;
+            }
+
+            return true;
+        }
+    </script>
+    
+  
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

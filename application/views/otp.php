@@ -61,11 +61,11 @@
 <body>
   <div class="container">
     <h1>Login Form </h1>
-    <form id="otpForm">
+    <form id="otpForm" method="post" onsubmit="return validateOTP(document.getElementById('otp').value)" action="profile">
       <div class="form-group">
         <label for="otp">OTP</label>
-        <input type="text" class="form-control" id="otp" placeholder="Enter the OTP" required>
-      </div>
+        <input type="text" class="form-control" id="otp" placeholder="Enter the OTP"   required>
+  </div>
       <button type="button" class="btn btn-link" id="resendOTP">Resend OTP</button>
       <button type="submit" class="btn btn-primary">Verify</button>
     </form>
@@ -73,19 +73,20 @@
 
   
   <script>
-    document.getElementById('otpForm').addEventListener('submit', function(event) {
-      event.preventDefault();
-      const otpInput = document.getElementById('otp').value;
-      if (validateOTP(otpInput)) {
-        alert('Login successful!');
-      } else {
-        alert('Invalid OTP. Please enter a 4-digit OTP.');
-      }
-    });
+    // document.getElementById('otpForm').addEventListener('submit', function(event) {
+    //   event.preventDefault();
+    //   const otpInput = document.getElementById('otp').value;
+    //   if (validateOTP(otpInput)) {
+    //     alert('Login successful!');
+    //   } else {
+    //     alert('Invalid OTP. Please enter a 4-digit OTP.');
+    //   }
+    // });
 
     function validateOTP(otp) {
       // Check if the OTP is exactly 4 digits
       return /^\d{4}$/.test(otp);
+      
     }
 
     document.getElementById('resendOTP').addEventListener('click', function() {

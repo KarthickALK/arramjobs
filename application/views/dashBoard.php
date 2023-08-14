@@ -8,15 +8,14 @@
 <body>
   <div class="container mt-5">
     <h1>Welcome to Your Dashboard</h1>
-
     <div class="dropdown mt-3">
       <button class="btn btn-primary dropdown-toggle" type="button" id="createProfileDropdown" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
         Create Profile
       </button>
       <div class="dropdown-menu" aria-labelledby="createProfileDropdown">
         <a class="dropdown-item" href="">Basic Details</a>
-        <a class="dropdown-item" href="#">Educational Details</a>
-        <a class="dropdown-item" href="#">Identification Details</a>
+        <a class="dropdown-item" href="">Educational Details</a>
+        <a class="dropdown-item" href="">Identification Details</a>
       </div>
     </div>
 
