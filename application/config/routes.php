@@ -54,8 +54,4 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
- $route['arramjobs/registration']='registration/provider_login.php';
- 
- 
-
-// $route['arramjobs/registration'] = 'WebDevHome';
+$route['arramjobs/registration']='registration';

@@ -9,29 +9,40 @@
 
             
         }
-        public function register()
-        {
-            $postData=$this->input->post(null,true);
-            
-            $insert=array('company_name' => $postData['name'], 'company_mobile_number' =>$postData['mobile'],
-                            'company_email' =>$postData['email'], 'company_address' =>$postData['address'],
-                            'company_logo' =>$postData['logo'], 'name' =>$postData['name1'], 
-                            'mobile_number' =>$postData['mobile1'], 'email' =>$postData['email1'],
-                            'role' =>$postData['role']);
-
-            $this->db->insert('provider_registration_form',$insert);
-         }
-
 
 
          public function login()
-         { 
-             $postData1=$this->input->post(null,true);
- 
-            $login=array('user_id' => $postData1['userID'], 'password' => $postData1['password']);
- 
-            $this->db->insert('provider_login_form',$login);
+        { 
+            $postData=$this->input->post(null,true);
+
+           $insert=array('user_id' => $postData['userID'], 'password' => $postData['password']);
+
+           $this->db->insert('provider_login_form',$insert);
+       }
+
+
+
+       public function register()
+       {
+           $postData1=$this->input->post(null,true);
+           
+           $insert=array('company_name' => $postData1['name'], 'company_mobile_number' =>$postData1['mobile'],
+                           'company_email' =>$postData1['email'], 'street_address' =>$postData1['address'],
+                           'Landmark' =>$postData1['landmark'],'City' =>$postData1['city'], 'district' =>$postData1['district'],
+                           'state' =>$postData1['state'], 'pincode' =>$postData1['pincode'],
+                           'company_logo' =>$postData1['logo'], 'name' =>$postData1['name1'], 
+                           'role' =>$postData1['role'],
+                           'mobile_number' =>$postData1['mobile1'], 'email' =>$postData1['email1'],
+                       );
+
+           $this->db->insert('provider_registration_form',$insert);
         }
+
+        
+      
+
+        
+       
 
      
     }

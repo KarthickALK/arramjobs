@@ -1,59 +1,32 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta name="viewport" content="width=device-width, initial-scale=1">
-<style>
-body {
-  font-family: "Lato", sans-serif;
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    /* Highlight the active menu item */
+.navbar-nav .nav-item.active .nav-link {
+    background-color: #007bff;
+    color: #fff;
 }
 
-.sidenav {
-  height: 100%;
-  width: 200px;
-  position: fixed;
-  z-index: 1;
-  top: 0;
-  left: 0;
-  background-color: #111;
-  overflow-x: hidden;
-  padding-top: 20px;
-}
-
-.sidenav a {
-  padding: 6px 6px 6px 32px;
-  text-decoration: none;
-  font-size: 25px;
-  color: #818181;
-  display: block;
-}
-
-.sidenav a:hover {
-  color: #f1f1f1;
-}
-
-.main {
-  margin-left: 200px; /* Same as the width of the sidenav */
-}
-
-@media screen and (max-height: 450px) {
-  .sidenav {padding-top: 15px;}
-  .sidenav a {font-size: 18px;}
-}
-</style>
+  <Style>
 </head>
 <body>
-
-<div class="sidenav">
-  <a href="#">About</a>
-  <a href="#">Services</a>
-  <a href="#">Clients</a>
-  <a href="#">Contact</a>
-</div>
-
-<div class="main">
-  <h2>Sidenav Example</h2>
-  <p>This sidenav is always shown.</p>
-</div>
+  <!-- Example navbar HTML -->
+<ul class="navbar-nav">
+    <li class="nav-item <?php if ($active_menu == 'home') echo 'active'; ?>">
+        <a class="nav-link" href="<?php echo site_url('home'); ?>">dashboard</a>
+    </li>
+    <li class="nav-item <?php if ($active_menu == 'about') echo 'active'; ?>">
+        <a class="nav-link" href="<?php echo site_url('about'); ?>">profile</a>
+    </li>
+    <li class="nav-item <?php if ($active_menu == 'services') echo 'active'; ?>">
+        <a class="nav-link" href="<?php echo site_url('services'); ?>">jobs</a>
+    </li>
    
+</ul>
+
 </body>
-</html> 
+</html>

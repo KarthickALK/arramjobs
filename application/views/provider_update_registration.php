@@ -116,7 +116,8 @@ button[type="submit"] {
        
         <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
         <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
-        <form  name="forms" >
+     
+        <form  name="forms" action="" method="post">
        
             <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
                 <label for="name" class="form-label">Name:</label>
@@ -124,7 +125,7 @@ button[type="submit"] {
                 <p id="nameerr"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
-                <label for="phno" class="form-label">Mobile Number:</label>
+                <label for="phno" class="form-label">Number:</label>
                 <input type="number" class="form-control"  id="phno" name="phno">
                 <p id="pherr"  style="color: red;"></p>
             </div>
@@ -134,13 +135,39 @@ button[type="submit"] {
                 <p id="mailerr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
-                <label for="addr" class="form-label" >Address:</label>
+                <label for="addr" class="form-label" >street address:</label>
                 <input type="address" class="form-control"  id="addr" name="addr" placeholder="enter address">
                 <p id="adderr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+                <label for="addr" class="form-label" >Landmark:</label>
+                <input type="address" class="form-control"  id="landmark1" name="landmark1" placeholder="enter address">
+                <p id="landerr1" style="color: red;"></p>
+            </div>
+            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+                <label for="addr" class="form-label" >City:</label>
+                <input type="address" class="form-control"  id="city1" name="city1" placeholder="enter city">
+                <p id="cityerr1" style="color: red;"></p>
+            </div>
+           
+            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+                <label for="addr" class="form-label" >District:</label>
+                <input type="address" class="form-control"  id="district1" name="district1" placeholder="enter district">
+                <p id="diserr1" style="color: red;"></p>
+            </div>
+            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+                <label for="addr" class="form-label" >State:</label>
+                <input type="address" class="form-control"  id="state1" name="state1" placeholder="enter state">
+                <p id="stateerr1" style="color: red;"></p>
+            </div>
+            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+                <label for="addr" class="form-label" >Pincode:</label>
+                <input type="number" class="form-control"  id="pincode1" name="pincode1">
+                <p id="pinerr1" style="color: red;"></p>
+            </div>
+            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="file" class="form-label" >Logo:</label>
-                <input type="file" class="form-control" id="file" name="file" required>
+                <input type="file" class="form-control" id="file" name="file" >
                 <p id="logerr" style="color: red;"></p>
             </div>
             <br>
@@ -154,6 +181,11 @@ button[type="submit"] {
                 <p id="nameerr1"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+                <label for="role" class="form-label">Role:</label>
+                <input type="text" class="form-control"  id="role" name="role" placeholder="enter role">
+                <p id="rolerr" style="color: red;"></p>
+            </div> 
+            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="phno1" class="form-label">Mobile Number:</label>
                 <input type="number" class="form-control"  id="phno1" name="phno1">
                 <p id="pherr1"  style="color: red;"></p>
@@ -163,13 +195,9 @@ button[type="submit"] {
                 <input type="email" class="form-control"  id="mail1" name="mail1" placeholder="enter email">
                 <p id="mailerr1" style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
-                <label for="role" class="form-label">Role:</label>
-                <input type="text" class="form-control"  id="role" name="role" placeholder="enter role">
-                <p id="rolerr" style="color: red;"></p>
-            </div> 
+           
             <div>
-                <button class="btn bg-primary ms-5 mt-3 mb-5  text-white" onclick="return group()"><center>Submit</center></button>
+                <button class="btn bg-primary ms-5 mt-3 mb-5  text-white" ><center>Submit</center></button> <!--onclick="return group()"-->
                 
             </div>
         </form>
@@ -247,6 +275,11 @@ function group()
     var p=document.forms.phno.value;
     var a=document.forms.email.value;
     var y=document.forms.addr.value;
+    var y1=document.forms.landmark1.value;
+    var y2=document.forms.city1.value;
+    var y3=document.forms.pincode1.value;
+    var y5=document.forms.district1.value;
+    var y4=document.forms.state1.value;
     var l=document.forms.file.value;
     var x1=document.forms.name1.value;
     var p1=document.forms.phno1.value;
@@ -330,14 +363,14 @@ function group()
 
      if(y!="")
      {
-         if(y.length<11)
+         if(y.length<3)
          {
-             document.getElementById("adderr").innerHTML="* Address should be in atleast 10 characters";
+             document.getElementById("adderr").innerHTML="* street address should be in atleast 3 characters";
              return false;
          }
-         else if(y.length>35)
+         else if(y.length>100)
          {
-             document.getElementById("adderr").innerHTML="* Address should not exceed 35 characters";
+             document.getElementById("adderr").innerHTML="* street address should not exceed 100 characters";
              return false;
          }
          else
@@ -347,11 +380,149 @@ function group()
      }
      else 
      {
-         var adderr = "* Address must be in filled out";
+         var adderr = "* street address must be in filled out";
          document.getElementById("adderr").innerHTML=adderr;
          document.forms.addr.focus();
          return false;
      }
+
+     if(y1!="")
+     {
+         if(y1.length<3)
+         {
+             document.getElementById("landerr1").innerHTML="* landmark should be in atleast 3 characters";
+             return false;
+         }
+         else if(y1.length>100)
+         {
+             document.getElementById("landerr1").innerHTML="* landmark should not exceed 100 characters";
+             return false;
+         }
+         else
+         {
+             document.getElementById("landerr1").innerHTML="";
+         }
+     }
+     else 
+     {
+         var landmark = "* landmark must be in filled out";
+         document.getElementById("landerr1").innerHTML=landmark;
+         document.forms.landmark1.focus();
+         return false;
+     }
+
+     
+     if(y2!="")
+     {
+         if(y2.length<3)
+         {
+             document.getElementById("cityerr1").innerHTML="* city should be in atleast 3 characters";
+             return false;
+         }
+         else if(y2.length>100)
+         {
+             document.getElementById("cityerr1").innerHTML="* city should not exceed 100 characters";
+             return false;
+         }
+         else
+         {
+             document.getElementById("cityerr1").innerHTML="";
+         }
+     }
+     else 
+     {
+         var city= "* city must be in filled out";
+         document.getElementById("cityerr1").innerHTML=city;
+         document.forms.city1.focus();
+         return false;
+     }
+
+
+     if(y5!="")
+     {
+         if(y5.length<3)
+         {
+             document.getElementById("diserr1").innerHTML="* district should be in atleast 3 characters";
+             return false;
+         }
+         else if(y5.length>100)
+         {
+             document.getElementById("diserr1").innerHTML="* district should not exceed 100 characters";
+             return false;
+         }
+         else
+         {
+             document.getElementById("diserr1").innerHTML="";
+         }
+     }
+     else 
+     {
+         var district= "* district must be in filled out";
+         document.getElementById("diserr1").innerHTML=district;
+         document.forms.district1.focus();
+         return false;
+     }
+
+     if(y4!="")
+     {
+         if(y4.length<3)
+         {
+             document.getElementById("stateerr1").innerHTML="* state should be in atleast 3 characters";
+             return false;
+         }
+         else if(y4.length>100)
+         {
+             document.getElementById("stateerr1").innerHTML="* state should not exceed 100 characters";
+             return false;
+         }
+         else
+         {
+             document.getElementById("stateerr1").innerHTML="";
+         }
+     }
+     else 
+     {
+         var state= "* state must be in filled out";
+         document.getElementById("stateerr1").innerHTML=state;
+         document.forms.state1.focus();
+         return false;
+     }
+
+
+     
+    
+
+
+
+
+
+     if(y3 !="" )
+     {
+        if(y3.length!==6)
+        {
+            document.getElementById("pinerr1").innerHTML="pincode  must be in 6 digits";
+            return false;
+        }
+        else if(y3.length>6)
+        {
+         document.getElementById("pinerr1").innerHTML="pincode should not exceed 6 digits";
+         return false;
+        }
+      
+        else{
+            document.getElementById("pinerr1").innerHTML="";
+            
+        }
+    }  
+    
+     else if(y3=="")
+     {
+        var pincode="phone number must be filled out";
+        document.getElementById("pinerr1").innerHTML=pincode;
+        document.forms.pincode1.focus();
+        return false;
+        
+    }
 
      
     if(x1 != "")
@@ -371,17 +542,19 @@ function group()
             
         }
     }
-    if(l=="")
-    {
-        var logsms="*Please upload your file";
-        document.getElementById("logerr").innerHTML=logsms;
-        document.forms.file.focus();
-        return false;
-    }
-    else{
-        document.getElementById("logerr").innerHTML="";
+
+   
+    // if(l=="")
+    // {
+    //     var logsms="*Please upload your file";
+    //     document.getElementById("logerr").innerHTML=logsms;
+    //     document.forms.file.focus();
+    //     return false;
+    // }
+    // else{
+    //     document.getElementById("logerr").innerHTML="";
         
-    }
+    // }
     if(x1=="")
     {
         var namesms2="* Name must be filled out";
@@ -389,6 +562,27 @@ function group()
         document.forms.name1.focus();
         return false;
     }
+
+     
+    if(r!="")
+     {
+          if(y.length>50)
+         {
+             document.getElementById("rolerr").innerHTML="* Address should not exceed 50 characters";
+             return false;
+         }
+         else
+         {
+             document.getElementById("rolerr").innerHTML="";
+         }
+     }
+     else 
+     {
+         var adderr = "* role must be in filled out";
+         document.getElementById("rolerr").innerHTML=adderr;
+         document.forms.role.focus();
+         return false;
+     }
 
     if(p1 !="" )
     {
@@ -441,25 +635,6 @@ function group()
         }
     }   
 
-    if(r!="")
-     {
-          if(y.length>50)
-         {
-             document.getElementById("rolerr").innerHTML="* Address should not exceed 50 characters";
-             return false;
-         }
-         else
-         {
-             document.getElementById("rolerr").innerHTML="";
-         }
-     }
-     else 
-     {
-         var adderr = "* role must be in filled out";
-         document.getElementById("rolerr").innerHTML=adderr;
-         document.forms.role.focus();
-         return false;
-     }
   }
  
 

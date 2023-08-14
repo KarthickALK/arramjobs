@@ -151,7 +151,7 @@ else if(((charCode > 48) && (charCode < 57))){
 </script>
 
 <div class="container">
-        <form name="forms1" id="font">
+        <form name="forms1" id="font" action="http://localhost/arramjobs/registration/login/addnew" post="method">
             <br>
             <div id="head1"><h3>Add new job</h3></div>
             <div class="mb-3"  >
@@ -164,6 +164,43 @@ else if(((charCode > 48) && (charCode < 57))){
                 <input type="text" class="form-control"   id="jb" name="jb" placeholder="enter job tittle" onkeypress="return allowOnlyLetters1(event, this)">
                 <p id="terr"  style="color: red;"></p>
             </div>
+            <div class="form-group">
+                <label for="category">Category:</label>
+                <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+                    <option value="">Select a Category</option>
+                    <option value="it">Information Technology</option>
+                    <option value="education">Education</option>
+                    <option value="civil">Civil</option>
+                    <option value="healthcare">Healthcare</option>
+                    <option value="sales and marketing">sales and marketing</option>
+                    <option value="finance">Finance</option>
+                    <option value="textile">Textile</option>
+                    <option value="sports">Sports</option>
+                    <option value="services">Services</option>
+                </select>
+                <div id="category_error" class="error"></div>
+            </div>
+            <div class="form-group">
+                <label for="subcategory">Subcategory:</label>
+                <select class="form-control" id="subcategory" name="subcategory" disabled>
+                    <option value="">Select a Subcategory</option>
+                </select>
+                <div id="subcategory_error" class="error"></div>
+            </div>
+            <div class="form-group">
+        <label for="experience">Experience</label>
+        <select class="form-control" id="experience" name="experience">
+          <option value="">select your experience</option>
+          <option value="fresher">Fresher</option>
+          <option value="0-2">0-2</option>
+          <option value="3-5">3-5</option>
+          <option value="5-10">5-10</option>
+          <option value="10-15">10-15</option>
+          <option value="15-20">15-20</option>
+          <option value="above 20 years">above 20 years</option>
+          </select>
+          <div id="experience_error" class="error"></div>
+</div>
             <div class="mb-3">
                 <label for="lk" class="form-label"><b>Location:</b></label>
                 <input type="text" class="form-control" id="lk" name="lk" placeholder="enter location">
@@ -201,13 +238,6 @@ else if(((charCode > 48) && (charCode < 57))){
                
                 <input type="checkbox" id="emp4" name="emp4"  class="ms-4">
                 <label for="exp4">4-5</label>
-                
-               
-                
-                <!-- <input type="checkbox" id="emp6" name="emp6"  class="ms-4" >
-                <label for="exp5"  >Others :</label>
-                <input type="text" id="emp5" name="emp5">
-                <p id="err"  style="color: red;"></p> -->
             </div>
                
                 <label>
@@ -300,6 +330,84 @@ else if(((charCode > 48) && (charCode < 57))){
         document.forms1.jb.focus();
         return false;
       }
+
+      function updateSubcategories() {
+            var categorySelect = document.getElementById("category");
+            var subcategorySelect = document.getElementById("subcategory");
+            var selectedCategory = categorySelect.value;
+            
+            // Reset subcategory options
+            subcategorySelect.innerHTML = '<option value="">Select a Subcategory</option>';
+            
+            if (selectedCategory === "it") {
+                addSubcategoryOption("Architect");
+                addSubcategoryOption("developer");
+                addSubcategoryOption("Tester");
+                addSubcategoryOption("UI/UX Design");
+                addSubcategoryOption("Data Scientist");
+                addSubcategoryOption("Database admin");
+                addSubcategoryOption("Syatem admin");
+                addSubcategoryOption()
+            }
+            else if (selectedCategory === "education") {
+                addSubcategoryOption("Teachers");
+                addSubcategoryOption("professors");
+                
+            } 
+            else if (selectedCategory === "civil") {
+                addSubcategoryOption("Meshon");
+                addSubcategoryOption("Painter");
+                addSubcategoryOption("Plumber");
+                addSubcategoryOption("Electrician");
+                addSubcategoryOption("Carpenter");
+
+            }
+            else if (selectedCategory === "healthcare") {
+                addSubcategoryOption("Doctor");
+                addSubcategoryOption("Nurse");
+                addSubcategoryOption("Pharmacist");
+                addSubcategoryOption("Physiotherapist");
+            }
+            else if (selectedCategory === "sales and marketing") {
+                addSubcategoryOption("sales");
+                addSubcategoryOption("Marketing");
+            }
+            else if (selectedCategory === "finance") {
+                addSubcategoryOption("Accountant");
+                addSubcategoryOption("Chartered Accountant");
+            }
+            else if (selectedCategory === "textile") {
+                addSubcategoryOption("Supervisor");
+                addSubcategoryOption("Floor manager");
+                addSubcategoryOption("General manager");
+                addSubcategoryOption("Cutting master");
+                addSubcategoryOption("Labour");    
+            }
+            else if (selectedCategory === "sports") {
+                addSubcategoryOption("Physical education master");
+                addSubcategoryOption("Trainer");   
+            }
+            else if (selectedCategory === "services") {
+                addSubcategoryOption("Driver");
+                addSubcategoryOption("Security");
+                addSubcategoryOption("Cook");
+                addSubcategoryOption("House keeping");
+                addSubcategoryOption("Electrician");
+                addSubcategoryOption("Plumber"); 
+                addSubcategoryOption("Meshon");
+                addSubcategoryOption("Carpenter"); 
+                addSubcategoryOption("Mechanic");  
+            }
+         subcategorySelect.disabled = false;
+        }
+        
+        function addSubcategoryOption(subcategory) {
+            var subcategorySelect = document.getElementById("subcategory");
+            var option = document.createElement("option");
+            option.value = subcategory;
+            option.text = subcategory;
+            subcategorySelect.appendChild(option);
+        }
       if(z3 != "")
       {
       if(z3.length<3)
