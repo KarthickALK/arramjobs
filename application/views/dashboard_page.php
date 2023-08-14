@@ -193,7 +193,8 @@ header {
   <div class="dashboard-container">
   <nav class="side-menu">
   <ul>
-    <li><a href="provider_update_registration">Profile</a></li>
+    <!-- <li><a href="provider_update_registration">Profile</a></li> -->
+    <li><a href="<?php echo site_url('Registration/provider_update_registration'); ?>">Profile</a></li>
     <li><a href="view_provider_addjob">Jobs</a></li>
     <li><a href="candidates.php">Candidates</a></li>
     <li><a href="wishlist.php">Wishlist</a></li>
@@ -201,7 +202,7 @@ header {
 </nav>
 </body>
     <main class="content">
-      
+    <form action="<?php echo site_url('Registration/provider_update_registration'); ?>" method="post">
     </main>
   </div>
 </body>
