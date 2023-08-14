@@ -188,18 +188,20 @@ header {
       <div class="user-profile" style="font-size: 30px; font-weight:bold;font-family: 'Playfair Display', serif">Welcome Arramjobs</div>
     <a href="login.php" style="color:#f37e17; "  class="no-underline">Logout</a>
   </header>
+  <body>
   
   <div class="dashboard-container">
   <nav class="side-menu">
   <ul>
     <li><a href="provider_update_registration">Profile</a></li>
-    <li><a href="jobs.php">Jobs</a></li>
+    <li><a href="view_provider_addjob">Jobs</a></li>
     <li><a href="candidates.php">Candidates</a></li>
     <li><a href="wishlist.php">Wishlist</a></li>
   </ul>
 </nav>
-
+</body>
     <main class="content">
+      
     </main>
   </div>
 </body>

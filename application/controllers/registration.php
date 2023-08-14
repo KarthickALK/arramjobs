@@ -33,7 +33,10 @@
         {
             $this->load->view('provider_update_registration.php');
         }
-       
+       public function view_provider_addjob()
+       {
+            $this->load->view('addnew_jobs.php');
+       }
 
 
        
