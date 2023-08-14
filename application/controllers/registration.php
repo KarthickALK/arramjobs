@@ -6,16 +6,16 @@
             parent::__construct();
             $this->load->model('RegistrationModel');
         }
-        // public function index()
-        // {
-           
-        // }
-
+        public function index()
+        {
+            $postData=$this->input->post(null,true);
+            $responses=$this->RegistrationModel->register();
+            $this->load->view('provider_login.php');
+          
+        }
         public function provider_registration()
         {
-            // $postData=$this->input->post(null,true);
             $this->load->view('provider_registration.php');
-            // $responses=$this->RegistrationModel->register();
         }
 
          public function load_login()

@@ -192,7 +192,7 @@ header {
   <div class="dashboard-container">
   <nav class="side-menu">
   <ul>
-    <li><a href="http://localhost/arramjobs/index.php/Registration/view_dashboard/provider_update_registration.php">Profile</a></li>
+    <li><a href="provider_update_registration">Profile</a></li>
     <li><a href="jobs.php">Jobs</a></li>
     <li><a href="candidates.php">Candidates</a></li>
     <li><a href="wishlist.php">Wishlist</a></li>

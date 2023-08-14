@@ -73,7 +73,7 @@
 <body>
   <div class="container">
     <h1>Provider Login Form</h1>
-    <form name="login_form" method="post" action="http://localhost/arramjobs/index.php/Registration/view_dashboard"  onsubmit="return validateForm()">
+    <form name="login_form" method="post" action="http://localhost/arramjobs/Registration/view_dashboard"  onsubmit="return validateForm()">
       <div class="form-group">
         <label for="userID">User ID</label>
         <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user ID">
@@ -90,7 +90,7 @@
       <br>
       </form>
       <div id="sign">
-            <p>Create an account ? <a id="regis" href="index.php/registration/provider_registration">Register</a></p>
+            <p>Create an account ? <a id="regis" href="index.php/registration/provider_registration/index">Register</a></p>
         </div>
 
 
