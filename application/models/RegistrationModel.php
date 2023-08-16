@@ -27,6 +27,21 @@
         }
 
 
+
+       
+            public function update_profile_data($data) {
+                $this->db->where('user_id', $user_id); // Assuming you have a field 'user_id'
+                $this->db->update('users', $data);
+            }
+        
+        
+
+
+
+
+
+
+
 //      public function login()
     //     { 
     //         $postData=$this->input->post(null,true);

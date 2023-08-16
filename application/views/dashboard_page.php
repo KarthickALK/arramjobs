@@ -215,7 +215,6 @@ header {
 
 
 
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -224,7 +223,7 @@ header {
     <title>Admin Dashboard</title>
 <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
 <style>
-/* Reset some default styles */
+
 body, h1, h2, h3, p {
     margin: 0;
     padding: 0;
@@ -239,26 +238,26 @@ body {
     width:100%;
 }
 
-/* Header styles */
+
 header {
     margin-left:0px;
     background-color: #1976D2;
     color: white;
     padding: 20px;
     text-align: center;
-    position: fixed; /* Fixed position to keep the header at the top */
-    width: 100%; /* Ensure full width */
-    top: 0; /* Position at the top */
-    z-index: 1; /* Ensure header is above other content */
+    position: fixed; 
+    width: 100%; 
+    top: 0; 
+    z-index: 1; 
 }
 
-/* Main content container */
+
 .dashboard-container {
     display: flex;
-    margin-top: 80px; /* Ensure content starts below the fixed header */
+    margin-top: 80px; 
 }
 
-/* Side menu styles */
+
 .side-menu {
     margin-top: 90px;
     background-color: #FFC107;
@@ -302,7 +301,7 @@ header {
     font-weight: bold;
 }
 
-/* Main content styles */
+
 .content {
     flex: 1;
     padding: 20px;

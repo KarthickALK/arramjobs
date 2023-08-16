@@ -38,7 +38,50 @@
        public function view_provider_addjob()
        {
              $this->load->view('addnew_jobs.php');
+       }  
+
+
+
+       public function view_forms()
+       {
+        if(forms == provider_update_registration)
+        {
+            $this->load->view('provider_update_registration.php');
+        }
        }
+
+
+
+
+
+
+    
+        // public function update_profile() {
+        //     if ($this->input->post()) {
+        //         $data = array(
+        //             'name' => $this->input->post('name'),
+        //             'phno' => $this->input->post('phno'),
+        //             'email' => $this->input->post('email'),
+        //             'addr' =>$this->input->post('addr'),
+        //             'landmark1'=>$this->input->post('landmark1'),
+        //             'city1' =>$this->input->post('city1'),
+        //             'district1' =>$this->input->post('district1'),
+        //             'state1' =>$this->input->post('state1'),
+        //             'pincode1' =>$this->input->post('pincode1'),
+        //             'file' =>$this->input->post('file'),
+        //         );
+    
+                
+        //         $this->RegistrationModel->update_profile_data($data);
+    
+                
+        //     } else {
+        //         // Handle form display
+        //         $this->load->view('update_profile_form');
+        //     }
+        // }
+    }
+    
 
 
        
@@ -152,5 +195,5 @@
 
         
              
-    }
+    
 ?>
