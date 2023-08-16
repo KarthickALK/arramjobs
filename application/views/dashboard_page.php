@@ -338,14 +338,12 @@ header {
                 <li><a href="javascript:void(0);" onclick="loadContent('view_provider_addjob')" class="nav-link">jobs</a></li>
                 <li><a href="javascript:void(0);" onclick="loadContent('exp')" class="nav-link">Candidate</a></li>
                 <li><a href="javascript:void(0);" onclick="loadContent('pro')" class="nav-link">Wishlist</a></li>
-                <!-- <li><a href="javascript:void(0);" onclick="loadContent('area')" class="nav-link">Area Of Interest</a></li>
-                <li><a href="javascript:void(0);" onclick="loadContent('skills')" class="nav-link">Skills Details</a></li>
-                <li><a href="javascript:void(0);" onclick="loadContent('resume')" class="nav-link">Upload Resume</a></li> -->
+              
             </ul>
         </nav>
 
         <main class="content p-3" id="dashboard-content">
-            <!-- Dynamic content will be loaded here -->
+          
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
