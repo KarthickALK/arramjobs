@@ -20,6 +20,7 @@ class Welcome extends CI_Controller {
 	 */
 	public function index()
 	{
+		//  $this->load->view('view_dashboard.php');
 		   $this->load->view('provider_login.php');
 		//    $this->load->model('RegistrationModel');
 		//   $this->load->view('welcome');

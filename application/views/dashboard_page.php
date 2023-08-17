@@ -207,14 +207,6 @@ header {
 </body>
 </html> -->
 
-
-
-
-
-
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -334,9 +326,10 @@ header {
             <h3 class="px-3 py-2">Create profile</h3>
             <ul class="list-unstyled">
                 <li><a href="javascript:void(0);" onclick="loadContent('provider_update_registration')" class="nav-link">Profile</a></li>
-                <li><a href="javascript:void(0);" onclick="loadContent('view_provider_addjob')" class="nav-link">jobs</a></li>
-                <li><a href="javascript:void(0);" onclick="loadContent('exp')" class="nav-link">Candidate</a></li>
-                <li><a href="javascript:void(0);" onclick="loadContent('pro')" class="nav-link">Wishlist</a></li>
+                
+                <li><a href="javascript:void(0);" onclick="loadContent('job_view_table')" class="nav-link">jobs</a></li>
+                <li><a href="javascript:void(0);" onclick="loadContent('job_matched_table')" class="nav-link">Candidate</a></li>
+                <li><a href="javascript:void(0);" onclick="loadContent('job_wishlist_candidates')" class="nav-link">Wishlist</a></li>
               
             </ul>
         </nav>
@@ -358,6 +351,23 @@ header {
             xhr.send();
         }
     </script>
+
+
+
+
+
+
+
+
+
+
+   
+
+
+
+
+
+
 
 </body>
 </html>

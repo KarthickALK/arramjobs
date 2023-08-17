@@ -25,30 +25,56 @@
             $this->load->view('provider_login.php');
            
         }
+        // ,$this[data]
 
          public function view_dashboard()
         {
             $this->load->view('dashboard_page.php');
         }
        
-        public function provider_update_registration()
+        public function provider_update_registration() 
         {
             $this->load->view('provider_update_registration.php');
         }
        public function view_provider_addjob()
        {
+
              $this->load->view('addnew_jobs.php');
        }  
-
-
-
-       public function view_forms()
+       public function job_view_table()
        {
-        if(forms == provider_update_registration)
-        {
-            $this->load->view('provider_update_registration.php');
-        }
+            $this->load->view('job_view_table.php');
        }
+       public function job_matched_table()
+       {
+            $this->load->view('job_matched_table.php');
+       }
+       public function job_wishlist_candidates()
+       {
+            $this->load->view('job_wishlist_candidates.php');
+       }
+       
+
+      
+
+    //    public function new()
+    //    {
+    //     $this->load->view('view_dashboard.php');
+    //    }
+
+
+    
+    // public function view_forms()
+    //    {
+    //     if(forms == provider_update_registration)
+    //     {
+    //         $this->load->view('provider_update_registration.php');
+    //     } 
+    //     else if(forms1 == view_provider_addjob)
+    //     {
+    //         $this->load->view('addnew_jobs.php');
+    //     }
+    //    }
 
 
 
