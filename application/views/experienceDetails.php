@@ -2,15 +2,13 @@
 <html>
 <head>
     <title>Experience Details Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
 <style>
   body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  margin-left:-200px;
-  margin-right:290px;
 }
 
 .container {
@@ -83,7 +81,7 @@ button[type="submit"] {
 
 <div class="container">
     <h1>Experience Details Form</h1>
-    <form name="experienceform" method="post" onsubmit="return validateForm()" action="pro">
+    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="dash">
     <div class="form-group">
                 <label for="category">Category:</label>
                 <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
@@ -165,7 +163,6 @@ button[type="submit"] {
                 addSubcategoryOption("Data Scientist");
                 addSubcategoryOption("Database admin");
                 addSubcategoryOption("Syatem admin");
-                addSubcategoryOption()
             }
             else if (selectedCategory === "education") {
                 addSubcategoryOption("Teachers");
@@ -229,7 +226,7 @@ button[type="submit"] {
             subcategorySelect.appendChild(option);
         }
        
-        function validateForm() {
+        function validateexpForm() {
         var category = document.getElementById("category");
         var subcategory = document.getElementById("subcategory");
         var experience = document.getElementById("experience");

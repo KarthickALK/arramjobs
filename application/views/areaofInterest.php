@@ -11,8 +11,8 @@
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  margin-left:-200px;
-  margin-right:290px;
+  /* margin-left:-200px;
+  margin-right:290px; */
 }
 
 .container {
@@ -84,7 +84,7 @@ button[type="submit"] {
 <body>
     <div class="container mt-5">
         <h1>Area of Interest Form</h1>
-        <form method="post" onsubmit="return validateForm()" action="skills"  >
+        <form method="post" onsubmit="return validateForm()" action="dash" >
         <div id="educationFormsContainer">
         <div class="education-form-container">    
                  <div class="form-group">

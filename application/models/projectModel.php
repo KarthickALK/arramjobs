@@ -41,29 +41,46 @@ public function __construct()
             'phonenumber' => $phonenumber
         );
 
-        $this->db->insert('registration_form', $insert);
+        $this->db->insert('seeker_profile_form', $insert);
     }
 
-    public function profregister()
-    {
-        $name = $this->input->post('name');
-        $email = $this->input->post('email');
-        $phonenumber = $this->input->post('phonenumber');
-        $dateofbirth=$this->input->post('dob');
-        $address=$this->input->post('address');
-        $district=$this->input->post('district');
+    public function basicdetails()
+{
+    $name = $this->input->post('name');
+    $email = $this->input->post('email');
+    $phonenumber = $this->input->post('phonenumber');
+    $dateofbirth = $this->input->post('dob');
+    $gender = $this->input->post('gender');
+    $doorno = $this->input->post('doorno');
+    $streetaddress = $this->input->post('streetaddress');
+    $landmark = $this->input->post('landmark');
+    $pincode = $this->input->post('pincode');
+    $maritalstatus = $this->input->post('maritalstatus');
+    $aadharFrontPhoto = $_FILES('aadharfrontphoto');
+    $aadharBackPhoto = $_FILES('aadharbackphoto');
+    $photo = $_FILES('photo');
+   
+
+    $insert = array(
+        'name' => $name,
+        'email' => $email,
+        'phonenumber' => $phonenumber,
+        'dateofbirth' => $dateofbirth,
+        'gender' => $gender,
+        'doorno' => $doorno,
+        'streetaddress' => $streetaddress,
+        'landmark' => $landmark,
+        'pincode' => $pincode,
+        'maritalstatus' => $maritalstatus,
+        'aadharFrontPhoto' => $aadhar_front,
+        'aadharBackPhoto' => $aadhar_back,
+        'photo' => $photo
         
-        $insert = array(
-            'name'=>$name,
-            'email'=>$email,
-            'phonenumber'=>$phonenumber,
-            'dateofbirth'=>$dateofbirth,
-            'address'=>$address,
-            'district'=>$district
-        );
+    );
 
-        $this->db->insert('registration_form', $insert);
-    }
+    $this->db->insert('seeker_profile_form', $insert);
+}
+
     public function eduregister()
     {
         $educational_qualification = $this->input->post('educational_qualification');

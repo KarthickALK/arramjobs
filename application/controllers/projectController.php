@@ -5,12 +5,13 @@ class projectController extends CI_Controller
     {
         parent::__construct();
         $this->load->model('projectModel');
+        
     }
 
     public function registration()
     {
-        // $postData = $this->input->post();
-        // $response = $this->projectModel->register(); 
+        $postData = $this->input->post();
+        $response = $this->projectModel->register(); 
         $this->load->view('registrationform.php');
     }
     
@@ -28,39 +29,42 @@ class projectController extends CI_Controller
         $this->load->view('otp.php');
     }
 
+    public function dash()
+    {
+        $this->load->view('dashBoard.php');
+    }
+
 
     public function profile()
     {
-        // $postData = $this->input->post(); 
-        // $response = $this->projectModel->profregister(); 
+        // $this->data['method'] = 'basic details';
         $this->load->view('basicDetails.php');
     }
 
     public function edu()
     {
-        // $postData = $this->input->post();
-        // $response = $this->projectModel->eduregister(); 
+        // $this->data['method'] = 'education';
         $this->load->view('education.php');
     }
 
     public function exp()
     {
-        // $postData = $this->input->post();
-        // $response = $this->projectModel->idenregister(); 
+        // $this->data['method'] = 'experience';
         $this->load->view('experienceDetails.php');
     }
-    public function pro(){
-        $this->load->view('projectDetails.php');
-    }
-    public function area()
-    {
-        $this->load->view('areaofInterest.php');
-    }
-    public function skills(){
-        $this->load->view('skillsDetails.php');
-    }
-    public function resume(){
-        $this->load->view("uploadResume.php");
-    }
-}
-?>
+
+    // public function pro(){
+    //     $this->load->view('projectView.php');
+    // }
+    // public function area()
+    // {
+    //     $this->load->view('areaofInterest.php');
+    // }
+    // public function skills(){
+    //     $this->load->view('skillsDetails.php');
+    // }
+    // public function resume(){
+    //     $this->load->view("uploadResume.php");
+    // }
+ }
+ ?>

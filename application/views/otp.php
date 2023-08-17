@@ -61,7 +61,7 @@
 <body>
   <div class="container">
     <h1>Login Form </h1>
-    <form id="otpForm" method="post" onsubmit="return validateOTP(document.getElementById('otp').value)" action="profile">
+    <form id="otpForm" method="post" onsubmit="return validateOTP(document.getElementById('otp').value)" action="dash">
       <div class="form-group">
         <label for="otp">OTP</label>
         <input type="text" class="form-control" id="otp" placeholder="Enter the OTP"   required>

@@ -2,15 +2,15 @@
 <html>
 <head>
     <title>Educational Details Form</title>
-    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
     <style>
     body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  margin-left:-200px;
-  margin-right:290px;
+  /* margin-left:-200px;
+  margin-right:290px; */
 }
 
 .container {
@@ -86,7 +86,7 @@ button[type="submit"] {
     <h1>Education Form</h1>
     <!-- The education form container -->
     <div class="education-form-container">
-        <form name="educationform" onsubmit="return validateForm()" action="exp">
+        <form name="educationform" onsubmit="return validateForm()" action="dash" >
             <div class="form-group">
                 <label for="qualification">Educational Qualification*</label>
                 <select class="form-control" id="qualification" name="qualification" onchange="toggleFields()">

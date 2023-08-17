@@ -9,8 +9,8 @@
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  margin-left:-200px;
-  margin-right:290px;
+  /* margin-left:-200px;
+  margin-right:290px; */
 }
 
 .container {
@@ -82,7 +82,7 @@ button[type="submit"] {
 <body>
 <div class="container">
     <h1>Project Details Form</h1>
-    <form name="projectform" method="post" onsubmit="return validateForm()" action="area">
+    <form name="projectform" method="post" onsubmit="return validateForm()">
 <div id="project-sections">
             <div class="project-section">
             <div class="form-group">

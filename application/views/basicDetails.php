@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
   <style>
     body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  margin-left:-200px;
-  margin-right:290px;
+  /* margin-left:-200px;
+  margin-right:290px; */
 }
 
 .container {
@@ -84,7 +84,7 @@ button[type="submit"] {
 <body>
     <div class="container" id="page1">
     <h1>Personal Details</h1>
-     <form name="application_form" method="post" onsubmit="return validateFormPage()" action="edu">
+     <form name="applicationform" method="post" onsubmit="return validateFormPage()" action="dash" >
     <div class="form-group">
         <label for="Name">Name *</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" >
@@ -92,12 +92,12 @@ button[type="submit"] {
       </div>
       <div class="form-group">
         <label for="emailid">Email *</label><br>
-        <input type="text" style="width: 100%;" class="form-control" id="email" name="email" placeholder="Enter your email" >
+        <input type="text" style="width: 100%;" class="form-control" id="email" name="email" placeholder="Enter your email">
         <div id="emailid_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="phonenumber">Phone Number *</label>
-        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number">
+        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" >
         <div id="phonenumber_error" class="error"></div>
       </div>
       <div class="form-group">
@@ -166,11 +166,12 @@ button[type="submit"] {
         <input type="file" class="form-control" id="photo" name="photo">
         <div id="photo_error" class="error"></div>
       </div> 
-      <button type="submit" name="submit-page" class="btn btn-primary" onclick="register()">submit</button>
+      <button type="submit" name="submitBtn" class="btn btn-primary" >submit</button>
     </form>
   </div>
+
   <script>
-    function validateFormPage() {
+  function validateFormPage() {
   var Name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
   var phoneNumber = document.getElementById('phonenumber').value;
@@ -260,9 +261,6 @@ button[type="submit"] {
   }
    return true;
     }
-  function register(){
-    window.href="educationDetails.php";
-  }
     function isValidDate(dateString) {
 var currentDate = new Date();
 var inputDate = new Date(dateString);
