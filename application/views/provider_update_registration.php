@@ -93,6 +93,7 @@ button[type="submit"] {
     </style>
 </head>
 <body >
+
     <div class="containers">
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
     
@@ -107,6 +108,9 @@ button[type="submit"] {
     </div>
   </div>
   <h2><center>Update Profile</center></h2>
+  <?php 
+  if($provider){
+  ?>
     <div class="container">
         <!-- <h2 class="text-white bg-secondary rounded-5 ms-5 me-5 shadow">Provider Registration Form</h2> -->
         <!-- <h3 class="d-inline-flex p-2 ms-5 me-1 bg-info text-white rounded-3 shadow">Provider Registration Form</h3> -->
@@ -116,53 +120,56 @@ button[type="submit"] {
        
         <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
         <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
-     
-        <form  name="forms" action="Registration/update_profile" method="post">
-       
+        
+        <form  name="forms" action="Registration/update_profile/update" method="post">
+            
+        <?php 
+  }
+  ?>
             <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
                 <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control"  id="name" name="name" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
+                <input type="text" class="form-control"  id="name" name="name"   placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
                 <p id="nameerr"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="phno" class="form-label">Number:</label>
-                <input type="number" class="form-control"  id="phno" name="phno">
+                <input type="number" class="form-control"  id="phno" name="phno"    >
                 <p id="pherr"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="email" class="form-label" >Email-ID:</label>
-                <input type="email" class="form-control"  id="email" name="email" placeholder="enter email">
+                <input type="email" class="form-control"  id="email" name="email"    placeholder="enter email">
                 <p id="mailerr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >street address:</label>
-                <input type="address" class="form-control"  id="addr" name="addr" placeholder="enter address">
+                <input type="address" class="form-control"  id="addr" name="addr"   placeholder="enter address">
                 <p id="adderr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >Landmark:</label>
-                <input type="address" class="form-control"  id="landmark1" name="landmark1" placeholder="enter address">
+                <input type="address" class="form-control"  id="landmark1" name="landmark1"    placeholder="enter address">
                 <p id="landerr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >City:</label>
-                <input type="address" class="form-control"  id="city1" name="city1" placeholder="enter city">
+                <input type="address" class="form-control"  id="city1" name="city1"    placeholder="enter city">
                 <p id="cityerr1" style="color: red;"></p>
             </div>
            
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >District:</label>
-                <input type="address" class="form-control"  id="district1" name="district1" placeholder="enter district">
+                <input type="address" class="form-control"  id="district1" name="district1"    placeholder="enter district">
                 <p id="diserr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >State:</label>
-                <input type="address" class="form-control"  id="state1" name="state1" placeholder="enter state">
+                <input type="address" class="form-control"  id="state1" name="state1"  placeholder="enter state">
                 <p id="stateerr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >Pincode:</label>
-                <input type="number" class="form-control"  id="pincode1" name="pincode1">
+                <input type="number" class="form-control"  id="pincode1" name="pincode1"  >
                 <p id="pinerr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
@@ -187,20 +194,22 @@ button[type="submit"] {
             </div> 
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="phno1" class="form-label">Mobile Number:</label>
-                <input type="number" class="form-control"  id="phno1" name="phno1">
+                <input type="number" class="form-control"  id="phno1" name="phno1" >
                 <p id="pherr1"  style="color: red;"></p>
             </div>
-            <!-- <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="mail1" class="form-label">Email-ID:</label>
-                <input type="email" class="form-control"  id="mail1" name="mail1" placeholder="enter email">
+                <input type="email" class="form-control"  id="mail1" name="mail1"   placeholder="enter email">
                 <p id="mailerr1" style="color: red;"></p>
-            </div> -->
+            </div>
            
             <div>
-                <button class="btn bg-primary ms-5 mt-3 mb-5  text-white" onclick="return group()" ><center>Submit</center></button> 
+           
+                <button class="btn bg-primary ms-5 mt-3 mb-5  text-white" name="update"  onclick="return group()" ><center>Submit</center></button> 
                 
             </div>
         </form>
+       
        </div>
     </div>
     <br>

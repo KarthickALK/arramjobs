@@ -71,6 +71,7 @@
   <title>Admin Login Form</title>
 </head>
 <body>
+
   <div class="container">
     <h1>Provider Login Form</h1>
     <form name="login_form" method="post" action="http://localhost/arramjobs/Registration/view_dashboard"  onsubmit="return validateForm()">
@@ -88,6 +89,9 @@
       <button type="submit" class="btn btn-primary">Login</button>
       <br>
       <br>
+      <?php if (isset($error_message)) { ?>
+    <p style="color: red;"><?php echo $error_message; ?></p>
+<?php } ?>
       </form>
       <div id="sign">
             <p>Create an account ? <a id="regis" href="index.php/registration/provider_registration/index">Register</a></p>
