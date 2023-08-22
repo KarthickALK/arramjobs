@@ -66,7 +66,24 @@
             $provider="SELECT * FROM `provider_registration_form` Where `id`= 94";
             $select=$this->db->query($provider);
             return $select->result_array();
+           
         }
+        
+
+
+
+        // public function get_users()
+        // {
+        //     $query = $this->db->get('provider_registration_form');
+        //     return $query->result();
+        // }
+
+        
+    }
+        
+        
+
+        
 
         
 
@@ -251,4 +268,4 @@
 
      
     // }
-    }
+    

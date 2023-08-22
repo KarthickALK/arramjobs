@@ -43,8 +43,7 @@
             $provider=$this->RegistrationModel->provider_detail(); 
             $this->data['providerDetail'] = $provider;
             $this->load->view('provider_update_registration.php',$this[data]);
-
-        }
+         }
        public function view_provider_addjob()
        {
 
@@ -62,6 +61,16 @@
        {
             $this->load->view('job_wishlist_candidates.php');
        }
+
+
+
+    //    public function users()
+    //    {
+    //     $this->load->model('RegistrationModel');
+    //     $data['provider_registration_form'] = $this->RegistrationModel->get_users();
+    //     $this->load->view('provider_update_registraton.php', $data);
+    //    }
+      
 
 
 

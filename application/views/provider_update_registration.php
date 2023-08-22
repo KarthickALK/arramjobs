@@ -112,8 +112,10 @@ button[type="submit"] {
         <!-- <h3 class="d-inline-flex p-2 ms-5 me-1 bg-info text-white rounded-3 shadow">Provider Registration Form</h3> -->
         
         <div>
-        
-       
+       <?php
+
+       foreach($this->data['providerDetail'] as $key => $value){
+       ?>
         <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
         <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
      
@@ -121,52 +123,52 @@ button[type="submit"] {
        
             <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
                 <label for="name" class="form-label">Name:</label>
-                <input type="text" class="form-control"  id="name" name="name" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
+                <input type="text" class="form-control" value=<?php echo $value['company_name'];?>   id="name" name="name" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
                 <p id="nameerr"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="phno" class="form-label">Number:</label>
-                <input type="number" class="form-control"  id="phno" name="phno">
+                <input type="number" class="form-control" value=<?php echo $value['company_mobile_number'];?>   id="phno" name="phno">
                 <p id="pherr"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="email" class="form-label" >Email-ID:</label>
-                <input type="email" class="form-control"  id="email" name="email" placeholder="enter email">
+                <input type="email" class="form-control" value=<?php echo $value['company_email'];?>  id="email" name="email" placeholder="enter email">
                 <p id="mailerr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >street address:</label>
-                <input type="address" class="form-control"  id="addr" name="addr" placeholder="enter address">
+                <input type="address" class="form-control" value=<?php echo $value['street_address'];?>  id="addr" name="addr" placeholder="enter address">
                 <p id="adderr" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >Landmark:</label>
-                <input type="address" class="form-control"  id="landmark1" name="landmark1" placeholder="enter address">
+                <input type="address" class="form-control" value=<?php echo $value['Landmark'];?>  id="landmark1" name="landmark1" placeholder="enter address">
                 <p id="landerr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >City:</label>
-                <input type="address" class="form-control"  id="city1" name="city1" placeholder="enter city">
+                <input type="address" class="form-control" value=<?php echo $value['City'];?>   id="city1" name="city1" placeholder="enter city">
                 <p id="cityerr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >State:</label>
-                <input type="address" class="form-control"  id="state1" name="state1" placeholder="enter state">
+                <input type="address" class="form-control" value=<?php echo $value['state'];?>   id="state1" name="state1" placeholder="enter state">
                 <p id="stateerr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >District:</label>
-                <input type="address" class="form-control"  id="district1" name="district1" placeholder="enter district">
+                <input type="address" class="form-control" value=<?php echo $value['district'];?>   id="district1" name="district1" placeholder="enter district">
                 <p id="diserr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="addr" class="form-label" >Pincode:</label>
-                <input type="number" class="form-control"  id="pincode1" name="pincode1">
+                <input type="number" class="form-control" value=<?php echo $value['pincode'];?>   id="pincode1" name="pincode1">
                 <p id="pinerr1" style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="file" class="form-label" >Logo:</label>
-                <input type="file" class="form-control" id="file" name="file" >
+                <input type="file" class="form-control" value=<?php echo $value['company_logo'];?>  id="file" name="file" >
                 <p id="logerr" style="color: red;"></p>
             </div>
             <br>
@@ -176,22 +178,22 @@ button[type="submit"] {
             
             <div class="mb-3 mt-4  ms-5 me-5 w-55 " >
                 <label for="name1" class="form-label">Name:</label>
-                <input type="text" class="form-control"  id="name1" name="name1" placeholder="enter name" onkeypress="return allowOnlyLetters1(event, this)">
+                <input type="text" class="form-control" value=<?php echo $value['name'];?>  id="name1" name="name1" placeholder="enter name" onkeypress="return allowOnlyLetters1(event, this)">
                 <p id="nameerr1"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="role" class="form-label">Role:</label>
-                <input type="text" class="form-control"  id="role" name="role" placeholder="enter role">
+                <input type="text" class="form-control" value=<?php echo $value['role'];?>  id="role" name="role" placeholder="enter role">
                 <p id="rolerr" style="color: red;"></p>
             </div> 
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="phno1" class="form-label">Mobile Number:</label>
-                <input type="number" class="form-control"  id="phno1" name="phno1">
+                <input type="number" class="form-control" value=<?php echo $value['mobile_number'];?>  id="phno1" name="phno1">
                 <p id="pherr1"  style="color: red;"></p>
             </div>
             <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
                 <label for="mail1" class="form-label">Email-ID:</label>
-                <input type="email" class="form-control"  id="mail1" name="mail1" placeholder="enter email">
+                <input type="email" class="form-control" value=<?php echo $value['email'];?>  id="mail1" name="mail1" placeholder="enter email">
                 <p id="mailerr1" style="color: red;"></p>
             </div>
            
@@ -200,6 +202,9 @@ button[type="submit"] {
                 
             </div>
         </form>
+        <?php
+        }
+        ?>
        </div>
     </div>
     <br>

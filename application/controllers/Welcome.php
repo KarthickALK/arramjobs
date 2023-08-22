@@ -19,12 +19,16 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 	public function index()
-	{
+{
 		//   $this->load->view('allView.php');
 		//    $this->load->view('provider_login.php');
 		//    $this->load->model('RegistrationModel');
 		//   $this->load->view('welcome');
-		$this->load->view('provider_update_registration.php');
+		// $this->load->view('provider_update_registration.php');
+		$this->load->model('RegistrationModel');
+		$provider=$this->RegistrationModel->provider_detail(); 
+		$this->data['providerDetail'] = $provider;
+		$this->load->view('provider_update_registration.php',$this->data);
 		   
 	}
 }
