@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
     body {
   font-family: Arial, sans-serif;
@@ -84,20 +84,20 @@ button[type="submit"] {
 <body>
     <div class="container" id="page1">
     <h1>Personal Details</h1>
-     <form name="applicationform" method="post" onsubmit="return validateFormPage()" action="dash" >
+     <form name="applicationform" method="post" onsubmit="return validateFormPage()">
     <div class="form-group">
         <label for="Name">Name *</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your full name" >
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="<?= isset($userData['name']) ? $userData['name'] : ''; ?>" required>
         <div id="Name_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="emailid">Email *</label><br>
-        <input type="text" style="width: 100%;" class="form-control" id="email" name="email" placeholder="Enter your email">
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your email" value="<?= isset($userData['email']) ? $userData['email'] : ''; ?>" required>
         <div id="emailid_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="phonenumber">Phone Number *</label>
-        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" >
+        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your phonenumber" value="<?= isset($userData['phonenumber']) ? $userData['phonenumber'] : ''; ?>" required>
         <div id="phonenumber_error" class="error"></div>
       </div>
       <div class="form-group">
@@ -172,6 +172,7 @@ button[type="submit"] {
 
   <script>
   function validateFormPage() {
+  
   var Name = document.getElementById('name').value;
   var email = document.getElementById('email').value;
   var phoneNumber = document.getElementById('phonenumber').value;

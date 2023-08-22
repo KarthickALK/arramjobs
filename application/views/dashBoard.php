@@ -118,9 +118,9 @@ header {
 <nav class="side-menu">
     <h3 class="px-3 py-2">Create profile</h3>
     <ul class="list-unstyled">
-        <li><a href="javascript:void(0);" onclick="loadForm('profile')">Basic Details</a></li>
+        <!-- <li><a href="javascript:void(0);" onclick="loadForm('profile')">Basic Details</a></li>
         <li><a href="javascript:void(0);" onclick="loadForm('edu')">Education Details</a></li>
-        <li><a href="javascript:void(0);" onclick="loadForm('exp')">Experience Details</a></li>
+        <li><a href="javascript:void(0);" onclick="loadForm('exp')">Experience Details</a></li> -->
         <!-- <li><a href="javascript:void(0);" onclick="loadForm('pro')">Project Details</a></li>
         <li><a href="javascript:void(0);" onclick="loadForm('area')">Area Of Interest</a></li>
         <li><a href="javascript:void(0);" onclick="loadForm('skills')">Skills Details</a></li>

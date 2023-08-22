@@ -75,7 +75,7 @@ h1 {
 <body>
   <div class="container">
     <h1>Registration Form</h1>
-    <form name="registration_form" method="post" onsubmit="return validateForm()" action="index.php/projectcontroller/index" >
+    <form name="registration_form" method="post" onsubmit="return validateForm()">
       <div class="form-group">
         <label for="name">Name</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your username">
@@ -91,10 +91,8 @@ h1 {
         <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number">
         <div id="phone_error" class="error"></div>
       </div>
-      <a href="index.php/projectcontroller/index">Already a user signin</a>
-      <button type="Submit" class="btn btn-primary">Register</button>
-</form>
-  
+      <button type="submit" class="btn btn-primary">submit</button><br>
+      <br><a href="index">Already a user signin</a>
   </div>
   <script>
    function validateForm() {
@@ -150,14 +148,6 @@ h1 {
       for (var i = 0; i < errorElements.length; i++) {
         errorElements[i].textContent = '';
       }
-    //   function submitForm(event) {
-    //   var username = document.getElementById('name').value;
-    //   var email = document.getElementById('email').value;
-    //   var phone = document.getElementById('phonenumber').value;
-    //   // If you want to send the phone number to the 'otp.php' page, you can use URL parameters
-    //   window.location.href = 'index.php/RegController/sample';
-    //   event.preventDefault(); // Prevents the default form submission behavior
-    // }
     }
   </script>
   <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>

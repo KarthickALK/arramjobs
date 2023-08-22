@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Experience Details Form</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
 <style>
   body {
   font-family: Arial, sans-serif;
@@ -81,7 +81,7 @@ button[type="submit"] {
 
 <div class="container">
     <h1>Experience Details Form</h1>
-    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="dash">
+    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="index.php/projectController/exp">
     <div class="form-group">
                 <label for="category">Category:</label>
                 <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
@@ -132,16 +132,16 @@ button[type="submit"] {
         <h1>Previous Employer details</h1>
         <div class="form-group">
             <label for="Name">Name of employer*</label>
-            <input type="text" class="form-control" id="name" name="name" >
+            <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" >
             <div id="name_error" class="error"></div>
         </div>
         <div class="form-group">
             <label for="phone number">Phone Number</label>
-            <input type="text" class="form-control" id="phonenumber" name="phonenumber" >
+            <input type="text" class="form-control" id="number" name="number" >
         </div>
         <div class="form-group">
             <label for="email">email</label>
-            <input type="text" class="form-control" id="email" name="email">
+            <input type="text" class="form-control" id="emailid" name="emailid">
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
@@ -232,7 +232,7 @@ button[type="submit"] {
         var experience = document.getElementById("experience");
         var companyname = document.getElementById("companyname");
         var role = document.getElementById("role");
-        var name = document.getElementById("name");
+        var name = document.getElementById("nameofemployer");
         var phonenumber = document.getElementById("phonenumber");
         var email = document.getElementById("email");
 

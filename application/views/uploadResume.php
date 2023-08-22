@@ -20,10 +20,10 @@
 <body>
     <div class="container mt-4">
         <h2>Upload resume</h2>
-        <form id="resumeForm" method="post" onsubmit="return validateForm()" enctype="multipart/form-data">
+        <form id="resumeForm" method="post" onsubmit="return validateForm()" action="index.php/projectController/resume">
             <div class="form-group">
                 <label for="resumeFile">Upload Resume</label>
-                <input type="file" class="form-control-file" id="resumeFile" name="resumeFile" accept=".pdf, .doc, .docx" required>
+                <input type="file" class="form-control-file" id="resumeFile" name="resumeFile"  required>
             </div>
             <button class="btn btn-primary" type="submit">Upload</button>
         </form>

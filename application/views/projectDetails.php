@@ -14,7 +14,7 @@
 }
 
 .container {
-  background-color: #fff;
+  background-color: #fff; 
   padding: 30px;
   border-radius: 5px;
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
@@ -82,7 +82,7 @@ button[type="submit"] {
 <body>
 <div class="container">
     <h1>Project Details Form</h1>
-    <form name="projectform" method="post" onsubmit="return validateForm()">
+    <form name="projectform" method="post" onsubmit="return validateForm()" action="index.php/projectController/pro">
 <div id="project-sections">
             <div class="project-section">
             <div class="form-group">
@@ -93,6 +93,11 @@ button[type="submit"] {
             <label for="Duration of project">Duration of Project</label>
             <input type="text" class="form-control" id="durationofproject" name="durationofproject">
             <div id="durationofproject_error" class="error"></div>
+        </div>
+        <div class="form-group">
+            <label for="role in the project">Role in the Project</label>
+            <input type="text" class="form-control" id="roleofproject" name="roleofproject">
+            <div id="roleofproject_error" class="error"></div>
         </div>
         <div class="form-group">
             <label for="">start date of project*</label>
@@ -113,7 +118,7 @@ button[type="submit"] {
             <div id="skills_error" class="error"></div>
         </div>
         <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
-        <button type="submit" class="btn btn-primary">Submit</button>
+        <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
     </form>
 </div>
 <script>
@@ -131,6 +136,9 @@ button[type="submit"] {
         if(durationofproject.value === ''){
             displayError('please enter a project duration', 'durationofproject_error');
             return false;
+        }
+        if (roleofproject.value === ''){
+          displayError('please enter a role of project', 'roleofproject_error');
         }
         if(startdate.value === ''){
             displayError('please select a start date', 'startdate_error');
@@ -150,21 +158,25 @@ button[type="submit"] {
         }
         return true;
     }
+    
     function addProjectSection() {
-        // Clone the last project section
-        var lastProjectSection = document.querySelector('.project-section:last-child');
-        var clone = lastProjectSection.cloneNode(true);
+      var lastProjectSection = document.querySelector('.project-section:last-child');
+            var clone = lastProjectSection.cloneNode(true);
 
-        // Clear the input values in the cloned section
-        var inputs = clone.querySelectorAll('input[type="text"], input[type="date"], textarea');
-        inputs.forEach(function(input) {
-            input.value = '';
-        });
+            // Clear the input values in the cloned section
+            var inputs = clone.querySelectorAll('input[type="text"], input[type="date"], textarea');
+            inputs.forEach(function(input) {
+                input.value = '';
+            });
 
-        // Append the cloned section to the project sections container
-        var projectSectionsContainer = document.getElementById('project-sections');
-        projectSectionsContainer.appendChild(clone);
-    }
+            // Append the cloned section to the project sections container
+            var projectSectionsContainer = document.getElementById('project-sections');
+            projectSectionsContainer.appendChild(clone);
+
+            // Show the final submit button
+            var finalSubmitButton = document.getElementById('finalsubmit');
+            finalSubmitButton.style.display = 'block';
+          }
     function clearErrorMessages() {
   var errorElements = document.querySelectorAll('.error');
   errorElements.forEach(function (errorElement) {

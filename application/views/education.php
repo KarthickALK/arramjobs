@@ -2,7 +2,7 @@
 <html>
 <head>
     <title>Educational Details Form</title>
-    <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css"> -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
     body {
   font-family: Arial, sans-serif;
@@ -86,7 +86,7 @@ button[type="submit"] {
     <h1>Education Form</h1>
     <!-- The education form container -->
     <div class="education-form-container">
-        <form name="educationform" onsubmit="return validateForm()" action="dash" >
+        <form name="educationform" onsubmit="return validateForm()" action="index.php/projectController/edu" >
             <div class="form-group">
                 <label for="qualification">Educational Qualification*</label>
                 <select class="form-control" id="qualification" name="qualification" onchange="toggleFields()">
@@ -210,15 +210,6 @@ button[type="submit"] {
             }
         }
 
-        if (qualification === 'bachelors' && !document.getElementById('educationform_1')) {
-            alert("Please fill in the Hsc details first and then add bachelors details using add button.");
-            return false;
-        }
-
-        if (qualification === 'masters' && !document.getElementById('educationform_1')) {
-            alert("Please fill in the Bachelors details first and then add masters details using add button.");
-            return false;
-        }
 
         // Form is valid
         return true;

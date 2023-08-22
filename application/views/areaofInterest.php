@@ -84,12 +84,12 @@ button[type="submit"] {
 <body>
     <div class="container mt-5">
         <h1>Area of Interest Form</h1>
-        <form method="post" onsubmit="return validateForm()" action="dash" >
+        <form method="post" onsubmit="return validateForm()">
         <div id="educationFormsContainer">
         <div class="education-form-container">    
                  <div class="form-group">
                 <label for="category">Category *</label>
-                <select class="form-control" id="category" name="category" onchange="toggleCategoryFields()" >
+                <select class="form-control" id="category" name="category[]" onchange="toggleCategoryFields()" >
                     <option value="">Select a category</option>
                     <option value="it">Information Technology</option>
                     <option value="health">Health Care</option>
@@ -98,64 +98,67 @@ button[type="submit"] {
             </div>
             <div class="form-group"">
                 <label for="subcategory">Subcategory *</label>
-                <select class="form-control" id="subcategory" name="subcategory">
+                <select class="form-control" id="subcategory" name="subcategory[]">
                     <option value="">Select a sub category </option>
 </select>
             </div>
             <div class="form-group" id="otherCategoryFields" style="display: none;">
                 <label for="customCategoryInput">Custom Category</label>
-                <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput" placeholder="Enter custom category">
+                <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput[]" placeholder="Enter custom category">
                 <label for="customSubcategoryInput">Custom Subcategory</label>
-                <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput" placeholder="Enter custom subcategory">
+                <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput[]" placeholder="Enter custom subcategory">
             </div>
             <div class="form-group" id="customCategory" style="display: none;">
         <label for="customCategoryInput">Category Name</label>
-        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput">
+        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput[]">
       </div>
       
       <div class="form-group" id="customSubcategory" style="display: none;">
         <label for="customSubcategoryInput"> Subcategory Name</label>
-        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput">
+        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput[]">
       </div>
 
             <div class="form-group">
                 <label for="preferred-location">Preferred Location to work</label>
-                <select class="form-control" id="preferred-location" name="category">
+                <input type="text" class="form-control" id="preferred-location" name="preferred-location[]">
+
+                <!-- <select class="form-control" id="preferred-location" name="preferred-location">
                     <option value="">Select a Preferred location</option>
                     <option value="chennai">chennai</option>
                     <option value="Bangalore">Bangalore</option>
                     <option value="others">others</option>
-                </select>
+                </select> -->
             </div>
             <div class="form-group">
                 <label for="experience">Experience</label>
-                <input type="text" class="form-control" id="experience" name="experience">
+                <input type="text" class="form-control" id="experience" name="experience[]">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description[]" rows="3"></textarea>
             </div>
             <div class="form-group">
                 <label>Part Time or Full Time</label><br>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="part-time" name="part-time">
+                    <input class="form-check-input" type="checkbox" id="part-time" value=0 name="part-time[]">
                     <label class="form-check-label" for="part-time">Part Time</label>
                 </div>
                 <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="full-time" name="full-time">
+                    <input class="form-check-input" type="checkbox" id="full-time" value=1 name="full-time[]">
                     <label class="form-check-label" for="full-time">Full Time</label>
                 </div>
             </div>
             <div class="form-group">
                 <label for="expected-salary">Expected Salary</label>
-                <input type="text" class="form-control" id="expected-salary" name="expected-salary">
+                <input type="text" class="form-control" id="expected-salary" name="expected-salary[]">
             </div>
             <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button>
             <button type="submit" class="btn btn-primary">Submit</button>
+            </div>
+            
         </form>
-    </div>
+   
 
-    
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>

@@ -61,7 +61,7 @@
 <body>
     <div class="container">
         <h1>Login Form</h1>
-        <form id="phoneForm" method="post" onsubmit="return validateForm()" action="otpregister">
+        <form id="phoneForm" method="post" onsubmit="return validateForm()">
             <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" required>
@@ -70,6 +70,9 @@
             <button type="submit" class="btn btn-primary">Submit</button> 
             
         </form>
+        <div class="error">
+      <?php if (isset($login_error)) echo $login_error; ?>
+    </div>
     </div>
 
     <script>
