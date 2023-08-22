@@ -74,7 +74,7 @@
 
   <div class="container">
     <h1>Provider Login Form</h1>
-    <form name="login_form" method="post" action="http://localhost/arramjobs/Registration/view_dashboard"  onsubmit="return validateForm()">
+    <form name="login_form" method="post" action="http://localhost/arramjobs/view_dashboard/"  onsubmit="return validateForm()">
       <div class="form-group">
         <label for="userID">User ID</label>
         <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user ID">
@@ -89,9 +89,7 @@
       <button type="submit" class="btn btn-primary">Login</button>
       <br>
       <br>
-      <?php if (isset($error_message)) { ?>
-    <p style="color: red;"><?php echo $error_message; ?></p>
-<?php } ?>
+      
       </form>
       <div id="sign">
             <p>Create an account ? <a id="regis" href="index.php/registration/provider_registration/index">Register</a></p>

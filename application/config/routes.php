@@ -55,5 +55,6 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['arramjobs/registration']='registration';
+$route['view_dashboard']='Registration/load_login';
 // $route['Registration/update_profile'] = 'Registration/update_profile';
 

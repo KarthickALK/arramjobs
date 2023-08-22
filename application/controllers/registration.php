@@ -23,8 +23,13 @@
         {
              $postData=$this->input->post(null,true);
              $response=$this->RegistrationModel->database_login();
-            $this->load->view('provider_login.php');
-           
+             if($response != "")
+            {
+                $this->load->view('dashboard_page.php');
+            }
+            else{
+                $this->load->view('provider_login.php');
+            }
         }
         // ,$this[data]
 
@@ -99,7 +104,7 @@
         
        
 
- //    public function provider_details()
+    // public function provider_details()
     //    {
     //     $provider=$this->RegistrationModel->provider_detail();
     //    }
@@ -255,15 +260,7 @@
 
 
     }
-
-
-
-
-
-
-      
-
-    //    public function new()
+//    public function new()
     //    {
     //     $this->load->view('view_dashboard.php');
     //    }

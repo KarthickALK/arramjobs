@@ -27,6 +27,40 @@
         }
 
 
+
+        // public function database_login()
+        // {
+        //     $connect=mysqli_connect("localhost","root","","arramjobs") or die("connection failed");
+        //     if(!empty($_POST['save']))
+        // {
+        //     $user_id=$_POST['un'];
+        //     $password=$_POST['pw'];
+        //     $query="SELECT * FROM provider_login where user_id='$user_id' and password='password'";
+            
+        //     $count=mysqli_num_rows($result);
+        //     if($count>0)
+        //     {
+        //         $this->load->view('dashboard_page.php');
+        //     }
+        //     else{
+        //         $this->load->view('provider_login.php');
+        //     }
+            
+        // }
+
+        public function database_login()
+        {
+            $postData=$this->input->post(null,true);
+            $user_id= $postData['userID'];
+            $password= $postData['password'];
+            $query="SELECT * FROM provider_login where user_id='$user_id' and password='$password'";
+            $count=$this->db->query($query);
+            return $count->result_array();
+        }
+
+        
+
+
         public function provider_detail()
         {
             $provider="SELECT * FROM `provider_registration_form` Where `id`= 94";
@@ -34,27 +68,7 @@
             return $select->result_array();
         }
 
-        public function database_login()
-        {
-            $connect=mysqli_connect("localhost","root","","arramjobs") or die("connection failed");
-            if(!empty($_POST['save']))
-        {
-            $user_id=$_POST['un'];
-            $password=$_POST['pw'];
-            $query="SELECT * FROM provider_login where user_id='$user_id' and password='password'";
-            $result=mysqli_query($connect,$query);
-            $count=mysqli_num_rows($result);
-            if($count>0)
-            {
-                $this->load->view('dashboard_page.php');
-            }
-            else{
-                $this->load->view('provider_login.php');
-            }
-            
-        }
-
-        }
+        
 
         
 

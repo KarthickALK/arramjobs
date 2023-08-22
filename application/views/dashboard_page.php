@@ -325,7 +325,7 @@ header {
         <nav class="side-menu">
             <h3 class="px-3 py-2">Create profile</h3>
             <ul class="list-unstyled">
-                <li><a href="" onclick="loadContent('provider_update_registration')" class="nav-link">Profile</a></li>
+                <li><a href="javascript:void(0);" onclick="loadContent('provider_update_registration')" class="nav-link">Profile</a></li>
                 
                 <li><a href="javascript:void(0);" onclick="loadContent('job_view_table')" class="nav-link">jobs</a></li>
                 <li><a href="javascript:void(0);" onclick="loadContent('job_matched_table')" class="nav-link">Candidate</a></li>
@@ -339,7 +339,18 @@ header {
         </main>
     </div>
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-   
+   <script>
+        function loadContent(page) {
+            var xhr = new XMLHttpRequest();
+            xhr.onreadystatechange = function() {
+                if (xhr.readyState === 4 && xhr.status === 200) {
+                    document.getElementById('dashboard-content').innerHTML = xhr.responseText;
+                }
+            };
+            xhr.open('GET', page, true);
+            xhr.send();
+        }
+    </script>
 
 
 
