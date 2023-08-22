@@ -52,7 +52,7 @@
        }  
        public function job_view_table()
        {
-            $this->load->view('job_view_table.php');
+            $this->load->view('jobs.php');
        }
        public function job_matched_table()
        {
@@ -62,6 +62,38 @@
        {
             $this->load->view('job_wishlist_candidates.php');
        }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
     //    public function user_login() {
     //     $user_id = $this->input->post('user_id'); 

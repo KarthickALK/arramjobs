@@ -53,7 +53,7 @@
             $postData=$this->input->post(null,true);
             $user_id= $postData['userID'];
             $password= $postData['password'];
-            $query="SELECT * FROM provider_login where user_id='$user_id' and password='$password'";
+            $query="SELECT * FROM provider_login WHERE user_id='$user_id' AND password='$password'";
             $count=$this->db->query($query);
             return $count->result_array();
         }

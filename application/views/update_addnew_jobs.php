@@ -82,7 +82,7 @@ button[type="submit"] {
 <body>
 
 <div class="container">
-    <h1>Add New Jobs</h1>
+    <h1>Update jobs</h1>
     <form name="experienceform" method="post" onsubmit="return validateForm()" action="">
    
     <div class="form-group">

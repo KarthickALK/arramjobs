@@ -14,8 +14,8 @@
 </head>
 <body>
     <div class="container mt-5">
-        <h2 class="text-center">Jobs</h2>
-        <input type="button" class="btn btn-primary float-end" value="+ Add">
+        <h2 class="text-center">Wishlist Candidate</h2>
+        <!-- <input type="button" class="btn btn-primary float-end" value="+ Add"> -->
         <div class="clearfix"></div>
         <br>
         
