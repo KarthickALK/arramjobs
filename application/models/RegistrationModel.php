@@ -25,9 +25,6 @@
 
            $this->db->insert('provider_registration_form',$insert);
         }
-
-
-
         // public function database_login()
         // {
         //     $connect=mysqli_connect("localhost","root","","arramjobs") or die("connection failed");
@@ -63,11 +60,28 @@
 
         public function provider_detail()
         {
-            $provider="SELECT * FROM `provider_registration_form` Where `id`= 94";
+            $provider="SELECT * FROM `provider_registration_form` Where `id`= 100";
             $select=$this->db->query($provider);
             return $select->result_array();
            
         }
+
+
+        public function update_data() {
+        $postData=$this->input->post(null,true);
+        $id=$postData['id'];
+         $data = array('company_name' => $postData['name'], 'company_mobile_number' =>$postData['phno'],
+                        'company_email' =>$postData['email'], 'street_address' =>$postData['addr'],
+                        'Landmark' =>$postData['landmark1'],'City' =>$postData['city1'], 'district' =>$postData['district1'],
+                        'state' =>$postData['state1'], 'pincode' =>$postData['pincode1'],
+                        'company_logo' =>$postData['file'], 'name' =>$postData['name1'], 
+                        'role' =>$postData['role'],
+                        'mobile_number' =>$postData['phno1'], 'email' =>$postData['mail1'],
+
+            );
+            $this->db->where('id', $id);
+            $this->db->update('provider_registration_form', $data);
+            }
         
 
 

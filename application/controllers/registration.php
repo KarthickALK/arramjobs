@@ -9,25 +9,26 @@
         }
         public function index()
         {
-            $postData=$this->input->post(null,true);
-            $responses=$this->RegistrationModel->register();
+            //$responses=$this->RegistrationModel->register();
             $this->load->view('provider_login.php');
           
         }
-        public function provider_registration()
+        public function providerRegistration()
         {
-            $this->load->view('provider_registration.php');
+            $responses=$this->RegistrationModel->register();
+            $this->load->view('provider_login.php');
         }
 
          public function load_login()
         {
              $postData=$this->input->post(null,true);
              $response=$this->RegistrationModel->database_login();
-             if($response != "")
+             if(isset($response[0]['id']))
             {
                 $this->load->view('dashboard_page.php');
             }
             else{
+
                 $this->load->view('provider_login.php');
             }
         }
@@ -42,12 +43,11 @@
         {
             $provider=$this->RegistrationModel->provider_detail(); 
             $this->data['providerDetail'] = $provider;
-            $this->load->view('provider_update_registration.php',$this[data]);
-         }
-       public function view_provider_addjob()
+            $this->load->view('provider_update_registration.php',$this->data);
+        }
+     public function view_provider_addjob()
        {
-
-             $this->load->view('addnew_jobs.php');
+        $this->load->view('addnew_jobs.php');
        }  
        public function job_view_table()
        {
@@ -62,14 +62,17 @@
             $this->load->view('job_wishlist_candidates.php');
        }
 
+       public function update_record() {
+        $postData=$this->input->post(null,true);
+        $var=$this->RegistrationModel->update_data();
+
+        echo "Record updated successfully";
+        $this->provider_update_registration();
+       }
 
 
-    //    public function users()
-    //    {
-    //     $this->load->model('RegistrationModel');
-    //     $data['provider_registration_form'] = $this->RegistrationModel->get_users();
-    //     $this->load->view('provider_update_registraton.php', $data);
-    //    }
+
+   
       
 
 
@@ -104,40 +107,8 @@
 
 
 
-    //    public function user_login() {
-    //     $user_id = $this->input->post('user_id'); 
-    //     $password = $this->input->post('password');
+   
 
-        
-    //     $this->load->model('RegistrationModel');
-
-        
-    //     if ($this->UserModel->checkLogin($user_id, $password)) {
-            
-    //         $this->load->view('dashboard_page');
-    //     } else {
-            
-    //         $data['error_message'] = "Invalid username or password.";
-    //         $this->load->view('provider_login', $data);
-    //     }
-    // }
-
-    //    public function user_login() {
-       
-    //     $username = $this->input->post('username');
-    //     $password = $this->input->post('password');
-
-    //     $loginData = $this->RegistrationModel->checkLogin($username, $password);
-
-    //     if ($loginData) {
-    //         echo "Login successful";
-            
-    //     } else {
-            
-    //         $data['error'] = "Incorrect username or password.";
-    //         $this->load->view('provider_login.php', $data); 
-    //     }
-    // }
 
 
 
@@ -145,20 +116,9 @@
         
        
 
-    // public function provider_details()
-    //    {
-    //     $provider=$this->RegistrationModel->provider_detail();
-    //    }
-
-       
+   
 
 
-//     public function indexs() {
-//         $data['users'] = $this->RegistrationModel->get_users();
-//         $this->load->view('provider_update_registration.php', $data);
-//     }
-
-//     public function update() {
 //         $data = array(
 //             'name' => $this->input->post('name'),
 //             'phno' => $this->input->post('phno'),

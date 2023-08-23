@@ -54,7 +54,11 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
 
-$route['arramjobs/registration']='registration';
-$route['view_dashboard']='Registration/load_login';
+$route['arramjobs/providerRegistration']='registration/providerRegistration';
+$route['view_dashboard']='registration/load_login';
+$route['arramjobs/registration']='registration/update_record';
+$route['providerRegistration']='customer';
+$route['arramjobs/provider_update_registration'] = 'registration/provider_update_registration';
+$route['arramjobs/registration/update_record'] = "registration/update_record";
 // $route['Registration/update_profile'] = 'Registration/update_profile';
 

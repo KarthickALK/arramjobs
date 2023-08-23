@@ -81,17 +81,17 @@ h4{
                     <h4><b>Dashboard</b></h4>
                     <ul class="nav flex-column">
                         <li class="nav-item">
-                            <a class="nav-link" id="profile-link" href="provider_update_registration">
+                            <a class="nav-link" id="profile-link" href="http://localhost/arramjobs/Registration/provider_update_registration">
                                 Update Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="edu-link" href="view_provider_addjob">
+                            <a class="nav-link" id="edu-link" href="job_view_table">
                              Jobs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="exp-link" href="job_view_table">
+                            <a class="nav-link" id="exp-link" href="job_matched_table">
                                 Candidates
                             </a>
                         </li>
@@ -100,12 +100,12 @@ h4{
                                 Wishlist
                             </a>
                         </li>
-                        <!-- <li class="nav-item">
-                            <a class="nav-link" id="area-link" href="area">
+                         <!-- <li class="nav-item">
+                            <a class="nav-link" id="area-link" href="job_wishlist_candidates">
                                 Area of Interest
                             </a>
-                        </li>
-                        <li class="nav-item">
+                        </li> -->
+                        <!-- <li class="nav-item">
                             <a class="nav-link" id="skills-link" href="skills">
                                 Skill Details
                             </a>
@@ -114,7 +114,7 @@ h4{
                             <a class="nav-link" id="resume-link" href="resume">
                                 Upload Resume
                             </a>
-                        </li> -->
+                        </li> --> 
                     </ul>
                 </div>
             </nav>
@@ -140,39 +140,39 @@ h4{
         // Handle menu item clicks
         $('#profile-link').click(function(e) {
             e.preventDefault();
-            $('#form-iframe').attr('src', 'provider_update_registration');
+            $('#form-iframe').attr('src', 'http://localhost/arramjobs/Registration/provider_update_registration');
         });
 
         $('#edu-link').click(function(e) {
             e.preventDefault();
-            $('#form-iframe').attr('src', 'view_provider_addjob');
+            $('#form-iframe').attr('src', 'job_view_table');
         });
 
         $('#exp-link').click(function(e) {
             e.preventDefault();
-            $('#form-iframe').attr('src', 'job_view_table');
+            $('#form-iframe').attr('src', 'job_matched_table');
         });
 
         // Handle other menu item clicks similarly
         $('#pro-link').click(function(e) {
             e.preventDefault();
-            $('#form-iframe').attr('src', 'pro');
+            $('#form-iframe').attr('src', 'job_wishlist_candidates');
         });
 
-        $('#area-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'area');
-        });
+        // $('#area-link').click(function(e) {
+        //     e.preventDefault();
+        //     $('#form-iframe').attr('src', 'area');
+        // });
 
-        $('#skills-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'skills');
-        });
+        // $('#skills-link').click(function(e) {
+        //     e.preventDefault();
+        //     $('#form-iframe').attr('src', 'skills');
+        // });
 
-        $('#resume-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'resume');
-        });
+        // $('#resume-link').click(function(e) {
+        //     e.preventDefault();
+        //     $('#form-iframe').attr('src', 'resume');
+        // });
     });
 </script>
 

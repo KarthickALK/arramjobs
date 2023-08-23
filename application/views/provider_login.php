@@ -92,11 +92,8 @@
       
       </form>
       <div id="sign">
-            <p>Create an account ? <a id="regis" href="index.php/registration/provider_registration/index">Register</a></p>
+            <p>Create an account ? <a id="regis" href="provider/registration">Register</a></p>
         </div>
-
-
-   
   </div>
   <script>
     function validateForm() {
