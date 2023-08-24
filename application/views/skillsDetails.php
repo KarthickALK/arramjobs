@@ -10,7 +10,7 @@
 <body>
     <div class="container mt-4">
         <h2>Skill Form</h2>
-        <form id="skillForm" method="post" action="index.php/projectController/skills">
+        <form id="skillForm" method="post" action="skills">
             <div class="skill-entry">
                 <div class="form-row">
                     <div class="col-md-4 mb-3">

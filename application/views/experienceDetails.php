@@ -81,7 +81,7 @@ button[type="submit"] {
 
 <div class="container">
     <h1>Experience Details Form</h1>
-    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="index.php/projectController/exp">
+    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="exp">
     <div class="form-group">
                 <label for="category">Category:</label>
                 <select class="form-control" id="category" name="category" onchange="updateSubcategories()">

@@ -20,7 +20,7 @@
 <body>
     <div class="container mt-4">
         <h2>Upload resume</h2>
-        <form id="resumeForm" method="post" onsubmit="return validateForm()" action="index.php/projectController/resume">
+        <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
             <div class="form-group">
                 <label for="resumeFile">Upload Resume</label>
                 <input type="file" class="form-control-file" id="resumeFile" name="resumeFile"  required>

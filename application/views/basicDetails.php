@@ -83,21 +83,26 @@ button[type="submit"] {
 </head> 
 <body>
     <div class="container" id="page1">
+      <?php
+      
+      foreach ($providerDetail as $key => $value){
+        ?>
     <h1>Personal Details</h1>
      <form name="applicationform" method="post" onsubmit="return validateFormPage()">
+     <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
     <div class="form-group">
         <label for="Name">Name *</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your name" value="<?= isset($userData['name']) ? $userData['name'] : ''; ?>" required>
+        <input type="text" class="form-control" id="name" value="<?php echo $value['name']; ?>" name="name" placeholder="Enter your name" required>
         <div id="Name_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="emailid">Email *</label><br>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your email" value="<?= isset($userData['email']) ? $userData['email'] : ''; ?>" required>
+        <input type="text" class="form-control" id="email" value="<?php echo $value['email'];?>" name="email" placeholder="Enter your email"  required>
         <div id="emailid_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="phonenumber">Phone Number *</label>
-        <input type="text" class="form-control" id="name" name="name" placeholder="Enter your phonenumber" value="<?= isset($userData['phonenumber']) ? $userData['phonenumber'] : ''; ?>" required>
+        <input type="tel" class="form-control" id="phonenumber" value=<?php echo $value['phonenumber'];?> name="phonenumber" placeholder="Enter your phonenumber" value="<?= isset($updateData['phonenumber']) ? $updateData['phonenumber'] : ''; ?>" required>
         <div id="phonenumber_error" class="error"></div>
       </div>
       <div class="form-group">
@@ -168,6 +173,9 @@ button[type="submit"] {
       </div> 
       <button type="submit" name="submitBtn" class="btn btn-primary" >submit</button>
     </form>
+    <?php
+      }
+      ?>
   </div>
 
   <script>

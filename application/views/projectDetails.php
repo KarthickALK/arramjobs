@@ -82,7 +82,7 @@ button[type="submit"] {
 <body>
 <div class="container">
     <h1>Project Details Form</h1>
-    <form name="projectform" method="post" onsubmit="return validateForm()" action="index.php/projectController/pro">
+    <form name="projectform" method="post" onsubmit="return validateForm()" action="pro">
 <div id="project-sections">
             <div class="project-section">
             <div class="form-group">
@@ -118,10 +118,13 @@ button[type="submit"] {
             <div id="skills_error" class="error"></div>
         </div>
         <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
+        </div>
         <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
     </form>
-</div>
+
 <script>
+    var projectFormCount = 1;
+    
     function validateForm(){
         var projectname = document.getElementById("projectname");
         var durationofproject = document.getElementById("durationofproject");
@@ -160,7 +163,8 @@ button[type="submit"] {
     }
     
     function addProjectSection() {
-      var lastProjectSection = document.querySelector('.project-section:last-child');
+            projectFormCount++;
+            var lastProjectSection = document.querySelector('.project-section:last-child');
             var clone = lastProjectSection.cloneNode(true);
 
             // Clear the input values in the cloned section
@@ -174,9 +178,12 @@ button[type="submit"] {
             projectSectionsContainer.appendChild(clone);
 
             // Show the final submit button
-            var finalSubmitButton = document.getElementById('finalsubmit');
-            finalSubmitButton.style.display = 'block';
-          }
+            if (projectFormCount > 1) {
+                var finalSubmitButton = document.getElementById('finalsubmit');
+                finalSubmitButton.style.display = 'none';
+            }
+        }
+        
     function clearErrorMessages() {
   var errorElements = document.querySelectorAll('.error');
   errorElements.forEach(function (errorElement) {

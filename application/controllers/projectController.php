@@ -1,6 +1,7 @@
 <?php
 class projectController extends CI_Controller
 {
+    private $data = array();
     public function __construct()
     {
         parent::__construct();
@@ -9,64 +10,39 @@ class projectController extends CI_Controller
         
     }
 
-    // public function registration()
-    // {
-    //     $this->load->view('registrationform.php');
-    //     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-    //         $this->load->library('form_validation');
-            
-    //         // Define validation rules for registration form fields
-    //         $this->form_validation->set_rules('name', 'Name', 'required');
-    //         $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-    //         $this->form_validation->set_rules('phonenumber', 'Phone Number', 'required');
-            
-    //         if ($this->form_validation->run() == true) {
-    //             // Check if the phone number already exists in the database
-    //             $phonenumber = $this->input->post('phonenumber');
-    //             $userExists = $this->projectModel->checkUserExistence($phonenumber);
-                
-    //             if ($userExists) {
-    //                 // User already exists, show an error message
-    //                 echo "<script>alert('The user already exist login to continue.');</script>";
-    //                 echo "<script>window.location.href = 'index';</script>";
-    //                 $this->index();
-    //             } else {
-                    
-    //                 $this->projectModel->register();
-    //                 $this->session->set_userdata('logged_in_phonenumber', $phonenumber);
-    //                 echo "<script>alert('successfully registered login to continue.');</script>";
-    //                 echo "<script>window.location.href = 'index';</script>";
-                    
-    //             }
-    //         }
-    //     }
-    // }
-    
     public function registration()
     {
-        $this->load->library('form_validation');
-        
+        $this->load->view('registrationform.php');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+            $this->load->library('form_validation');
+            
+            // Define validation rules for registration form fields
             $this->form_validation->set_rules('name', 'Name', 'required');
             $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
             $this->form_validation->set_rules('phonenumber', 'Phone Number', 'required');
             
             if ($this->form_validation->run() == true) {
+                // Check if the phone number already exists in the database
                 $phonenumber = $this->input->post('phonenumber');
                 $userExists = $this->projectModel->checkUserExistence($phonenumber);
                 
                 if ($userExists) {
-                    redirect('index');
+                    // User already exists, show an error message
+                    echo "<script>alert('The user already exist login to continue.');</script>";
+                    echo "<script>window.location.href = 'index';</script>";
+                    $this->index();
                 } else {
-                    $this->projectModel->register();
+        
                     $this->session->set_userdata('logged_in_phonenumber', $phonenumber);
-                    redirect('index');
+                    echo "<script>alert('successfully registered login to continue.');</script>";
+                    echo "<script>window.location.href = 'index';</script>";
+                    
                 }
             }
-        } else {
-            $this->load->view('registrationform.php');
         }
     }
+    
+ 
     
     
     public function index()
@@ -117,25 +93,31 @@ class projectController extends CI_Controller
 
     public function profile()
     {
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $phonenumber = $this->session->userdata('logged_in_phonenumber');
-            $this->projectModel->basicdetails($phonenumber); // Pass the phone number as an argument
-            
+        $this->load->model('projectModel');
+        $providerDetail = $this->projectModel->update(); 
+        
+        if ($this->input->post()) {
+            // Assuming the phone number is provided somehow
+            $phonenumber = '...'; // Replace with the actual phone number
+            $this->projectModel->basicdetails();
         }
-    
-        $this->load->view('basicDetails.php'); 
+        
+        $data ['providerDetail'] = $providerDetail; 
+        
+        $this->load->view('basicDetails', $data); 
     }
-    
-    
+
+        
 public function edu()
 {
-    $seekerId = $this->session->userdata('logged_in_phonenumber');
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+ // $seekerId = $this->session->userdata('logged_in_phonenumber');
+     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
         $response = $this->projectModel->education();
-        
     }
     $this->load->view('education.php');
-}
+  }
+    
+
 
 public function exp()
 {

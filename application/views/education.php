@@ -84,9 +84,8 @@ button[type="submit"] {
 
 <div class="container">
     <h1>Education Form</h1>
-    <!-- The education form container -->
     <div class="education-form-container">
-        <form name="educationform" onsubmit="return validateForm()" action="index.php/projectController/edu" >
+        <form name="educationform" method="post" onsubmit="return validateForm()" action="edu" >
             <div class="form-group">
                 <label for="qualification">Educational Qualification*</label>
                 <select class="form-control" id="qualification" name="qualification" onchange="toggleFields()">

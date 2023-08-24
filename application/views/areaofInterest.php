@@ -84,7 +84,7 @@ button[type="submit"] {
 <body>
     <div class="container mt-5">
         <h1>Area of Interest Form</h1>
-        <form method="post" onsubmit="return validateForm()">
+        <form method="post" onsubmit="return validateForm()" action="area">
         <div id="educationFormsContainer">
         <div class="education-form-container">    
                  <div class="form-group">
@@ -95,12 +95,12 @@ button[type="submit"] {
                     <option value="health">Health Care</option>
                     <option value="others">Others</option>
                 </select>
-            </div>
+                </div>
             <div class="form-group"">
                 <label for="subcategory">Subcategory *</label>
                 <select class="form-control" id="subcategory" name="subcategory[]">
                     <option value="">Select a sub category </option>
-</select>
+                </select>
             </div>
             <div class="form-group" id="otherCategoryFields" style="display: none;">
                 <label for="customCategoryInput">Custom Category</label>
@@ -109,9 +109,9 @@ button[type="submit"] {
                 <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput[]" placeholder="Enter custom subcategory">
             </div>
             <div class="form-group" id="customCategory" style="display: none;">
-        <label for="customCategoryInput">Category Name</label>
-        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput[]">
-      </div>
+                <label for="customCategoryInput">Category Name</label>
+                <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput[]">
+            </div>
       
       <div class="form-group" id="customSubcategory" style="display: none;">
         <label for="customSubcategoryInput"> Subcategory Name</label>
@@ -153,12 +153,10 @@ button[type="submit"] {
                 <input type="text" class="form-control" id="expected-salary" name="expected-salary[]">
             </div>
             <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button>
-            <button type="submit" class="btn btn-primary">Submit</button>
             </div>
-            
+            <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-   
-
+        
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
@@ -187,7 +185,7 @@ button[type="submit"] {
                 previousSubmitButton.style.display = "none";
             }
         }
-
+        
         function clearFormFields(form) {
             var fieldsToClear = form.querySelectorAll('input, select');
             for (var i = 0; i < fieldsToClear.length; i++) {
@@ -211,6 +209,7 @@ button[type="submit"] {
                 addSubcategoryOption("Doctor", subcategorySelect);
                 addSubcategoryOption("Nurse", subcategorySelect);
             } else if (category === "others") {
+                addSubcategoryOption("others", subcategorySelect);
                 otherCategoryFields.style.display = "block";
             } else {
                 // Handle other categories here

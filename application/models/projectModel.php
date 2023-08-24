@@ -49,12 +49,6 @@ public function __construct()
 
         $this->db->insert('seeker_profile_form', $insert);
         
-        $seekerId = $this->db->insert_id();
-
-        $educationData = array(
-            'seekerId' => $seekerId, 
-        );
-        $this->db->insert('seeker_educational_details', $educationData);
 
     }
     public function getUserData($phonenumber)
@@ -63,68 +57,69 @@ public function __construct()
         $query = $this->db->get('seeker_profile_form');
         $userData = $query->row_array();
         
-        // Debug statement
+        
         print_r($userData);
         
-        return $userData; // Return a single row as an associative array
+        return $userData; 
     }
     
 
-
-public function basicdetails($phonenumber)
-{
-    $name = $this->input->post('name');
-    $email = $this->input->post('email');
-    $dateofbirth = $this->input->post('dob');
-    $gender = $this->input->post('gender');
-    $doorno = $this->input->post('doorno');
-    $streetaddress = $this->input->post('streetaddress');
-    $landmark = $this->input->post('landmark');
-    $pincode = $this->input->post('pincode');
-    $maritalstatus = $this->input->post('maritalstatus');
-    $aadharFrontPhoto = $this->input->post('aadharfrontphoto');
-    $aadharBackPhoto = $this->input->post('aadharbackphoto');
-    $Photo = $this->input->post('photo');
+    public function update()
+    {
+        $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = 107";
+        $select = $this->db->query($provider);
+        return $select->result_array();
+    }
     
+    
+public function basicdetails()
+{   
+    $a=$this->input->post(null,true);
 
     // Update query to modify the existing user's data
     $updateData = array(
-        'name' => $name,
-        'email' => $email,
-        'dateofbirth' => $dateofbirth,
-        'gender' => $gender,
-        'doorno' => $doorno,
-        'address' => $streetaddress,
-        'landmark' => $landmark,
-        'pincode' => $pincode,
-        'maritalstatus' => $maritalstatus,
-        'aadhar_front' => $aadharFrontPhoto,
-        'aadhar_back' => $aadharBackPhoto,
-        'photo' => $Photo
+        'name' => $a['name'],
+        'email' => $a['email'],
+        'dateofbirth' => $a['dob'],
+        'gender' => $a['doorno'],
+        'address' => $a['streetaddress'],
+        'landmark' => $a['landmark'],
+        'pincode' => $a['pincode'],
+        'maritalstatus' => $a['maritalstatus'],
+        'aadhar_front' => $a['aadharfrontphoto'],
+        'aadhar_back' => $a['aadharbackphoto'],
+        'photo' => $a['photo']
     );
+    $this->db->where('id', $a['id']);
+$result = $this->db->update('seeker_profile_form', $updateData);
 
-    // Update the existing user's data based on their phone number
-    $this->db->where('phonenumber', $phonenumber);
-    $this->db->update('seeker_profile_form', $updateData);
 }
 
-    public function education(){
-        $qualification=$this->input->post('qualification');
-        $department=$this->input->post('department');
-        $schoolname=$this->input->post('school');
-        $percentage=$this->input->post('percentage');
-        $yearpassed=$this->input->post('year_passed');
+public function education(){
+    $qualification=$this->input->post('qualification');
+    $department=$this->input->post('department');
+    $schoolname=$this->input->post('school');
+    $percentage=$this->input->post('percentage');
+    $yearpassed=$this->input->post('year_passed');
 
-        $insert = array(
-            'educational_qualification'=>$qualification,
-            'department'=>$department,
-            'school_college_name'=>$schoolname,
-            'percentage'=>$percentage,
-            'yearOfPassing'=>$yearpassed
-        );
-        
-        $this->db->insert('seeker_educational_details', $insert);
+    $insert = array(
+        'educational_qualification'=>$qualification,
+        'department'=>$department,
+        'school_college_name'=>$schoolname,
+        'percentage'=>$percentage,
+        'yearOfPassing'=>$yearpassed
+    );
+    
+    if (!$this->db->insert('seeker_educational_details', $insert)) {
+        echo $this->db->error();
+    } else {
+        echo "Data inserted successfully!";
     }
+}
+
+   
+
+
     public function experience(){
         $category=$this->input->post('category');
         $subcategory=$this->input->post('subcategory');
