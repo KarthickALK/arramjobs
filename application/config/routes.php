@@ -55,10 +55,16 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 $route['arramjobs/providerRegistration']='registration/providerRegistration';
-$route['view_dashboard']='registration/load_login';
+$route['view_dashboard']='registration/view_dashboard';
 $route['arramjobs/registration']='registration/update_record';
 $route['providerRegistration']='customer';
 $route['arramjobs/provider_update_registration'] = 'registration/provider_update_registration';
 $route['arramjobs/registration/update_record'] = "registration/update_record";
 // $route['Registration/update_profile'] = 'Registration/update_profile';
+$route['arramjobs/registration/job_view_table'] = "registration/job_view_table";
+$route['arramjobs/registration/provider_addjob'] = "registration/provider_addjob";
+$route['arramjobs/registration/insertJob'] = "registration/insertJob";
+$route['arramjobs/registration/add_provider_job'] = "registration/add_provider_job";
+
+
 

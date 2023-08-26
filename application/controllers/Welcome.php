@@ -35,6 +35,7 @@ class Welcome extends CI_Controller {
 		// $provider=$this->RegistrationModel->provider_detail(); 
 		// $this->data['providerDetail'] = $provider;
 		// $this->load->view('provider_update_registration.php',$this->data);
+		// $this->load->view('exampleDashboard.php');
 	}
 
      }

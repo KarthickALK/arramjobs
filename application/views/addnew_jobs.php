@@ -83,7 +83,7 @@ button[type="submit"] {
 
 <div class="container">
     <h1>Add New Jobs</h1>
-    <form name="experienceform" aaction="addnew" method="post" onsubmit="return validateForm()">
+    <form name="experienceform" action="http://localhost/arramjobs/registration/insertJob" method="post" onsubmit="return validateForm()">
    
     <div class="form-group">
             <label for="company_name">Company Name:</label>
@@ -137,8 +137,8 @@ button[type="submit"] {
         <label for="jobtype">Job Type :</label>
         <select class="form-control" id="jobtype" name="jobtype">
         <option value="">select your jobtype</option>
-          <option value="part time">Part Time</option>
-          <option value="part time">Full Time</option>
+          <option value="0">Full Time</option>
+          <option value="1">Part Time</option>
           </select>
           <div id="jobtype_error" class="error"></div>
 </div>

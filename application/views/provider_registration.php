@@ -31,9 +31,9 @@
       <div class="col">
        <div class=" text-light p-2 border bg-primary rounded-4 w-55 ">Provider Registration Form</div>
       </div>
-      <div class="col">
+      <!-- <div class="col">
         <div class=" text-light p-2 border bg-primary rounded-4 w-55 ">What Arram Do?</div>
-      </div>
+      </div> -->
     </div>
   </div>
     <div class="container">

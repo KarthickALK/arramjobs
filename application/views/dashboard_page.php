@@ -86,17 +86,17 @@ h4{
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="edu-link" href="job_view_table">
+                            <a class="nav-link" id="edu-link" href="http://localhost/arramjobs/Registration/job_view_table">
                              Jobs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="exp-link" href="job_matched_table">
+                            <a class="nav-link" id="exp-link" href="http://localhost/arramjobs/Registration/job_matched_table">
                                 Candidates
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pro-link" href="job_matched_table">
+                            <a class="nav-link" id="pro-link" href="http://localhost/arramjobs/Registration/job_wishlist_candidates">
                                 Wishlist
                             </a>
                         </li>
@@ -141,22 +141,47 @@ h4{
         $('#profile-link').click(function(e) {
             e.preventDefault();
             $('#form-iframe').attr('src', 'http://localhost/arramjobs/Registration/provider_update_registration');
+                window.history.pushState({}, '', 'http://localhost/arramjobs/Registration/provider_update_registration')
         });
+        $('#profile-link').click(function(e) {
+                e.preventDefault();
+                const id = $; // Replace with the actual ID value
+                const url = `http://localhost/arramjobs/Registration/provider_update_registration/${id}`;
+                $('#form-iframe').attr('src', url);
+                window.history.pushState({}, '', url);
+            });
+
+    //     $('#profile-link').click(function(e) {
+    //     e.preventDefault();
+    //     $('#form-iframe').attr('src', 'http://localhost/arramjobs/Registration/provider_update_registration');
+    //     history.pushState(null, null, 'provider_update_registration'); // Update URL
+    // });
+
+
+//     window.addEventListener('popstate', function(event) {
+//     var newUrl = location.pathname.substr(1); // Get the URL path
+//     $('#form-iframe').attr('src', newUrl);
+// });
+
 
         $('#edu-link').click(function(e) {
             e.preventDefault();
-            $('#form-iframe').attr('src', 'job_view_table');
+            $('#form-iframe').attr('src', 'http://localhost/arramjobs/Registration/job_view_table');
+                window.history.pushState({}, '', 'http://localhost/arramjobs/Registration/job_view_table')
+               
         });
 
         $('#exp-link').click(function(e) {
             e.preventDefault();
-            $('#form-iframe').attr('src', 'job_matched_table');
+            $('#form-iframe').attr('src', 'http://localhost/arramjobs/Registration/job_matched_table');
+                window.history.pushState({}, '', 'http://localhost/arramjobs/Registration/job_matched_table')
         });
 
         // Handle other menu item clicks similarly
         $('#pro-link').click(function(e) {
             e.preventDefault();
-            $('#form-iframe').attr('src', 'job_wishlist_candidates');
+            $('#form-iframe').attr('src', 'http://localhost/arramjobs/Registration/job_wishlist_candidates');
+                window.history.pushState({}, '', 'http://localhost/arramjobs/Registration/job_wishlist_candidates')
         });
 
         // $('#area-link').click(function(e) {

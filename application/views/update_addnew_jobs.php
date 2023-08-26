@@ -83,17 +83,21 @@ button[type="submit"] {
 
 <div class="container">
     <h1>Update jobs</h1>
-    <form name="experienceform" method="post" onsubmit="return validateForm()" action="">
-   
+    <form name="experienceform" method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/registration/updateInsert">
+    <?php
+       foreach($this->data['updateAddNew'] as $key => $value){
+       ?>
+
+   <input type="hidden" class="form-control" value=<?php echo $value['id'];?>   id="id" name="id" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
     <div class="form-group">
             <label for="company_name">Company Name*</label>
-            <input type="text" class="form-control" id="company_name" name="company_name" >
+            <input type="text" class="form-control" id="company_name" value=<?php echo $value['company_name'];?>  name="company_name" >
             <div id="company_name_error" class="error"></div>
         </div>
         
         <div class="form-group">
                 <label for="category">Category:</label>
-                <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+                <select class="form-control" id="category" value=<?php echo $value['job_category_id'];?> name="category" onchange="updateSubcategories()">
                     <option value="">Select a Category</option>
                     <option value="it">Information Technology</option>
                     <option value="education">Education</option>
@@ -109,14 +113,14 @@ button[type="submit"] {
             </div>
             <div class="form-group">
                 <label for="subcategory">Subcategory:</label>
-                <select class="form-control" id="subcategory" name="subcategory" disabled>
+                <select class="form-control" id="subcategory" value=<?php echo $value['job_sub_category_id'];?> name="subcategory" disabled>
                     <option value="">Select a Subcategory</option>
                 </select>
                 <div id="subcategory_error" class="error"></div>
             </div>
             <div class="form-group">
         <label for="experience">Experience</label>
-        <select class="form-control" id="experience" name="experience">
+        <select class="form-control" id="experience" value=<?php echo $value['experience'];?> name="experience">
           <option value="">select your experience</option>
           <option value="fresher">Fresher</option>
           <option value="0-2">0-2</option>
@@ -130,33 +134,33 @@ button[type="submit"] {
 </div>
         <div class="form-group">
             <label for="preferred_location">Preferred Location*</label>
-            <input type="text" class="form-control" id="preferred_location" name="preferred_location" >
+            <input type="text" class="form-control" id="preferred_location"  value=<?php echo $value['location'];?>  name="preferred_location" >
             <div id="preferred_location_error" class="error"></div>
         </div>
  <div class="form-group">
         <label for="jobtype">Job Type :</label>
-        <select class="form-control" id="jobtype" name="jobtype">
+        <select class="form-control" id="jobtype" value=<?php echo $value['job_type'];?> name="jobtype">
         <option value="">select your jobtype</option>
-          <option value="part time">Part Time</option>
-          <option value="part time">Full Time</option>
+          <option value="0">Full Time</option>
+          <option value="1">Part Time</option>
           </select>
           <div id="jobtype_error" class="error"></div>
 </div>
        
 <div class="form-group">
             <label for="expected_salary">Expected Salary</label>
-            <input type="text" class="form-control" id="expected_salary" name="expected_salary" >
+            <input type="text" class="form-control" id="expected_salary" value=<?php echo $value['salary'];?> name="expected_salary" >
             <div id="expected_salary_error" class="error"></div>
         </div>
 
         <div class="form-group">
             <label for="no_of_openings">no_of_openings</label>
-            <input type="number" class="form-control" id="no_of_openings" name="no_of_openings" >
+            <input type="number" class="form-control" id="no_of_openings" value=<?php echo $value['number_of_openings'];?> name="no_of_openings" >
             <div id="no_of_openings_error" class="error"></div>
         </div>
         <div class="form-group">
             <label for="description">Description</label>
-            <input type="text" class="form-control" id="description" name="description" >
+            <input type="text" class="form-control" id="description" value=<?php echo $value['description'];?> name="description" >
             <div id="description_error" class="error"></div>
         </div>
         <!-- <div class="form-group">
@@ -199,6 +203,9 @@ button[type="submit"] {
 
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
+    <?php 
+       }
+    ?>
 </div>
 <script>
         function updateSubcategories() {

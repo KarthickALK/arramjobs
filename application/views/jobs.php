@@ -10,14 +10,22 @@
             margin-right: 5px;
             margin-bottom: 5px;
         }
+        #view{
+            margin-right: 5px;
+            margin-bottom: 5px;
+        }
     </style>
 </head>
 <body>
     <div class="container mt-5">
         <h2 class="text-center">Jobs</h2>
-        <input type="button" class="btn btn-primary float-end" value="+ Add">
+        <!-- <input type="button" class="btn btn-primary float-end" value="+ Add" onclick="registration/provider_addjob"> -->
+        <!-- <a id="regis" href="provider_addjob">+ Add</a></p>> -->
+        <a id="regis" href="provider_addjob">+ Add</a>
+
         <div class="clearfix"></div>
         <br>
+        
         
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
@@ -31,31 +39,41 @@
                         <th>Salary</th>
                         <th>Experience</th>
                         <th>Number of Openings</th>
-                        <!-- <th>Description</th> -->
-                        <th>Actions</th> <!-- New Column for Actions -->
+                        <th>Actions</th> 
                     </tr>
                 </thead>
+                <?php
+                        foreach($this->data['providerJobs'] as $key => $value){
+                    ?>
                 <tbody>
                     <tr>
-                        <td>Data 1</td>
-                        <td>Data 2</td>
-                        <td>Data 3</td>
-                        <td>Data 4</td>
-                        <td>Data 5</td>
-                        <td>Data 6</td>
-                        <td>Data 7</td>
-                        <!-- <td>Data 8</td> -->
-                        <td>Data 9</td>
+                        <td><?php echo $value['id']?></td>
+                        <td><?php echo $value['company_name']?></td>
+                        <td><?php echo $value['job_provider_id']?></td>
+                        <td><?php echo $value['location']?></td>
+                        <td><?php echo $value['job_type']?></td>
+                        <td><?php echo $value['salary']?></td>
+                        <td><?php echo $value['experience']?></td>
+                        <td><?php echo $value['number_of_openings']?></td>
+                        
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-primary">View</button>
-                                <button class="btn btn-warning">Update</button>
-                                <button class="btn btn-danger">Delete</button>
+                                <a id="view" href="updateAddNew/<?php echo $value['id']?>">Update</a>
+                                <!-- <a id="view" onclick="confirm('Are you sure , you want to delete..?')" href="deleteAddJob">delete</a> -->
+                                <a id="view" onclick="return confirm('Are you sure you want to delete?')" href="deleteAddJob/<?php echo $value['deleteId']?>">delete</a>
+
+                                <!-- <button class="btn btn-warning">Update</button> -->
+                                <!-- <button class="btn btn-danger">Delete</button> -->
                             </div>
                         </td>
+                   
                     </tr>
-                    <!-- Add more rows here -->
+                   
                 </tbody>
+                <?php
+                        }
+                    ?>
             </table>
         </div>
     </div>

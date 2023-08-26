@@ -10,7 +10,7 @@
         .bg-primary{
             background-color: rgb(16, 16, 99) !important;
         }
-        <style>
+     
       body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
