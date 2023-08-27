@@ -21,9 +21,15 @@
     <div class="container mt-4">
         <h2>Upload resume</h2>
         <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
+        <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
             <div class="form-group">
                 <label for="resumeFile">Upload Resume</label>
-                <input type="file" class="form-control-file" id="resumeFile" name="resumeFile"  required>
+               
+                <input type="file" name="resumeFile" accept=".pdf,.doc,.docx">
+<?php if (!empty($existingResume) && isset($existingResume['resume'])): ?>
+    <p>Existing Resume: <?php echo $existingResume['resume']; ?></p>
+<?php endif; ?>
+
             </div>
             <button class="btn btn-primary" type="submit">Upload</button>
         </form>
@@ -36,7 +42,7 @@
             }
         }
 
-    
+    </script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>

@@ -83,12 +83,14 @@ button[type="submit"] {
 
 
 <div class="container">
+
+      
     <h1>Education Form</h1>
     <div class="education-form-container">
-        <form name="educationform" method="post" onsubmit="return validateForm()" action="edu" >
+        <form name="educationform" method="post" onsubmit="return validateForm()" action="educational_details" >
             <div class="form-group">
                 <label for="qualification">Educational Qualification*</label>
-                <select class="form-control" id="qualification" name="qualification" onchange="toggleFields()">
+                <select class="form-control" id="qualification" name="qualification[]" onchange="toggleFields()">
                     <option value="">Select Qualification</option>
                     <option value="below_8th">Below 8th</option>
                     <option value="sslc">SSLC</option>
@@ -101,7 +103,7 @@ button[type="submit"] {
             </div>
             <div class="form-group" id="department-group" style="display: none;">
                 <label for="department">Department</label>
-                <select class="form-control" id="department" name="department">
+                <select class="form-control" id="department"  name="department[]">
                     <option value="">Select Department</option>
                     <option value="Tamil">Tamil</option>
                     <option value="english">English</option>
@@ -114,24 +116,27 @@ button[type="submit"] {
             </div>
             <div class="form-group" id="school-group" style="display: none;">
                 <label for="school">School Name/collegename</label>
-                <input type="text" class="form-control" id="school" name="school">
+                <input type="text" class="form-control" id="school"  name="school[]">
                 <div id="school_error" class="error"></div>
             </div>
             <div class="form-group" id="percentage-group" style="display: none;">
                 <label for="percentage">Percentage</label>
-                <input type="number" class="form-control" id="percentage" name="percentage">
+                <input type="number" class="form-control" id="percentage"  name="percentage[]">
                 <div id="percentage_error" class="error"></div>
             </div>
             <div class="form-group" id="year-group" style="display: none;">
                 <label for="year_passed">Year of Passed Out</label>
-                <input type="number" class="form-control" id="year_passed" name="year_passed">
+                <input type="number" class="form-control" id="year_passed" name="year_passed[]">
                 <div id="year_error" class="error"></div>
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
+        
     </div>
     <br><button class="btn btn-secondary" id="addButton" onclick="addEducationForm()">Add</button>
+  
 </div>
+
 <script>
     var educationFormCount = 1; // Counter for tracking the number of education forms
 

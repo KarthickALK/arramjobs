@@ -86,22 +86,22 @@ h4{
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="edu-link" href="edu">
+                            <a class="nav-link" id="edu-link" href="educational_details">
                                 Education Details
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="exp-link" href="exp">
+                            <a class="nav-link" id="exp-link" href="experience_details">
                                 Experience Details
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="pro-link" href="pro">
+                            <a class="nav-link" id="pro-link" href="projectDetails">
                                 Project Details
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" id="area-link" href="area">
+                            <a class="nav-link" id="area-link" href="areaofInterest">
                                 Area of Interest
                             </a>
                         </li>
@@ -133,48 +133,52 @@ h4{
 <!-- ... Your previous HTML code ... -->
 
 <script>
-    $(document).ready(function() {
-        // Load the default content when the page loads
-        // $('#form-iframe').attr('src', 'profile');
+        $(document).ready(function() {
+            // Set the dashboard URL
+            const dashboardURL = 'dashboard';
 
-        // Handle menu item clicks
-        $('#profile-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'profile');
-        });
+            // Function to load content into iframe
+            function loadContent(url) {
+                // Check if the URL is outside the dashboard
+                if (url !== dashboardURL) {
+                    url = dashboardURL; // Redirect to dashboard if accessed directly
+                }
 
-        $('#edu-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'edu');
-        });
+                $('#form-iframe').attr('src', url);
+            }
 
-        $('#exp-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'exp');
-        });
+            $('#profile-link').click(function(e) {
+                e.preventDefault();
+                loadContent('profile');
+                history.pushState(null, null, 'profile');
+            });
 
-        // Handle other menu item clicks similarly
-        $('#pro-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'pro');
-        });
+            $('#edu-link').click(function(e) {
+                e.preventDefault();
+                loadContent('educational_details');
+                history.pushState(null, null, 'educational_details');
+            });
 
-        $('#area-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'area');
-        });
+            $('#exp-link').click(function(e) {
+                e.preventDefault();
+                loadContent('experience_details');
+                history.pushState(null, null, 'experience_details');
+            });
 
-        $('#skills-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'skills');
-        });
+            // Handle other menu item clicks similarly
+            // ...
 
-        $('#resume-link').click(function(e) {
-            e.preventDefault();
-            $('#form-iframe').attr('src', 'resume');
+            // Load content on page load or refresh
+            const currentURL = window.location.pathname;
+            loadContent(currentURL);
+
+            // Listen for popstate event to handle browser back/forward button clicks
+            window.addEventListener('popstate', function(event) {
+                const newURL = event.target.location.pathname;
+                loadContent(newURL);
+            });
         });
-    });
-</script>
+    </script>
 
 </body>
 </html>

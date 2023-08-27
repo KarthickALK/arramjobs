@@ -1,157 +1,193 @@
 <!DOCTYPE html>
 <html lang="en">
- <head>
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Admin Dashboard</title>
-<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css">
+    <title>Dashboard</title>
+    <!-- Include Bootstrap CSS and other necessary stylesheets -->
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
 <style>
-/* Reset some default styles */
-body, h1, h2, h3, p {
-    margin: 0;
-    padding: 0;
-    
-}
-
-body {
-    background: #f4f7f9;
-    font-family: Arial, sans-serif;
-    left:0;
-    right:0;
-    width:100%;
-}
-
-/* Header styles */
-header {
-    margin-left:0px;
-    background-color: #1976D2;
+ header {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        }
+.main {
+        margin-top: 80px; /* Space for the fixed header */
+        padding: 20px;
+        }
+h4{
     color: white;
-    padding: 20px;
-    text-align: center;
-    position: fixed; /* Fixed position to keep the header at the top */
-    width: 100%; /* Ensure full width */
-    top: 0; /* Position at the top */
-    z-index: 1; /* Ensure header is above other content */
+    margin-left:15px;
 }
+.sidebar {
 
-/* Main content container */
-.dashboard-container {
-    display: flex;
-    margin-top: 80px; /* Ensure content starts below the fixed header */
-}
-
-/* Side menu styles */
-.side-menu {
-    margin-top: 90px;
-    background-color: #FFC107;
-    width: 250px;
-    height: 100vh;
-    font-weight: bold;
     position: fixed;
-    top: 0;
-    left: 0;
+    top: 100px;
     bottom: 0;
-    padding-top: 3rem;
-   }
+    left: 0;
+    z-index: 100;
+    padding: 48px 0;
+    box-shadow: 2px 0px 5px rgba(0, 0, 0, 0.1);
+    background-color:#FF981F;
+}
 
-.side-menu h3 {
-    padding: 10px 20px;
-    margin: 0;
-    font-weight: bold;
-    background-color: #FFA000;
+.sidebar-sticky {
+    position: fixed;
+}
+
+/* Style the active menu item */
+.nav-item.active .nav-link {
+    background-color: 	#FF4500;
     color: #fff;
 }
 
-.side-menu ul {
-    list-style: none;
-    padding: 0;
+/* Adjust iframe height */
+#iframe {
+    height: calc(100vh - 48px); /* Subtract sidebar height */
 }
 
-.side-menu li {
-    padding: 10px 20px;
-    border-bottom: 1px solid #ccc;
-}
-
-.side-menu a {
-    text-decoration: none;
-    color: #333;
-    display: block;
-    font-size: 16px;
-}
-
-.side-menu a:hover {
-    color: #f37e17;
+/* Optional: Style the links in the sidebar */
+.nav-link {
+    color: white;
     font-weight: bold;
+    transition: background-color 0.3s, color 0.3s;
 }
 
-/* Main content styles */
-.content {
-    flex: 1;
+.nav-link:hover {
+    background-color: #007bff;
+    color: #fff;
+    text-decoration: none;
+}
+
+/* Optional: Add some margin and padding to the main content */
+#dashboard-content {
+    margin-top: 80px;
     padding: 20px;
-    margin-left: 250px;
-}
-
-@media (max-width: 768px) {
-    .dashboard-container {
-        flex-direction: column;
-    }
-
-    .content {
-        margin-left: 0;
-    }
-
-    .side-menu {
-        width: 100%;
-        height: auto;
-    }
+    
 }
 </style>
 </head>
 <body>
-    <header>
-        <h1>Welcome to arramjobs</h1>
-</header>
-<div class="dashboard-container">
-<main class="content p-3" id="dashboard-content">
-    </main>
+<header class="bg-primary text-white p-3">
+        <h1 class="text-center">Welcome to arram jobs</h1>
+    </header>
+    <div class="container-fluid">
+        <div class="row">
+            <nav class="col-md-2 d-none d-md-block  sidebar">
+                <div class="sidebar-sticky">
+                    <h4><b>create profile</b></h4>
+                    <ul class="nav flex-column">
+                        <li class="nav-item">
+                            <a class="nav-link" id="profile-link" href="profile">
+                                Basic Details
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="edu-link" href="educational_details">
+                                Education Details
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="exp-link" href="experience_details">
+                                Experience Details
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="pro-link" href="projectDetails">
+                                Project Details
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="area-link" href="areaofInterest">
+                                Area of Interest
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="skills-link" href="skills">
+                                Skill Details
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link" id="resume-link" href="resume">
+                                Upload Resume
+                            </a>
+                        </li>
+                    </ul>
+                </div>
+            </nav>
+            <main role="main" class="col-md-9 ml-sm-auto col-lg-10 px-4">
+                <div id="dashboard-content">
+                    <iframe id="form-iframe" src="" frameborder="0" style="width: 100%; height: 100vh;"></iframe>
+                </div>
+            </main>
+        </div>
+    </div>
 
-<nav class="side-menu">
-    <h3 class="px-3 py-2">Create profile</h3>
-    <ul class="list-unstyled">
-        <!-- <li><a href="javascript:void(0);" onclick="loadForm('profile')">Basic Details</a></li>
-        <li><a href="javascript:void(0);" onclick="loadForm('edu')">Education Details</a></li>
-        <li><a href="javascript:void(0);" onclick="loadForm('exp')">Experience Details</a></li> -->
-        <!-- <li><a href="javascript:void(0);" onclick="loadForm('pro')">Project Details</a></li>
-        <li><a href="javascript:void(0);" onclick="loadForm('area')">Area Of Interest</a></li>
-        <li><a href="javascript:void(0);" onclick="loadForm('skills')">Skills Details</a></li>
-        <li><a href="javascript:void(0);" onclick="loadForm('resume')">Upload Resume</a></li> -->
-    </ul>
-</nav>
+    <!-- Include jQuery and Bootstrap JS -->
+    <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<!-- ... Your previous HTML code ... -->
 
 <script>
-function loadForm(formName) {
-  var contentElement = document.getElementById('dashboard-content');
-  var xhttp = new XMLHttpRequest();
-  xhttp.onreadystatechange = function() {
-    if (this.readyState == 4 && this.status == 200) {
-      contentElement.innerHTML = this.responseText;
+    $(document).ready(function() {
+        
+        $('#profile-link').click(function(e) {
+            e.preventDefault();
+            $('#form-iframe').attr('src', 'profile');
+            window.history.pushState({}, '', 'profile')
+        });
 
-    }
-  };
-  xhttp.open('GET', formName, true);
-  xhttp.send();
-}
+        $('#edu-link').click(function(e) {
+            e.preventDefault();
+            $('#form-iframe').attr('src', 'educational_details');
+            window.history.pushState({}, '', 'educational_details')
+            
+        });
+
+        $('#exp-link').click(function(e) {
+            e.preventDefault();
+            $('#form-iframe').attr('src', 'experience_details');
+            window.history.pushState({}, '', 'experience_details')
+            
+            
+        });
+
+        // Handle other menu item clicks similarly
+        $('#pro-link').click(function(e) {
+            e.preventDefault();
+            $('#form-iframe').attr('src', 'projectDetails');
+            window.history.pushState({}, '', 'projectDetails')
+          
+        });
+
+        $('#area-link').click(function(e) {
+            e.preventDefault();
+            $('#form-iframe').attr('src', 'areaofInterest');
+            window.history.pushState({}, '', 'areaofInterest')
+           
+        });
+
+        $('#skills-link').click(function(e) {
+            e.preventDefault();
+            $('#form-iframe').attr('src', 'skills');
+            window.history.pushState({}, '', 'skills')
+           
+        });
+
+        $('#resume-link').click(function(e) {
+            e.preventDefault();
+            $('#form-iframe').attr('src', 'resume');
+            window.history.pushState({}, '', 'resume')
+           
+        });
+    });
+    
+    </script>
 
 
-
-
-
-</script>
-
-<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.min.js"></script>
-
-
-
-</body> 
+</body>
 </html>

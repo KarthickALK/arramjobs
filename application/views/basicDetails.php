@@ -84,11 +84,11 @@ button[type="submit"] {
 <body>
     <div class="container" id="page1">
       <?php
-      
-      foreach ($providerDetail as $key => $value){
+      foreach ($providerDetail as $key => $value)
+      {
         ?>
     <h1>Personal Details</h1>
-     <form name="applicationform" method="post" onsubmit="return validateFormPage()">
+     <form name="applicationform" method="post" onsubmit="return validateFormPage()" >
      <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
     <div class="form-group">
         <label for="Name">Name *</label>
@@ -107,12 +107,13 @@ button[type="submit"] {
       </div>
       <div class="form-group">
         <label for="dob">Date of Birth *</label>
-        <input type="date" class="form-control" id="dob" name="dob">
+        <input type="date" class="form-control" id="dateofbirth" value="<?php echo $value['dateofbirth'];?>" name="dateofbirth"  placeholder="enter the date of birth" required>
+
         <div id="dob_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="gender">Gender *</label>
-        <select class="form-control" id="gender" name="gender">
+        <select class="form-control" id="gender" value="<?php echo $value['gender'];?>" name="gender" >
         <option value="">Select your Gender</option>
         <option value="male">male</option>
         <option value="female">female</option>
@@ -123,32 +124,32 @@ button[type="submit"] {
 <h2> Address </h2>
       <div class="form-group">
         <label for="Door no">Door no/building name </label>
-        <input type="text" class="form-control" id="doorno" name="doorno"></textarea>
+        <input type="text" class="form-control" id="doorno" value="<?php echo $value['doorno'];?>" name="doorno"></textarea>
         <div id="doorno_error" class="error"></div>
 </div>
         <div class="form-group">
         <label for="street address">street address </label>
-        <input type="text" class="form-control" id="streetaddress" name="streetaddress">
+        <input type="text" class="form-control" id="streetaddress" value="<?php echo $value['address'];?>" name="streetaddress">
         <div id="streetaddress_error" class="error"></div>
 </div>
 <div class="form-group">
         <label for="landmark">Landmark </label>
-        <input type="text" class="form-control" id="landmark" name="landmark">
+        <input type="text" class="form-control" id="landmark" value="<?php echo $value['landmark'];?>" name="landmark">
         <div id="landmark_error" class="error"></div>
 </div>
 <div class="form-group">
         <label for="pincode">Pin Code</label>
-        <input type="text" class="form-control" id="pincode" name="pincode">
+        <input type="text" class="form-control" id="pincode" value="<?php echo $value['pincode'];?>" name="pincode">
         <div id="pincode_error" class="error"></div>
 </div>
 <div class="form-group">
         <label for="district">District *</label>
-        <input type="text" class="form-control" id="district" name="district" value="Erode" disabled>
+        <input type="text" class="form-control" id="district"  name="district" value="Erode" disabled>
         <div id="district_error" class="error"></div>
       </div>
       <div class="form-group">
     <label for="maritalstatus">Marital Status*</label>
-    <select class="form-control" id="maritalstatus" name="maritalstatus">
+    <select class="form-control" id="maritalstatus"value="<?php echo $value['maritalStatus'];?>" name="maritalstatus">
         <option value="">Select your marital status</option>
         <option value="single">Single</option>
         <option value="married">Married</option>
@@ -158,17 +159,17 @@ button[type="submit"] {
 <h1>Identification Details</h1>
 <div class="form-group">
         <label for="aadharfrontphoto">Aadhar front photo </label>
-        <input type="file" class="form-control" id="aadharfrontphoto" name="aadharfrontphoto">
+        <input type="file" class="form-control" id="aadharfrontphoto" value="<?php echo $value['aadhar_front'];?>" name="aadharfrontphoto">
         <div id="aadharfrontphoto_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="aadharbackphoto">Aadhar back Photo</label>
-        <input type="file" class="form-control" id="aadharbackphoto" name="aadharbackphoto">
+        <input type="file" class="form-control" id="aadharbackphoto" value="<?php echo $value['aadhar_back'];?>" name="aadharbackphoto">
         <div id="aadharbackphoto_error" class="error"></div>
       </div>
       <div class="form-group">
         <label for="photo">Photo</label>
-        <input type="file" class="form-control" id="photo" name="photo">
+        <input type="file" class="form-control" id="photo" value="<?php echo $value['photo'];?>" name="photo">
         <div id="photo_error" class="error"></div>
       </div> 
       <button type="submit" name="submitBtn" class="btn btn-primary" >submit</button>

@@ -87,83 +87,166 @@ class projectController extends CI_Controller
     public function dash()
     {
         
-        $this->load->view('dash.php');
+        $this->load->view('projectView.php');
     }
 
 
     public function profile()
     {
         $this->load->model('projectModel');
-        $providerDetail = $this->projectModel->update(); 
+        $this->data['method']="basic details";
+       
         
         if ($this->input->post()) {
-            // Assuming the phone number is provided somehow
-            $phonenumber = '...'; // Replace with the actual phone number
-            $this->projectModel->basicdetails();
-        }
+           
+            $phonenumber = $this->session->userdata('logged_in_phonenumber');
+            $formData = $this->input->post(null, true);
+            $this->projectModel->basicdetails($phonenumber, $formData);
+            
+            
+            }
         
-        $data ['providerDetail'] = $providerDetail; 
+        $providerDetail = $this->projectModel->update();
+        $this->data ['providerDetail'] = $providerDetail; 
+        // var_dump($providerDetail); 
+       
         
-        $this->load->view('basicDetails', $data); 
+        $this->load->view('projectView', $this->data);
     }
-
-        
-public function edu()
-{
- // $seekerId = $this->session->userdata('logged_in_phonenumber');
-     if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $response = $this->projectModel->education();
-    }
-    $this->load->view('education.php');
-  }
     
 
-
-public function exp()
+        
+    public function educational_details()
 {
+    $this->load->model('projectModel');
+    $this->data['method'] = "education";
+
     $seekerId = $this->session->userdata('logged_in_phonenumber');
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $response = $this->projectModel->experience();
-       
+    
+    if ($this->input->post()) {
+        $formData = $this->input->post(null, true);
+        $this->projectModel->education($seekerId, $formData);
     }
-    $this->load->view('experienceDetails.php');
+    
+    // Retrieve educational details for the logged-in user
+    $this->data['providerDetail'] = $this->projectModel->getEducationalDetails($seekerId);
+
+    $this->data['seekerId'] = $seekerId; // Assuming $seekerId holds the correct value
+    $this->load->view('projectView', $this->data);
 }
 
-public function pro()
+    
+    
+    
+    public function experience_details()
+    {
+        $this->load->model('projectModel');
+        $this->data['method']="experience";
+        $providerDetail = $this->projectModel->update(); 
+        $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
+        
+        if ($this->input->post()) {
+            $formData = $this->input->post(null, true);
+            $this->projectModel->experience($seekerId, $formData);
+        }
+        
+        $providerDetail = $this->projectModel->update();
+        $this->data ['providerDetail'] = $providerDetail;
+
+        $this->data['seekerId'] = $seekerId;
+        $this->load->view('projectView', $this->data); 
+    }
+        
+
+public function project_details()
 {
+    $this->load->model('projectModel');
+    $this->data['method']="project";
+    $providerDetail = $this->projectModel->update(); 
+    $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
+    
+    if ($this->input->post()) {
+        $formData = $this->input->post(null, true);
+        $this->projectModel->project($seekerId, $formData);
+    }
+    
+    $data['providerDetail'] = $providerDetail; 
+    $data['seekerId'] = $seekerId; // Pass the seekerId to the view
+    
+    $this->load->view('projectView', $this->data); 
+    }
+    
+
+public function areaofInterest()
+{
+    $this->load->model('projectModel');
+    $this->data['method']="areaofinterest";
     $seekerId = $this->session->userdata('logged_in_phonenumber');
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $response = $this->projectModel->project();
+    
+    if ($this->input->post()) {
+        $formData = $this->input->post(null, true);
+
+        $this->projectModel->area($seekerId, $formData);
     }
-    $this->load->view('projectDetails.php');
+    
+    $providerDetail = $this->projectModel->update(); 
+    
+    $data = array(
+        'providerDetail' => $providerDetail,
+        'seekerId' => $seekerId
+    );
+
+    $this->load->view('projectView', $this->data);
 }
 
-public function area()
-{
-   
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $response = $this->projectModel->area();
-    }
-    $this->load->view('areaofInterest.php');
-}
 
 public function skills()
 {
+    $this->data ['method'] = "skills";
     $seekerId = $this->session->userdata('logged_in_phonenumber');
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $response = $this->projectModel->skill();
+    
+    if ($this->input->post()) {
+        $formData = $this->input->post(null, true);
+        $this->projectModel->skill($seekerId, $formData);
     }
-    $this->load->view('skillsDetails.php');
+    
+    // Retrieve updated providerDetail after insertion/update
+    $providerDetail = $this->projectModel->getSkills($seekerId);
+    
+    $data = array(
+        'providerDetail' => $providerDetail,
+        'seekerId' => $seekerId,
+        'method' => $this->data['method']
+    );
+    
+    $this->load->view('projectView', $data);
 }
+
+
+
+
 
 public function resume()
 {
+    $this->data['method']="resume";
     $seekerId = $this->session->userdata('logged_in_phonenumber');
-    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-        $response = $this->projectModel->resume();
-       
+    
+    if ($this->input->post()) {
+        $formData = $this->input->post(null, true);
+
+        $this->projectModel->resume($seekerId, $formData);
     }
-    $this->load->view('uploadResume.php');
+    
+    $providerDetail = $this->projectModel->update();
+    $data = array(
+        'providerDetail' => $providerDetail,
+        'seekerId' => $seekerId
+    ); 
+ 
+    $this->load->view('projectView', $this->data);
 }
- }
+
+
+
+}
  ?>

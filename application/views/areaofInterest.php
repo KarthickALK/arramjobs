@@ -85,11 +85,12 @@ button[type="submit"] {
     <div class="container mt-5">
         <h1>Area of Interest Form</h1>
         <form method="post" onsubmit="return validateForm()" action="area">
+        <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
         <div id="educationFormsContainer">
         <div class="education-form-container">    
                  <div class="form-group">
                 <label for="category">Category *</label>
-                <select class="form-control" id="category" name="category[]" onchange="toggleCategoryFields()" >
+                <select class="form-control" id="category" name="category[]" value="<?php echo isset($value['interst_category_id']) ? $value['interest_category_id'] : ''; ?>" onchange="toggleCategoryFields()" >
                     <option value="">Select a category</option>
                     <option value="it">Information Technology</option>
                     <option value="health">Health Care</option>
@@ -98,7 +99,7 @@ button[type="submit"] {
                 </div>
             <div class="form-group"">
                 <label for="subcategory">Subcategory *</label>
-                <select class="form-control" id="subcategory" name="subcategory[]">
+                <select class="form-control" id="subcategory" name="subcategory[]" value="<?php echo isset($value['interst_sub_category_id']) ? $value['interst_sub_category_id'] : ''; ?>" >
                     <option value="">Select a sub category </option>
                 </select>
             </div>
@@ -110,17 +111,17 @@ button[type="submit"] {
             </div>
             <div class="form-group" id="customCategory" style="display: none;">
                 <label for="customCategoryInput">Category Name</label>
-                <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput[]">
+                <input type="text" class="form-control" id="customCategoryInput" value="<?php echo isset($value['other_interst_category']) ? $value['other_interest_category'] : ''; ?>" name="customCategoryInput[]">
             </div>
       
       <div class="form-group" id="customSubcategory" style="display: none;">
         <label for="customSubcategoryInput"> Subcategory Name</label>
-        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput[]">
+        <input type="text" class="form-control" id="customSubcategoryInput" value="<?php echo isset($value['other_sub_interst_category']) ? $value['other_sub_interst_category'] : ''; ?>" name="customSubcategoryInput[]">
       </div>
 
             <div class="form-group">
                 <label for="preferred-location">Preferred Location to work</label>
-                <input type="text" class="form-control" id="preferred-location" name="preferred-location[]">
+                <input type="text" class="form-control" id="preferred-location" value="<?php echo isset($value['prefered_location']) ? $value['prefered_location'] : ''; ?>" name="preferred-location[]">
 
                 <!-- <select class="form-control" id="preferred-location" name="preferred-location">
                     <option value="">Select a Preferred location</option>
@@ -131,23 +132,22 @@ button[type="submit"] {
             </div>
             <div class="form-group">
                 <label for="experience">Experience</label>
-                <input type="text" class="form-control" id="experience" name="experience[]">
+                <input type="text" class="form-control" id="experience" value="<?php echo isset($value['experience']) ? $value['experience'] : ''; ?>" name="experience[]">
             </div>
             <div class="form-group">
                 <label for="description">Description</label>
-                <textarea class="form-control" id="description" name="description[]" rows="3"></textarea>
+                <textarea class="form-control" id="description" name="description[]" value="<?php echo isset($value['description']) ? $value['description'] : ''; ?>" rows="3"></textarea>
             </div>
             <div class="form-group">
-                <label>Part Time or Full Time</label><br>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="part-time" value=0 name="part-time[]">
-                    <label class="form-check-label" for="part-time">Part Time</label>
-                </div>
-                <div class="form-check form-check-inline">
-                    <input class="form-check-input" type="checkbox" id="full-time" value=1 name="full-time[]">
-                    <label class="form-check-label" for="full-time">Full Time</label>
-                </div>
-            </div>
+                        <label for="jobtype">Job Type</label>
+                        <select class="form-control" id="jobtype" name="jobtype[]">
+                            <option value="">Select a job type</option>
+                            <option value="parttime">Part Time</option>
+                            <option value="fulltime">Full Time</option>
+                            <option value="both">Both</option>
+                        </select>
+                    </div>
+                
             <div class="form-group">
                 <label for="expected-salary">Expected Salary</label>
                 <input type="text" class="form-control" id="expected-salary" name="expected-salary[]">
@@ -156,13 +156,16 @@ button[type="submit"] {
             </div>
             <button type="submit" class="btn btn-primary">Submit</button>
         </form>
-        
+</div>
     <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
     <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
     <script>
-    var educationFormCount = 1;
-    function addEducationForm() {
+        var educationFormCount = 1;
+
+
+
+        function addEducationForm(button) {
             educationFormCount++;
             var newEducationFormContainer = document.createElement('div');
             newEducationFormContainer.className = 'education-form-container';
@@ -179,18 +182,18 @@ button[type="submit"] {
             newEducationFormContainer.appendChild(newForm);
             document.querySelector('#educationFormsContainer').appendChild(newEducationFormContainer);
 
-            // Hide previous submit button (except the first one)
-            if (educationFormCount > 1) {
-                var previousSubmitButton = document.querySelector('.education-form-container:not(:first-child) button[type="submit"]');
-                previousSubmitButton.style.display = "none";
-            }
+            // Move the "Submit" button to the new form
+            var submitButton = document.querySelector('button[type="submit"]');
+            newForm.appendChild(submitButton);
+
+            // Hide the "Add" button in the previous form
+            button.style.display = "none";
+        }    
+    function clearFormFields(form) {
+        var fieldsToClear = form.querySelectorAll('input, select');
+        for (var i = 0; i < fieldsToClear.length; i++) {
+        fieldsToClear[i].value = '';
         }
-        
-        function clearFormFields(form) {
-            var fieldsToClear = form.querySelectorAll('input, select');
-            for (var i = 0; i < fieldsToClear.length; i++) {
-                fieldsToClear[i].value = '';
-            }
         }
         function toggleCategoryFields() {
             var category = document.getElementById("category").value;
@@ -222,6 +225,7 @@ button[type="submit"] {
             var category = document.getElementById("category").value;
             var subcategory = document.getElementById("subcategory").value;
             var preferredLocation = document.getElementById("preferred-location").value;
+            var jobtype = document.getElementById("jobtype").value;
             var experience = document.getElementById("experience").value;
             var description = document.getElementById("description").value;
 
@@ -243,6 +247,12 @@ button[type="submit"] {
                 alert("Please provide your experience.");
                 return false;
             }
+
+            if (jobtype.trim() === "") {
+                alert("Please select your job type.");
+                return false;
+            }
+            
 
             if (description.trim() === "") {
                 alert("Please provide a description.");

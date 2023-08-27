@@ -82,39 +82,40 @@ button[type="submit"] {
 <body>
 <div class="container">
     <h1>Project Details Form</h1>
-    <form name="projectform" method="post" onsubmit="return validateForm()" action="pro">
+    <form name="projectform" method="post" onsubmit="return validateForm()" action="projectDetails">
+    <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
 <div id="project-sections">
             <div class="project-section">
             <div class="form-group">
             <label for="projectname">Project Name</label>
-            <input type="text" class="form-control" id="projectname" name="projectname" >
+            <input type="text" class="form-control" id="projectname" name="projectname[]" >
             <div id="projectname_error" class="error"></div>
         <div class="form-group">
             <label for="Duration of project">Duration of Project</label>
-            <input type="text" class="form-control" id="durationofproject" name="durationofproject">
+            <input type="text" class="form-control" id="durationofproject" name="durationofproject[]">
             <div id="durationofproject_error" class="error"></div>
         </div>
         <div class="form-group">
             <label for="role in the project">Role in the Project</label>
-            <input type="text" class="form-control" id="roleofproject" name="roleofproject">
+            <input type="text" class="form-control" id="roleofproject" name="roleofproject[]">
             <div id="roleofproject_error" class="error"></div>
         </div>
         <div class="form-group">
             <label for="">start date of project*</label>
-            <input type="date" class="form-control" id="startdate" name="startdate" >
+            <input type="date" class="form-control" id="startdate" name="startdate[]" >
             <div id="startdate_error" class="error"></div>
             <label for="">End date of the project*</label>
-            <input type="date" class="form-control" id="enddate" name="enddate" >
+            <input type="date" class="form-control" id="enddate" name="enddate[]" >
             <div id="enddate_error" class="error"></div>
         </div>
         <div class="form-group">
             <label for="Responsibity">My responsibility in project*</label>
-            <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility" ></textarea>
+            <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility[]" ></textarea>
             <div id="responsibility_error" class="error"></div>
         </div>
         <div class="form-group">
             <label for="Skills used in project">Skills used in project*</label>
-            <input type="text" class="form-control" id="skillsused" name="skillsused" >
+            <input type="text" class="form-control" id="skillsused" name="skillsused[]" >
             <div id="skills_error" class="error"></div>
         </div>
         <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
@@ -162,27 +163,35 @@ button[type="submit"] {
         return true;
     }
     
+ 
     function addProjectSection() {
-            projectFormCount++;
-            var lastProjectSection = document.querySelector('.project-section:last-child');
-            var clone = lastProjectSection.cloneNode(true);
+    projectFormCount++;
+    var newProjectSection = document.createElement('div');
+    newProjectSection.className = 'project-section';
 
-            // Clear the input values in the cloned section
-            var inputs = clone.querySelectorAll('input[type="text"], input[type="date"], textarea');
-            inputs.forEach(function(input) {
-                input.value = '';
-            });
+    // Clone the original project section
+    var originalSection = document.querySelector('.project-section');
+    var clone = originalSection.cloneNode(true);
 
-            // Append the cloned section to the project sections container
-            var projectSectionsContainer = document.getElementById('project-sections');
-            projectSectionsContainer.appendChild(clone);
+    // Clear input values in the cloned section
+    var inputs = clone.querySelectorAll('input[type="text"], input[type="date"], textarea');
+    inputs.forEach(function(input) {
+        input.value = '';
+    });
 
-            // Show the final submit button
-            if (projectFormCount > 1) {
-                var finalSubmitButton = document.getElementById('finalsubmit');
-                finalSubmitButton.style.display = 'none';
-            }
-        }
+    // Append the cloned section to the project sections container
+    newProjectSection.appendChild(clone);
+    document.getElementById('project-sections').appendChild(newProjectSection);
+
+    // Move the "Submit" button to the end of the last added project section
+    var submitButton = document.getElementById('finalsubmit');
+    newProjectSection.appendChild(submitButton);
+
+    // Hide the "Add Project" button in the previous section
+    var addButton = document.querySelector('button[type="button"]');
+    addButton.style.display = 'none';
+}
+
         
     function clearErrorMessages() {
   var errorElements = document.querySelectorAll('.error');

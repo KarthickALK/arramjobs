@@ -80,11 +80,16 @@ button[type="submit"] {
 <body>
 
 <div class="container">
+<?php
+      foreach ($providerDetail as $key => $value)
+      {
+        ?>
     <h1>Experience Details Form</h1>
-    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="exp">
+    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experience_details">
+    <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
     <div class="form-group">
                 <label for="category">Category:</label>
-                <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+                <select class="form-control" id="category" value="<?php echo $value['job_category_id']; ?>" name="category" onchange="updateSubcategories()">
                     <option value="">Select a Category</option>
                     <option value="it">Information Technology</option>
                     <option value="education">Education</option>
@@ -95,19 +100,29 @@ button[type="submit"] {
                     <option value="textile">Textile</option>
                     <option value="sports">Sports</option>
                     <option value="services">Services</option>
+                    <option value="others">Others</option>
                 </select>
                 <div id="category_error" class="error"></div>
             </div>
             <div class="form-group">
                 <label for="subcategory">Subcategory:</label>
-                <select class="form-control" id="subcategory" name="subcategory" disabled>
+                <select class="form-control" id="subcategory" value="<?php echo $value['job_sub_category_id']; ?>" name="subcategory" disabled>
                     <option value="">Select a Subcategory</option>
                 </select>
                 <div id="subcategory_error" class="error"></div>
             </div>
+            <div class="form-group" id="otherCategoryField"   style="display: none;">
+        <label for="othercategory">Other Category:</label>
+        <input type="text" class="form-control" id="othercategory"  name="othercategory">
+        </div>
+
+          <div class="form-group" id="otherSubcategoryField" style="display: none;">
+        <label for="othersubcategory">Other Subcategory:</label>
+        <input type="text" class="form-control" id="othersubcategory"  name="othersubcategory">
+    </div>
             <div class="form-group">
         <label for="experience">Experience</label>
-        <select class="form-control" id="experience" name="experience">
+        <select class="form-control" id="experience" value="<?php echo $value['experience']; ?>" name="experience">
           <option value="">select your experience</option>
           <option value="fresher">Fresher</option>
           <option value="0-2">0-2</option>
@@ -145,7 +160,11 @@ button[type="submit"] {
         </div>
 
         <button type="submit" class="btn btn-primary">Submit</button>
+
     </form>
+    <?php
+      }
+      ?>
 </div>
 <script>
         function updateSubcategories() {
@@ -213,7 +232,12 @@ button[type="submit"] {
                 addSubcategoryOption("Carpenter"); 
                 addSubcategoryOption("Mechanic");  
             }
-            
+            else if (selectedCategory === "others") {
+                addSubcategoryOption("others")
+            showOtherCategoryFields();
+            } else {
+            hideOtherCategoryFields();
+            }
             
             subcategorySelect.disabled = false;
         }
@@ -225,6 +249,15 @@ button[type="submit"] {
             option.text = subcategory;
             subcategorySelect.appendChild(option);
         }
+        function showOtherCategoryFields() {
+     document.getElementById("otherCategoryField").style.display = "block";
+     document.getElementById("otherSubcategoryField").style.display = "block";
+    }
+
+    function hideOtherCategoryFields() {
+        document.getElementById("otherCategoryField").style.display = "none";
+        document.getElementById("otherSubcategoryField").style.display = "none";
+    }
        
         function validateexpForm() {
         var category = document.getElementById("category");

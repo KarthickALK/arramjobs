@@ -54,4 +54,8 @@ $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 $route['registration'] = 'projectController/registration';
 $route['login'] = 'projectController/index';
+$route['dashboard'] = 'projectController/dash';
+$route['profile'] = 'projectController/profile';
+$route['educational_details'] = 'projectController/educational_details';
+
 
