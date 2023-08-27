@@ -83,7 +83,7 @@ button[type="submit"] {
 
 <div class="container">
     <h1>Add New Jobs</h1>
-    <form name="experienceform" action="http://localhost/arramjobs/registration/insertJob" method="post" onsubmit="return validateForm()">
+    <form name="experienceform" action="http://localhost/arramjobs/providerController/insertJob" method="post" onsubmit="return validateForm()">
    
     <div class="form-group">
             <label for="company_name">Company Name:</label>

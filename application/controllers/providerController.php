@@ -1,5 +1,5 @@
  <?php
-    class Registration extends CI_Controller
+    class providerController extends CI_Controller
     {
         public function __construct()
         {
@@ -13,7 +13,7 @@
         public function index()
         {
             //$responses=$this->RegistrationModel->register();
-            $this->load->view('provider_login.php');
+            $this->load->view('providerLogin.php');
           
         }
 
@@ -21,7 +21,7 @@
         public function providerRegistration()
         {
             $responses=$this->RegistrationModel->register();
-            $this->load->view('provider_login.php');
+            $this->load->view('providerLogin.php');
         }
 
 
@@ -44,7 +44,7 @@
 
         // ,$this[data]
 
-         public function view_dashboard()
+         public function viewDashboard()
         {
             $postData=$this->input->post(null,true);
              $response=$this->RegistrationModel->database_login();
@@ -61,7 +61,7 @@
             }
             else{
 
-                $this->load->view('provider_login.php');
+                $this->load->view('providerLogin.php');
             }
         }
 
@@ -72,7 +72,7 @@
 
 
        
-        public function provider_update_registration() 
+        public function providerUpdateRegistration() 
         {
             $this->data['method']="updateJob";
             $provider=$this->RegistrationModel->provider_detail(); 
@@ -83,7 +83,7 @@
         }
 
        
-        public function job_view_table()
+        public function jobViewTable()
        {
              $this->data['method']="jobview";
             $tab=$this->RegistrationModel->addTab();
@@ -91,13 +91,13 @@
            
             $this->load->view('exampleDashboard.php',$this->data);
        }
-       public function job_matched_table()
+       public function jobMatchedTable()
        {
         $this->data['method']="match";
             // $this->load->view('job_matched_table.php');
             $this->load->view('exampleDashboard.php',$this->data);
        }
-       public function job_wishlist_candidates()
+       public function jobWishlistCandidates()
        {
         $this->data['method']="wishlist";
             // $this->load->view('job_wishlist_candidates.php');
@@ -111,12 +111,12 @@
         $var=$this->RegistrationModel->update_data();
 
         echo "Record updated successfully";
-        $this->provider_update_registration();
+        $this->providerUpdateRegistration();
        }
 
 
 
-       public function provider_addjob()
+       public function providerAddJob()
        {
         
         $this->data['method']="addnew";
@@ -152,7 +152,7 @@
         $add=$this->RegistrationModel->update_job();
 
         echo "Record updated Successfully";
-        $this->job_view_table();
+        $this->jobViewTable();
        }
   
    
@@ -166,7 +166,7 @@
                 echo "Error deleting record";
             }
         
-        $this->job_view_table();
+        $this->jobViewTable();
     }
     
 

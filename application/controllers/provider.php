@@ -34,11 +34,11 @@ class provider extends CI_Controller {
 	}
 
 	public function login(){
-		$this->load->view('provider_login.php');
+		$this->load->view('providerLogin.php');
 	}
 
 	public function registration()
         {
-            $this->load->view('provider_registration.php');
+            $this->load->view('providerRegistration.php');
         }
 }

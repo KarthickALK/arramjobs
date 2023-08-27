@@ -10,13 +10,103 @@
          .bg-primary{
         background-color: rgb(16, 16, 99) !important;
          }
+         #center{
+            margin: left 30px;
+         }
+         .bg-primary {
+        background-color: rgb(16, 16, 99) !important;
+    }
+    #center {
+        margin: left 10px;
+    }
+    header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 1000;
+    background-color: navy;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h2 {
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color:white;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+header nav ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+nav ul li a:hover {
+  background-color: #f39c12 !important;
+  text-decoration: none;
+}
+
+.logo{
+  margin-top:50px;
+}
+        
+h3{
+      text-align: center;
+      margin-bottom: 30px;
+      margin-left: -70px;
+      color:navy;
+    }
+        
     </style>
    
     
 </head>
 <body>
+<header>
+<div class="logo">
+            <img src="arramjobslogo.png" alt="Arram Jobs Logo">
+        </div>
+    <h2> Arram jobs</h2>
+    <nav>
+        <ul>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#job-seekers">Seekers</a></li>
+            <li><a href="#job-providers">Providers</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<br>
+<br>
+<br>
+<br>
     
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
+    <br>
+
     <div id="google_translate_element"></div>
   <script src="https://translate.Google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>
   <script>
@@ -25,11 +115,11 @@
     }
   </script>
    <br>
-   <br>
+   
    <div class="container px-4 text-center">
     <div class="row gx-5">
       <div class="col">
-       <div class=" text-light p-2 border bg-primary rounded-4 w-55 ">Provider Registration Form</div>
+       <div class=" text-ligh fs-5 color-primary" style="font-size: x-large"><h3>Provider Registration Form<h3></div>
       </div>
       <!-- <div class="col">
         <div class=" text-light p-2 border bg-primary rounded-4 w-55 ">What Arram Do?</div>
@@ -41,13 +131,14 @@
         <!-- <h3 class="d-inline-flex p-2 ms-5 me-1 bg-info text-white rounded-3 shadow">Provider Registration Form</h3> -->
         <br>
         
-        <br>
-        <div class="border border-1 border-dark w-50 rounded-4 shadow" >
+        
+        <div class="container d-flex justify-content-center align-items-center min-vh-100">
+        <div class="border border-1 border-dark w-50 rounded-4 shadow ms-5"  >
         <br>
         <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
-        <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
+        <div class="text-center p-2 border bg-warning rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
         <!-- <form  name="forms" action="Registrationcontroller.php" method="post"> -->
-        <form  name="forms" action="http://localhost/arramjobs/registration/providerRegistration"  method="post">     
+        <form  id="h" name="forms" action="http://localhost/arramjobs/providerController/providerRegistration"  method="post">     
        
             <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
                 <label for="name" class="form-label">Name:</label>
@@ -103,7 +194,7 @@
             <br>
             <!-- <h3 class=" grid-text-center d-flex justify-content-start text-dark bg-light bg-opacity-50 rounded-3 ms-5 me-5 mt-3"><center>Contact person details</center></h3> -->
             <!-- <div class="grid-text-center p-2 border bg-light  rounded-1 ms-5 me-5">Contact person details</div> -->
-             <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 fs-5 me-5 text-light">Contact person details</div>
+             <div class="text-center p-2 border bg-warning rounded-3  bg-opacity-75 ms-5 fs-5 me-5 text-light">Contact person details</div>
             
             <div class="mb-3 mt-4  ms-5 me-5 w-55 " >
                 <label for="name1" class="form-label">Name:</label>
@@ -125,20 +216,22 @@
                 <input type="email" class="form-control"  id="mail1" name="email1" placeholder="enter email">
                 <p id="mailerr1" style="color: red;"></p>      
             </div>
-           
+            
             <div>
                 <button value="save" type="submit" name="save" class="btn bg-primary ms-5 mt-3 mb-5 shadow-sm text-white" onclick="return group()" ><center>Register</center></button> 
 
                 
              </div>
         </form>
-        <div id="sign">
+        <div id="sign" class="d-flex justify-content-end align-items-center">
             <p>Already have  an account ? <a id="regis" href="login">login</a></p>
         </div>
-        <br>
-        <br>
+       
+       
 
        </div>
+    </div>
+
     </div>
     <br>
     <br>

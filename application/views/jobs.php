@@ -63,8 +63,7 @@
                                 <!-- <a id="view" onclick="confirm('Are you sure , you want to delete..?')" href="deleteAddJob">delete</a> -->
                                 <a id="view" onclick="return confirm('Are you sure you want to delete?')" href="deleteAddJob/<?php echo $value['deleteId']?>">delete</a>
 
-                                <!-- <button class="btn btn-warning">Update</button> -->
-                                <!-- <button class="btn btn-danger">Delete</button> -->
+                               
                             </div>
                         </td>
                    

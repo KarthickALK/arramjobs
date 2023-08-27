@@ -7,6 +7,35 @@
   <!-- Link to Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
+    
+    .btn-warning:hover {
+    background-color: #2d76d9;
+    }
+    .bg-secondary{
+        background-color:navy !important;
+    }
+     #search{
+           
+            margin-left: 950px;
+        }
+        #categorys{
+            margin-left: 300px;
+            width: 40%;
+        }
+        #subcategorys{
+            width: 50%;
+        }
+        /* label{
+            margin-left: 330px;
+        } */
+        #lab{
+            margin-left: 10px;
+        }
+        #lab{
+            margin-left: 10px;
+        }
+
+    
     /* Adjust sidebar height to match content height */
     .sidebar {
       height: 200vh;
@@ -62,9 +91,12 @@ label {
   border: 1px solid #ccc;
   padding: 10px;
 }
+.btn-primary{
+      background-color: #f39c12 !important;
+    }
 
 .btn-primary {
-  background-color: #4285f4;
+  /* background-color: #4285f4; */
   border: none;
 }
 
@@ -97,6 +129,156 @@ button[type="submit"] {
   #updateaddnew{
     width:50%;
   }
+  /* Update header background color to a darker navy */
+/* Header styles */
+header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 1000;
+    background-color: navy;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h2 {
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color:white;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+    
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+header nav ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+    /* background-color: #007bff;
+    .btn-primary{ */
+      background-color: #f39c12 !important;
+      text-decoration: none;
+    /* } */
+}
+
+.logo{
+  margin-top:50px;
+}
+.sidebar {
+    position: fixed;
+    width: 18%; /* Slightly increased width for more content space */
+    top: 110px; /* Adjusted top spacing */
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 20px 0; /* Reduced padding for a cleaner look */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
+    background-color: #F8802A; /* A darker, professional color */
+}
+
+.nav-link {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 20px; /* Added padding for better touch interaction */
+}
+
+.nav-link:hover {
+    background-color: #007bff;
+}
+.nav-item.active .nav-link {
+    background-color: #FF4500;
+}
+
+.nav-item h3 {
+    margin: 0;
+    padding: 10px 20px;
+    color: white;
+}
+#view {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 2px solid #f39c12; /* Border color (adjust as needed) */
+            background-color: #f39c12; /* Background color (adjust as needed) */
+            color: #fff; /* Text color */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+ #view:hover {
+        background-color: transparent; /* Change background on hover */
+        color: #f39c12; /* Change text color on hover */
+        }
+ 
+        #updates {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 2px solid navy; /* Border color (adjust as needed) */
+            background-color: navy; /* Background color (adjust as needed) */
+            color: #fff; /* Text color */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+ #updates:hover {
+        background-color: transparent; /* Change background on hover */
+        color: navy; /* Change text color on hover */
+        }
+
+        #deletes{
+            display: inline-block;
+            padding: 8px 16px;
+            border: 2px solid red; /* Border color (adjust as needed) */
+            background-color: red; /* Background color (adjust as needed) */
+            color: #fff; /* Text color */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+ #deletes:hover {
+        background-color: transparent; /* Change background on hover */
+        color: red; /* Change text color on hover */
+        }
+        #regis {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 2px solid navy; /* Border color (adjust as needed) */
+            background-color: navy; /* Background color (adjust as needed) */
+            color: #fff; /* Text color */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+ #regis:hover {
+        background-color: transparent; /* Change background on hover */
+        color: navy; /* Change text color on hover */
+        }
+
+ 
  
  
     
@@ -104,44 +286,26 @@ button[type="submit"] {
   
 </head>
 <header>
-  <!-- Navbar -->
-  <!-- <nav class="navbar navbar-expand-lg navbar-light bg-white">
-    <div class="container-fluid">
-      <button
-        class="navbar-toggler"
-        type="button"
-        data-mdb-toggle="collapse"
-        data-mdb-target="#navbarExample01"
-        aria-controls="navbarExample01"
-        aria-expanded="false"
-        aria-label="Toggle navigation"
-      >
-        <i class="fas fa-bars"></i>
-      </button>
-      <div class="collapse navbar-collapse" id="navbarExample01">
-        <ul class="navbar-nav me-auto mb-2 mb-lg-0">
-          <li class="nav-item active">
-            <a class="nav-link" aria-current="page" href="#">Dashboard</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Update Profile</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Jobs</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Candidates</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="#">Wishlists</a>
-          </li>
+<div class="logo">
+            <img src="arramjobslogo.png" alt="Arram Jobs Logo">
+        </div>
+    <h2> Arram jobs</h2>
+    <nav>
+        <ul>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#job-seekers">Seekers</a></li>
+            <li><a href="#job-providers">Providers</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#login">Login</a></li>
         </ul>
-      </div>
-    </div>
-  </nav> -->
-  <!-- Navbar -->
-  <!-- Jumbotron -->
+    </nav>
 </header>
+<br>
+<br>
+<br>
+<br>
+<br>
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
     <!-- <div id="google_translate_element"></div>
@@ -154,7 +318,7 @@ button[type="submit"] {
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+      <nav class=" sidebar col-md-3 col-lg-2 d-md-block">
         <div class="position-sticky">
            
           <ul class="nav flex-column">
@@ -164,28 +328,28 @@ button[type="submit"] {
             <br>
             <br>
             <li class="nav-item">
-              <a class="nav-link active" href="http://localhost/arramjobs/Registration/dashboard">
-                Dashboard
+              <a class="nav-link active" href="http://localhost/arramjobs/providerController/dashboard">
+                Provider Dashboard
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/arramjobs/Registration/provider_update_registration">
-              Update Profile
+              <a class="nav-link" href="http://localhost/arramjobs/providerController/providerUpdateRegistration">
+              Provider Profile
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/arramjobs/Registration/job_view_table">
-              Jobs
+              <a class="nav-link" href="http://localhost/arramjobs/providerController/jobViewTable">
+              Provider Jobs
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/arramjobs/Registration/job_matched_table">
-              Candidates
+              <a class="nav-link" href="http://localhost/arramjobs/providerController/jobMatchedTable">
+             Candidates List
               </a>
             </li>
             <li class="nav-item">
-              <a class="nav-link" href="http://localhost/arramjobs/Registration/job_wishlist_candidates">
-              Wishlists
+              <a class="nav-link" href="http://localhost/arramjobs/providerController/jobWishlistCandidates">
+              Candidate Wishlists
               </a>
             </li>
             <!-- Add more menu items as needed -->
@@ -198,7 +362,7 @@ button[type="submit"] {
         <?php
              if($this->data['method']=="dashboard"){
         ?>
-        <h1 class="mt-3">Welcome To Dashboard </h1>
+        <h1 class="mt-3">Welcome To Job Provider Dashboard </h1>
         <?php 
         } else if($this->data['method']=="jobview") {
         ?>
@@ -206,7 +370,7 @@ button[type="submit"] {
         <h2 class="text-center">Jobs</h2>
         <!-- <input type="button" class="btn btn-primary float-end" value="+ Add" onclick="registration/provider_addjob"> -->
         <!-- <a id="regis" href="provider_addjob">+ Add</a></p>> -->
-        <a id="regis" href="provider_addjob">+ Add</a>
+        <a id="regis" href="providerAddJob">+ Add jobs</a>
 
         <div class="clearfix"></div>
         <br>
@@ -244,13 +408,13 @@ button[type="submit"] {
                         
                         <td>
                             <div class="btn-group" role="group">
-                                <button class="btn btn-primary">View</button>
-                                <a id="view" href="http://localhost/arramjobs/Registration/updateAddNew/<?php echo $value['id']?>">Update</a>
+                                <!-- <button class="btn btn-primary">View</button> -->
+                                <a id="view" href="">View</a>
+                                <a id="updates" href="http://localhost/arramjobs/providerController/updateAddNew/<?php echo $value['id']?>">Update</a>
                                 <!-- <a id="view" onclick="confirm('Are you sure , you want to delete..?')" href="deleteAddJob">delete</a> -->
-                                <a id="view" onclick="return confirm('Are you sure you want to delete?')" href="http://localhost/arramjobs/Registration/deleteAddJob/<?php echo $value['id']?>">delete</a>
+                                <a id="deletes" onclick="return confirm('Are you sure you want to delete?')" href="http://localhost/arramjobs/providerController/deleteAddJob/<?php echo $value['id']?>">delete</a>
 
-                                <!-- <button class="btn btn-warning">Update</button> -->
-                                <!-- <button class="btn btn-danger">Delete</button> -->
+                              
                             </div>
                         </td>
                         </tr>
@@ -291,7 +455,7 @@ button[type="submit"] {
         <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
         <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
      
-        <form  name="forms" action="http://localhost/arramjobs/registration/update_record" method="post">
+        <form  name="forms" action="http://localhost/arramjobs/providerController/update_record" method="post">
         <input type="hidden" class="form-control" value=<?php echo $value['id'];?>   id="id" name="id" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
             <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
                 <label for="name" class="form-label">Name:</label>
@@ -344,6 +508,7 @@ button[type="submit"] {
                 <p id="logerr" style="color: red;"></p>
             </div>
             <br>
+            
             <!-- <h3 class=" grid-text-center d-flex justify-content-start text-dark bg-light bg-opacity-50 rounded-3 ms-5 me-5 mt-3"><center>Contact person details</center></h3> -->
             <!-- <div class="grid-text-center p-2 border bg-light  rounded-1 ms-5 me-5">Contact person details</div> -->
              <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 fs-5 me-5 text-light">Contact person details</div>
@@ -370,7 +535,7 @@ button[type="submit"] {
             </div>
            
             <div>
-                <button class="btn bg-primary ms-5 mt-3 mb-5  text-white" onclick="return group()"><center>Submit</center></button>
+                <button class="btn bg-warning ms-5 mt-3 mb-5  text-white w-100" onclick="return group()"><center>Submit</center></button>
                 
             </div>
         </form>
@@ -821,7 +986,7 @@ function group()
         ?>
         <div class="container" id="addnew">
     <h1>Add New Jobs</h1>
-    <form name="experienceform" action="http://localhost/arramjobs/registration/insertJob" method="post" onsubmit="return validateForm()">
+    <form name="experienceform" action="http://localhost/arramjobs/providerController/insertJob" method="post" onsubmit="return validateForm()">
    
     <div class="form-group">
             <label for="company_name">Company Name:</label>
@@ -1146,7 +1311,7 @@ function group()
         ?>
         <div class="container" id="updateaddnew">
     <h1>Update jobs</h1>
-    <form name="experienceform" method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/registration/updateInsert">
+    <form name="experienceform" method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/providerController/updateInsert">
     <?php
        foreach($this->data['updateAddNew'] as $key => $value){
        ?>
@@ -1479,10 +1644,50 @@ function group()
 
 <div class="container mt-5">
         <h2 class="text-center">Job Candidates</h2>
-        <!-- <input type="button" class="btn btn-primary float-end" value="+ Add"> -->
-        <div class="clearfix"></div>
+        <div>
+            
+            <div class="input-group">
+                <!-- <input type="text" class="form-control" id="search" placeholder="Search..."> -->
+                <!-- <button class="btn btn-outline-secondary" type="button" id="search">Search</button> -->
+            </div>
+        </div>
         <br>
         
+        <div class="row">
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="category" id="lab1">Category:</label>
+                    <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+                        <option value="">Select a Category</option>
+                        <option value="it">Information Technology</option>
+                        <option value="education">Education</option>
+                        <option value="civil">Civil</option>
+                        <option value="healthcare">Healthcare</option>
+                        <option value="sales and marketing">Sales and Marketing</option>
+                        <option value="finance">Finance</option>
+                        <option value="textile">Textile</option>
+                        <option value="sports">Sports</option>
+                        <option value="services">Services</option>
+                    </select>
+                    <div id="category_error" class="error"></div>
+                </div>
+            </div>
+            <div class="col-md-6">
+                <div class="form-group">
+                    <label for="subcategory" id="lab">Subcategory:</label>
+                    <select class="form-control" id="subcategory" name="subcategory" disabled>
+                        <option value="">Select a Subcategory</option>
+                    </select>
+                    <div id="subcategory_error" class="error"></div>
+                </div>
+            </div>
+            <div class="input-group">
+                <!-- <input type="text" class="form-control" id="search" placeholder="Search..."> -->
+                <button class="btn btn-outline-secondary" type="button" id="search">Search</button>
+            </div>
+        </div>
+        <br>
+        <br>
         <div class="table-responsive">
             <table class="table table-bordered table-striped">
                 <thead>
@@ -1492,10 +1697,7 @@ function group()
                         <th>Percentage</th>
                         <th>Fresher/Experience</th>
                         <th>Skills</th>
-                       
-                        
-                       
-                        <th>Actions</th> 
+                        <th>Actions</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1505,13 +1707,9 @@ function group()
                         <td>Data 3</td>
                         <td>Data 4</td>
                         <td>Data 5</td>
-                       
-                        
                         <td>
                             <div class="btn-group" role="group">
                                 <button class="btn btn-primary">View</button>
-                                <!-- <button class="btn btn-warning">Update</button>
-                                <button class="btn btn-danger">Delete</button> -->
                             </div>
                         </td>
                     </tr>
@@ -1519,6 +1717,115 @@ function group()
             </table>
         </div>
     </div>
+    <script>
+          function updateSubcategories() {
+            var categorySelect = document.getElementById("category");
+            var subcategorySelect = document.getElementById("subcategory");
+            var selectedCategory = categorySelect.value;
+            
+            // Reset subcategory options
+            subcategorySelect.innerHTML = '<option value="">Select a Subcategory</option>';
+            
+            if (selectedCategory === "it") {
+                addSubcategoryOption("Architect");
+                addSubcategoryOption("developer");
+                addSubcategoryOption("Tester");
+                addSubcategoryOption("UI/UX Design");
+                addSubcategoryOption("Data Scientist");
+                addSubcategoryOption("Database admin");
+                addSubcategoryOption("Syatem admin");
+                addSubcategoryOption()
+            }
+            else if (selectedCategory === "education") {
+                addSubcategoryOption("Teachers");
+                addSubcategoryOption("professors");
+                
+            } 
+            else if (selectedCategory === "civil") {
+                addSubcategoryOption("Meshon");
+                addSubcategoryOption("Painter");
+                addSubcategoryOption("Plumber");
+                addSubcategoryOption("Electrician");
+                addSubcategoryOption("Carpenter");
+
+            }
+            else if (selectedCategory === "healthcare") {
+                addSubcategoryOption("Doctor");
+                addSubcategoryOption("Nurse");
+                addSubcategoryOption("Pharmacist");
+                addSubcategoryOption("Physiotherapist");
+            }
+            else if (selectedCategory === "sales and marketing") {
+                addSubcategoryOption("sales");
+                addSubcategoryOption("Marketing");
+            }
+            else if (selectedCategory === "finance") {
+                addSubcategoryOption("Accountant");
+                addSubcategoryOption("Chartered Accountant");
+            }
+            else if (selectedCategory === "textile") {
+                addSubcategoryOption("Supervisor");
+                addSubcategoryOption("Floor manager");
+                addSubcategoryOption("General manager");
+                addSubcategoryOption("Cutting master");
+                addSubcategoryOption("Labour");    
+            }
+            else if (selectedCategory === "sports") {
+                addSubcategoryOption("Physical education master");
+                addSubcategoryOption("Trainer");   
+            }
+            else if (selectedCategory === "services") {
+                addSubcategoryOption("Driver");
+                addSubcategoryOption("Security");
+                addSubcategoryOption("Cook");
+                addSubcategoryOption("House keeping");
+                addSubcategoryOption("Electrician");
+                addSubcategoryOption("Plumber"); 
+                addSubcategoryOption("Meshon");
+                addSubcategoryOption("Carpenter"); 
+                addSubcategoryOption("Mechanic");  
+            }
+         subcategorySelect.disabled = false;
+        }
+        
+        function addSubcategoryOption(subcategory) {
+            var subcategorySelect = document.getElementById("subcategory");
+            var option = document.createElement("option");
+            option.value = subcategory;
+            option.text = subcategory;
+            subcategorySelect.appendChild(option);
+        }
+
+        function validateForm() {
+        
+            var category = document.getElementById("category");
+        var categoryError = document.getElementById('category_error');
+
+        var subcategory = document.getElementById("subcategory");
+        var subcategoryError = document.getElementById('subcategory_error');
+
+        if (category.value === '') {
+            displayError('Category is required.', 'category_error');
+            return false;
+        }
+        else if (category.value !== '') {
+        categoryError.innerHTML = '';
+        }
+        
+        
+        if (subcategory.value === "") {
+           displayError('Please select a subcategory.', 'subcategory_error');
+            return false;
+        }
+        else if (subcategory.value !== '') {
+            subcategoryError.innerHTML = '';
+        }
+    }
+
+
+        
+
+    </script>
     <?php 
         } else if($this->data['method']=="wishlist") {
         ?>

@@ -3,6 +3,9 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
+    .btn-primary{
+      background-color: #f39c12 !important;
+    }
     body {
       font-family: Arial, sans-serif;
       background-color: #f1f1f1;
@@ -66,6 +69,61 @@
       padding: 12px;
       font-weight: bold;
     }
+    header {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 120px;
+    z-index: 1000;
+    background-color: navy;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+header h2 {
+    color: white;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 25%;
+    transform: translate(-50%, -50%);
+    color:white;
+}
+
+header nav ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    right: 20px;
+    transform: translateY(-50%);
+}
+
+header nav ul li {
+    display: inline-block;
+    margin-left: 50px;
+}
+
+header nav ul li a {
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 10px 15px;
+    border-radius: 5px;
+}
+
+nav ul li a:hover {
+  background-color: #f39c12 !important;
+  text-decoration: none;
+}
+
+.logo{
+  margin-top:50px;
+}
+
+
+ 
     
   </style>
   <title>Admin Login Form</title>
@@ -79,11 +137,32 @@
     </script>
 </head>
 <body>
+<header>
+<div class="logo">
+            <img src="arramjobslogo.png" alt="Arram Jobs Logo">
+        </div>
+    <h2> Arram jobs</h2>
+    <nav>
+        <ul>
+            <li><a href="#about-us">About Us</a></li>
+            <li><a href="#how-it-works">How It Works</a></li>
+            <li><a href="#job-seekers">Seekers</a></li>
+            <li><a href="#job-providers">Providers</a></li>
+            <li><a href="#blog">Blog</a></li>
+            <li><a href="#login">Login</a></li>
+        </ul>
+    </nav>
+</header>
+<br>
+<br>
+<br>
+<br>
+<br>
 
 
   <div class="container">
     <h1>Provider Login Form</h1>
-    <form name="login_form" method="post" action="http://localhost/arramjobs/view_dashboard/"  onsubmit="return validateForm()">
+    <form name="login_form" method="post" action="http://localhost/arramjobs/viewDashboard/"  onsubmit="return validateForm()">
       <div class="form-group">
         <label for="userID">User ID</label>
         <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user ID">
@@ -104,6 +183,8 @@
             <p>Create an account ? <a id="regis" href="provider/registration">Register</a></p>
         </div>
   </div>
+  <br>
+  <br>
   <script>
     function validateForm() {
       var userID = document.getElementById('userID').value;
