@@ -80,8 +80,8 @@
         {
             $post=$this->input->post(null,true);
 
-            $add = array('company_name' => $post['company_name'], 
-                    'job_category_id' =>  $post['category'],
+            $add = array('company_name' => $post['company_name'],'job_category_id' =>  $post['category'],
+                    'jobCategory' => $post['category'],'jobSubCategory' => $post['subcategory'],
                             'job_sub_category_id' => $post['subcategory'], 'location' => $post['preferred_location'],
                             'job_type' => $post['jobtype'], 'salary' => $post['expected_salary'], 
                             'experience' => $post['experience'], 'number_of_openings' => $post['no_of_openings'],
@@ -111,8 +111,8 @@
         {
             $post=$this->input->post(null,true);
             $id=$post['id'];
-            $addjob = array('company_name' => $post['company_name'], 
-                    'job_category_id' =>  $post['category'],
+            $addjob = array('company_name' => $post['company_name'], 'job_category_id' =>  $post['category'],
+                    'jobCategory' => $post['category'],'jobSubCategory' => $post['subcategory'],
                     'job_sub_category_id' => $post['subcategory'], 'location' => $post['preferred_location'],
                     'job_type' => $post['jobtype'], 'salary' => $post['expected_salary'], 
                     'experience' => $post['experience'], 'number_of_openings' => $post['no_of_openings'],
@@ -128,10 +128,99 @@
         $delete="DELETE FROM `provider_job` WHERE `id`=$deleteId";
         $del=$this->db->query($delete);
         // $this->db->where('id', $deleteId);
-      
-       
-        
-        
+      }
+
+
+
+
+      public function joinTables($id)
+      {
+          $query = "SELECT spf.id as id, spf.name as name, 
+                    sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill
+                    FROM seeker_profile_form spf
+                    INNER JOIN seeker_educational_details sed ON sed.id = spf.id
+                    INNER JOIN seeker_skill sk ON sk.id = spf.id
+                    WHERE spf.id = $id";
+          
+          $result = $this->db->query($query, array($id));
+          return $result->result();
+      }
+
+
+      public function allTableJoin()
+      {
+        $allTableJoins="SELECT 
+                spf.id as id, 
+                spf.name as name, 
+                sed.educational_qualification as eq, 
+                sed.department as dep ,
+                sed.school_college_name as scn, 
+                sed.percentage as per,
+                sed.yearOfPassing as yop, 
+                sk.skill as skill, 
+                sk.experience as exp, 
+                sk.skill_level as skl, 
+                sp.projectName as PN, 
+                sp.projectDuration as PD, 
+                sp.roleInProject as rip, 
+                sp.projectDes as PDDescription, 
+                sp.skillsUsedInProject as skillsUsedInProject, 
+                saoi.other_interst_category as oic, 
+                saoi.other_sub_interst_category as osic, 
+                saoi.prefered_location as pl, 
+                saoi.experience as expe, 
+                saoi.job_type as jt, 
+                saoi.description as des, 
+                saoi.expected_salary as es, 
+                exde.other_category as oc, 
+                exde.other_sub_category as osc, 
+                exde.company_name as cn, 
+                exde.job_role as jr, 
+                exde.previous_employer_name as pen, 
+                exde.previous_employer_mobile as pem, 
+                exde.previous_employer_email as pee
+            FROM seeker_profile_form spf
+            INNER JOIN seeker_educational_details sed ON sed.id = spf.id 
+            INNER JOIN seeker_skill sk ON sk.id = spf.id
+            INNER JOIN seeker_projects sp ON sp.id = spf.id
+            INNER JOIN seeker_area_of_interst saoi ON saoi.id = spf.id
+            INNER JOIN seeker_experience exde ON exde.id = spf.id
+            WHERE spf.id = $id";
+        $results = $this->db->query($allTableJoins, array($id));
+        return $result->result();
+                        
+      }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+public function getFilteredRecords($category, $subcategory) {
+        $this->db->select('*');
+        $this->db->from('seeker_area_of_interst'); 
+
+        if (!empty($category)) {
+            $this->db->where('category', $category);
+        }
+
+        if (!empty($subcategory)) {
+            $this->db->where('subcategory', $subcategory);
+        }
+
+        $query = $this->db->get();
+        return $query->result();
     }
 
 
@@ -144,264 +233,5 @@
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-        // public function get_users()
-        // {
-        //     $query = $this->db->get('provider_registration_form');
-        //     return $query->result();
-        // }
-
-        
     }
-        
-        
-
-         // public function database_login()
-        // {
-        //     $connect=mysqli_connect("localhost","root","","arramjobs") or die("connection failed");
-        //     if(!empty($_POST['save']))
-        // {
-        //     $user_id=$_POST['un'];
-        //     $password=$_POST['pw'];
-        //     $query="SELECT * FROM provider_login where user_id='$user_id' and password='password'";
-            
-        //     $count=mysqli_num_rows($result);
-        //     if($count>0)
-        //     {
-        //         $this->load->view('dashboard_page.php');
-        //     }
-        //     else{
-        //         $this->load->view('provider_login.php');
-        //     }
-            
-        // }
-
-        
-
-        
-
-            
-        // defined('BASEPATH') OR exit('No direct script access allowed');
-
-       
-            // public function checkLogin($user_id, $password) {
-                
-            //     $this->db->where('user_id', $user_id);
-            //     $this->db->where('password', $password);
-            //     $query = $this->db->get('provider_login');
-
-            //     return $query->num_rows() > 0;
-            // }
-        
-
-
-        //  public function user_login(){
-        //     // $login="SELECT * FROM  provider_login WHERE id=1 AND user_id='sowmiyadevi378@gmail.com' AND  password='Sowmi@2001';
-        //      if(user_id == userID && password == password)
-        //     {
-        //         $this->load->view('dashboard_page.php');
-        //     }
-        //     else{
-        //         $this->load->view('provider_login.php');
-        //     }
-
-        // }
-
-        // public function user_login() {
-        //     $user_id = $this->input->post('userID'); 
-        //     $password = $this->input->post('password');
-        
-        
-        //     if($user_id == 'sowmiyadevi378@gmail.com' && $password == 'Sowmi@2001') {
-        //         $this->load->view('dashboard_page.php'); 
-        //     } else {
-        //         $this->load->view('provider_login.php'); 
-        //     }
-        // }
-
-
-        
-
-    //     DECLARE user_id varchar(100) = 'sowmiyadevi378@gmail.com';
-    //     DECLARE password varchar(100) = 'Sowmi@2001';
-
-    //     SELECT
-    // CASE
-    //     WHEN EXISTS (
-    //         SELECT 1
-    //         FROM provider_login
-    //         WHERE user_id = user_id AND password = password
-    //     )
-    //     THEN 'Login successful'
-    //     ELSE 'Invalid username or password'
-    // END AS login_status;
-
-
-       
-       
-      
-    // public function checkLogin($username, $password) {
-    //     $query = $this->db->get_where('provider_login', array('username' => $username, 'password' => $password));
-    //     return $query->row();
-    // }
-
-
-
-
-
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
-        
-
-//     public function get_users() {
-//         return $this->db->get('users')->result();
-//     }
-
-//     public function update_user($user_id, $data) {
-//         $this->db->where('id', $user_id);
-//         return $this->db->update('users', $data);
-//     }
-// }
-
-//     public function login()
-    //     { 
-    //         $postData=$this->input->post(null,true);
-
-    //        $insert=array('user_id' => $postData['userID'], 'password' => $postData['password']);
-
-    //        $this->db->insert('provider_login',$insert);
-    //    }
-
-
-
-
-
-        // public function display_records()
-        // {
-        //     $query=$this->db->get('provider_registration_form');
-        //     return $query=result();
-        // }
-        // function displayrecordsByID($id)
-        // {
-        //     $query = $this->db->query("select * from  provider_registration_form where id = '".$id."'");
-        //     return $query=result();
-        // }
-        // public function update_records($name, $phno,$email, $addr, $landmark1,$city1,$district1, $state1
-        // , $pincode1, $file,$name1,$role,$phno1,$mail1,$id)
-        // {
-        //     $this->db->query("update provider_registration_form SET name='$name', phno='$phno', email='$email'
-        //                     , addr= '$addr', landmark1='$landmark1',city1= '$city1',district1='$district1',
-        //                     state1=' $state1',pincode1='$pincode1',file='$file',name1='$name1',role='$role',
-        //                     phno1='$phno1',mail1='$mail1' where id='".$id."'");
-        // }
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-       
-            // public function update_profile_data($data) {
-            //     $this->db->where('user_id', $user_id); // Assuming you have a field 'user_id'
-            //     $this->db->update('users', $data);
-            // }
-        
-        
-
-
-
-
-
-
-
-     
-
-
-        
-      
-
-        
-       
-
-     
-    // }
-    
+?>

@@ -168,390 +168,66 @@
         
         $this->jobViewTable();
     }
+
     
-
-    // if ($deleteResult) {
-        //     echo "Record deleted successfully";
-        // } else {
-        //     echo "Error deleting record";
-        // }
-        
-    // $this->RegistrationModel->segment('id');
-        // $deleteAdd=$this->RegistrationModel->deleteAddJob();
-        // echo "Record delete Successfully";
-        // $this->job_view_table();
-
-
-
-
-
-            
-
-       
-
-
-
-    //    public function add_provider_job()
-    //    {
-    //        $tab=$this->RegistrationModel->addTab();
-    //        $this->data['providerJobs']=$tab;
-    //        $this->load->view('jobs.php',$this->data);
-    //    }
-
-      
-
-       
-
-
-
-   
-      
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-   
-
-
-
-
-      
-        
-       
-
-   
-
-
-//         $data = array(
-//             'name' => $this->input->post('name'),
-//             'phno' => $this->input->post('phno'),
-//             'email' => $this->input->post('email'),
-//             'addr' => $this->input->post('addr'),
-//             'landmark1' => $this->input->post('landmark1'),
-//             'city1' => $this->input->post('city1'),
-//             'district1' => $this->input->post('district1'),
-//             'state1' => $this->input->post('state1'),
-//             'pincode1' => $this->input->post('pincode1'),
-//             'file' => $this->input->post('file'),
-//             'role' => $this->input->post('role'),
-//             'phno1' => $this->input->post('phno1'),
-//             'mail1' => $this->input->post('mail1'),
-//          );
-
-//         $user_ids = $this->input->post('user_ids'); 
-
-//         foreach ($user_ids as $user_id) {
-//             $this->RegistrationModel->update_user($user_id, $data);
-//         }
-
-//         redirect('Registration/indexs');
-//     }
-// }
-
-
-
-
-//    public function displatdata(){
-    //     $result['data']=$this->RegistrationModel->display_records();
-    //     $this->load->view('provider_update_registration',$result);
-    //    }
-
-    //    public function updatedata()
-    //    {
-    //     $id=$this->input->get('id');
-    //     $result['data']=$this->RegitrationModel->displayrecordsById($id);
-    //     $this->load->view('update_records',$result);
-    //     if($this->input->post('update'))
-    //     {
-    //         $name=$this->input->post('name');
-    //         $phno=$this->input->post('phno');
-    //         $email=$this->input->post('email');
-    //         $addr=$this->input->post('addr');
-    //         $landmark1=$this->input->post('landmark1');
-    //         $city1=$this->input->post('city1');
-    //         $district1=$this->input->post('district1');
-    //         $state1=$this->input->post('state1');
-    //         $pincode1=$this->input->post('pincode1');
-    //         $file=$this->input->post('file');
-    //         $name1=$this->input->post('name1');
-    //         $role=$this->input->post('role');
-    //         $phno1=$this->input->post('phno1');
-    //         $mail1=$this->input->post('mail1');
-    //         $this->RegistrationModel->update_records($name, $phno,$email, $addr, $landmark1,$city1,$district1, $state1
-    //                                                 , $pincode1, $file,$name1,$role,$phno1,$mail1,$id);
-    //         echo "Data Update successfully";
-
-    //     }
-    //    }
-       
-
-       
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+    public function resumeCard()
+    {
+        $this->data['method']="resume";
+        $this->load->view('exampleDashboard.php');
     }
-//    public function new()
-    //    {
-    //     $this->load->view('view_dashboard.php');
-    //    }
+    public function filter() {
+        $this->data['method']="match";
+        $category = $this->input->post('category'); 
+        $subcategory = $this->input->post('subcategory'); 
+
+      
+
+        $filtered_records = $this->RegistrationModel->getFilteredRecords($category, $subcategory);
+
+        $data['filtered_records'] = $filtered_records;
+        $this->load->view('exampleDashboard.php', $data); 
+    
+}
+
+
+
+    public function innerjoin()
+    {
+        $this->load->RegistrationModel->joinTables($id);
+    }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
     
-    // public function view_forms()
-    //    {
-    //     if(forms == provider_update_registration)
-    //     {
-    //         $this->load->view('provider_update_registration.php');
-    //     } 
-    //     else if(forms1 == view_provider_addjob)
-    //     {
-    //         $this->load->view('addnew_jobs.php');
-    //     }
-    //    }
+
+   
+
+   
 
 
 
-
-
-
-    
-        // public function update_profile() {
-        //     if ($this->input->post()) {
-        //         $data = array(
-        //             'name' => $this->input->post('name'),
-        //             'phno' => $this->input->post('phno'),
-        //             'email' => $this->input->post('email'),
-        //             'addr' =>$this->input->post('addr'),
-        //             'landmark1'=>$this->input->post('landmark1'),
-        //             'city1' =>$this->input->post('city1'),
-        //             'district1' =>$this->input->post('district1'),
-        //             'state1' =>$this->input->post('state1'),
-        //             'pincode1' =>$this->input->post('pincode1'),
-        //             'file' =>$this->input->post('file'),
-        //         );
-    
-                
-        //         $this->RegistrationModel->update_profile_data($data);
-    
-                
-        //     } else {
-        //         // Handle form display
-        //         $this->load->view('update_profile_form');
-        //     }
-        // }
-    // }
-    
-
-
-       
-
-       
-
-
-        
-
-
-
-
-
-
-
-
-
-
-
-        
-  
-        // public function index()
-        // {
-            //  $postData=$this->input->post(null,true);
-            //  $response=$this->RegistrationModel->register();
-             //$this->load->view('provider_registration.php');
-        // }
-
-       
-        // public function provider_update_registration()
-        // {
-            // $postData1=$this->input->post(null,true);
-            // $responses=$this->RegistrationModel->login();
-        //      $this->load->view('provider_update_registration.php');
-        // }
-
-        // public function login()
-        // {
-        //     // $postData1=$this->input->post(null,true);
-        //     // $responses=$this->RegistrationModel->login();
-        //      $this->load->view('provider_update_registration.php');
-        // }
-
-        // public function provider_addnew_jobs()
-        // {
-        //     $this->load->view('addnew_jobs.php');
-        // }
-
-
-
-
-       
-        // public function displaydata()
-        // {
-        //     $result['data']=$this->RegistrationModel->provider_registration();
-        //     $this->load->view('provider_registration',$result);
-        // }
-
-        // public function updatedata()
-        // {
-        //     $id=$this->input->get('id');
-        //     $result['data'] = $this->RegistrationModel->displayrecordsById($id);
-        //     $this->load->view('update_records',$result);
-        // }
-
-
-
-
-
-
-
-
-
-
-        
-
- 
-    
-        
-       
-  
-        // public function index()
-        // {
-        //     $postData=$this->input->post(null,true);
-        //     $response=$this->RegistrationModel->register();
-        //     $this->load->view('provider_login.php');
-        // }
-
-
-
-        // public function login()
-        // {
-        //     $postData1=$this->input->post(null,true);
-        //     $responses=$this->RegistrationModel->login();
-        //     $this->load->view('provider_update_registration.php');
-        // }
-
-     
-
-
-       
 
         
              
     
 
 
-
+    }
 
        
 

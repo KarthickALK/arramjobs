@@ -95,14 +95,14 @@ button[type="submit"] {
                 <label for="category">Category:</label>
                 <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
                     <option value="">Select a Category</option>
-                    <option value="it">Information Technology</option>
-                    <option value="education">Education</option>
-                    <option value="civil">Civil</option>
-                    <option value="healthcare">Healthcare</option>
-                    <option value="sales and marketing">sales and marketing</option>
-                    <option value="finance">Finance</option>
-                    <option value="textile">Textile</option>
-                    <option value="sports">Sports</option>
+                    <option value="it">Architech</option>
+                    <option value="education">Developer</option>
+                    <option value="civil">Tester</option>
+                    <option value="healthcare">UI/UX Design</option>
+                    <option value="sales and marketing">Data Scientist</option>
+                    <option value="finance">Database Admin</option>
+                    <option value="textile">Teacher</option>
+                    <option value="sports">Professor</option>
                     <option value="services">Services</option>
                 </select>
                 <div id="category_error" class="error"></div>
@@ -159,44 +159,7 @@ button[type="submit"] {
             <input type="text" class="form-control" id="description" name="description" >
             <div id="description_error" class="error"></div>
         </div>
-        <!-- <div class="form-group">
-            <label for="Duration of project">Duration of Project</label>
-            <input type="text" class="form-control" id="durationofproject" name="durationofproject">
-            <div id="durationofproject_error" class="error"></div>
-        </div> -->
-        <!-- <div class="form-group">
-            <label for="">start date of project*</label>
-            <input type="date" class="form-control" id="startdate" name="startdate" >
-            <div id="startdate_error" class="error"></div>
-            <label for="">End date of the project*</label>
-            <input type="date" class="form-control" id="enddate" name="enddate" >
-            <div id="enddate_error" class="error"></div>
-        </div> -->
-        <!-- <div class="form-group">
-            <label for="Responsibity">My responsibility in project*</label>
-            <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility" ></textarea>
-            <div id="responsibility_error" class="error"></div>
-        </div> -->
-        <!-- <div class="form-group">
-            <label for="Skills used in project">Skills used in porject*</label>
-            <input type="text" class="form-control" id="skillsused" name="skillsused" >
-            <div id="skills_error" class="error"></div>
-        </div> -->
-        <!-- <h1>Previous Employer details</h1>
-        <div class="form-group">
-            <label for="Name">Name of employer*</label>
-            <input type="text" class="form-control" id="name" name="name" >
-            <div id="name_error" class="error"></div>
-        </div>
-        <div class="form-group">
-            <label for="phone number">Phone Number</label>
-            <input type="text" class="form-control" id="phonenumber" name="phonenumber" >
-        </div>
-        <div class="form-group">
-            <label for="email">email</label>
-            <input type="text" class="form-control" id="email" name="email">
-        </div> -->
-
+       
         <button type="submit" class="btn btn-primary">Submit</button>
     </form>
 </div>
