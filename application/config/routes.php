@@ -52,5 +52,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
 $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
-$route['arramjobs/process_registration'] = 'regcontroller/process_registration';
+
+$route['registration'] = 'seekerController/registration';
+$route['login'] = 'seekerController/index';
+$route['dashboard'] = 'seekerController/dash';
+$route['profile'] = 'seekerController/basicDetails';
+$route['educational_details'] = 'seekerController/educationalDetails';
 

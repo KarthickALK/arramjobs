@@ -75,6 +75,7 @@ h1 {
 <body>
   <div class="container">
     <h1>Registration Form</h1>
+
     <form name="registration_form" method="post" onsubmit="return validateForm()" action="process_registration">
       <div class="form-group">
         <label for="username">Username</label>
@@ -124,6 +125,10 @@ h1 {
         return false;
       }
 
+      // window.location.href = 'sample';
+      // event.preventDefault();
+
+
       return true;
     }
 
@@ -154,3 +159,4 @@ h1 {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
+
