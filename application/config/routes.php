@@ -53,9 +53,27 @@ $route['default_controller'] = 'welcome';
 $route['404_override'] = '';
 $route['translate_uri_dashes'] = FALSE;
 
+
+
+$route['arramjobs/providerRegistration']='providerController/providerRegistration';
+$route['viewDashboard']='providerController/viewDashboard';
+$route['arramjobs/providerController']='providerController/update_record';
+$route['providerRegistration']='customer';
+$route['arramjobs/providerUpdateRegistration'] = 'providerController/providerUpdateRegistration';
+$route['arramjobs/providerController/update_record'] = "providerController/update_record";
+// $route['Registration/update_profile'] = 'Registration/update_profile';
+$route['arramjobs/providerController/jobViewTable'] = "providerController/jobViewTable";
+$route['arramjobs/providerController/providerAddJob'] = "providerController/providerAddJob";
+$route['arramjobs/providerController/insertJob'] = "regiproviderControllerstration/insertJob";
+$route['arramjobs/providerController/add_provider_job'] = "providerController/add_provider_job";
+$route['arramjobs/providerController/jobMatchedTable'] = "providerController/jobMatchedTable";
+
+
+
 $route['registration'] = 'seekerController/registration';
 $route['login'] = 'seekerController/index';
 $route['dashboard'] = 'seekerController/dash';
 $route['profile'] = 'seekerController/basicDetails';
 $route['educational_details'] = 'seekerController/educationalDetails';
+
 

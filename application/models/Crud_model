@@ -1,0 +1,11 @@
+<?php
+
+class Crud_Model extends CI_Controller
+{
+    public function display_records()
+    {
+         $query=$this->db->get('crud');
+         return $query->result();
+    }
+}
+?>
