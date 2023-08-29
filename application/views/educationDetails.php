@@ -9,8 +9,8 @@
   background-color: #f1f1f1;
   margin: 0;
   padding: 0;
-  margin-left:-200px;
-  margin-right:290px;
+  /* margin-left:-200px;
+  margin-right:290px; */
 }
 
 .container {
@@ -81,12 +81,15 @@ button[type="submit"] {
 </head>
 <body>
 
-<div class="container">
-    <h1>Educational Details Form</h1>
-    <form name'=educationform' onsubmit="return validateForm()" action="exp">
+
+<div class="container">    
+<h1>Education Form</h1>
+<div id="educationFormsContainer">
+<div class="education-form-container">
+    <form name="educationform" method="post" onsubmit="return validateForm()" action="educationalDetails" >
         <div class="form-group">
             <label for="qualification">Educational Qualification*</label>
-            <select class="form-control" id="qualification" name="qualification" onchange="toggleFields()">
+            <select class="form-control" id="qualification" name="qualification[]" onchange="toggleFields()">
                 <option value="">Select Qualification</option>
                 <option value="below_8th">Below 8th</option>
                 <option value="sslc">SSLC</option>
@@ -97,170 +100,161 @@ button[type="submit"] {
             </select>
             <div id="qualification_error" class="error"></div>
         </div>
-        <div class="form-group" id="department-group">
+        <div class="form-group" id="department-group" style="display: none;">
             <label for="department">Department</label>
-            <select class="form-control" id="department" name="department" >
+            <select class="form-control" id="department"  name="department[]">
                 <option value="">Select Department</option>
                 <option value="Tamil">Tamil</option>
-                <option value="english">english</option>
+                <option value="english">English</option>
                 <option value="maths">Maths</option>
                 <option value="physics">Physics</option>
                 <option value="chemistry">Chemistry</option>
-                <option value="computer science">computer science</option>
+                <option value="computer_science">Computer Science</option>
             </select>
-            <div id="qualification_error" class="error"></div>
-</div>
-
-        <div class="form-group" id="school-group">
-            <label for="school">School Name</label>
-            <input type="text" class="form-control" id="school" name="school">
+            <div id="department_error" class="error"></div>
         </div>
-        <div class="form-group" id="college-group">
-            <label for="college">College Name</label>
-            <input type="text" class="form-control" id="college" name="college">
+        <div class="form-group" id="school-group" style="display: none;">
+            <label for="school">School Name/collegename</label>
+            <input type="text" class="form-control" id="school"  name="school[]">
+            <div id="school_error" class="error"></div>
         </div>
-        <div class="form-group percentage-fields" id="percentage-sslc-group">
-            <label for="percentage_sslc">Percentage in SSLC</label>
-            <input type="number" class="form-control" id="percentage_sslc" name="percentage_sslc" step="0.01">
+        <div class="form-group" id="percentage-group" style="display: none;">
+            <label for="percentage">Percentage</label>
+            <input type="number" class="form-control" id="percentage"  name="percentage[]">
+            <div id="percentage_error" class="error"></div>
         </div>
-        <div class="form-group percentage-fields" id="percentage-hsc-group">
-            <label for="percentage_hsc">Percentage in HSC</label>
-            <input type="number" class="form-control" id="percentage_hsc" name="percentage_hsc" step="0.01">
-        </div>
-        <div class="form-group percentage-fields" id="percentage-bachelors-group">
-            <label for="percentage_bachelors">Percentage in Bachelors</label>
-            <input type="number" class="form-control" id="percentage_bachelors" name="percentage_bachelors" step="0.01">
-        </div>
-        <div class="form-group percentage-fields" id="percentage-masters-group">
-            <label for="percentage_masters">Percentage in Masters</label>
-            <input type="number" class="form-control" id="percentage_masters" name="percentage_masters" step="0.01">
-        </div>
-        <div class="form-group percentage-fields" id="percentage-doctorate-group">
-            <label for="percentage_doctorate">Percentage in Doctorate</label>
-            <input type="number" class="form-control" id="percentage_doctorate" name="percentage_doctorate" step="0.01">
-        </div>
-        <div class="form-group">
-            <label for="duration">Duration of Education</label>
-            <input type="text" class="form-control" id="duration" name="duration">
-        </div>
-        <div class="form-group">
+        <div class="form-group" id="year-group" style="display: none;">
             <label for="year_passed">Year of Passed Out</label>
-            <input type="number" class="form-control" id="year_passed" name="year_passed">
+            <input type="number" class="form-control" id="year_passed" name="year_passed[]">
+            <div id="year_error" class="error"></div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-    </form>
+        <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 </div>
+    <script>
+        var educationFormCount = 1;
 
-<script>
-    function toggleFields() {
-        var qualification = document.getElementById('qualification').value;
-        var departmentGroup = document.getElementById('department-group');
+        function addEducationForm(button) {
+            educationFormCount++;
+            var newEducationFormContainer = document.createElement('div');
+            newEducationFormContainer.className = 'education-form-container';
 
-        var departmentGroup=document.getElementById('department'); 
-        var schoolGroup = document.getElementById('school-group');
-        var collegeGroup = document.getElementById('college-group');
-        var percentageSSLCGroup = document.getElementById('percentage-sslc-group');
-        var percentageHSCGroup = document.getElementById('percentage-hsc-group');
-        var percentageBachelorsGroup = document.getElementById('percentage-bachelors-group');
-        var percentageMastersGroup = document.getElementById('percentage-masters-group');
-        var percentageDoctorateGroup = document.getElementById('percentage-doctorate-group');
-        
-        
-        schoolGroup.style.display = 'none';
-        collegeGroup.style.display = 'none';
-        percentageSSLCGroup.style.display = 'none';
-        percentageHSCGroup.style.display = 'none';
-        percentageBachelorsGroup.style.display = 'none';
-        percentageMastersGroup.style.display = 'none';
-        percentageDoctorateGroup.style.display = 'none';
-        
-        if (qualification === 'below_8th' || qualification === '') {
-            return;
-        }
-        
-        if (qualification === 'sslc') {
-            schoolGroup.style.display = 'block';
-            percentageSSLCGroup.style.display = 'block';
-        } else {
-            schoolGroup.style.display = 'block';
-            // collegeGroup.style.display = 'block';
+            // Clone the original form
+            var originalForm = document.querySelector('.education-form-container');
+            var newForm = originalForm.cloneNode(true);
+            newForm.id = 'educationform_' + educationFormCount;
 
-            if (qualification === 'below_8th' || qualification === 'sslc' || qualification === 'hsc') {
-            departmentGroup.style.display = 'none';
-            } else {
-             departmentGroup.style.display = 'block';
-            }
-            
-            if (qualification === 'hsc') {
-                percentageHSCGroup.style.display = 'block';
-                percentageSSLCGroup.style.display='block';
-            } else if (qualification === 'bachelors') {
-                collegeGroup.style.display = 'block';
-                percentageHSCGroup.style.display = 'block';
-                percentageSSLCGroup.style.display='block';
-                percentageBachelorsGroup.style.display = 'block';
-            } else if (qualification === 'masters') {
-                collegeGroup.style.display = 'block';
-                percentageHSCGroup.style.display = 'block';
-                percentageSSLCGroup.style.display='block';
-                percentageBachelorsGroup.style.display = 'block';
-                percentageMastersGroup.style.display = 'block';
-            } else if (qualification === 'doctorate') {
-                collegeGroup.style.display = 'block';
-                percentageHSCGroup.style.display = 'block';
-                percentageSSLCGroup.style.display='block';
-                percentageBachelorsGroup.style.display = 'block';
-                percentageMastersGroup.style.display = 'block';
-                percentageDoctorateGroup.style.display = 'block';
-            }
-        }
+            // Clear the values in the new form
+            clearFormFields(newForm);
+
+            // Append the new form to the container
+            newEducationFormContainer.appendChild(newForm);
+            document.querySelector('#educationFormsContainer').appendChild(newEducationFormContainer);
+
+            // Move the "Submit" button to the new form
+            var submitButton = document.querySelector('button[type="submit"]');
+            newForm.appendChild(submitButton);
+
+            // Hide the "Add" button in the previous form
+            button.style.display = "none";
+        }   
+// Function to clear the form fields in a given education form
+function clearFormFields(educationForm) {
+    var fieldsToClear = educationForm.querySelectorAll('input, select');
+    for (var i = 0; i < fieldsToClear.length; i++) {
+        fieldsToClear[i].value = '';
     }
-    function validateForm() {
+}
+
+function validateForm() {
     var qualification = document.getElementById('qualification').value;
+    var department = document.getElementById('department').value;
+    var school = document.getElementById('school').value;
+    var percentage = document.getElementById('percentage').value;
     var yearPassed = document.getElementById('year_passed').value;
 
-    // Clear previous error messages
-    document.getElementById('qualification_error').textContent = '';
 
-    if (qualification.trim() === '') {
-        document.getElementById('qualification_error').textContent = 'Educational qualification is required.';
-        return false;
-    }
-
-    if (qualification === 'sslc') {
-        var percentageSSLC = parseFloat(document.getElementById('percentage_sslc').value);
-        if (isNaN(percentageSSLC) || percentageSSLC < 0 || percentageSSLC > 100) {
-            alert("Percentage in required.");
-            return false;
-        }
-        else{
-            
-        }
-    }
-    if (qualification === 'HSC') {
-        var percentageSSLC = parseFloat(document.getElementById('percentage_sslc').value);
-        if (isNaN(percentageSSLC) || percentageSSLC < 0 || percentageSSLC > 100) {
-            alert("Percentage in required.");
-            return false;
-        }
-        else{
-            
-        }
-    }
-
-    if (yearPassed.trim() === '') {
-        alert("Year of Passed Out is required.");
+    // Basic qualification validation
+    if (!qualification) {
+        displayError('Please select a qualification', 'qualification_error');
         return false;
     }
     
-    if (isNaN(yearPassed) || yearPassed.length !== 4) {
-        alert("Please enter a valid 4-digit year for Year of Passed Out.");
-        return false;
+
+    // Additional validation for "Bachelors," "Masters," and "Doctorate"
+    if (qualification === 'bachelors' || qualification === 'masters' || qualification === 'doctorate') {
+        var department = document.getElementById('department').value;
+        var school = document.getElementById('school').value;
+        var percentage = document.getElementById('percentage').value;
+        var yearPassed = document.getElementById('year_passed').value;
+
+        // Validate department
+        if (!department) {
+            displayError('Department is required for selected qualification', 'department_error');
+            return false;
+        }
+
+        // Validate school/collegename
+        if (!school) {
+            displayError('School/collegename is required', 'school_error');
+            return false;
+        }
+
+        // Validate percentage
+        if (!percentage) {
+            displayError('Percentage is required', 'percentage_error');
+            return false;
+        }
+
+        // Validate year of passed out
+        if (!yearPassed) {
+            displayError('Year of Passed Out is required', 'year_error');
+            return false;
+        }
     }
 
-    return true; // All validations passed, form submission allowed
+
+    // Form is valid
+    return true;
 }
 
-    </script>
+function toggleFields() {
+    var selectedQualification = document.getElementById('qualification').value;
+    var departmentGroup = document.getElementById('department-group');
+    var schoolGroup = document.getElementById('school-group');
+    var percentageGroup = document.getElementById('percentage-group');
+    var yearGroup = document.getElementById('year-group');
+    var addButton = document.getElementById('addButton');
+
+    // Show/hide the additional fields based on the selected qualification
+    if (selectedQualification === 'below_8th') {
+        departmentGroup.style.display = 'none';
+        schoolGroup.style.display = 'none';
+        percentageGroup.style.display = 'none';
+        yearGroup.style.display = 'none';
+        addButton.style.display = 'none';
+    } else {
+        // Show the school, percentage, and year fields by default
+        schoolGroup.style.display = 'block';
+        percentageGroup.style.display = 'block';
+        yearGroup.style.display = 'block';
+
+        // Hide the department field for SSLC and HSC
+        if (selectedQualification === 'sslc' || selectedQualification === 'hsc') {
+            departmentGroup.style.display = 'none';
+            addButton.style.display = 'none';
+        } else {
+            // Show the department field for other qualifications
+            departmentGroup.style.display = 'block';
+            addButton.style.display = 'block';
+        }
+    }
+}
+</script>
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>    
 </body>
 </html>

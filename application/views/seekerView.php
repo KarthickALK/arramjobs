@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-  <!-- <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"> -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
     body {
   font-family: Arial, sans-serif;
@@ -83,8 +83,8 @@ button[type="submit"] {
 .next-button {
     float: right;
   }
-/* Updated sidebar styles */
-/* .sidebar {
+  
+.sidebar {
     position: fixed;
     width: 18%; 
     top: 110px; 
@@ -180,7 +180,7 @@ nav ul li a:hover {
     margin: 0;
     padding: 10px 20px;
     color: white;
-} */
+}
 
 
   
@@ -219,27 +219,27 @@ nav ul li a:hover {
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="profile">
+              <a class="nav-link" href="basicDetails">
               Basic Details
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="educational_details">
+              <a class="nav-link" href="educationalDetails">
               Education Details
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="experience_details">
+              <a class="nav-link" href="experienceDetails">
               Experience Details
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="project_details">
+              <a class="nav-link" href="projectDetails">
               project Details
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="areaofInterest">
+              <a class="nav-link" href="areaOfInterest">
               Area Of Interest
               </a>
             </li><br>
@@ -260,18 +260,18 @@ nav ul li a:hover {
 
      </main>
 </div>
+</div>
 
 <?php
- if ($method == 'basic details') 
- {
+ if ($method == 'basic details') {
 ?>
   <div class="container" id="page1">
       <?php
-      foreach ($providerDetail as $key => $value)
+      foreach ($seekerDetail as $key => $value)
       {
         ?>
     <h1>Personal Details</h1>
-     <form name="applicationform" method="post" onsubmit="return validateFormPage()" >
+     <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='basicDetails'>
      <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
     <div class="form-group">
         <label for="Name">Name *</label>
@@ -496,21 +496,15 @@ function resetForm() {
 <?php
  } elseif ($method == 'education') {
     ?>
-  <div class="container">
-  <?php
-      foreach ($providerDetail as $key => $value)
-      {
-        ?>
-      
+  <div class="container">    
 <h1>Education Form</h1>
+<div id="educationFormsContainer">
 <div class="education-form-container">
-    <form name="educationform" method="post" onsubmit="return validateForm()" action="educational_details" >
-    <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
+    <form name="educationform" method="post" onsubmit="return validateForm()" action="educationalDetails" >
         <div class="form-group">
             <label for="qualification">Educational Qualification*</label>
             <select class="form-control" id="qualification" name="qualification[]" onchange="toggleFields()">
-            <input type="text" name="school[]" value="<?= $detail['educational_qualification']; ?>">    
-            <option value="">Select Qualification</option>
+                <option value="">Select Qualification</option>
                 <option value="below_8th">Below 8th</option>
                 <option value="sslc">SSLC</option>
                 <option value="hsc">HSC</option>
@@ -535,52 +529,51 @@ function resetForm() {
         </div>
         <div class="form-group" id="school-group" style="display: none;">
             <label for="school">School Name/collegename</label>
-            <input type="text" name="school[]" value="<?= $detail['school_college_name']; ?>">
+            <input type="text" class="form-control" id="school"  name="school[]">
             <div id="school_error" class="error"></div>
         </div>
         <div class="form-group" id="percentage-group" style="display: none;">
             <label for="percentage">Percentage</label>
-            <input type="text" name="percentage[]" value="<?= $detail['percentage']; ?>">
+            <input type="number" class="form-control" id="percentage"  name="percentage[]">
             <div id="percentage_error" class="error"></div>
         </div>
         <div class="form-group" id="year-group" style="display: none;">
             <label for="year_passed">Year of Passed Out</label>
-            <input type="number" class="form-control" id="year_passed" name="year_passed[]" value="<?= $detail['yearOfPassing']; ?>">
+            <input type="number" class="form-control" id="year_passed" name="year_passed[]">
             <div id="year_error" class="error"></div>
         </div>
-        <button type="submit" class="btn btn-primary">Submit</button>
-        <?php
-       }
-        ?>
-    </form>
-    
+        <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button>
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 </div>
-<br><button class="btn btn-secondary" id="addButton" onclick="addEducationForm()">Add</button>
+    <script>
+        var educationFormCount = 1;
 
-</div>
+        function addEducationForm(button) {
+            educationFormCount++;
+            var newEducationFormContainer = document.createElement('div');
+            newEducationFormContainer.className = 'education-form-container';
 
-<script>
-var educationFormCount = 1; // Counter for tracking the number of education forms
+            // Clone the original form
+            var originalForm = document.querySelector('.education-form-container');
+            var newForm = originalForm.cloneNode(true);
+            newForm.id = 'educationform_' + educationFormCount;
 
-// Function to add a new education form
-function addEducationForm() {
-    educationFormCount++; // Increment the counter
-    var newEducationFormContainer = document.createElement('div');
-    newEducationFormContainer.className = 'education-form-container';
+            // Clear the values in the new form
+            clearFormFields(newForm);
 
-    // Clone the original education form and update its ID to avoid ID conflicts
-    var originalEducationForm = document.querySelector('.education-form-container');
-    var newEducationForm = originalEducationForm.cloneNode(true);
-    newEducationForm.id = 'educationform_' + educationFormCount;
+            // Append the new form to the container
+            newEducationFormContainer.appendChild(newForm);
+            document.querySelector('#educationFormsContainer').appendChild(newEducationFormContainer);
 
-    // Clear the values in the new education form
-    clearFormFields(newEducationForm);
+            // Move the "Submit" button to the new form
+            var submitButton = document.querySelector('button[type="submit"]');
+            newForm.appendChild(submitButton);
 
-    // Append the new education form to the new container and add it to the page
-    newEducationFormContainer.appendChild(newEducationForm);
-    document.querySelector('.container').appendChild(newEducationFormContainer);
-}
-
+            // Hide the "Add" button in the previous form
+            button.style.display = "none";
+        }   
 // Function to clear the form fields in a given education form
 function clearFormFields(educationForm) {
     var fieldsToClear = educationForm.querySelectorAll('input, select');
@@ -676,102 +669,108 @@ function toggleFields() {
 </script>
 <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
-  
-    <?php
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>    
+<?php
  } elseif ($method == 'experience') {
-    ?>
+ ?>
 
+<div class="container">
 
-    <div class="container">
+<?php
+foreach ($seekerDetail as $key => $value) {
+?>
+  <h1>Experience Details Form</h1>
+  <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experienceDetails">
+  <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
 
-    <?php
-      foreach ($providerDetail as $key => $value)
-      {
-        ?>
-    <h1>Experience Details Form</h1>
-    <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experience_details">
-    <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
     <div class="form-group">
-                <label for="category">Category:</label>
-                <select class="form-control" id="category"  name="category" onchange="updateSubcategories()">
-                    <option value="">Select a Category</option>
-                    <option value="it">Information Technology</option>
-                    <option value="education">Education</option>
-                    <option value="civil">Civil</option>
-                    <option value="healthcare">Healthcare</option>
-                    <option value="sales and marketing">sales and marketing</option>
-                    <option value="finance">Finance</option>
-                    <option value="textile">Textile</option>
-                    <option value="sports">Sports</option>
-                    <option value="services">Services</option>
-                    <option value="others">Others</option>
-                </select>
-                <div id="category_error" class="error"></div>
+  <label for="category">Category:</label>
+  <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+    <option value="">Select a Category</option>
+    <option value="it" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'it' ? 'selected' : ''; ?>>Information Technology</option>
+    <option value="education" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'education' ? 'selected' : ''; ?>>Education</option>
+    <option value="civil" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'civil' ? 'selected' : ''; ?>>Civil</option>
+    <option value="healthcare" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'healthcare' ? 'selected' : ''; ?>>Healthcare</option>
+    <option value="sales and marketing" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sales and marketing' ? 'selected' : ''; ?>>Sales and Marketing</option>
+    <option value="finance" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'finance' ? 'selected' : ''; ?>>Finance</option>
+    <option value="textile" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'textile' ? 'selected' : ''; ?>>Textile</option>
+    <option value="sports" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sports' ? 'selected' : ''; ?>>Sports</option>
+    <option value="services" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'services' ? 'selected' : ''; ?>>Services</option>
+    <option value="others" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'others' ? 'selected' : ''; ?>>Others</option>
+  </select>
+  <div id="category_error" class="error"></div>
+</div>
+<div class="form-group">
+            <label for="subcategory">Subcategory:</label>
+            <select class="form-control" id="subcategory"  name="subcategory" disabled>
+            <option value="">Select a Subcategory</option>
+            </select>
+            <div id="subcategory_error" class="error"></div>
             </div>
-            <div class="form-group">
-                <label for="subcategory">Subcategory:</label>
-                <select class="form-control" id="subcategory"  value="<?= $value['job_sub_category_id']; ?>" name="subcategory" disabled>
-                    <option value="">Select a Subcategory</option>
-                </select>
-                <div id="subcategory_error" class="error"></div>
-            </div>
-            <div class="form-group" id="otherCategoryField" value="<?= $value['other_category']; ?>"   style="display: none;">
+        <div class="form-group" id="otherCategoryField"   style="display: none;">
         <label for="othercategory">Other Category:</label>
         <input type="text" class="form-control" id="othercategory"  name="othercategory">
         </div>
 
-          <div class="form-group" id="otherSubcategoryField" style="display: none;">
+        <div class="form-group" id="otherSubcategoryField" style="display: none;">
         <label for="othersubcategory">Other Subcategory:</label>
-        <input type="text" class="form-control" id="othersubcategory" value="<?= $value['other_sub_category']; ?>" name="othersubcategory">
+        <input type="text" class="form-control" id="othersubcategory"  name="othersubcategory">
     </div>
-            <div class="form-group">
-        <label for="experience">Experience</label>
-        <select class="form-control" id="experience" value="<?= $value['experience']; ?>"  name="experience">
-          <option value="">select your experience</option>
-          <option value="fresher">Fresher</option>
-          <option value="0-2">0-2</option>
-          <option value="3-5">3-5</option>
-          <option value="5-10">5-10</option>
-          <option value="10-15">10-15</option>
-          <option value="15-20">15-20</option>
-          <option value="above 20 years">above 20 years</option>
-          </select>
-          <div id="experience_error" class="error"></div>
-</div>
-        <div class="form-group">
-            <label for="company name">Company Name</label>
-            <input type="text" class="form-control" id="companyname" value="<?= $value['company_name']; ?>" name="companyname" >
-            <div id="companyname_error" class="error"></div>
-        </div>
-        <div class="form-group">
-            <label for="role"> Role in the company </label>
-            <input type="text" class="form-control" id="role" value="<?= $value['role']; ?>" name="role">
-            <div id="role_error" class="error"></div>
-</div>
-        <h1>Previous Employer details</h1>
-        <div class="form-group">
-            <label for="Name">Name of employer*</label>
-            <input type="text" class="form-control" id="nameofemployer" value="<?= $value['previous_employer_name']; ?>" name="nameofemployer" >
-            <div id="name_error" class="error"></div>
-        </div>
-        <div class="form-group">
-            <label for="phone number">Phone Number</label>
-            <input type="text" class="form-control" id="number" value="<?= $value['previous_employer_mobile']; ?>" name="number" >
-        </div>
-        <div class="form-group">
-            <label for="email">email</label>
-            <input type="text" class="form-control" id="emailid" value="<?= $value['previous_emplpyer_email']; ?>" name="emailid">
-        </div>
 
-        <button type="submit" class="btn btn-primary">Submit</button>
 
-    </form>
-    <?php
-      }
-      ?>
-
+<div class="form-group">
+  <label for="experience">Experience</label>
+  <select class="form-control" id="experience" name="experience">
+    <option value="">Select your experience</option>
+    <option value="fresher" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'fresher' ? 'selected' : ''; ?>>Fresher</option>
+    <option value="0-2" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '0-2' ? 'selected' : ''; ?>>0-2</option>
+    <option value="3-5" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '3-5' ? 'selected' : ''; ?>>3-5</option>
+    <option value="5-10" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '5-10' ? 'selected' : ''; ?>>5-10</option>
+    <option value="10-15" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '10-15' ? 'selected' : ''; ?>>10-15</option>
+    <option value="15-20" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '15-20' ? 'selected' : ''; ?>>15-20</option>
+    <option value="above 20 years" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'above 20 years' ? 'selected' : ''; ?>>Above 20 years</option>
+  </select>
+  <div id="experience_error" class="error"></div>
 </div>
+
+
+    <div class="form-group">
+      <label for="company name">Company Name</label>
+      <input type="text" class="form-control" id="companyname" name="companyname" value="<?php echo isset($existingExperience['company_name']) ? $existingExperience['company_name'] : ''; ?>">
+      <div id="companyname_error" class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="role">Role in the company</label>
+      <input type="text" class="form-control" id="role" name="role" value="<?php echo isset($existingExperience['job_role']) ? $existingExperience['job_role'] : ''; ?>">
+      <div id="role_error" class="error"></div>
+    </div>
+
+    <h1>Previous Employer details</h1>
+
+    <div class="form-group">
+      <label for="Name">Name of employer*</label>
+      <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" value="<?php echo isset($existingExperience['previous_employer_name']) ? $existingExperience['previous_employer_name'] : ''; ?>">
+      <div id="name_error" class="error"></div>
+    </div>
+
+    <div class="form-group">
+      <label for="phone number">Phone Number</label>
+      <input type="text" class="form-control" id="number" name="number" value="<?php echo isset($existingExperience['previous_employer_mobile']) ? $existingExperience['previous_employer_mobile'] : ''; ?>">
+    </div>
+
+    <div class="form-group">
+      <label for="email">Email</label>
+      <input type="text" class="form-control" id="emailid" name="emailid" value="<?php echo isset($existingExperience['previous_employer_email']) ? $existingExperience['previous_employer_email'] : ''; ?>">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Submit</button>
+  </form>
+<?php
+}
+?>
+</div>
+
 <script>
         function updateSubcategories() {
             var categorySelect = document.getElementById("category");
@@ -1266,47 +1265,41 @@ function toggleFields() {
  } elseif ($method == 'skills') { 
   ?>
     <div class="container mt-4">
-      <?php
-        foreach ($providerDetail as $key => $value) {  
-          ?>
+     
         <h2>Skill Form</h2>
         <form id="skillForm" method="post" action="skills">
-        <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
-            <div class="skill-entry">
-                <div class="form-row">
-                    <div class="col-md-4 mb-3">
-                        <br><label for="skillName">Skill Name</label>
-                        <input type="text" class="form-control" id="skillname" name="skillname[]" value="<?= $value['skill']; ?>" required>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <br><label for="experience">Experience</label>
-                        <select class="form-control" name="experience[]" id="experience"  value="<?= $value['experience']; ?>" required><br>
-                            <option value="fresher">Fresher</option>
-                            <option value="0-2">0-2 years</option>
-                            <option value="2-5">2-5 years</option>
-                            <option value="5-10">5-10 years</option>
-                            <option value="10-20">10-20 years</option>
-                            <option value="20-above">20 years above</option>
-                        </select>
-                    </div>
-                    <div class="col-md-4 mb-3">
-                        <br><label for="skillLevel">Skill Level</label>
-                        <select class="form-control" name="skilllevel[]" id="skilllevel" value="<?= $value['skill_level']; ?>" required>
-                            <option value="beginner">Beginner</option>
-                            <option value="intermediate">Intermediate</option>
-                            <option value="advanced">Advanced</option>
-                        </select>
-                    </div>
+        <div class="skill-entry">
+            <div class="form-row">
+                <div class="col-md-4 mb-3">
+                    <br><label for="skillName">Skill Name</label>
+                    <input type="text" class="form-control" id="skillname" name="skillname[]"  required>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <br><label for="experience">Experience</label>
+                    <select class="form-control" name="experience[]" id="experience" required><br>
+                        <option value="fresher">Fresher</option>
+                        <option value="0-2">0-2 years</option>
+                        <option value="2-5">2-5 years</option>
+                        <option value="5-10">5-10 years</option>
+                        <option value="10-20">10-20 years</option>
+                        <option value="20-above">20 years above</option>
+                    </select>
+                </div>
+                <div class="col-md-4 mb-3">
+                    <br><label for="skillLevel">Skill Level</label>
+                    <select class="form-control" name="skilllevel[]" id="skilllevel" required>
+                        <option value="beginner">Beginner</option>
+                        <option value="intermediate">Intermediate</option>
+                        <option value="advanced">Advanced</option>
+                    </select>
                 </div>
             </div>
-           
-            <br><button class="btn btn-primary" type="button" id="addSkillBtn">Add Skill</button>
-            <button class="btn btn-success" type="submit">Submit</button>
-            <?php
-             }
-             ?>
-        </form>
-
+        </div>
+        
+        <br><button class="btn btn-primary" type="button" id="addSkillBtn">Add Skill</button>
+        <button class="btn btn-success" type="submit">Submit</button>
+    </form>
+    
         <ul id="addedSkills"></ul>
     </div>
 
@@ -1328,7 +1321,7 @@ $(document).ready(function() {
             const skillName = $(this).find('input[name="skillname[]"]').val();
             const experience = $(this).find('select[name="experience[]"]').val();
             const skillLevel = $(this).find('select[name="skilllevel[]"]').val();
-            skillDetails.push(`${skillName} - Experience: ${experience}, Skill Level: ${skillLevel}`);
+            skillDetails.push (`${skillName} - Experience: ${experience}, Skill Level: ${skillLevel}`);
         });
         
         $("#addedSkills").empty();
@@ -1351,9 +1344,6 @@ $(document).ready(function() {
                 <label for="resumeFile">Upload Resume</label>
                
                 <input type="file" name="resumeFile" accept=".pdf,.doc,.docx">
-<?php if (!empty($existingResume) && isset($existingResume['resume'])): ?>
-    <p>Existing Resume: <?php echo $existingResume['resume']; ?></p>
-<?php endif; ?>
 
             </div>
             <button class="btn btn-primary" type="submit">Upload</button>

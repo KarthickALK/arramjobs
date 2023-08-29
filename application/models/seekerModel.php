@@ -1,5 +1,5 @@
  <?php
-class projectModel extends CI_Model
+class seekerModel extends CI_Model
 { 
 public function __construct()
     {
@@ -75,7 +75,7 @@ public function __construct()
     
     
     
-public function basicdetails()
+public function basicDetails()
 {   
     $a=$this->input->post(null,true);
     var_dump($a);
@@ -99,28 +99,9 @@ public function basicdetails()
 
 }
 
-// public function education($seekerId,$formData)
-// {
-//     $formData = $this->input->post(null, true);
-//     $seekerId = '107';
 
-//     foreach ($formData['school'] as $index => $school) {
-//         $insertData = array(
-//             'seekerId' => $seekerId,
-//             'educational_qualification' => $formData['qualification'][$index], // Use => instead of =
-//             'department' => $formData['department'][$index], // Use => instead of =
-//             'school_college_name' => $school, // Use => instead of =
-//             'percentage' => $formData['percentage'][$index], // Use => instead of =
-//             'yearOfPassing' => $formData['year_passed'][$index] 
-//         );
 
-//         // Check if the educational entry already exists for the user
-//         $this->db->where('seekerId', $seekerId);
-//         $this->db->insert('seeker_educational_details', $insertData);
-//     }
-// }
-
-public function education()
+public function educationalDetails()
 {   
     $formData = $this->input->post(null, true);
     $seekerId = '107'; // You should get this from the user session or input
@@ -164,38 +145,13 @@ public function getEducationalDetails($seekerId)
 }
 
 
-// public function experience($seekerId,$formData)
-// {
-//     $formData = $this->input->post(null,true);     
-    
-//     $seekerId = '107'; 
-    
-//     $insert = array(
-//         'job_category_id' => $formData['category'],
-//         'job_sub_category_id' => $formData['subcategory'],
-//         'other_category' => $formData['othercategory'],
-//         'other_sub_category' => $formData['othersubcategory'],
-//         'experience' => $formData['experience'],
-//         'company_name' => $formData['companyname'],
-//         'job_role' => $formData['role'],
-//         'previous_employer_name' => $formData['nameofemployer'],
-//         'previous_employer_mobile' => $formData['number'],
-//         'previous_employer_email' => $formData['emailid'],
-//     );
-//     $this->db->where('seekerId', $seekerId);
-//     if ($this->db->insert('seeker_experience', $insert)) {
-//         // Insert successful
-//     } 
-// }
 
-public function experience()
+public function experienceDetails($seekerId, $formData)
 {
-    $formData = $this->input->post(null, true);
-    $seekerId = '107'; // You should get this from the user session or input
-
-    // Retrieve existing experience details for the user
+    $seekerId='107';
     $existingExperienceDetails = $this->getExperienceDetails($seekerId);
-
+    
+    // Clean the data
     $insertData = array(
         'seekerId' => $seekerId,
         'job_category_id' => $formData['category'],
@@ -210,11 +166,17 @@ public function experience()
         'previous_employer_email' => $formData['emailid'],
     );
 
-    // Update or insert experience entry
     if (!empty($existingExperienceDetails)) {
+        // Update only the non-empty fields
+        foreach ($insertData as $key => $value) {
+            if (!empty($value)) {
+                $this->db->set($key, $value);
+            }
+        }
         $this->db->where('seekerId', $seekerId);
-        $this->db->update('seeker_experience', $insertData);
+        $this->db->update('seeker_experience');
     } else {
+        // Insert new experience entry
         $this->db->insert('seeker_experience', $insertData);
     }
 }
@@ -230,7 +192,7 @@ public function getExperienceDetails($seekerId)
 
 
 
-    public function project($seekerId, $formData)
+    public function projectDetails($seekerId, $formData)
     {
         $formData = $this->input->post(null,true);     
         $seekerId='107';
@@ -253,7 +215,7 @@ public function getExperienceDetails($seekerId)
     
 
 
-public function area($seekerId, $formData)
+public function areaOfInterest($seekerId, $formData)
 {
     $formData = $this->input->post(null,true);     
      $seekerId='107';
@@ -288,27 +250,6 @@ public function area($seekerId, $formData)
     }
 }
         
-    
-// public function skill($seekerId, $formData)
-// {
-//     $seekerId = '107';
-    
-//     $skillNames = $formData['skillname'];
-//     $experience = $formData['experience'];
-//     $skillLevel = $formData['skilllevel'];
-
-//     foreach ($skillNames as $index => $skillname) {
-//         $insertData = array(
-//             'seekerId' => $seekerId,
-//             'skill' => $skillname,
-//             'experience' => $experience[$index], 
-//             'skill_level' => $skillLevel[$index]
-//         );
-//         $this->db->where('seekerId', ['seekerId']);
-//         $this->db->insert('seeker_skill', $insertData);
-//     }
-// }
-
 public function skill()
 {
     $formData = $this->input->post(null, true);
@@ -332,7 +273,6 @@ public function skill()
         $existingSkill = isset($existingSkills[$index]) ? $existingSkills[$index] : null;
 
         if ($existingSkill) {
-            // Update existing skill entry
             $this->updateSkill($existingSkill['id'], $insertData);
         } else {
             // Insert new skill entry

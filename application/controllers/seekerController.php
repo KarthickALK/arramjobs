@@ -1,11 +1,11 @@
 <?php
-class projectController extends CI_Controller
+class seekerController extends CI_Controller
 {
     private $data = array();
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('projectModel');
+        $this->load->model('seekerModel');
         $this->load->library('session');
         
     }
@@ -24,7 +24,7 @@ class projectController extends CI_Controller
             if ($this->form_validation->run() == true) {
                 // Check if the phone number already exists in the database
                 $phonenumber = $this->input->post('phonenumber');
-                $userExists = $this->projectModel->checkUserExistence($phonenumber);
+                $userExists = $this->seekerModel->checkUserExistence($phonenumber);
                 
                 if ($userExists) {
                     // User already exists, show an error message
@@ -57,17 +57,17 @@ class projectController extends CI_Controller
             if ($this->form_validation->run() == true) {
                 // Check if the phone number exists in the database
                 $phonenumber = $this->input->post('phonenumber');
-                $userExists = $this->projectModel->checkUserExistence($phonenumber);
+                $userExists = $this->seekerModel->checkUserExistence($phonenumber);
                 
                 if ($userExists) {
                     echo "<script>window.location.href = 'otpregister';</script>";
-                    $this->load->view('otp.php');
+                    $this->load->view('seekerOtp.php');
                 }
                 else {
                     // User doesn't exist, show an error message
                     echo "<script>alert('This phone number is not registered. Please register first.');</script>";
                     echo "<script>window.location.href = 'registration';</script>";
-                    $this->load->view('loginform.php');
+                    $this->load->view('loginForm.php');
                 }
             } 
         }
@@ -76,127 +76,131 @@ class projectController extends CI_Controller
     public function otpregister()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $response = $this->projectModel->otp();
+            $response = $this->seekerModel->otp();
             echo "<script>window.location.href = 'dash';</script>";
         }
         
-        $this->load->view('otp.php');
+        $this->load->view('seekerOtp.php');
     }
     
 
     public function dash()
     {
         
-        $this->load->view('projectView.php');
+        $this->load->view('seekerView.php');
     }
 
 
-    public function profile()
+    public function basicDetails()
     {
-        $this->load->model('projectModel');
-        $this->data['method']="basic details";
-       
+        $this->load->model('seekerModel');
         
+        // Set the method name for the view
+        $data['method'] = "basic details";
+        
+        // Get the logged-in seeker's phone number from session
+        $seekerId = $this->session->userdata('logged_in_phonenumber');
+        
+        // Handle form submission
         if ($this->input->post()) {
-           
-            $phonenumber = $this->session->userdata('logged_in_phonenumber');
             $formData = $this->input->post(null, true);
-            $this->projectModel->basicdetails($phonenumber, $formData);
-            
-            
-            }
+            $this->seekerModel->basicDetails($seekerId, $formData);
+        }
         
-        $providerDetail = $this->projectModel->update();
-        $this->data ['providerDetail'] = $providerDetail; 
-        // var_dump($providerDetail); 
-       
+        // Retrieve updated seeker details after insertion/update
+        $seekerDetail = $this->seekerModel->update();
         
-        $this->load->view('projectView', $this->data);
+        // Pass the data to the view
+        $data['seekerDetail'] = $seekerDetail;
+        
+        // Load the seekerView with the data
+        $this->load->view('seekerView', $data);
     }
+    
     
 
         
-    public function educational_details()
+    public function educationalDetails()
 {
-    $this->load->model('projectModel');
+    $this->load->model('seekerModel');
     $this->data['method'] = "education";
 
     $seekerId = $this->session->userdata('logged_in_phonenumber');
     
     if ($this->input->post()) {
         $formData = $this->input->post(null, true);
-        $this->projectModel->education($seekerId, $formData);
+        $this->seekerModel->educationalDetails($seekerId, $formData);
     }
     
     // Retrieve educational details for the logged-in user
-    $this->data['providerDetail'] = $this->projectModel->getEducationalDetails($seekerId);
+    
 
     $this->data['seekerId'] = $seekerId; // Assuming $seekerId holds the correct value
-    $this->load->view('projectView', $this->data);
+    $this->load->view('seekerView', $this->data);
 }
 
     
     
     
-    public function experience_details()
+    public function experienceDetails()
     {
-        $this->load->model('projectModel');
+        $this->load->model('seekerModel');
         $this->data['method']="experience";
-        $providerDetail = $this->projectModel->update(); 
+        $seekerDetail = $this->seekerModel->update(); 
         $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
         
         if ($this->input->post()) {
             $formData = $this->input->post(null, true);
-            $this->projectModel->experience($seekerId, $formData);
+            $this->seekerModel->experienceDetails($seekerId, $formData);
         }
         
-        $providerDetail = $this->projectModel->update();
-        $this->data ['providerDetail'] = $providerDetail;
+        $seekerDetail = $this->seekerModel->update();
+        $this->data ['seekerDetail'] = $seekerDetail;
 
         $this->data['seekerId'] = $seekerId;
-        $this->load->view('projectView', $this->data); 
+        $this->load->view('seekerView', $this->data); 
     }
         
 
-public function project_details()
+public function projectDetails()
 {
-    $this->load->model('projectModel');
+    $this->load->model('seekerModel');
     $this->data['method']="project";
-    $providerDetail = $this->projectModel->update(); 
+    $seekerDetail = $this->seekerModel->update(); 
     $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
     
     if ($this->input->post()) {
         $formData = $this->input->post(null, true);
-        $this->projectModel->project($seekerId, $formData);
+        $this->seekerModel->projectDetails($seekerId, $formData);
     }
     
-    $data['providerDetail'] = $providerDetail; 
-    $data['seekerId'] = $seekerId; // Pass the seekerId to the view
+    $data['seekerDetail'] = $seekerDetail; 
+    $this->data['seekerId'] = $seekerId; // Pass the seekerId to the view
     
-    $this->load->view('projectView', $this->data); 
+    $this->load->view('seekerView', $this->data); 
     }
     
 
-public function areaofInterest()
+public function areaOfInterest()
 {
-    $this->load->model('projectModel');
+    $this->load->model('seekerModel');
     $this->data['method']="areaofinterest";
     $seekerId = $this->session->userdata('logged_in_phonenumber');
     
     if ($this->input->post()) {
         $formData = $this->input->post(null, true);
 
-        $this->projectModel->area($seekerId, $formData);
+        $this->seekerModel->areaOfInterest($seekerId, $formData);
     }
     
-    $providerDetail = $this->projectModel->update(); 
+    $seekerDetail = $this->seekerModel->update(); 
     
     $data = array(
-        'providerDetail' => $providerDetail,
+        'seekerDetail' => $seekerDetail,
         'seekerId' => $seekerId
     );
 
-    $this->load->view('projectView', $this->data);
+    $this->load->view('seekerView', $data);
 }
 
 
@@ -207,19 +211,19 @@ public function skills()
     
     if ($this->input->post()) {
         $formData = $this->input->post(null, true);
-        $this->projectModel->skill($seekerId, $formData);
+        $this->seekerModel->skill($seekerId, $formData);
     }
     
-    // Retrieve updated providerDetail after insertion/update
-    $providerDetail = $this->projectModel->getSkills($seekerId);
+    // Retrieve updated seekerDetail after insertion/update
+    $seekerDetail = $this->seekerModel->getSkills($seekerId);
     
     $data = array(
-        'providerDetail' => $providerDetail,
+        'seekerDetail' => $seekerDetail,
         'seekerId' => $seekerId,
         'method' => $this->data['method']
     );
     
-    $this->load->view('projectView', $data);
+    $this->load->view('seekerView', $this->data);
 }
 
 
@@ -234,16 +238,16 @@ public function resume()
     if ($this->input->post()) {
         $formData = $this->input->post(null, true);
 
-        $this->projectModel->resume($seekerId, $formData);
+        $this->seekerModel->resume($seekerId, $formData);
     }
     
-    $providerDetail = $this->projectModel->update();
+    $seekerDetail = $this->seekerModel->update();
     $data = array(
-        'providerDetail' => $providerDetail,
+        'seekerDetail' => $seekerDetail,
         'seekerId' => $seekerId
     ); 
  
-    $this->load->view('projectView', $this->data);
+    $this->load->view('seekerView', $this->data);
 }
 
 

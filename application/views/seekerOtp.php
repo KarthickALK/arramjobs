@@ -73,15 +73,15 @@
 
   
   <script>
-    // document.getElementById('otpForm').addEventListener('submit', function(event) {
-    //   event.preventDefault();
-    //   const otpInput = document.getElementById('otp').value;
-    //   if (validateOTP(otpInput)) {
-    //     alert('Login successful!');
-    //   } else {
-    //     alert('Invalid OTP. Please enter a 4-digit OTP.');
-    //   }
-    // });
+    document.getElementById('otpForm').addEventListener('submit', function(event) {
+      event.preventDefault();
+      const otpInput = document.getElementById('otp').value;
+      if (validateOTP(otpInput)) {
+        alert('Login successful!');
+      } else {
+        alert('Invalid OTP. Please enter a 4-digit OTP.');
+      }
+    });
 
     function validateOTP(otp) {
       // Check if the OTP is exactly 4 digits

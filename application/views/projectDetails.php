@@ -82,8 +82,8 @@ button[type="submit"] {
 <body>
 <div class="container">
     <h1>Project Details Form</h1>
-    <form name="projectform" method="post" onsubmit="return validateForm()" action="projectDetails">
-    <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+    <form name="projectform" method="post" onsubmit="return validateForm()" >
+    
 <div id="project-sections">
             <div class="project-section">
             <div class="form-group">
@@ -118,14 +118,45 @@ button[type="submit"] {
             <input type="text" class="form-control" id="skillsused" name="skillsused[]" >
             <div id="skills_error" class="error"></div>
         </div>
-        <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
-        </div>
-        <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
-    </form>
+        <button type="button" class="btn btn-secondary mt-3" onclick="addProjectSection()">Add Project</button>
+        <button type="submit" class="btn btn-primary">Submit</button>    
+        </form>
+       
+    </div>
 
 <script>
-    var projectFormCount = 1;
-    
+  var projectSectionCount = 1;
+
+function addProjectSection() {
+    projectSectionCount++;
+    var newProjectSectionContainer = document.createElement('div');
+    newProjectSectionContainer.className = 'project-section';
+
+    // Clone the original project section
+    var originalSection = document.querySelector('.project-section');
+    var clone = originalSection.cloneNode(true);
+    clone.id = 'project-section-' + projectSectionCount;
+
+    // Clear input values in the cloned section
+    clearFormFields(clone);
+
+    // Append the cloned section to the project sections container
+    newProjectSectionContainer.appendChild(clone);
+    document.querySelector('#project-sections').appendChild(newProjectSectionContainer);
+
+    // Show the final submit button when at least one project section is added
+    document.getElementById('finalSubmitButton').style.display = 'block';
+}
+
+function clearFormFields(section) {
+    var fieldsToClear = section.querySelectorAll('input[type="text"], input[type="date"], textarea');
+    fieldsToClear.forEach(function(field) {
+        field.value = '';
+    });
+}
+
+
+
     function validateForm(){
         var projectname = document.getElementById("projectname");
         var durationofproject = document.getElementById("durationofproject");
@@ -164,33 +195,7 @@ button[type="submit"] {
     }
     
  
-    function addProjectSection() {
-    projectFormCount++;
-    var newProjectSection = document.createElement('div');
-    newProjectSection.className = 'project-section';
 
-    // Clone the original project section
-    var originalSection = document.querySelector('.project-section');
-    var clone = originalSection.cloneNode(true);
-
-    // Clear input values in the cloned section
-    var inputs = clone.querySelectorAll('input[type="text"], input[type="date"], textarea');
-    inputs.forEach(function(input) {
-        input.value = '';
-    });
-
-    // Append the cloned section to the project sections container
-    newProjectSection.appendChild(clone);
-    document.getElementById('project-sections').appendChild(newProjectSection);
-
-    // Move the "Submit" button to the end of the last added project section
-    var submitButton = document.getElementById('finalsubmit');
-    newProjectSection.appendChild(submitButton);
-
-    // Hide the "Add Project" button in the previous section
-    var addButton = document.querySelector('button[type="button"]');
-    addButton.style.display = 'none';
-}
 
         
     function clearErrorMessages() {
