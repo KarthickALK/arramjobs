@@ -91,12 +91,25 @@
            
             $this->load->view('exampleDashboard.php',$this->data);
        }
+
+
        public function jobMatchedTable()
        {
+        $jobCategory=$this->uri->segment(3);        
+        $response=$this->RegistrationModel->candidates($jobCategory);
         $this->data['method']="match";
-            // $this->load->view('job_matched_table.php');
+            $this->data['response']=$response;
             $this->load->view('exampleDashboard.php',$this->data);
        }
+
+       public function matchedCandidateSeeker()
+       {
+        $this->data['method']="seekerMatchedCandidate";
+        $this->load->view('exampleDashboard.php');
+
+       }
+
+
        public function jobWishlistCandidates()
        {
         $this->data['method']="wishlist";
@@ -175,24 +188,25 @@
         $this->data['method']="resume";
         $this->load->view('exampleDashboard.php');
     }
-    public function filter() {
-        $this->data['method']="match";
-        $category = $this->input->post('category'); 
-        $subcategory = $this->input->post('subcategory'); 
+//     public function filter() {
+//         $this->data['method']="match";
+//         $category = $this->input->post('category'); 
+//         $subcategory = $this->input->post('subcategory'); 
 
       
 
-        $filtered_records = $this->RegistrationModel->getFilteredRecords($category, $subcategory);
+//         $filtered_records = $this->RegistrationModel->getFilteredRecords($category, $subcategory);
 
-        $data['filtered_records'] = $filtered_records;
-        $this->load->view('exampleDashboard.php', $data); 
+//         $data['filtered_records'] = $filtered_records;
+//         $this->load->view('exampleDashboard.php', $data); 
     
-}
+// }
 
 
 
     public function innerjoin()
     {
+        $id=$this->uri->segment(3);
         $this->load->RegistrationModel->joinTables($id);
     }
 

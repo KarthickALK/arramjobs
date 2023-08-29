@@ -133,17 +133,20 @@
 
 
 
-      public function joinTables($id)
+      public function joinTables($jobCategory)
       {
-          $query = "SELECT spf.id as id, spf.name as name, 
-                    sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill
-                    FROM seeker_profile_form spf
-                    INNER JOIN seeker_educational_details sed ON sed.id = spf.id
-                    INNER JOIN seeker_skill sk ON sk.id = spf.id
-                    WHERE spf.id = $id";
-          
-          $result = $this->db->query($query, array($id));
+          $query = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+                    saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id WHERE  saoi.other_interst_category = '".$jobCategory."'";
+          $result = $this->db->query($query);
           return $result->result();
+      }
+
+      public function candidates($jobCategory)
+      {
+        $query = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+        saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id WHERE  saoi.other_interst_category = '".$jobCategory."'";
+        $result = $this->db->query($query);
+        return $result->result_array();
       }
 
 

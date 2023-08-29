@@ -65,7 +65,7 @@ $route['arramjobs/providerController/jobViewTable'] = "providerController/jobVie
 $route['arramjobs/providerController/providerAddJob'] = "providerController/providerAddJob";
 $route['arramjobs/providerController/insertJob'] = "regiproviderControllerstration/insertJob";
 $route['arramjobs/providerController/add_provider_job'] = "providerController/add_provider_job";
-$route['arramjobs/providerController/filter'] = "providerController/filter";
+$route['arramjobs/providerController/jobMatchedTable'] = "providerController/jobMatchedTable";
 
 
 
