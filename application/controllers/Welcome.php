@@ -18,6 +18,7 @@ class Welcome extends CI_Controller {
 	 * map to /index.php/welcome/<method_name>
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
+
 	
 		//   $this->load->view('dashboard_page.php');
 		//    $this->load->view('provider_login.php');
@@ -40,3 +41,11 @@ class Welcome extends CI_Controller {
 	}
 
      }
+
+
+    public function index() {
+        $this->load->helper('url');
+        $this->load->view('registrationform.php');
+    }
+}
+
