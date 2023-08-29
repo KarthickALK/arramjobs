@@ -75,9 +75,10 @@ h1 {
 <body>
   <div class="container">
     <h1>Registration Form</h1>
-    <form name="registration_form" method="post" onsubmit="return validateForm()">
+
+    <form name="registration_form" method="post" onsubmit="return validateForm()" action="process_registration">
       <div class="form-group">
-        <label for="name">Name</label>
+        <label for="username">Username</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your username">
         <div id="username_error" class="error"></div>
       </div>
@@ -87,12 +88,13 @@ h1 {
         <div id="email_error" class="error"></div>
       </div>
       <div class="form-group">
-        <label for="phonenumber">Phone Number</label>
+        <label for="phonenumber">Phone number</label>
         <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number">
         <div id="phone_error" class="error"></div>
       </div>
-      <button type="submit" class="btn btn-primary">submit</button><br>
-      <br><a href="index">Already a user signin</a>
+      <button type="Submit" class="btn btn-primary">Register</button>
+</form>
+  
   </div>
   <script>
    function validateForm() {
@@ -122,8 +124,10 @@ h1 {
         displayError('Please enter a valid phone number', 'phone_error');
         return false;
       }
+
       // window.location.href = 'sample';
       // event.preventDefault();
+
 
       return true;
     }
@@ -155,3 +159,4 @@ h1 {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
 </html>
+
