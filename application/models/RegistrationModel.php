@@ -133,13 +133,13 @@
 
 
 
-      public function joinTables($jobCategory)
-      {
-          $query = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
-                    saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id WHERE  saoi.other_interst_category = '".$jobCategory."'";
-          $result = $this->db->query($query);
-          return $result->result();
-      }
+    //   public function joinTables($jobCategory)
+    //   {
+    //       $query = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+    //                 saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id WHERE  saoi.other_interst_category = '".$jobCategory."'";
+    //       $result = $this->db->query($query);
+    //       return $result->result();
+    //   }
 
       public function candidates($jobCategory)
       {
@@ -196,6 +196,76 @@
 
 
 
+      public function educationalDetails($id)
+      {
+        $education="SELECT * FROM seeker_educational_details WHERE `seekerId`=$id";
+        $seekerEducation=$this->db->query($education);
+        return $seekerEducation->result_array();
+
+      }
+      
+      public function skills($id)
+      {
+        $skills="SELECT * FROM seeker_skill WHERE  `seekerId`=$id";
+        $seekerSkill=$this->db->query($skills);
+        return $seekerSkill->result_array();
+      }
+      
+      public function projectDetails($id)
+      {
+        $projectDetails="SELECT * FROM seeker_projects WHERE  `seekerId`=$id";
+        $project=$this->db->query($projectDetails);
+        return $project->result_array();
+      }
+      
+      public function areaOfInterest($id)
+      {
+        $areaOfInterest="SELECT * FROM seeker_area_of_interst WHERE  `seekerId`=$id";
+        $areaOfInterest=$this->db->query($areaOfInterest);
+        return $areaOfInterest->result_array();
+      }
+      
+      public function experienceDetails($id)
+      {
+        $experienceDetails="SELECT * FROM seeker_experience WHERE  `seekerId`=$id";
+        $experienceDetails=$this->db->query($experienceDetails);
+        return $experienceDetails->result_array();
+      }
+
+      public function candidate($id)
+      {
+        $seekerName="SELECT * FROM seeker_profile_form WHERE  `id`=$id";
+        $seekerName=$this->db->query($seekerName);
+        return $seekerName->result_array();
+      }
+
+
+      public function matchedAllCandidate()
+      {
+        $allTableJoins="SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+        saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id";
+$result = $this->db->query($allTableJoins);
+return $result->result_array();
+                
+
+      }
+
+      public function filterCandidate($jobCategory,$jobSubCategory)
+      {
+        $query = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+        saoi.id as id, saoi.other_interst_category as oic, saoi.other_sub_interst_category as osic  FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id WHERE  saoi.other_interst_category = '".$jobCategory."' AND  saoi.other_sub_interst_category = '".$jobSubCategory."'";
+        $result = $this->db->query($query);
+        return $result->result_array();
+      }
+
+
+
+      
+
+
+
+
+      
 
 
 
@@ -208,23 +278,21 @@
 
 
 
+// public function getFilteredRecords($category, $subcategory) {
+//         $this->db->select('*');
+//         $this->db->from('seeker_area_of_interst'); 
 
+//         if (!empty($category)) {
+//             $this->db->where('category', $category);
+//         }
 
-public function getFilteredRecords($category, $subcategory) {
-        $this->db->select('*');
-        $this->db->from('seeker_area_of_interst'); 
+//         if (!empty($subcategory)) {
+//             $this->db->where('subcategory', $subcategory);
+//         }
 
-        if (!empty($category)) {
-            $this->db->where('category', $category);
-        }
-
-        if (!empty($subcategory)) {
-            $this->db->where('subcategory', $subcategory);
-        }
-
-        $query = $this->db->get();
-        return $query->result();
-    }
+//         $query = $this->db->get();
+//         return $query->result();
+//     }
 
 
 
