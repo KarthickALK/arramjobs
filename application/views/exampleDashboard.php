@@ -305,6 +305,7 @@ nav ul li a:hover {
     <h2> Arram jobs</h2>
     <nav>
         <ul>
+        <li><a href="http://localhost/arramjobs/wordpress">Home</a></li>
             <li><a href="#about-us">About Us</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#job-seekers">Seekers</a></li>
@@ -365,6 +366,7 @@ nav ul li a:hover {
               Candidate Wishlists
               </a>
             </li>
+            
             <!-- Add more menu items as needed -->
           </ul>
         </div>

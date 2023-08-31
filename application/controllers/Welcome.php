@@ -40,12 +40,12 @@ class Welcome extends CI_Controller {
 		// $this->load->view('viewCandidates.php');
 	}
 
-     }
+     
 
 
-    public function index() {
-        $this->load->helper('url');
-        $this->load->view('registrationform.php');
-    }
+    // public function index() {
+    //     $this->load->helper('url');
+    //     $this->load->view('registrationform.php');
+    // }
 }
 
