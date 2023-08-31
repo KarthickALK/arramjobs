@@ -323,7 +323,7 @@
           <div class="container" id="page1">
 
             <h1>Personal Details</h1>
-            <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='basicDetails'>
+            <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='updateBasicDetails'>
               <?php
               foreach ($basicDetails as $key => $value) {
               ?>

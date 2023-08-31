@@ -121,7 +121,7 @@ class seekerController extends CI_Controller
     public function basicDetails()
     {
         $this->load->model('seekerModel');
-        $basicDetails = $this->seekerModel->update();
+        $basicDetails = $this->seekerModel->basicDetails();
         $this->data['basicDetails'] = $basicDetails;
         $this->data['method']='basicdetails';
         $this->load->view('seekerView.php',$this->data);
@@ -129,7 +129,9 @@ class seekerController extends CI_Controller
     }
 
     public function updateBasicDetails(){
-        
+        $postData = $this->input->post(null, true);
+        $updateBasicDetails = $this->seekerModel->updateBasicDetails();
+
     }
     
     
