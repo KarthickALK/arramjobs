@@ -2938,7 +2938,7 @@ function group()
                 </select>
                     <div id="category_error" class="error"></div>
                 </div>
-            </div>
+            </div>   
             <div class="col-md-6">
                 <div class="form-group">
                     <label for="subcategory" id="lab">Subcategory:</label>
