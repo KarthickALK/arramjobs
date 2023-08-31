@@ -121,7 +121,7 @@ class seekerController extends CI_Controller
     public function basicDetails()
     {
         $this->load->model('seekerModel');
-<<<<<<< HEAD
+
         
         // Set the method name for the view
         $this->data['method'] = "basicdetails";
@@ -144,7 +144,7 @@ class seekerController extends CI_Controller
           
         // Load the seekerView with the data
         $this->load->view('seekerView', $this->data);
-=======
+
         $basicDetails = $this->seekerModel->basicDetails();
         $this->data['basicDetails'] = $basicDetails;
         $this->data['method']='basicdetails';
@@ -156,7 +156,7 @@ class seekerController extends CI_Controller
         $postData = $this->input->post(null, true);
         $updateBasicDetails = $this->seekerModel->updateBasicDetails();
 
->>>>>>> c38686b794f135cb5a8c9f9d12b91a57c996cd44
+
     }
     
     
