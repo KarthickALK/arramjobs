@@ -54,22 +54,22 @@ class seekerController extends CI_Controller
             // Define validation rules for login form fields
             $this->form_validation->set_rules('phonenumber', 'Phone Number', 'required');
             
-            if ($this->form_validation->run() == true) {
-                // Check if the phone number exists in the database
-                $phonenumber = $this->input->post('phonenumber');
-                $userExists = $this->seekerModel->checkUserExistence($phonenumber);
+            // if ($this->form_validation->run() == true) {
+            //     // Check if the phone number exists in the database
+            //     $phonenumber = $this->input->post('phonenumber');
+            //     $userExists = $this->seekerModel->checkUserExistence($phonenumber);
                 
-                if ($userExists) {
-                    echo "<script>window.location.href = 'otpregister';</script>";
-                    $this->load->view('seekerOtp.php');
-                }
-                else {
-                    // User doesn't exist, show an error message
-                    echo "<script>alert('This phone number is not registered. Please register first.');</script>";
-                    echo "<script>window.location.href = 'registration';</script>";
-                    $this->load->view('loginForm.php');
-                }
-            } 
+            //     if ($userExists) {
+            //         echo "<script>window.location.href = 'otpregister';</script>";
+            //         $this->load->view('seekerOtp.php');
+            //     }
+            //     else {
+            //         // User doesn't exist, show an error message
+            //         echo "<script>alert('This phone number is not registered. Please register first.');</script>";
+            //         echo "<script>window.location.href = 'registration';</script>";
+            //         $this->load->view('loginForm.php');
+            //     }
+            // } 
         }
     }
 
