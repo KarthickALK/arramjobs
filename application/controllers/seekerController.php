@@ -108,8 +108,8 @@ class seekerController extends CI_Controller
 
     public function dash()
     {
-        
-        $this->load->view('seekerView.php');
+        $data['method'] = "dash";
+        $this->load->view('seekerView.php',$data);
     }
 
 
