@@ -102,12 +102,16 @@
             $this->load->view('exampleDashboard.php',$this->data);
        }
 
-       public function matchedCandidateSeeker()
-       {
-        $this->data['method']="seekerMatchedCandidate";
-        $this->load->view('exampleDashboard.php');
+       public function matchedCandidate()
+       {  
+        $allcandidates=$this->RegistrationModel->matchedAllCandidate();
+        $this->data['method']="allCandidate";
+            
+            $this->data['candidateView']=$allcandidates;
+            $this->load->view('exampleDashboard.php',$this->data);
 
        }
+      
 
 
        public function jobWishlistCandidates()
@@ -156,7 +160,7 @@
         $this->data['method']="updateaddnew";
            $addjob=$this->RegistrationModel->updatejob($id); 
            $this->data['updateAddNew']=$addjob;
-        //    $this->load->view('update_addnew_jobs.php',$this->data);
+       //$this->load->view('update_addnew_jobs.php',$this->data);
            $this->load->view('exampleDashboard.php',$this->data);
        }
        public function updateInsert()
@@ -167,9 +171,7 @@
         echo "Record updated Successfully";
         $this->jobViewTable();
        }
-  
-   
-       public function deleteAddJob()
+    public function deleteAddJob()
        {
         $deleteId = $this->uri->segment(3);
         $delete=$this->RegistrationModel->deleteAddJob($deleteId);
@@ -182,12 +184,59 @@
         $this->jobViewTable();
     }
 
-    
     public function resumeCard()
-    {
+    { 
+        $id=$this->uri->segment(3);
         $this->data['method']="resume";
-        $this->load->view('exampleDashboard.php');
+
+        $education=$this->RegistrationModel->educationalDetails($id);
+        $this->data['education']=$education;
+
+        $skills=$this->RegistrationModel->skills($id);
+        $this->data['skills']=$skills;
+
+        $projectDetails=$this->RegistrationModel->projectDetails($id);
+        $this->data['projectDetails']=$projectDetails;
+
+        $areaOfInterest=$this->RegistrationModel->areaOfInterest($id);
+        $this->data['areaOfInterest']=$areaOfInterest;
+
+        $experienceDetails=$this->RegistrationModel->experienceDetails($id);
+        $this->data['experienceDetails']=$experienceDetails;
+
+        $seekerName=$this->RegistrationModel->candidate($id);
+        $this->data['seekerName']=$seekerName;
+
+
+        $this->load->view('exampleDashboard.php',$this->data);
     }
+
+
+    public function filterAllCandidate()
+    {
+        $postData=$this->input->post(null,true);
+        $category=$postData['category'];
+        $subcategory=$postData['subcategory'];
+        $filter=$this->RegistrationModel->filterCandidate($category,$subcategory);
+        $this->data['filtercandidate']=$filter;
+        $this->data['method']="filltercandidate";
+        $this->load->view('exampleDashboard.php',$this->data);
+
+    }
+
+   
+
+
+
+
+
+
+
+
+
+
+
+
 //     public function filter() {
 //         $this->data['method']="match";
 //         $category = $this->input->post('category'); 
@@ -204,11 +253,11 @@
 
 
 
-    public function innerjoin()
-    {
-        $id=$this->uri->segment(3);
-        $this->load->RegistrationModel->joinTables($id);
-    }
+    // public function innerjoin()
+    // {
+    //     $id=$this->uri->segment(3);
+    //     $this->load->RegistrationModel->joinTables($id);
+    // }
 
 
 
