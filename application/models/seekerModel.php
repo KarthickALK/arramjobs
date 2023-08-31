@@ -76,36 +76,35 @@ public function __construct()
     }
     
 
-    public function update()
+    public function basicDetails()
     {
-        $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = 107";
+        $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = 1";
         $select = $this->db->query($provider);
-        $result = $select->result_array();
-        return $result; 
+        return $select->result_array();
     }
     
     
     
-public function basicDetails()
+public function updateBasicDetails()
 {   
-    $a=$this->input->post(null,true);
-    var_dump($a);
+    $postData=$this->input->post(null,true);
+    // var_dump($postData);
 
     // Update query to modify the existing user's data
     $updateData = array(
-        'name' => $a['name'],
-        'email' => $a['email'],
-        'dateofbirth' => $a['dateofbirth'],
-        'gender' => $a['gender'],
-        'address' => $a['streetaddress'],
-        'landmark' => $a['landmark'],
-        'pincode' => $a['pincode'],
-        'maritalstatus' => $a['maritalstatus'],
-        'aadhar_front' => $a['aadharfrontphoto'],
-        'aadhar_back' => $a['aadharbackphoto'],
-        'photo' => $a['photo']
+        'name' => $postData['name'],
+        'email' => $postData['email'],
+        'dateofbirth' => $postData['dateofbirth'],
+        'gender' => $postData['gender'],
+        'address' => $postData['streetaddress'],
+        'landmark' => $postData['landmark'],
+        'pincode' => $postData['pincode'],
+        'maritalstatus' => $postData['maritalstatus'],
+        'aadhar_front' => $postData['aadharfrontphoto'],
+        'aadhar_back' => $postData['aadharbackphoto'],
+        'photo' => $postData['photo']
     );
-    $this->db->where('id', $a['id']);
+    $this->db->where('id', $postData['id']);
     $result = $this->db->update('seeker_profile_form', $updateData);
 
 }
