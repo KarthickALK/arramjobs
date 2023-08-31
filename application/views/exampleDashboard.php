@@ -7,6 +7,14 @@
   <!-- Link to Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
+   
+    #candidateResume{
+        color:white;
+        background-color: #F8802A;
+    }
+    /* .bg-warning{
+        background-color: #F8802A;
+    } */
     #educationTable{
         width: 100%;
     }
@@ -365,11 +373,11 @@ header nav ul li a {
              Candidates List
               </a>
             </li>
-            <li class="nav-item">
+            <!-- <li class="nav-item">
               <a class="nav-link" href="http://localhost/arramjobs/providerController/jobWishlistCandidates">
               Candidate Wishlists
               </a>
-            </li>
+            </li> -->
             
             <!-- Add more menu items as needed -->
           </ul>
@@ -2158,10 +2166,10 @@ function group()
         <br>
         
         <div class="row">
-            <div class="col-md-6">
+            <!-- <div class="col-md-6">
                 <div class="form-group">
                     <label for="category" id="lab1">Category:</label>
-                    <!-- <input type="hidden" class="form-control" value="<?php echo $this->data['response'][0]['oic']; ?>"   id="category" name="category" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)"> -->
+                   
                     
                     <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
                   
@@ -2184,9 +2192,9 @@ function group()
                 </div>
             </div>
             <div class="input-group">
-                <!-- <input type="text" class="form-control" id="search" placeholder="Search..."> -->
+                
                 <button class="btn btn-outline-secondary" type="button" id="search">Search</button>
-            </div>
+            </div> -->
         </div>
         <br>
         <br>
@@ -2657,10 +2665,14 @@ function group()
         
   
          <div class="full" id="educationTable">
+        
          <body>
     <main class="container">
+        
         <div class="row">
+            
           <div class="col-md mb-5 ">
+            
            <!-- work experience -->
           </div>
           <div class="col-md">
@@ -2675,12 +2687,16 @@ function group()
             <!-- recent work -->
           </div>     
         </div>
+        
         <?php
        foreach($this->data['seekerName'] as $nkey => $nvalue){
        ?>
+       
        <!-- <h1><center>Candidate Profile</center></h1> -->
       <br>
-        <h2 class="mb-5"><center>Candidate Name</center></h2>
+      <h2 class="mb-5 bg-primary" id="candidateResume"><center>Candidate Resume</center></h2>
+
+        <h2 class="mb-5">Candidate Name</h2>
 <ul>
  
         <div class="table-responsive" >
@@ -2706,7 +2722,7 @@ function group()
  </ul>
        
         
-        <h2 class="mb-5"><center>Educational Qualification</center></h2>
+        <h2 class="mb-5" id="education">Educational Qualification</h2>
 <ul>
  
         <div class="table-responsive" >
@@ -2743,7 +2759,7 @@ function group()
 
 <br>
       
-        <h2 class="mb-5"><center>Skills</center></h2>
+        <h2 class="mb-5">Skills</h2>
 <ul>
  
         <div class="table-responsive" >
@@ -2775,7 +2791,7 @@ function group()
   
  </ul>
 
-        <h2 class="mb-5"><center>Project Details</center></h2>
+        <h2 class="mb-5">Project Details</h2>
 <ul>
  
         <div class="table-responsive" >
@@ -2814,7 +2830,7 @@ function group()
 
 
       
-        <h2 class="mb-5"><center>Area Of Interest</center></h2>
+        <h2 class="mb-5">Area Of Interest</h2>
 <ul>
  
         <div class="table-responsive" >
@@ -2857,7 +2873,7 @@ function group()
 
  
       
-        <h2 class="mb-5"><center>Experience Details</center></h2>
+        <h2 class="mb-5">Experience Details</h2>
 <ul>
  
         <div class="table-responsive" >
