@@ -7,17 +7,76 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous"> 
     <link rel="stylesheet" href="path/to/bootstrap.min.css">
     <style>
-         .bg-primary{
-        background-color: rgb(16, 16, 99) !important;
-         }
-         #center{
-            margin: left 30px;
-         }
-         .bg-primary {
-        background-color: rgb(16, 16, 99) !important;
+    .btn-primary{
+      background-color: #f39c12 !important;
     }
-    #center {
-        margin: left 10px;
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+      
+   
+    }
+    #providerregistraton{
+        background-color:#F8802A;
+     color:white;
+     font-size:large;
+    }
+
+    .container {
+      background-color: #fff;  
+      padding: 30px;
+      border-radius: 5px;
+     
+      width: 40%; 
+     
+      margin-top:50px;
+
+    }
+
+    h2 {
+      text-align: center;
+      margin-bottom: 30px;
+     
+      color:navy;
+    }
+
+    .form-group {
+      margin-bottom: 20px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    .error {
+      color: red;
+      margin-top: 5px;
+    }
+
+    /* Form input styles */
+    .form-control {
+      border-radius: 3px;
+    
+      padding: 10px;
+    }
+
+    /* Form button style */
+    .btn-primary {
+      background-color: #4285f4;
+      border: none;
+    }
+
+    .btn-primary:hover {
+      background-color: #2d76d9;
+    }
+
+    button[type="submit"] {
+      width: 100%;
+      margin-top: 20px;
+      padding: 12px;
+      font-weight: bold;
     }
     header {
     position: fixed;
@@ -62,6 +121,7 @@ header nav ul li a {
     padding: 10px 15px;
     border-radius: 5px;
 }
+
 nav ul li a:hover {
   background-color: #f39c12 !important;
   text-decoration: none;
@@ -70,17 +130,19 @@ nav ul li a:hover {
 .logo{
   margin-top:50px;
 }
-        
+#tamil{
+  color:white;
+  margin-left:30px;
+}
+
 h3{
-      text-align: center;
-      margin-bottom: 30px;
-      margin-left: -70px;
-      color:navy;
-    }
-        #tamil{
-            color:white;
-        }
-    </style>
+  text-align: center;
+  margin-bottom: 30px;
+  margin-left:-20px;
+  color:navy;
+}
+
+</style>
    
     
 </head>
@@ -97,7 +159,7 @@ h3{
             <li><a href="#job-seekers">Seekers</a></li>
             <li><a href="#job-providers">Providers</a></li>
             <li><a href="#blog">Blog</a></li>
-            <li><a href="#login">Login</a></li>
+            <!-- <li><a href="#login">Login</a></li> -->
         </ul>
     </nav>
 </header>
@@ -118,77 +180,78 @@ h3{
   </script>
    <br>
    
-   <div class="container px-4 text-center">
-    <div class="row gx-5">
-      <div class="col">
-       <div class=" text-ligh fs-5 color-primary" style="font-size: x-large"><h3>Provider Registration Form<h3></div>
+   <div class="">
+    <div class="">
+      <div class="">
+      
       </div>
       <!-- <div class="col">
         <div class=" text-light p-2 border bg-primary rounded-4 w-55 ">What Arram Do?</div>
       </div> -->
     </div>
   </div>
-    <div class="container">
+
         <!-- <h2 class="text-white bg-secondary rounded-5 ms-5 me-5 shadow">Provider Registration Form</h2> -->
         <!-- <h3 class="d-inline-flex p-2 ms-5 me-1 bg-info text-white rounded-3 shadow">Provider Registration Form</h3> -->
         <br>
         
         
-        <div class="container d-flex justify-content-center align-items-center min-vh-100">
-        <div class="border border-1 border-dark w-50 rounded-4 shadow ms-5"  >
+        <div class="container ">
+        <div class=""  >
         <br>
         <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
-        <div class="text-center p-2 border bg-warning rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
+        <div class=" y" style="font-size: x-large"><h3>Provider Registration Form<h3></div>
+        <div class=""><h4>Company Details</h4></div>
         <!-- <form  name="forms" action="Registrationcontroller.php" method="post"> -->
         <form  id="h" name="forms" action="http://localhost/arramjobs/providerController/providerRegistration"  method="post">     
        
-            <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
+            <div class=" ">
                 <label for="name" class="form-label">Name:</label>
                 <input type="text" class="form-control"  id="name" name="name" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
                 <p id="nameerr"  style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class=" ">
                 <label for="phno" class="form-label">Number:</label>
                 <input type="number" class="form-control"  id="phno" name="mobile">
                 <p id="pherr"  style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class="">
                 <label for="email" class="form-label" >Email-ID:</label>
                 <input type="email" class="form-control"  id="email" name="email" placeholder="enter email">
                 <p id="mailerr" style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class=" ">
                 <label for="addr" class="form-label" >Street address:</label>
                 <input type="text" class="form-control"  id="addr" name="address" placeholder="enter address">
                 <p id="adderr" style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class= ">
                 <label for="addr" class="form-label" >Landmark:</label>
                 <input type="text" class="form-control"  id="landmark" name="landmark" placeholder="enter address">
                 <p id="landerr" style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class=" ">
                 <label for="addr" class="form-label" >City:</label>
                 <input type="text" class="form-control"  id="city" name="city" placeholder="enter city">
                 <p id="cityerr" style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class=" ">
                 <label for="addr" class="form-label" >District:</label>
                 <input type="text" class="form-control"  id="district" name="district" placeholder="enter district">
                 <p id="diserr" style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class=" ">
                 <label for="addr" class="form-label" >State:</label>
                 <input type="text" class="form-control"  id="state" name="state" placeholder="enter state">
                 <p id="stateerr" style="color: red;"></p>
             </div>
            
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class=" ">
                 <label for="addr" class="form-label" >Pincode:</label>
                 <input type="number" class="form-control"  id="pincode" name="pincode">
                 <p id="pinerr" style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class="">
                 <label for="file" class="form-label" >Logo:</label>
                 <input type="file" class="form-control" id="file" name="logo" >
                 <p id="logerr" style="color: red;"></p>
@@ -196,36 +259,37 @@ h3{
             <br>
             <!-- <h3 class=" grid-text-center d-flex justify-content-start text-dark bg-light bg-opacity-50 rounded-3 ms-5 me-5 mt-3"><center>Contact person details</center></h3> -->
             <!-- <div class="grid-text-center p-2 border bg-light  rounded-1 ms-5 me-5">Contact person details</div> -->
-             <div class="text-center p-2 border bg-warning rounded-3  bg-opacity-75 ms-5 fs-5 me-5 text-light">Contact person details</div>
+             <div class=""><h4>Contact person details</h4></div>
             
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 " >
+            <div class=" " >
                 <label for="name1" class="form-label">Name:</label>
                 <input type="text" class="form-control"  id="name1" name="name1" placeholder="enter name" onkeypress="return allowOnlyLetters1(event, this)">
                 <p id="nameerr1"  style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55">
+            <div class="">
                 <label for="role" class="form-label">Role:</label>
                 <input type="text" class="form-control"  id="role" name="role" placeholder="enter role">
                 <p id="rolerr" style="color: red;"></p>
             </div> 
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class="">
                 <label for="phno1" class="form-label">Mobile Number:</label>
                 <input type="number" class="form-control"  id="phno1" name="mobile1" >
                 <p id="pherr1"  style="color: red;"></p>
             </div>
-            <div class="mb-3 mt-4  ms-5 me-5 w-55 ">
+            <div class="">
                 <label for="mail1" class="form-label">Email-ID:</label>
                 <input type="email" class="form-control"  id="mail1" name="email1" placeholder="enter email">
                 <p id="mailerr1" style="color: red;"></p>      
             </div>
             
             <div>
-                <button value="save" type="submit" name="save" class="btn bg-primary ms-5 mt-3 mb-5 shadow-sm text-white" onclick="return group()" ><center>Register</center></button> 
-
+                <!-- <button value="save" type="submit" name="save" id="providerregistraton" class="" onclick="return group()" ><center>Register</center></button>  -->
+                <button value="save" type="Submit" name="save" onclick="return group()" id="providerregistraton" class="btn btn-primary" >Register</button>
                 
              </div>
         </form>
-        <div id="sign" class="d-flex justify-content-end align-items-center">
+        <br>
+        <div id="sign" class="">
             <p>Already have  an account ? <a id="regis" href="http://localhost/arramjobs/provider/login">login</a></p>
         </div>
        

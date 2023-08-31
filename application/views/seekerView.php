@@ -3,6 +3,27 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
+    #uploadresume{
+     background-color:#F8802A;
+     color:white;
+    }
+    #addSkillBtn{
+      background-color:navy;
+     color:white;
+    }
+    #addskillsubmit{
+      background-color:#F8802A;
+     color:white;
+    }
+    #educationadd{
+      background-color:navy;
+      color:white;
+    }
+    #educationsubmit{
+      background-color:#F8802A;
+     color:white;
+    }
+   
     body {
   font-family: Arial, sans-serif;
   background-color: #f1f1f1;
@@ -18,14 +39,14 @@
   box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
   width: 40%; 
   margin: 150px auto;
-  margin-left:500px;
+  margin-left:300px;
    
 }
 
-h1 {
+h3{
   text-align: center;
   margin-bottom: 30px;
-  margin-left:-90px;
+  margin-left:-20px;
   color:navy;
 }
 
@@ -62,10 +83,13 @@ label {
   background-color: #4285f4;
   border: none;
 }
-
+.btn-primary{
+   background-color:#F8802A;;
+}
+/* 
 .btn-primary:hover {
   background-color: #2d76d9;
-}
+} */
 
 .form-control[type="file"] {
   border: none;
@@ -206,9 +230,6 @@ nav ul li a:hover {
 }
 
 
-.nav-item.active .nav-link {
-   
-}
 
 .nav-item h4 {
     margin: 0;
@@ -244,7 +265,6 @@ nav ul li a:hover {
         </ul>
     </nav>
 </header>
-<br>
 <br>
 <br>
 <br>
@@ -315,10 +335,10 @@ nav ul li a:hover {
 
   <div class="container" id="page1">
      
-    <h1>Personal Details</h1>
+    <h3>Personal Details</h3>
      <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='basicDetails'>
      <?php
-      foreach ($this->data['seekerDetail'] as $key => $value)
+      foreach ($seekerDetail as $key => $value)
       {
         ?>
      <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
@@ -545,8 +565,8 @@ function resetForm() {
 <?php
  } elseif ($method == 'education') {
     ?>
-  <div class="container">    
-<h1>Education Form</h1>
+  <div class="container" id="education">    
+<h3>Education Form</h3>
 <div id="educationFormsContainer">
 <div class="education-form-container">
     <form name="educationform" method="post" onsubmit="return validateForm()" action="educationalDetails" >
@@ -591,9 +611,9 @@ function resetForm() {
             <input type="number" class="form-control" id="year_passed" name="year_passed[]">
             <div id="year_error" class="error"></div>
         </div>
-        <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button>
+        <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button>
             </div>
-            <button type="submit" class="btn btn-primary">Submit</button>
+            <button type="submit" id="educationsubmit" class="btn">Submit</button>
         </form>
 </div>
     <script>
@@ -728,7 +748,7 @@ function toggleFields() {
 <?php
 foreach ($seekerDetail as $key => $value) {
 ?>
-  <h1>Experience Details Form</h1>
+  <h3>Experience Details Form</h3>
   <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experienceDetails">
   <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
 
@@ -985,7 +1005,7 @@ foreach ($seekerDetail as $key => $value) {
     ?>
 
 <div class="container">
-    <h1>Project Details Form</h1>
+    <h3 id="projectdeailsform">Project Details Form</h3>
     <form name="projectform" method="post" onsubmit="return validateForm()" action="projectDetails">
     <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
 <div id="project-sections">
@@ -1119,7 +1139,7 @@ foreach ($seekerDetail as $key => $value) {
   
   
     <div class="container mt-5">
-        <h1>Area of Interest Form</h1>
+        <h3>Area of Interest Form</h3>
         <form method="post" onsubmit="return validateForm()" >
         
         <div id="educationFormsContainer">
@@ -1315,7 +1335,7 @@ foreach ($seekerDetail as $key => $value) {
   ?>
     <div class="container mt-4">
      
-        <h2>Skill Form</h2>
+        <h3>Skill Form</h3>
         <form id="skillForm" method="post" action="skills">
         <div class="skill-entry">
             <div class="form-row">
@@ -1345,8 +1365,8 @@ foreach ($seekerDetail as $key => $value) {
             </div>
         </div>
         
-        <br><button class="btn btn-primary" type="button" id="addSkillBtn">Add Skill</button>
-        <button class="btn btn-success" type="submit">Submit</button>
+        <br><button class="btn" type="button" id="addSkillBtn">Add Skill</button>
+        <button class="btn" id="addskillsubmit" type="submit">Submit</button>
     </form>
     
         <ul id="addedSkills"></ul>
@@ -1386,7 +1406,7 @@ $(document).ready(function() {
  } else if ($method == 'resume') {
     ?> 
   <div class="container mt-4">
-        <h2>Upload resume</h2>
+        <h3>Upload resume</h3>
         <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
       
             <div class="form-group">
@@ -1395,7 +1415,7 @@ $(document).ready(function() {
                 <input type="file" name="resumeFile" accept=".pdf,.doc,.docx">
 
             </div>
-            <button class="btn btn-primary" type="submit">Upload</button>
+            <button class="btn" id="uploadresume" type="submit">Upload</button>
         </form>
     </div>
     <script>

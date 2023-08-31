@@ -26,6 +26,11 @@
     .bg-secondary{
         background-color:navy !important;
     }
+    #updatesubmit {
+        background-color:#F8802A !important;
+     color:white;
+     font-size:large;
+    }
      #search{
            
             margin-left: 950px;
@@ -84,10 +89,10 @@
   margin: 50px auto; 
 }
 
-h1 {
+h3 {
   text-align: center;
   margin-bottom: 30px;
-  margin-left:-90px;
+  margin-left:-30px;
   color:navy;
 }
 
@@ -397,7 +402,7 @@ header nav ul li a {
         } else if($this->data['method']=="jobview") {
         ?>
        <div class="container mt-5">
-        <h2 class="text-center">Jobs</h2>
+        <h3 class="text-center">Jobs</h3>
         <!-- <input type="button" class="btn btn-primary float-end" value="+ Add" onclick="registration/provider_addjob"> -->
         <!-- <a id="regis" href="provider_addjob">+ Add</a></p>> -->
         <a id="regis" href="providerAddJob">+ Add jobs</a>
@@ -473,8 +478,9 @@ header nav ul li a {
   </div>
   <br>
   
-  <h2><center>Update Profile</center></h2>
+  
     <div class="container" id="con">
+    <h3><center>Update Profile</center></h3>
         <!-- <h2 class="text-white bg-secondary rounded-5 ms-5 me-5 shadow">Provider Registration Form</h2> -->
         <!-- <h3 class="d-inline-flex p-2 ms-5 me-1 bg-info text-white rounded-3 shadow">Provider Registration Form</h3> -->
         
@@ -565,7 +571,7 @@ header nav ul li a {
             </div>
            
             <div>
-                <button class="btn bg-warning ms-5 mt-3 mb-5  text-white w-100" onclick="return group()"><center>Submit</center></button>
+                <button class="btn  ms-5 mt-3 mb-5  text-white w-100" id="updatesubmit" onclick="return group()"><center>Submit</center></button>
                 
             </div>
         </form>
@@ -1015,7 +1021,7 @@ function group()
         } else if($this->data['method']=="addnew") {
         ?>
         <div class="container" id="addnew">
-    <h1>Add New Jobs</h1>
+    <h3>Add New Jobs</h3>
     <form name="experienceform" action="http://localhost/arramjobs/providerController/insertJob" method="post" onsubmit="return validateForm()">
    
     <div class="form-group">
@@ -1564,7 +1570,7 @@ function group()
         } else if($this->data['method']=="updateaddnew") {
         ?>
         <div class="container" id="updateaddnew">
-    <h1>Update jobs</h1>
+    <h3>Update jobs</h3>
     <form name="experienceform" method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/providerController/updateInsert">
     <?php
        foreach($this->data['updateAddNew'] as $key => $value){
@@ -2156,7 +2162,7 @@ function group()
         ?>
 <div>
 <div class="container mt-5">
-        <h2 class="text-center">Job Matched Candidates</h2>
+        <h3 class="text-center">Job Matched Candidates</h3>
         <!-- <div>
             
             <div class="input-group">
@@ -2230,7 +2236,7 @@ function group()
                         <td>
                             <div class="btn-group" role="group">
                                 <!-- <button class="btn btn-primary">View</button> -->
-                                <a href="http://localhost/arramjobs/providerController/resumeCard/<?php echo $value['id']?>">View</a>
+                                <a id="view" href="http://localhost/arramjobs/providerController/resumeCard/<?php echo $value['id']?>">View</a>
                             </div>
                         </td>
                     </tr>
@@ -2649,7 +2655,7 @@ function group()
                         <td>
                             <div class="btn-group" role="group">
                                 <!-- <button class="btn btn-primary">View</button> -->
-                                <a href="http://localhost/arramjobs/providerController/resumeCard">View</a>
+                                <a id="view" href="http://localhost/arramjobs/providerController/resumeCard">View</a>
                                 <!-- <button class="btn btn-warning">Update</button>
                                 <button class="btn btn-danger">Delete</button> -->
                             </div>
@@ -2906,7 +2912,7 @@ function group()
         ?>
 
 <div class="container mt-5">
-        <h2 class="text-center">Job Matched Candidates</h2>
+        <h3 class="text-center">Job Matched Candidates</h3>
         <div>
             
             <div class="input-group">
@@ -2975,7 +2981,7 @@ function group()
                         <td>
                             <div class="btn-group" role="group">
                                 <!-- <button class="btn btn-primary">View</button> -->
-                                <a href="http://localhost/arramjobs/providerController/resumeCard/<?php echo $value['id']?>">View</a>
+                                <a id="view" href="http://localhost/arramjobs/providerController/resumeCard/<?php echo $value['id']?>">View</a>
                             </div>
                         </td>
                     </tr>
@@ -3369,7 +3375,7 @@ function group()
         ?>
 
 <div class="container mt-5">
-        <h2 class="text-center">Job Matched Candidates</h2>
+        <h3 class="text-center">Job Matched Candidates</h3>
         <div>
             
             <div class="input-group">
@@ -3832,7 +3838,7 @@ function group()
         ?>
 
 <div class="container mt-5">
-        <h2 class="text-center">Job Matched Candidates</h2>
+        <h3 class="text-center">Job Matched Candidates</h3>
         <div>
             
             <div class="input-group">

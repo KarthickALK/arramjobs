@@ -123,8 +123,8 @@ class seekerController extends CI_Controller
         $this->load->model('seekerModel');
         
         // Set the method name for the view
-        $data['method'] = "basicdetails";
-        $this->data['method']="allCandidate";
+        $this->data['method'] = "basicdetails";
+        // $this->data['method']="allCandidate";
         
         // Get the logged-in seeker's phone number from session
         $seekerId = $this->session->userdata('logged_in_phonenumber');
@@ -139,10 +139,10 @@ class seekerController extends CI_Controller
         $seekerDetail = $this->seekerModel->update();
         
         // Pass the data to the view
-        $data['seekerDetail'] = $seekerDetail;
-        
+        $this->data['seekerDetail'] = $seekerDetail;
+          
         // Load the seekerView with the data
-        $this->load->view('seekerView', $data);
+        $this->load->view('seekerView', $this->data);
     }
     
     
