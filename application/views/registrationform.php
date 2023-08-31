@@ -94,7 +94,9 @@ h1 {
       </div>
       <button type="Submit" class="btn btn-primary">Register</button>
 </form>
-  
+<div id="sign" class="d-flex justify-content-end align-items-center">
+            <p>Already have  an account ? <a id="regis" href="login">login</a></p>
+        </div>
   </div>
   <script>
    function validateForm() {

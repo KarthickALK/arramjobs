@@ -7,7 +7,9 @@
   <!-- Link to Bootstrap CSS -->
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
   <style>
-   
+    /* #education{
+        color:
+    } */
     #candidateResume{
         color:white;
         background-color: #F8802A;
@@ -2696,25 +2698,8 @@ function group()
       <br>
       <h2 class="mb-5 bg-primary" id="candidateResume"><center>Candidate Resume</center></h2>
 
-        <h2 class="mb-5">Candidate Name</h2>
-<ul>
- 
-        <div class="table-responsive" >
-            <table class="table table-bordered table-striped" >
-                <!-- <thead>
-                    <tr>
-                        <th>name</th>
-                        
-                    </tr>
-                </thead> -->
-                <tbody>
-                    <tr>
-                        <td><?php echo $nvalue['name']?> </td>
-                        
-                    </tr>
-                </tbody>
-            </table>
-        </div>
+        <h3 class="">Candidate Name : <?php echo $nvalue['name']?></h3> 
+        <br>
    
   <?php
        }
@@ -2722,7 +2707,7 @@ function group()
  </ul>
        
         
-        <h2 class="mb-5" id="education">Educational Qualification</h2>
+        <h3 class="mb-5" id="education">Educational Qualification</h3>
 <ul>
  
         <div class="table-responsive" >
@@ -2759,7 +2744,7 @@ function group()
 
 <br>
       
-        <h2 class="mb-5">Skills</h2>
+        <h3 class="mb-5">Skills</h3>
 <ul>
  
         <div class="table-responsive" >
@@ -2791,7 +2776,7 @@ function group()
   
  </ul>
 
-        <h2 class="mb-5">Project Details</h2>
+        <h3 class="mb-5">Project Details</h3>
 <ul>
  
         <div class="table-responsive" >
@@ -2830,7 +2815,7 @@ function group()
 
 
       
-        <h2 class="mb-5">Area Of Interest</h2>
+        <h3 class="mb-5">Area Of Interest</h3>
 <ul>
  
         <div class="table-responsive" >
@@ -2873,7 +2858,7 @@ function group()
 
  
       
-        <h2 class="mb-5">Experience Details</h2>
+        <h3 class="mb-5">Experience Details</h3>
 <ul>
  
         <div class="table-responsive" >

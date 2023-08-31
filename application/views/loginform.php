@@ -61,7 +61,11 @@
 <body>
     <div class="container">
         <h1>Login Form</h1>
-        <form id="phoneForm" method="post" onsubmit="return validateForm()">
+        <form id="phoneForm" action="http://localhost/arramjobs/seekerLogin/" method="post" onsubmit="return validateForm()">
+        <div class="form-group">
+                <label for="phone">Username</label>
+                <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+            </div>
             <div class="form-group">
                 <label for="phone">Phone Number</label>
                 <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" required>
@@ -70,6 +74,10 @@
             <button type="submit" class="btn btn-primary">Submit</button> 
             
         </form>
+        <br>
+        <div id="sign">
+            <p>Create an account ? <a id="regis" href="">Register</a></p>
+        </div>
         <div class="error">
       <?php if (isset($login_error)) echo $login_error; ?>
     </div>

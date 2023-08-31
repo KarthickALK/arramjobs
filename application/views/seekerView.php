@@ -257,10 +257,14 @@ nav ul li a:hover {
         </div>
       </nav>
      <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      
+      <?php
+        if($this->data['method'] == 'dashboard'){
+      ?>
+       <h1 class="mt-3">Welcome To Job Seeker Dashboard </h1>
 <?php
- if ($method == 'basic details') {
+  } else if ($this->data['method'] == 'basic details') {
 ?>
+
   <div class="container" id="page1">
      
     <h1>Personal Details</h1>
@@ -1331,7 +1335,7 @@ $(document).ready(function() {
     </script>
 
   <?php
- } elseif ($method == 'resume') {
+ } else if ($method == 'resume') {
     ?> 
   <div class="container mt-4">
         <h2>Upload resume</h2>

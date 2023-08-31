@@ -82,6 +82,28 @@ class seekerController extends CI_Controller
         
         $this->load->view('seekerOtp.php');
     }
+
+    public function seekerLogin()
+    {
+        $postData=$this->input->post(null,true);
+        $login=$this->seekerModel->seekerLogin();
+        if(isset($login[0]['id']))
+        {
+            $userLoggedIn = array(
+                'id' => $response[0]['id'],
+                'userName' => $response[0]['name'],
+                'phonenumber' => $response[0]['phonenumber']
+            );
+            $this->session->set_userdata($userLoggedIn);
+            $this->data['method']="dashboard";
+            $this->load->view('seekerView.php',$this->data);
+        }
+        else{
+
+            $this->load->view('loginform.php',$this->data);
+        }
+        
+    }
     
 
     public function dash()

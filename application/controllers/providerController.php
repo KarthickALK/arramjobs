@@ -103,7 +103,8 @@
        }
 
        public function matchedCandidate()
-       {  
+       {
+  
         $allcandidates=$this->RegistrationModel->matchedAllCandidate();
         $this->data['method']="allCandidate";
             

@@ -70,6 +70,8 @@ $route['arramjobs/providerController/jobMatchedTable'] = "providerController/job
 
 
 
+
+$route['seekerLogin']='seekerController/seekerLogin';
 $route['registration'] = 'seekerController/registration';
 $route['login'] = 'seekerController/index';
 $route['dashboard'] = 'seekerController/dash';
