@@ -204,6 +204,11 @@ nav ul li a:hover {
         </ul>
     </nav>
 </header>
+<br>
+<br>
+<br>
+<br>
+<br>
 
   <div class="container-fluid">
     <div class="row">
@@ -257,9 +262,12 @@ nav ul li a:hover {
         </div>
       </nav>
      <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
-      
+     <?php
+             if($method == "dash"){
+        ?>
+        <h1 class="mt-10">Welcome To Job Provider Dashboard </h1>
 <?php
- if ($method == 'basic details') {
+ }else if ($method == 'basic details') {
 ?>
   <div class="container" id="page1">
      
