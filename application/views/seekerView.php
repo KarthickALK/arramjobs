@@ -270,32 +270,32 @@ nav ul li a:hover {
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="educationalDetails">
+              <a class="nav-link" href="http://localhost/arramjobs/seekerController/educationalDetails">
               Education Details
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="experienceDetails">
+              <a class="nav-link" href="http://localhost/arramjobs/seekerController/experienceDetails">
               Experience Details
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="projectDetails">
+              <a class="nav-link" href="http://localhost/arramjobs/seekerController/projectDetails">
               project Details
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="areaOfInterest">
+              <a class="nav-link" href="http://localhost/arramjobs/seekerController/areaOfInterest">
               Area Of Interest
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="skills">
+              <a class="nav-link" href="http://localhost/arramjobs/seekerController/skills">
               Skills
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="resume">
+              <a class="nav-link" href="http://localhost/arramjobs/seekerController/resume">
               Upload Resume
               </a>
             </li>
@@ -305,11 +305,11 @@ nav ul li a:hover {
      <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
      <?php
-             if($this->data['method']=="dash"){
+             if($method == "dash"){
         ?>
         <h1 class="mt-10">Welcome To Job Seeker Dashboard </h1>
     <?php
-    }else if($this->data['method']=="basicdetails") {
+    }else if ($method == 'basicdetails') {
    
     ?>
 
@@ -720,7 +720,7 @@ function toggleFields() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>    
 <?php
- } else if($this->data['method']=="experience") {
+ } elseif ($method == 'experience') {
  ?>
 
 <div class="container">
@@ -981,7 +981,7 @@ foreach ($seekerDetail as $key => $value) {
 
     
     <?php
- } elseif ($this->data['method']=="project") {
+ } elseif ($method == 'project') {
     ?>
 
 <div class="container">
@@ -1114,7 +1114,7 @@ foreach ($seekerDetail as $key => $value) {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   
   <?php
- } elseif ($this->data['method']=='areaofinterest') {
+ } elseif ($method == 'areaofinterest') {
     ?>
   
   
@@ -1311,7 +1311,7 @@ foreach ($seekerDetail as $key => $value) {
     </script>
 
 <?php
- } else if($this->data['method']=="skills") { 
+ } elseif ($method == 'skills') { 
   ?>
     <div class="container mt-4">
      
@@ -1383,7 +1383,7 @@ $(document).ready(function() {
     </script>
 
   <?php
- } else if($this->data['method'] == 'resume') {
+ } else if ($method == 'resume') {
     ?> 
   <div class="container mt-4">
         <h2>Upload resume</h2>
