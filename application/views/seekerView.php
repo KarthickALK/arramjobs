@@ -275,12 +275,6 @@ h3{
       padding: 20px;
     }
 
-
-<<<<<<< HEAD
-=======
-    .nav-item.active .nav-link {}
->>>>>>> c38686b794f135cb5a8c9f9d12b91a57c996cd44
-
     .nav-item h4 {
       margin: 0;
       padding: 10px 10px;
@@ -313,19 +307,10 @@ h3{
 
       </ul>
     </nav>
-<<<<<<< HEAD
 </header>
 
 
-=======
   </header>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
-  <br>
->>>>>>> c38686b794f135cb5a8c9f9d12b91a57c996cd44
 
   <div class="container-fluid">
     <div class="row">
