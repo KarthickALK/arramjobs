@@ -206,7 +206,7 @@ header nav ul li a {
     /* background-color: #007bff;
     .btn-primary{ */
       /* background-color: #f39c12 ; */
-      color:yellow;
+      color:#F8802A;
       text-decoration: none;
     /* } */
 }
@@ -308,6 +308,7 @@ header nav ul li a {
 
  #tamil{
     color:white;
+    margin-left:20px;
  }
  
  

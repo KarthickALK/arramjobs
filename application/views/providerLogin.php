@@ -20,16 +20,17 @@
       padding: 30px;
       border-radius: 5px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      width: 50%; 
-      margin-left:500px;
+      width: 30%; 
+      margin-left:700px;
       margin-top:50px;
+      
 
     }
 
     h1 {
       text-align: center;
       margin-bottom: 30px;
-      margin-left: -70px;
+      margin-left: -20px;
       color:navy;
     }
 
@@ -121,6 +122,10 @@ nav ul li a:hover {
 .logo{
   margin-top:50px;
 }
+#tamil{
+  color:white;
+  margin-left:20px;
+}
 
 
  
@@ -139,9 +144,9 @@ nav ul li a:hover {
 <body>
 <header>
 <div class="logo">
-            <img src="arramjobslogo.png" alt="Arram Jobs Logo">
+<h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
         </div>
-    <h2> Arram jobs</h2>
+  
     <nav>
         <ul>
             <li><a href="#about-us">About Us</a></li>
@@ -149,7 +154,7 @@ nav ul li a:hover {
             <li><a href="#job-seekers">Seekers</a></li>
             <li><a href="#job-providers">Providers</a></li>
             <li><a href="#blog">Blog</a></li>
-            <li><a href="#login">Login</a></li>
+            <!-- <li><a href="#login">Login</a></li> -->
         </ul>
     </nav>
 </header>
@@ -157,11 +162,11 @@ nav ul li a:hover {
 <br>
 <br>
 <br>
-<br>
+
 
 
   <div class="container">
-    <h1>Provider Login Form</h1>
+    <h1>Provider Login </h1>
     <form name="login_form" method="post" action="http://localhost/arramjobs/viewDashboard/"  onsubmit="return validateForm()">
       <div class="form-group">
         <label for="userID">User ID</label>
@@ -180,7 +185,7 @@ nav ul li a:hover {
       
       </form>
       <div id="sign">
-            <p>Create an account ? <a id="regis" href="provider/registration">Register</a></p>
+            <p>Create an account ? <a id="regis" href="http://localhost/arramjobs/provider/registration">Register</a></p>
         </div>
   </div>
   <br>

@@ -77,7 +77,9 @@ h3{
       margin-left: -70px;
       color:navy;
     }
-        
+        #tamil{
+            color:white;
+        }
     </style>
    
     
@@ -85,9 +87,9 @@ h3{
 <body>
 <header>
 <div class="logo">
-            <img src="arramjobslogo.png" alt="Arram Jobs Logo">
+<h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
         </div>
-    <h2> Arram jobs</h2>
+   
     <nav>
         <ul>
             <li><a href="#about-us">About Us</a></li>
@@ -224,7 +226,7 @@ h3{
              </div>
         </form>
         <div id="sign" class="d-flex justify-content-end align-items-center">
-            <p>Already have  an account ? <a id="regis" href="login">login</a></p>
+            <p>Already have  an account ? <a id="regis" href="http://localhost/arramjobs/provider/login">login</a></p>
         </div>
        
        

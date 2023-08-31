@@ -104,15 +104,11 @@ button[type="submit"] {
     padding: 10px 20px; 
 }
 
-.nav-link:hover {
-    background-color: #007bff;
-}
 
 .nav.flex-column {
     list-style: none; 
     padding: 0;
 }
-
 
 header {
     position: fixed;
@@ -143,8 +139,8 @@ header nav ul {
     top: 50%;
     right: 20px;
     transform: translateY(-50%);
+    
 }
-
 header nav ul li {
     display: inline-block;
     margin-left: 50px;
@@ -156,14 +152,52 @@ header nav ul li a {
     text-decoration: none;
     padding: 10px 15px;
     border-radius: 5px;
+ /* background-color: #f39c12 ;  */
 }
 
-nav ul li a:hover {
-    background-color: #007bff;
+
+header nav ul li a:hover {
+    /* background-color: #007bff;
+    .btn-primary{ */
+      /* background-color: #f39c12 ; */
+      color:#F8802A;
+      text-decoration: none;
+    /* } */
 }
+nav ul li a:hover {
+    /* background-color: #007bff;
+    .btn-primary{ */
+      /* background-color: #f39c12 ; */
+      color:navy;
+      text-decoration: none;
+    /* } */
+}
+
+
 
 .logo{
   margin-top:50px;
+}
+
+.sidebar {
+    position: fixed;
+    width: 18%; /* Slightly increased width for more content space */
+    top: 110px; /* Adjusted top spacing */
+    bottom: 0;
+    left: 0;
+    z-index: 100;
+    padding: 20px 0; /* Reduced padding for a cleaner look */
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1); /* Adjusted shadow */
+    background-color:#F8802A; /* A darker, professional color */
+}
+
+
+.nav-link {
+    display: block;
+    color: #ffffff;
+    font-weight: bold;
+    text-decoration: none;
+    padding: 0px 20px; /* Added padding for better touch interaction */
 }
 
 .main {
@@ -173,13 +207,17 @@ nav ul li a:hover {
 
 
 .nav-item.active .nav-link {
-    background-color: #FF4500;
+   
 }
 
-.nav-item h3 {
+.nav-item h4 {
     margin: 0;
-    padding: 10px 20px;
+    padding: 10px 10px;
     color: white;
+}
+#tamil{
+  color:white;
+  margin-left:20px;
 }
 
 
@@ -190,20 +228,23 @@ nav ul li a:hover {
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
 <header>
 <div class="logo">
-            <img src="arramjobslogo.png" alt="Arram Jobs Logo">
+ <h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
         </div>
-    <h2> Arram jobs</h2>
+    
+   
     <nav>
         <ul>
+        <li><a href="http://localhost/arramjobs/wordpress">Home</a></li>
             <li><a href="#about-us">About Us</a></li>
             <li><a href="#how-it-works">How It Works</a></li>
             <li><a href="#job-seekers">Seekers</a></li>
             <li><a href="#job-providers">Providers</a></li>
             <li><a href="#blog">Blog</a></li>
-            <li><a href="#login">Login</a></li>
+           
         </ul>
     </nav>
 </header>
+<br>
 <br>
 <br>
 <br>
@@ -213,18 +254,18 @@ nav ul li a:hover {
   <div class="container-fluid">
     <div class="row">
       <!-- Sidebar -->
-      <nav class="col-md-3 col-lg-2 d-md-block bg-light sidebar">
+      <nav class="col-md-3 col-lg-2 d-md-block sidebar">
         <div class="position-sticky">
            
           <ul class="nav flex-column">
           <br>
             
             <li class="nav-item">
-                <h3>Create Profile</h3>
+                <h4>Create Profile</h4>
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="basicDetails">
+              <a class="nav-link" href="http://localhost/arramjobs/seekerController/basicDetails">
               Basic Details
               </a>
             </li><br>
@@ -264,19 +305,20 @@ nav ul li a:hover {
      <main class="col-md-9 ml-sm-auto col-lg-10 px-md-4">
 
      <?php
-             if($method == "dash"){
+             if($this->data['method']=="dash"){
         ?>
-        <h1 class="mt-10">Welcome To Job Provider Dashboard </h1>
-<?php
- }else if ($method == 'basic details') {
-?>
+        <h1 class="mt-10">Welcome To Job Seeker Dashboard </h1>
+    <?php
+    }else if($this->data['method']=="basicdetails") {
+   
+    ?>
 
   <div class="container" id="page1">
      
     <h1>Personal Details</h1>
      <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='basicDetails'>
      <?php
-      foreach ($seekerDetail as $key => $value)
+      foreach ($this->data['seekerDetail'] as $key => $value)
       {
         ?>
      <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
@@ -678,7 +720,7 @@ function toggleFields() {
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
 <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>    
 <?php
- } elseif ($method == 'experience') {
+ } else if($this->data['method']=="experience") {
  ?>
 
 <div class="container">
@@ -939,7 +981,7 @@ foreach ($seekerDetail as $key => $value) {
 
     
     <?php
- } elseif ($method == 'project') {
+ } elseif ($this->data['method']=="project") {
     ?>
 
 <div class="container">
@@ -1072,7 +1114,7 @@ foreach ($seekerDetail as $key => $value) {
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
   
   <?php
- } elseif ($method == 'areaofinterest') {
+ } elseif ($this->data['method']=='areaofinterest') {
     ?>
   
   
@@ -1269,7 +1311,7 @@ foreach ($seekerDetail as $key => $value) {
     </script>
 
 <?php
- } elseif ($method == 'skills') { 
+ } else if($this->data['method']=="skills") { 
   ?>
     <div class="container mt-4">
      
@@ -1341,7 +1383,7 @@ $(document).ready(function() {
     </script>
 
   <?php
- } else if ($method == 'resume') {
+ } else if($this->data['method'] == 'resume') {
     ?> 
   <div class="container mt-4">
         <h2>Upload resume</h2>

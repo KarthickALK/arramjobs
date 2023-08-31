@@ -90,13 +90,13 @@ class seekerController extends CI_Controller
         if(isset($login[0]['id']))
         {
             $userLoggedIn = array(
-                'id' => $response[0]['id'],
-                'userName' => $response[0]['name'],
-                'phonenumber' => $response[0]['phonenumber']
+                'id' => $login[0]['id'],
+                'userName' => $login[0]['name'],
+                'phonenumber' => $login[0]['phonenumber']
             );
             $this->session->set_userdata($userLoggedIn);
-            $this->data['method']="dashboard";
-            $this->load->view('seekerView.php',$this->data);
+            $this->data['method']="dash";
+            $this->dash();
         }
         else{
 
@@ -104,12 +104,17 @@ class seekerController extends CI_Controller
         }
         
     }
+
+    public function login()
+    {
+        $this->load->view('loginform.php');
+    }
     
 
     public function dash()
     {
-        $data['method'] = "dash";
-        $this->load->view('seekerView.php',$data);
+        $this->data['method'] = "dash";
+        $this->load->view('seekerView.php',$this->data);
     }
 
 
@@ -118,7 +123,8 @@ class seekerController extends CI_Controller
         $this->load->model('seekerModel');
         
         // Set the method name for the view
-        $data['method'] = "basic details";
+        $this->data['method'] = "basicdetails";
+       
         
         // Get the logged-in seeker's phone number from session
         $seekerId = $this->session->userdata('logged_in_phonenumber');
@@ -133,10 +139,10 @@ class seekerController extends CI_Controller
         $seekerDetail = $this->seekerModel->update();
         
         // Pass the data to the view
-        $data['seekerDetail'] = $seekerDetail;
+        $this->data['seekerDetail'] = $seekerDetail;
         
         // Load the seekerView with the data
-        $this->load->view('seekerView', $data);
+        $this->load->view('seekerView.php');
     }
     
     
@@ -222,13 +228,13 @@ public function areaOfInterest()
         'seekerId' => $seekerId
     );
 
-    $this->load->view('seekerView', $data);
+    $this->load->view('seekerView.php',$this->data);
 }
 
 
 public function skills()
 {
-    $this->data ['method'] = "skills";
+    $this->data['method']= "skills";
     $seekerId = $this->session->userdata('logged_in_phonenumber');
     
     if ($this->input->post()) {
@@ -245,7 +251,7 @@ public function skills()
         'method' => $this->data['method']
     );
     
-    $this->load->view('seekerView', $this->data);
+    $this->load->view('seekerView.php', $this->data);
 }
 
 
@@ -269,7 +275,7 @@ public function resume()
         'seekerId' => $seekerId
     ); 
  
-    $this->load->view('seekerView', $this->data);
+    $this->load->view('seekerView.php', $this->data);
 }
 
 
