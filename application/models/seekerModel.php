@@ -78,10 +78,9 @@ public function __construct()
 
     public function update()
     {
-        $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = 107";
+        $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = 1";
         $select = $this->db->query($provider);
-        $result = $select->result_array();
-        return $result; 
+        return $select->result_array();
     }
     
     
