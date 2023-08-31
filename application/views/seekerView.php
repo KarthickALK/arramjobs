@@ -3,6 +3,9 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
+    #skillForm{
+      margin-bottom:-30px;
+    }
     #uploadresume{
      background-color:#F8802A;
      color:white;
@@ -51,9 +54,6 @@ h3{
 }
 
 
-.form-group {
-  margin-bottom: 20px;
-}
 
 label {
   font-weight: bold;
@@ -265,11 +265,8 @@ nav ul li a:hover {
         </ul>
     </nav>
 </header>
-<br>
-<br>
-<br>
-<br>
-<br>
+
+
 
   <div class="container-fluid">
     <div class="row">
@@ -1138,7 +1135,7 @@ foreach ($seekerDetail as $key => $value) {
     ?>
   
   
-    <div class="container mt-5">
+    <div class="container">
         <h3>Area of Interest Form</h3>
         <form method="post" onsubmit="return validateForm()" >
         
@@ -1333,7 +1330,7 @@ foreach ($seekerDetail as $key => $value) {
 <?php
  } elseif ($method == 'skills') { 
   ?>
-    <div class="container mt-4">
+    <div class="container">
      
         <h3>Skill Form</h3>
         <form id="skillForm" method="post" action="skills">
@@ -1405,7 +1402,7 @@ $(document).ready(function() {
   <?php
  } else if ($method == 'resume') {
     ?> 
-  <div class="container mt-4">
+  <div class="container">
         <h3>Upload resume</h3>
         <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
       
