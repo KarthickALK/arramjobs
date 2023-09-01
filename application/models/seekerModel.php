@@ -74,9 +74,10 @@
         }
 
 
-        public function basicDetails()
+        public function getBasicDetails()
         {
-            $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = 1";
+            $seekerId=$_SESSION['seekerId'];
+            $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = $seekerId";
             $select = $this->db->query($provider);
             return $select->result_array();
         }
@@ -106,9 +107,7 @@
             $result = $this->db->update('seeker_profile_form', $updateData);
         }
 
-
-
-        public function educationalDetails()
+        public function updateEducationalDetails()
         {
             $formData = $this->input->post(null, true);
             $seekerId = '107'; // You should get this from the user session or input
@@ -152,8 +151,15 @@
         }
 
 
+        public function getExperienceDetails(){
+            $seekerId=$_SESSION['seekerId'];
+            $provider = "SELECT * FROM `seeker_experience` WHERE `seekerId` = $seekerId";
+            $select = $this->db->query($provider);
+            return $select->result_array();
+        }
 
-        public function experienceDetails($seekerId, $formData)
+
+        public function updateExperienceDetails($seekerId, $formData)
         {
             $seekerId = '107';
             $existingExperienceDetails = $this->getExperienceDetails($seekerId);
@@ -188,18 +194,22 @@
             }
         }
 
-        public function getExperienceDetails($seekerId)
-        {
-            $this->db->where('seekerId', $seekerId);
-            $query = $this->db->get('seeker_experience');
-            return $query->row_array();
+        // public function getExperienceDetails($seekerId)
+        // {
+        //     $this->db->where('seekerId', $seekerId);
+        //     $query = $this->db->get('seeker_experience');
+        //     return $query->row_array();
+        // }
+
+        public function getProjectDetails(){
+            $providerId=$_SESSION['seekerId'];
+            $provider = "SELECT * FROM `seeker_projects` WHERE `seekerId` = $providerId";
+            $select = $this->db->query($provider);
+            return $select->result_array();
         }
 
 
-
-
-
-        public function projectDetails($seekerId, $formData)
+        public function updateProjectDetails($seekerId, $formData)
         {
             $formData = $this->input->post(null, true);
             $seekerId = '107';
@@ -217,11 +227,15 @@
             }
         }
 
+        public function getAreaOfInterest(){
+            $seekerId=$_SESSION['seekerId'];
+            $provider = "SELECT * FROM `seeker_area_of_interst` WHERE `seekerId` = $seekerId";
+            $select = $this->db->query($provider);
+            return $select->result_array();
+        }
 
 
-
-
-        public function areaOfInterest($seekerId, $formData)
+        public function updateAreaOfInterest($seekerId, $formData)
         {
             $formData = $this->input->post(null, true);
             $seekerId = '107';

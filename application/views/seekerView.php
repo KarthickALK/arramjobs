@@ -752,12 +752,11 @@
           ?>
 
             <div class="container">
-
-              <?php
-              foreach ($seekerDetail as $key => $value) {
-              ?>
-                <h3>Experience Details Form</h3>
-                <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experienceDetails">
+              <h3>Experience Details Form</h3>
+              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experienceDetails">
+                <?php
+                foreach ($experienceDetails as $key => $value) {
+                ?>
                   <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
 
                   <div class="form-group">
@@ -842,10 +841,10 @@
                   </div>
 
                   <button type="submit" class="btn btn-primary">Submit</button>
-                </form>
-              <?php
-              }
-              ?>
+                <?php
+                }
+                ?>
+              </form>
             </div>
 
             <script>
@@ -1008,44 +1007,95 @@
             <div class="container">
               <h3 id="projectdeailsform">Project Details Form</h3>
               <form name="projectform" method="post" onsubmit="return validateForm()" action="projectDetails">
-                <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
-                <div id="project-sections">
-                  <div class="project-section">
-                    <div class="form-group">
-                      <label for="projectname">Project Name</label>
-                      <input type="text" class="form-control" id="projectname" name="projectname[]">
-                      <div id="projectname_error" class="error"></div>
-                      <div class="form-group">
-                        <label for="Duration of project">Duration of Project</label>
-                        <input type="text" class="form-control" id="durationofproject" name="durationofproject[]">
-                        <div id="durationofproject_error" class="error"></div>
-                      </div>
-                      <div class="form-group">
-                        <label for="role in the project">Role in the Project</label>
-                        <input type="text" class="form-control" id="roleofproject" name="roleofproject[]">
-                        <div id="roleofproject_error" class="error"></div>
-                      </div>
-                      <div class="form-group">
-                        <label for="">start date of project*</label>
-                        <input type="date" class="form-control" id="startdate" name="startdate[]">
-                        <div id="startdate_error" class="error"></div>
-                        <label for="">End date of the project*</label>
-                        <input type="date" class="form-control" id="enddate" name="enddate[]">
-                        <div id="enddate_error" class="error"></div>
-                      </div>
-                      <div class="form-group">
-                        <label for="Responsibity">My responsibility in project*</label>
-                        <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility[]"></textarea>
-                        <div id="responsibility_error" class="error"></div>
-                      </div>
-                      <div class="form-group">
-                        <label for="Skills used in project">Skills used in project*</label>
-                        <input type="text" class="form-control" id="skillsused" name="skillsused[]">
-                        <div id="skills_error" class="error"></div>
-                      </div>
-                      <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
-                    </div>
-                    <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
+                <?php
+                if (isset($projectDetails[0]['id'])) {
+                  foreach ($projectDetails as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+                ?>
+                    <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                    <div id="project-sections">
+                      <div class="project-section">
+                        <div class="form-group">
+                          <label for="projectname">Project Name</label>
+                          <input type="text" class="form-control" id="projectname" name="projectname[]">
+                          <div id="projectname_error" class="error"></div>
+                          <div class="form-group">
+                            <label for="Duration of project">Duration of Project</label>
+                            <input type="text" class="form-control" id="durationofproject" name="durationofproject[]">
+                            <div id="durationofproject_error" class="error"></div>
+                          </div>
+                          <div class="form-group">
+                            <label for="role in the project">Role in the Project</label>
+                            <input type="text" class="form-control" id="roleofproject" name="roleofproject[]">
+                            <div id="roleofproject_error" class="error"></div>
+                          </div>
+                          <div class="form-group">
+                            <label for="">start date of project*</label>
+                            <input type="date" class="form-control" id="startdate" name="startdate[]">
+                            <div id="startdate_error" class="error"></div>
+                            <label for="">End date of the project*</label>
+                            <input type="date" class="form-control" id="enddate" name="enddate[]">
+                            <div id="enddate_error" class="error"></div>
+                          </div>
+                          <div class="form-group">
+                            <label for="Responsibity">My responsibility in project*</label>
+                            <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility[]"></textarea>
+                            <div id="responsibility_error" class="error"></div>
+                          </div>
+                          <div class="form-group">
+                            <label for="Skills used in project">Skills used in project*</label>
+                            <input type="text" class="form-control" id="skillsused" name="skillsused[]">
+                            <div id="skills_error" class="error"></div>
+                          </div>
+                          <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
+                        </div>
+                        <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
+                      <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                      <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                      <div id="project-sections">
+                        <div class="project-section">
+                          <div class="form-group">
+                            <label for="projectname">Project Name</label>
+                            <input type="text" class="form-control" id="projectname" name="projectname[]">
+                            <div id="projectname_error" class="error"></div>
+                            <div class="form-group">
+                              <label for="Duration of project">Duration of Project</label>
+                              <input type="text" class="form-control" id="durationofproject" name="durationofproject[]">
+                              <div id="durationofproject_error" class="error"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="role in the project">Role in the Project</label>
+                              <input type="text" class="form-control" id="roleofproject" name="roleofproject[]">
+                              <div id="roleofproject_error" class="error"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="">start date of project*</label>
+                              <input type="date" class="form-control" id="startdate" name="startdate[]">
+                              <div id="startdate_error" class="error"></div>
+                              <label for="">End date of the project*</label>
+                              <input type="date" class="form-control" id="enddate" name="enddate[]">
+                              <div id="enddate_error" class="error"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="Responsibity">My responsibility in project*</label>
+                              <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility[]"></textarea>
+                              <div id="responsibility_error" class="error"></div>
+                            </div>
+                            <div class="form-group">
+                              <label for="Skills used in project">Skills used in project*</label>
+                              <input type="text" class="form-control" id="skillsused" name="skillsused[]">
+                              <div id="skills_error" class="error"></div>
+                            </div>
+                            <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
+                          </div>
+                          <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
+                        <?php
+                      }
+                        ?>
               </form>
 
               <script>

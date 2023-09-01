@@ -48,9 +48,9 @@
             $response = $this->RegistrationModel->database_login();
             if (isset($response[0]['id'])) {
                 $userLoggedIn = array(
-                    'userId' => $response[0]['jobProviderId'],
-                    'userName' => $response[0]['user_id'],
-                    'mobile' => $response[0]['password']
+                    'jobProviderId' => $response[0]['jobProviderId'],
+                    'jobProviderUserId' => $response[0]['user_id'],
+                    'jobProviderPassword' => $response[0]['password']
                 );
                 $this->session->set_userdata($userLoggedIn);
                 $this->data['method'] = "dashboard";

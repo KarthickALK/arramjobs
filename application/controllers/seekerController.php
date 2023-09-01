@@ -87,9 +87,9 @@ class seekerController extends CI_Controller
         $login = $this->seekerModel->seekerLogin();
         if (isset($login[0]['id'])) {
             $userLoggedIn = array(
-                'id' => $login[0]['id'],
-                'userName' => $login[0]['name'],
-                'phonenumber' => $login[0]['phonenumber']
+                'seekerId' => $login[0]['id'],
+                'seekerName' => $login[0]['name'],
+                'seekerPhoneNumber' => $login[0]['phonenumber']
             );
             $this->session->set_userdata($userLoggedIn);
             $this->data['method'] = "dash";
@@ -116,7 +116,7 @@ class seekerController extends CI_Controller
     public function basicDetails()
     {
         $this->load->model('seekerModel');
-        $basicDetails = $this->seekerModel->basicDetails();
+        $basicDetails = $this->seekerModel->getBasicDetails();
         $this->data['basicDetails'] = $basicDetails;
         $this->data['method'] = 'basicdetails';
         $this->load->view('seekerView.php', $this->data);
@@ -156,24 +156,22 @@ class seekerController extends CI_Controller
     public function experienceDetails()
     {
         $this->load->model('seekerModel');
+        $experienceDetails=$this->seekerModel->getExperienceDetails();
+        $this->data['experienceDetails']=$experienceDetails;
         $this->data['method'] = "experience";
-        $seekerDetail = $this->seekerModel->update();
-        $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
+        $this->load->view('seekerView', $this->data);
+    }
 
-        if ($this->input->post()) {
-            $formData = $this->input->post(null, true);
-            $this->seekerModel->experienceDetails($seekerId, $formData);
-        }
-
-        $seekerDetail = $this->seekerModel->update();
-        $this->data['seekerDetail'] = $seekerDetail;
-
-        $this->data['seekerId'] = $seekerId;
+    public function projectDetails(){
+        $this->load->model('seekerModel');
+        $projectDetails=$this->seekerModel->getProjectDetails();
+        $this->data['projectDetails']=$projectDetails;
+        $this->data['method'] = "project";
         $this->load->view('seekerView', $this->data);
     }
 
 
-    public function projectDetails()
+    public function updateProjectDetails()
     {
         $this->load->model('seekerModel');
         $this->data['method'] = "project";
@@ -191,8 +189,16 @@ class seekerController extends CI_Controller
         $this->load->view('seekerView', $this->data);
     }
 
+    public function areaofinterest(){
+        $this->load->model('seekerModel');
+        $areaofinterest=$this->seekerModel->getAreaOfInterest();
+        $this->data['areaofinterest']=$areaofinterest;
+        $this->data['method'] = "areaofinterest";
+        $this->load->view('seekerView', $this->data);
+    }
 
-    public function areaOfInterest()
+
+    public function updateAreaOfInterest()
     {
         $this->load->model('seekerModel');
         $this->data['method'] = "areaofinterest";
@@ -237,27 +243,11 @@ class seekerController extends CI_Controller
         $this->load->view('seekerView', $this->data);
     }
 
-
-
-
-
-    public function resume()
-    {
+    public function resume(){
+        $this->load->model('seekerModel');
+        // $resume = $this->seekerModel->getResume();
+        // $this->data['resume']= $resume;
         $this->data['method'] = "resume";
-        $seekerId = $this->session->userdata('logged_in_phonenumber');
-
-        if ($this->input->post()) {
-            $formData = $this->input->post(null, true);
-
-            $this->seekerModel->resume($seekerId, $formData);
-        }
-
-        $seekerDetail = $this->seekerModel->update();
-        $data = array(
-            'seekerDetail' => $seekerDetail,
-            'seekerId' => $seekerId
-        );
-
         $this->load->view('seekerView', $this->data);
     }
 }
