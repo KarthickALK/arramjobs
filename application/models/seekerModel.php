@@ -114,7 +114,7 @@
             $seekerId = '107'; // You should get this from the user session or input
 
             // Retrieve existing educational details for the user
-            $existingEducationalDetails = $this->getEducationalDetails($seekerId);
+             $existingEducationalDetails = $this->getEducationalDetails($seekerId);
 
             foreach ($formData['school'] as $index => $school) {
                 $educationalQualification = isset($formData['qualification'][$index])

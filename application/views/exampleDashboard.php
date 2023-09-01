@@ -1038,7 +1038,7 @@
                     <input type="text" class="form-control" id="description" name="description">
                     <div id="description_error" class="error"></div>
                 </div>
-                <button type="submit" class="btn btn-primary">Submit</button>
+                <button type="submit" class="btn-primary">Submit</button>
             </form>
         </div>
         <script>

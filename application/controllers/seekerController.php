@@ -150,7 +150,7 @@ class seekerController extends CI_Controller
         $this->load->view('seekerView', $this->data);
     }
 
-
+    
 
 
     public function experienceDetails()

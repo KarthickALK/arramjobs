@@ -342,7 +342,7 @@
         ?>
 
           <div class="container" id="page1">
-            <h1>Personal Details</h1>
+            <h3>Personal Details</h3>
             <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='updateBasicDetails'>
               <?php
               foreach ($basicDetails as $key => $value) {
@@ -379,7 +379,7 @@
                   </select>
                   <div id="gender_error" class="error"></div>
                 </div>
-                <h2> Address </h2>
+                <h4> Address : </h3>
                 <div class="form-group">
                   <label for="Door no">Door no/building name </label>
                   <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['doorno']); ?>" name="doorno">
@@ -577,7 +577,7 @@
             <h3>Education Form</h3>
             <div id="educationFormsContainer">
               <div class="education-form-container">
-                <form name="educationform" method="post" onsubmit="return validateForm()" action="educationalDetails">
+                <form name="educationform" action="http://localhost/arramjobs/seekerController/educationalDetails" method="post" onsubmit="return validateForm()" >
                   <div class="form-group">
                     <label for="qualification">Educational Qualification*</label>
                     <select class="form-control" id="qualification" name="qualification[]" onchange="toggleFields()">
