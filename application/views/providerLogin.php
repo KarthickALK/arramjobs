@@ -16,6 +16,15 @@
       margin-left: -200px;
       margin-right: 290px;
     }
+    header nav ul li a:hover {
+            /* background-color: #007bff;
+    .btn-primary{ */
+            /* background-color: #f39c12 ; */
+            color: #F8802A;
+            text-decoration: none;
+            /* } */
+        }
+
 
     .container {
       background-color: #fff;
@@ -118,7 +127,7 @@
     }
 
     nav ul li a:hover {
-      background-color: #f39c12 !important;
+      /* background-color: #f39c12 !important; */
       text-decoration: none;
     }
 

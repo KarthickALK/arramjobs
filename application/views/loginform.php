@@ -10,6 +10,15 @@
     .btn-primary {
       background-color: #f39c12 !important;
     }
+    
+    header nav ul li a:hover {
+            /* background-color: #007bff;
+    .btn-primary{ */
+            /* background-color: #f39c12 ; */
+            color: #F8802A;
+            text-decoration: none;
+            /* } */
+        }
 
     body {
       font-family: Arial, sans-serif;
@@ -120,7 +129,7 @@
     }
 
     nav ul li a:hover {
-      background-color: #f39c12 !important;
+      /* background-color: #f39c12 !important; */
       text-decoration: none;
     }
 
