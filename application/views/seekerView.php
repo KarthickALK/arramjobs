@@ -28,12 +28,11 @@
     }
    
     body {
-  font-family: Arial, sans-serif;
-  background-color: #f1f1f1;
-  margin: 0;
-  padding: 0;
-  
-}
+      font-family: Arial, sans-serif;
+      background-color: #f1f1f1;
+      margin: 0;
+      padding: 0;
+    }
 
 .container {
   background-color: #fff;
@@ -55,9 +54,10 @@ h3{
 
 
 
-label {
-  font-weight: bold;
-}
+
+    label {
+      font-weight: bold;
+    }
 
 .error {
   color: red;
@@ -65,20 +65,14 @@ label {
 }
 
 
-.form-control {
-  border-radius: 3px;
-  border: 1px solid #ccc;
-  padding: 10px;
-  width:100%;
-  margin-right:10px;
-  
-}
+    .form-control {
+      border-radius: 3px;
+      border: 1px solid #ccc;
+      padding: 10px;
+      width: 100%;
+      margin-right: 10px;
 
-.form-control-file {
-  border: 1px solid #ccc;
-  padding: 10px;
-}
-
+    }
 .btn-primary {
   background-color: #4285f4;
   border: none;
@@ -90,6 +84,11 @@ label {
 .btn-primary:hover {
   background-color: #2d76d9;
 } */
+
+
+    .btn-primary:hover {
+      background-color: #2d76d9;
+    }
 
 .form-control[type="file"] {
   border: none;
@@ -224,27 +223,24 @@ nav ul li a:hover {
     padding: 0px 20px; /* Added padding for better touch interaction */
 }
 
-.main {
-    margin-top: 70px; 
-    padding: 20px;
-}
+    .main {
+      margin-top: 70px;
+      padding: 20px;
+    }
 
+    .nav-item h4 {
+      margin: 0;
+      padding: 10px 10px;
+      color: white;
+    }
 
+    #tamil {
+      color: white;
+      margin-left: 20px;
+    }
+  </style>
+</head>
 
-.nav-item h4 {
-    margin: 0;
-    padding: 10px 10px;
-    color: white;
-}
-#tamil{
-  color:white;
-  margin-left:20px;
-}
-
-
-  
-  </style> 
-</head> 
 <body>
 <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
 <header>
@@ -267,6 +263,15 @@ nav ul li a:hover {
 </header>
 
 
+=======
+  </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
+>>>>>>> c38686b794f135cb5a8c9f9d12b91a57c996cd44
 
   <div class="container-fluid">
     <div class="row">
@@ -324,108 +329,106 @@ nav ul li a:hover {
      <?php
              if($method == "dash"){
         ?>
-        <h1 class="mt-10">Welcome To Job Seeker Dashboard </h1>
-    <?php
-    }else if ($method == 'basicdetails') {
-   
-    ?>
-
-  <div class="container" id="page1">
-     
-    <h3>Personal Details</h3>
-     <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='basicDetails'>
-     <?php
-      foreach ($seekerDetail as $key => $value)
-      {
+          <h1 class="mt-10">Welcome To Job Seeker Dashboard </h1>
+        <?php
+        } else if ($method == 'basicdetails') {
         ?>
-     <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
-    <div class="form-group">
-        <label for="Name">Name *</label>
-        <input type="text" class="form-control" id="name" value="<?php echo $value['name']; ?>" name="name" placeholder="Enter your name" required>
-        <div id="Name_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="emailid">Email *</label><br>
-        <input type="text" class="form-control" id="email" value="<?php echo $value['email'];?>" name="email" placeholder="Enter your email"  required>
-        <div id="emailid_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="phonenumber">Phone Number *</label>
-        <input type="tel" class="form-control" id="phonenumber" value=<?php echo $value['phonenumber'];?> name="phonenumber" placeholder="Enter your phonenumber" value="<?= isset($updateData['phonenumber']) ? $updateData['phonenumber'] : ''; ?>" required>
-        <div id="phonenumber_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="dob">Date of Birth *</label>
-        <input type="date" class="form-control" id="dateofbirth" value=<?php echo $value['dateofbirth'];?> name="dateofbirth"  required>
-        <div id="dob_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="gender">Gender *</label>
-        <select class="form-control" id="gender" value="<?php echo isset($value['gender']) ? $value['gender'] : ''; ?>" name="gender" required>
-        <option value="">Select your Gender</option>
-        <option value="male">male</option>
-        <option value="female">female</option>
-        <option value="others">others</option>
-</select>
-<div id="gender_error" class="error"></div>
-</div>
-<h2> Address </h2>
-      <div class="form-group">
-        <label for="Door no">Door no/building name </label>
-        <input type="text" class="form-control" id="doorno" value="<?php echo $value['doorno'];?>" name="doorno">
-        <div id="doorno_error" class="error"></div>
-</div>
-        <div class="form-group">
-        <label for="street address">street address </label>
-        <input type="text" class="form-control" id="streetaddress" value="<?php echo isset($value['address']) ? $value['address'] : ''; ?>" name="streetaddress">
-        <div id="streetaddress_error" class="error"></div>
-</div>
-<div class="form-group">
-        <label for="landmark">Landmark </label>
-        <input type="text" class="form-control" id="landmark" value="<?php echo isset($value['landmark']) ? $value['landmark'] : ''; ?>" name="landmark">
-        <div id="landmark_error" class="error"></div>
-</div>
-<div class="form-group">
-        <label for="pincode">Pin Code</label>
-        <input type="text" class="form-control" id="pincode" value="<?php echo isset($value['pincode']) ? $value['pincode'] : ''; ?>" name="pincode">
-        <div id="pincode_error" class="error"></div>
-</div>
-<div class="form-group">
-        <label for="district">District *</label>
-        <input type="text" class="form-control" id="district"  name="district" value="Erode" disabled>
-        <div id="district_error" class="error"></div>
-      </div>
-      <div class="form-group">
-    <label for="maritalstatus">Marital Status*</label>
-    <select class="form-control" id="maritalstatus"value="<?php echo isset($value['maritalStatus']) ? $value['maritalStatus'] : ''; ?>" name="maritalstatus">
-        <option value="">Select your marital status</option>
-        <option value="single">Single</option>
-        <option value="married">Married</option>
-    </select>
-    <div id="maritalstatus_error" class="error"></div>
-</div>
-<h1>Identification Details</h1>
-<div class="form-group">
-        <label for="aadharfrontphoto">Aadhar front photo </label>
-        <input type="file" class="form-control" id="aadharfrontphoto" value="<?php echo isset($value['aadhar_front']) ? $value['aadhar_front'] : ''; ?>"   name="aadharfrontphoto">
-        <div id="aadharfrontphoto_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="aadharbackphoto">Aadhar back Photo</label>
-        <input type="file" class="form-control" id="aadharbackphoto" value="<?php echo isset($value['aadhar_back']) ? $value['aadhar_back'] : ''; ?>" name="aadharbackphoto">
-        <div id="aadharbackphoto_error" class="error"></div>
-      </div>
-      <div class="form-group">
-        <label for="photo">Photo</label>
-        <input type="file" class="form-control" id="photo" value="<?php echo isset($value['photo']) ? $value['photo'] : ''; ?>" name="photo">
-        <div id="photo_error" class="error"></div>
-      </div> 
-      <button type="submit" name="submitBtn" class="btn btn-primary" >submit</button>
-    </form>
-    <?php
-      }
-      ?>
-  </div>
+
+          <div class="container" id="page1">
+            <h1>Personal Details</h1>
+            <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='updateBasicDetails'>
+              <?php
+              foreach ($basicDetails as $key => $value) {
+              ?>
+                <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
+                <div class="form-group">
+                  <label for="Name">Name *</label>
+                  <input type="text" class="form-control" id="name" value="<?php echo $value['name']; ?>" name="name" placeholder="Enter your name" required>
+                  <div id="Name_error" class="error"></div>
+
+                </div>
+                <div class="form-group">
+                  <label for="emailid">Email *</label><br>
+                  <input type="text" class="form-control" id="email" value="<?php echo $value['email']; ?>" name="email" placeholder="Enter your email" required>
+                  <div id="emailid_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="phonenumber">Phone Number *</label>
+                  <input type="tel" class="form-control" id="phonenumber" value=<?php echo $value['phonenumber']; ?> name="phonenumber" placeholder="Enter your phonenumber" value="<?= isset($updateData['phonenumber']) ? $updateData['phonenumber'] : ''; ?>" required>
+                  <div id="phonenumber_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="dob">Date of Birth *</label>
+                  <input type="date" class="form-control" id="dateofbirth" value=<?php echo $value['dateofbirth']; ?> name="dateofbirth" required>
+                  <div id="dob_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="gender">Gender *</label>
+                  <select class="form-control" id="gender" value="<?php echo isset($value['gender']) ? $value['gender'] : ''; ?>" name="gender" required>
+                    <option value="">Select your Gender</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                    <option value="others">others</option>
+                  </select>
+                  <div id="gender_error" class="error"></div>
+                </div>
+                <h2> Address </h2>
+                <div class="form-group">
+                  <label for="Door no">Door no/building name </label>
+                  <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['doorno']); ?>" name="doorno">
+                  <div id="doorno_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="street address">street address </label>
+                  <input type="text" class="form-control" id="streetaddress" value="<?php echo isset($value['address']) ? $value['address'] : ''; ?>" name="streetaddress">
+                  <div id="streetaddress_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="landmark">Landmark </label>
+                  <input type="text" class="form-control" id="landmark" value="<?php echo isset($value['landmark']) ? $value['landmark'] : ''; ?>" name="landmark">
+                  <div id="landmark_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="pincode">Pin Code</label>
+                  <input type="text" class="form-control" id="pincode" value="<?php echo isset($value['pincode']) ? $value['pincode'] : ''; ?>" name="pincode">
+                  <div id="pincode_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="district">District *</label>
+                  <input type="text" class="form-control" id="district" name="district" value="Erode" disabled>
+                  <div id="district_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="maritalstatus">Marital Status*</label>
+                  <select class="form-control" id="maritalstatus" value="<?php echo isset($value['maritalStatus']) ? $value['maritalStatus'] : ''; ?>" name="maritalstatus">
+                    <option value="">Select your marital status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                  </select>
+                  <div id="maritalstatus_error" class="error"></div>
+                </div>
+                <h1>Identification Details</h1>
+                <div class="form-group">
+                  <label for="aadharfrontphoto">Aadhar front photo </label>
+                  <input type="file" class="form-control" id="aadharfrontphoto" value="<?php echo isset($value['aadhar_front']) ? $value['aadhar_front'] : ''; ?>" name="aadharfrontphoto">
+                  <div id="aadharfrontphoto_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="aadharbackphoto">Aadhar back Photo</label>
+                  <input type="file" class="form-control" id="aadharbackphoto" value="<?php echo isset($value['aadhar_back']) ? $value['aadhar_back'] : ''; ?>" name="aadharbackphoto">
+                  <div id="aadharbackphoto_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="photo">Photo</label>
+                  <input type="file" class="form-control" id="photo" value="<?php echo isset($value['photo']) ? $value['photo'] : ''; ?>" name="photo">
+                  <div id="photo_error" class="error"></div>
+                </div>
+                <button type="submit" name="submitBtn" class="btn btn-primary">submit</button>
+            </form>
+          <?php
+              }
+          ?>
+          </div>
 
   <script>
   function validateFormPage() {
@@ -1312,10 +1315,9 @@ foreach ($seekerDetail as $key => $value) {
                 return false;
             }
 
-            return true;
-        }
-        
-        // Function to update the subcategories based on the selected category
+                  return true;
+                }
+                // Function to update the subcategories based on the selected category
 
         // Helper function to add a subcategory option to the select element
         function addSubcategoryOption(value, selectElement) {
@@ -1369,69 +1371,68 @@ foreach ($seekerDetail as $key => $value) {
         <ul id="addedSkills"></ul>
     </div>
 
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-    
-    <script>
-$(document).ready(function() {
-    $("#addSkillBtn").click(function() {
-        const clonedField = $(".skill-entry").first().clone();
-        $("#skillForm").append(clonedField);
-    });
-    
-    $("#skillForm").submit(function() {
-        const skillDetails = [];
-        
-        $(".skill-entry").each(function() {
-            const skillName = $(this).find('input[name="skillname[]"]').val();
-            const experience = $(this).find('select[name="experience[]"]').val();
-            const skillLevel = $(this).find('select[name="skilllevel[]"]').val();
-            skillDetails.push (`${skillName} - Experience: ${experience}, Skill Level: ${skillLevel}`);
-        });
-        
-        $("#addedSkills").empty();
-        skillDetails.forEach(skill => {
-            $("#addedSkills").append(`<li>${skill}</li>`);
-        });
-    });
-  });
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
 
-    </script>
+              <script>
+                $(document).ready(function() {
+                  $("#addSkillBtn").click(function() {
+                    const clonedField = $(".skill-entry").first().clone();
+                    $("#skillForm").append(clonedField);
+                  });
 
-  <?php
- } else if ($method == 'resume') {
-    ?> 
-  <div class="container">
-        <h3>Upload resume</h3>
-        <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
-      
-            <div class="form-group">
-                <label for="resumeFile">Upload Resume</label>
-               
-                <input type="file" name="resumeFile" accept=".pdf,.doc,.docx">
+                  $("#skillForm").submit(function() {
+                    const skillDetails = [];
 
-            </div>
-            <button class="btn" id="uploadresume" type="submit">Upload</button>
-        </form>
+                    $(".skill-entry").each(function() {
+                      const skillName = $(this).find('input[name="skillname[]"]').val();
+                      const experience = $(this).find('select[name="experience[]"]').val();
+                      const skillLevel = $(this).find('select[name="skilllevel[]"]').val();
+                      skillDetails.push(`${skillName} - Experience: ${experience}, Skill Level: ${skillLevel}`);
+                    });
+
+                    $("#addedSkills").empty();
+                    skillDetails.forEach(skill => {
+                      $("#addedSkills").append(`<li>${skill}</li>`);
+                    });
+                  });
+                });
+              </script>
+
+            <?php
+          } else if ($method == 'resume') {
+            ?>
+              <div class="container mt-4">
+                <h2>Upload resume</h2>
+                <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
+
+                  <div class="form-group">
+                    <label for="resumeFile">Upload Resume</label>
+
+                    <input type="file" name="resumeFile" accept=".pdf,.doc,.docx">
+
+                  </div>
+                  <button class="btn btn-primary" type="submit">Upload</button>
+                </form>
+              </div>
+              <script>
+                reusme = document.getElementById('resumeFile');
+
+                function validateForm() {
+                  if (resume.value === '') {
+                    alert('please choose a resume!');
+                  }
+                }
+              </script>
+              <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+              <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+              <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+            <?php
+          }
+            ?>
+      </main>
     </div>
-    <script>
-        reusme = document.getElementById('resumeFile');
-        function validateForm(){
-            if(resume.value===''){
-                alert('please choose a resume!');
-            }
-        }
-
-    </script>
-    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
-<?php
- }
- ?>
-     </main>
-</div>
-</div>
- </body>
- </html>
+  </div>
+</body>
+</html>
