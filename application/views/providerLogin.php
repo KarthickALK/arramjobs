@@ -1,11 +1,13 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
-    .btn-primary{
+    .btn-primary {
       background-color: #f39c12 !important;
     }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #f1f1f1;
@@ -16,14 +18,14 @@
     }
 
     .container {
-      background-color: #fff;  
+      background-color: #fff;
       padding: 30px;
       border-radius: 5px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      width: 30%; 
-      margin-left:700px;
-      margin-top:50px;
-      
+      width: 30%;
+      margin-left: 700px;
+      margin-top: 50px;
+
 
     }
 
@@ -31,7 +33,7 @@
       text-align: center;
       margin-bottom: 30px;
       margin-left: -20px;
-      color:navy;
+      color: navy;
     }
 
     .form-group {
@@ -70,104 +72,105 @@
       padding: 12px;
       font-weight: bold;
     }
+
     header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    z-index: 1000;
-    background-color: navy;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      z-index: 1000;
+      background-color: navy;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-header h2 {
-    color: white;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    color:white;
-}
+    header h2 {
+      color: white;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 25%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
+    header nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
 
-header nav ul li {
-    display: inline-block;
-    margin-left: 50px;
-}
+    header nav ul li {
+      display: inline-block;
+      margin-left: 50px;
+    }
 
-header nav ul li a {
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
+    header nav ul li a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
 
-nav ul li a:hover {
-  background-color: #f39c12 !important;
-  text-decoration: none;
-}
+    nav ul li a:hover {
+      background-color: #f39c12 !important;
+      text-decoration: none;
+    }
 
-.logo{
-  margin-top:50px;
-}
-#tamil{
-  color:white;
-  margin-left:20px;
-}
+    .logo {
+      margin-top: 50px;
+    }
 
-
- 
-    
+    #tamil {
+      color: white;
+      margin-left: 20px;
+    }
   </style>
   <title>provider Login Form</title>
-  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script> 
-    <div id="google_translate_element"></div>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
+  <div id="google_translate_element"></div>
   <script src="https://translate.Google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>
   <script>
-    function googleTranslateElementInit(){
-      new google.translate.TranslateElement({pageLanguage: 'en'},'google_translate_element');
+    function googleTranslateElementInit() {
+      new google.translate.TranslateElement({
+        pageLanguage: 'en'
+      }, 'google_translate_element');
     }
-    </script>
+  </script>
 </head>
+
 <body>
-<header>
-<div class="logo">
-<h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
-        </div>
-  
+  <header>
+    <div class="logo">
+      <h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
+    </div>
+
     <nav>
-        <ul>
-            <li><a href="#about-us">About Us</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#job-seekers">Seekers</a></li>
-            <li><a href="#job-providers">Providers</a></li>
-            <li><a href="#blog">Blog</a></li>
-            <!-- <li><a href="#login">Login</a></li> -->
-        </ul>
+      <ul>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#job-seekers">Seekers</a></li>
+        <li><a href="#job-providers">Providers</a></li>
+        <li><a href="#blog">Blog</a></li>
+        <!-- <li><a href="#login">Login</a></li> -->
+      </ul>
     </nav>
-</header>
-<br>
-<br>
-<br>
-<br>
+  </header>
+  <br>
+  <br>
+  <br>
+  <br>
 
 
 
   <div class="container">
     <h3>Provider Login </h3>
-    <form name="login_form" method="post" action="http://localhost/arramjobs/viewDashboard/"  onsubmit="return validateForm()">
+    <form name="login_form" method="post" action="http://localhost/arramjobs/viewDashboard/" onsubmit="return validateForm()">
       <div class="form-group">
         <label for="userID">User ID</label>
         <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user ID">
@@ -177,16 +180,16 @@ nav ul li a:hover {
         <label for="password">Password</label>
         <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
         <div id="password_error" class="error"></div>
-        
+
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
       <br>
       <br>
-      
-      </form>
-      <div id="sign">
-            <p>Create an account ? <a id="regis" href="http://localhost/arramjobs/provider/registration">Register</a></p>
-        </div>
+
+    </form>
+    <div id="sign">
+      <p>Create an account ? <a id="regis" href="http://localhost/arramjobs/provider/registration">Register</a></p>
+    </div>
   </div>
   <br>
   <br>
@@ -217,6 +220,7 @@ nav ul li a:hover {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
+
 </html>
 
 
@@ -507,4 +511,5 @@ input[type="checkbox"] {
 </script> -->
 
 </body>
+
 </html>

@@ -1,7 +1,8 @@
 <?php
-defined('BASEPATH') OR exit('No direct script access allowed');
+defined('BASEPATH') or exit('No direct script access allowed');
 
-class Welcome extends CI_Controller {
+class Welcome extends CI_Controller
+{
 
 	/**
 	 * Index Page for this controller.
@@ -19,15 +20,16 @@ class Welcome extends CI_Controller {
 	 * @see https://codeigniter.com/userguide3/general/urls.html
 	 */
 
-	
-		//   $this->load->view('dashboard_page.php');
-		//    $this->load->view('provider_login.php');
-		//    $this->load->model('RegistrationModel');
-		//   $this->load->view('welcome');
-		// $this->load->view('provider_update_registration.php');
-		function _construct(){
-			parent::_construct();
-		}
+
+	//   $this->load->view('dashboard_page.php');
+	//    $this->load->view('provider_login.php');
+	//    $this->load->model('RegistrationModel');
+	//   $this->load->view('welcome');
+	// $this->load->view('provider_update_registration.php');
+	function _construct()
+	{
+		parent::_construct();
+	}
 	public function index()
 	{
 		$this->load->view('providerLogin.php');
@@ -40,12 +42,11 @@ class Welcome extends CI_Controller {
 		// $this->load->view('viewCandidates.php');
 	}
 
-     
 
 
-    // public function index() {
-    //     $this->load->helper('url');
-    //     $this->load->view('registrationform.php');
-    // }
+
+	// public function index() {
+	//     $this->load->helper('url');
+	//     $this->load->view('registrationform.php');
+	// }
 }
-

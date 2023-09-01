@@ -1,13 +1,15 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
-    .btn-primary{
+    .btn-primary {
       background-color: #f39c12 !important;
     }
+
     body {
       font-family: Arial, sans-serif;
       background-color: #f1f1f1;
@@ -18,13 +20,13 @@
     }
 
     .container {
-      background-color: #fff;  
+      background-color: #fff;
       padding: 30px;
       border-radius: 5px;
       box-shadow: 0 2px 6px rgba(0, 0, 0, 0.1);
-      width: 30%; 
-      margin-left:700px;
-      margin-top:50px;
+      width: 30%;
+      margin-left: 700px;
+      margin-top: 50px;
 
     }
 
@@ -32,7 +34,7 @@
       text-align: center;
       margin-bottom: 30px;
       margin-left: -20px;
-      color:navy;
+      color: navy;
     }
 
     .form-group {
@@ -71,89 +73,94 @@
       padding: 12px;
       font-weight: bold;
     }
+
     header {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 120px;
-    z-index: 1000;
-    background-color: navy;
-    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
-}
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 120px;
+      z-index: 1000;
+      background-color: navy;
+      box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+    }
 
-header h2 {
-    color: white;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    left: 25%;
-    transform: translate(-50%, -50%);
-    color:white;
-}
+    header h2 {
+      color: white;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      left: 25%;
+      transform: translate(-50%, -50%);
+      color: white;
+    }
 
-header nav ul {
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    position: absolute;
-    top: 50%;
-    right: 20px;
-    transform: translateY(-50%);
-}
+    header nav ul {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      position: absolute;
+      top: 50%;
+      right: 20px;
+      transform: translateY(-50%);
+    }
 
-header nav ul li {
-    display: inline-block;
-    margin-left: 50px;
-}
+    header nav ul li {
+      display: inline-block;
+      margin-left: 50px;
+    }
 
-header nav ul li a {
-    color: white;
-    font-weight: bold;
-    text-decoration: none;
-    padding: 10px 15px;
-    border-radius: 5px;
-}
+    header nav ul li a {
+      color: white;
+      font-weight: bold;
+      text-decoration: none;
+      padding: 10px 15px;
+      border-radius: 5px;
+    }
 
-nav ul li a:hover {
-  background-color: #f39c12 !important;
-  text-decoration: none;
-}
+    nav ul li a:hover {
+      background-color: #f39c12 !important;
+      text-decoration: none;
+    }
 
-.logo{
-  margin-top:50px;
-}
-#tamil{
-  color:white;
-  margin-left:30px;
-}
-</style>
-<title>Registration Form</title>
+    .logo {
+      margin-top: 50px;
+    }
+
+    #tamil {
+      color: white;
+      margin-left: 30px;
+    }
+  </style>
+  <title>Registration Form</title>
 </head>
+
 <body>
-<header>
-<div class="logo">
-<h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
-        </div>
-   
+  <header>
+    <div class="logo">
+      <h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
+    </div>
+
     <nav>
-        <ul>
-            <li><a href="#about-us">About Us</a></li>
-            <li><a href="#how-it-works">How It Works</a></li>
-            <li><a href="#job-seekers">Seekers</a></li>
-            <li><a href="#job-providers">Providers</a></li>
-            <li><a href="#blog">Blog</a></li>
-           
-        </ul>
+      <ul>
+        <li><a href="#about-us">About Us</a></li>
+        <li><a href="#how-it-works">How It Works</a></li>
+        <li><a href="#job-seekers">Seekers</a></li>
+        <li><a href="#job-providers">Providers</a></li>
+        <li><a href="#blog">Blog</a></li>
+
+      </ul>
     </nav>
-</header>
-<br>
-<br>
-<br>
-<br>
-<br>
+  </header>
+  <br>
+  <br>
+  <br>
+  <br>
+  <br>
   <div class="container">
-    <h2><center>Registration Form</center></h2>
+    <h2>
+      <center>Registration Form</center>
+    </h2>
     <br>
 
     <form name="registration_form" method="post" onsubmit="return validateForm()" action="process_registration">
@@ -173,14 +180,14 @@ nav ul li a:hover {
         <div id="phone_error" class="error"></div>
       </div>
       <button type="Submit" class="btn btn-primary">Register</button>
-</form>
-<br>
-<div id="sign" class="d-flex justify-content-end align-items-center">
-            <p>Already have  an account ? <a id="regis" href="http://localhost/arramjobs/seekerController/login">login</a></p>
-        </div>
+    </form>
+    <br>
+    <div id="sign" class="d-flex justify-content-end align-items-center">
+      <p>Already have an account ? <a id="regis" href="http://localhost/arramjobs/seekerController/login">login</a></p>
+    </div>
   </div>
   <script>
-   function validateForm() {
+    function validateForm() {
       var username = document.getElementById('name').value;
       var email = document.getElementById('email').value;
       var phone = document.getElementById('phonenumber').value;
@@ -241,5 +248,5 @@ nav ul li a:hover {
   <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
   <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
 </body>
-</html>
 
+</html>
