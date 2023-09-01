@@ -13,6 +13,7 @@
     #candidateResume{
         color:white;
         background-color: #F8802A;
+        font-weight: bold;
     }
     /* .bg-warning{
         background-color: #F8802A;
@@ -128,11 +129,9 @@ label {
 .btn-primary {
   /* background-color: #4285f4; */
   border: none;
+  background-color: #F8802A;
 }
 
-.btn-primary:hover {
-  background-color: #2d76d9;
-}
 
 .form-control[type="file"] {
   border: none;
@@ -397,7 +396,7 @@ header nav ul li a {
         <?php
              if($this->data['method']=="dashboard"){
         ?>
-        <h1 class="mt-3">Welcome To Job Provider Dashboard </h1>
+        <h1 class="mt-3"><center>Welcome To Job Provider Dashboard</center> </h1>
         <?php 
         } else if($this->data['method']=="jobview") {
         ?>
@@ -2680,7 +2679,7 @@ function group()
         
         <div class="row">
             
-          <div class="col-md mb-5 ">
+          <div class="col-md ">
             
            <!-- work experience -->
           </div>
@@ -2703,9 +2702,9 @@ function group()
        
        <!-- <h1><center>Candidate Profile</center></h1> -->
       <br>
-      <h2 class="mb-5 bg-primary" id="candidateResume"><center>Candidate Resume</center></h2>
-
-        <h3 class="">Candidate Name : <?php echo $nvalue['name']?></h3> 
+      <h2 class=" bg-black p-5 mb-0" id="candidateResume"><center>Candidate Resume</center></h2>
+        <br>
+        <h4 class="">Candidate Name : <?php echo $nvalue['name']?></h4> 
         <br>
    
   <?php
@@ -3375,7 +3374,7 @@ function group()
         ?>
 
 <div class="container mt-5">
-        <h3 class="text-center">Job Matched Candidates</h3>
+        <h3 class="text-center">All Candidates</h3>
         <div>
             
             <div class="input-group">
