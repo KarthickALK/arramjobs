@@ -571,16 +571,22 @@
 
 
         <?php
-        } elseif ($method == 'education') {
+        } elseif ($method == 'educationalDetails') {
         ?>
           <div class="container" id="education">
             <h3>Education Form</h3>
+
             <div id="educationFormsContainer">
               <div class="education-form-container">
+
                 <form name="educationform" action="http://localhost/arramjobs/seekerController/educationalDetails" method="post" onsubmit="return validateForm()" >
+                  <?php
+              foreach($educationDetails as $key => $value) {
+              ?>
+             
                   <div class="form-group">
                     <label for="qualification">Educational Qualification*</label>
-                    <select class="form-control" id="qualification" name="qualification[]" onchange="toggleFields()">
+                    <select class="form-control" id="qualification"  name="qualification[]" onchange="toggleFields()">
                       <option value="">Select Qualification</option>
                       <option value="below_8th">Below 8th</option>
                       <option value="sslc">SSLC</option>
@@ -606,22 +612,24 @@
                   </div>
                   <div class="form-group" id="school-group" style="display: none;">
                     <label for="school">School Name/collegename</label>
-                    <input type="text" class="form-control" id="school" name="school[]">
-                    <div id="school_error" class="error"></div>
+                    <input type="text" class="form-control" id="school" value="<?php echo $value['school_college_name']; ?>" name="school[]">
                   </div>
                   <div class="form-group" id="percentage-group" style="display: none;">
                     <label for="percentage">Percentage</label>
-                    <input type="number" class="form-control" id="percentage" name="percentage[]">
+                    <input type="number" class="form-control" id="percentage" id="school"  value="<?php echo $value['percentage']; ?>" name="percentage[]">
                     <div id="percentage_error" class="error"></div>
                   </div>
                   <div class="form-group" id="year-group" style="display: none;">
                     <label for="year_passed">Year of Passed Out</label>
-                    <input type="number" class="form-control" id="year_passed" name="year_passed[]">
+                    <input type="number" class="form-control" id="year_passed" value="<?php echo $value['yearOfPassing']; ?>" name="year_passed[]">
                     <div id="year_error" class="error"></div>
                   </div>
                   <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button>
               </div>
               <button type="submit" id="educationsubmit" class="btn">Submit</button>
+              <?php
+              }
+              ?>
               </form>
             </div>
             <script>
@@ -748,16 +756,110 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
           <?php
-        } elseif ($method == 'experience') {
+        } elseif ($method == 'experienceDetails') {
           ?>
 
             <div class="container">
               <h3>Experience Details Form</h3>
-              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experienceDetails">
-                <?php
-                foreach ($experienceDetails as $key => $value) {
+              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="updateExperienceDetails">
+              <?php
+                if (isset($experienceDetails[0]['id'])) {
+                  foreach ($experienceDetails as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
                 ?>
+                 
+                 <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
                   <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
+
+                  <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+                      <option value="">Select a Category</option>
+                      <option value="it" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'it' ? 'selected' : ''; ?>>Information Technology</option>
+                      <option value="education" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'education' ? 'selected' : ''; ?>>Education</option>
+                      <option value="civil" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'civil' ? 'selected' : ''; ?>>Civil</option>
+                      <option value="healthcare" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'healthcare' ? 'selected' : ''; ?>>Healthcare</option>
+                      <option value="sales and marketing" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sales and marketing' ? 'selected' : ''; ?>>Sales and Marketing</option>
+                      <option value="finance" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'finance' ? 'selected' : ''; ?>>Finance</option>
+                      <option value="textile" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'textile' ? 'selected' : ''; ?>>Textile</option>
+                      <option value="sports" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sports' ? 'selected' : ''; ?>>Sports</option>
+                      <option value="services" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'services' ? 'selected' : ''; ?>>Services</option>
+                      <option value="others" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'others' ? 'selected' : ''; ?>>Others</option>
+                    </select>
+                    <div id="category_error" class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="subcategory">Subcategory:</label>
+                    <select class="form-control" id="subcategory" name="subcategory" disabled>
+                      <option value="">Select a Subcategory</option>
+                    </select>
+                    <div id="subcategory_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="otherCategoryField" style="display: none;">
+                    <label for="othercategory">Other Category:</label>
+                    <input type="text" class="form-control" id="othercategory" name="othercategory">
+                  </div>
+
+                  <div class="form-group" id="otherSubcategoryField" style="display: none;">
+                    <label for="othersubcategory">Other Subcategory:</label>
+                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory">
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="experience">Experience</label>
+                    <select class="form-control" id="experience" name="experience">
+                      <option value="">Select your experience</option>
+                      <option value="fresher" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'fresher' ? 'selected' : ''; ?>>Fresher</option>
+                      <option value="0-2" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '0-2' ? 'selected' : ''; ?>>0-2</option>
+                      <option value="3-5" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '3-5' ? 'selected' : ''; ?>>3-5</option>
+                      <option value="5-10" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '5-10' ? 'selected' : ''; ?>>5-10</option>
+                      <option value="10-15" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '10-15' ? 'selected' : ''; ?>>10-15</option>
+                      <option value="15-20" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '15-20' ? 'selected' : ''; ?>>15-20</option>
+                      <option value="above 20 years" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'above 20 years' ? 'selected' : ''; ?>>Above 20 years</option>
+                    </select>
+                    <div id="experience_error" class="error"></div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="company name">Company Name</label>
+                    <input type="text" class="form-control" id="companyname" name="companyname" value="<?php echo $value['company_name']; ?>" value="<?php echo isset($existingExperience['company_name']) ? $existingExperience['company_name'] : ''; ?>">
+                    <div id="companyname_error" class="error"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="role">Role in the company</label>
+                    <input type="text" class="form-control" id="role" name="role" value="<?php echo isset($existingExperience['job_role']) ? $existingExperience['job_role'] : ''; ?>">
+                    <div id="role_error" class="error"></div>
+                  </div>
+
+                  <h1>Previous Employer details</h1>
+
+                  <div class="form-group">
+                    <label for="Name">Name of employer*</label>
+                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" value="<?php echo isset($existingExperience['previous_employer_name']) ? $existingExperience['previous_employer_name'] : ''; ?>">
+                    <div id="name_error" class="error"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone number">Phone Number</label>
+                    <input type="text" class="form-control" id="number" name="number" value="<?php echo isset($existingExperience['previous_employer_mobile']) ? $existingExperience['previous_employer_mobile'] : ''; ?>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="emailid" name="emailid" value="<?php echo isset($existingExperience['previous_employer_email']) ? $existingExperience['previous_employer_email'] : ''; ?>">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                 <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                  <input type="hidden" class="form-control" id="id"  name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
 
                   <div class="form-group">
                     <label for="category">Category:</label>
@@ -841,9 +943,9 @@
                   </div>
 
                   <button type="submit" class="btn btn-primary">Submit</button>
-                <?php
-                }
-                ?>
+                  <?php
+                  }
+                  ?>
               </form>
             </div>
 

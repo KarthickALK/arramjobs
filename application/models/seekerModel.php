@@ -107,48 +107,82 @@
             $result = $this->db->update('seeker_profile_form', $updateData);
         }
 
-        public function updateEducationalDetails()
+        // public function updateEducationalDetails()
+        // {
+        //     $formData = $this->input->post(null, true);
+        //     $seekerId = '107'; // You should get this from the user session or input
+
+        //     // Retrieve existing educational details for the user
+        //      $existingEducationalDetails = $this->getEducationalDetails($seekerId);
+
+        //     foreach ($formData['school'] as $index => $school) {
+        //         $educationalQualification = isset($formData['qualification'][$index])
+        //             ? $formData['qualification'][$index]
+        //             : $existingEducationalDetails[$index]['educational_qualification'];
+
+        //         $department = isset($formData['department'][$index])
+        //             ? $formData['department'][$index]
+        //             : $existingEducationalDetails[$index]['department'];
+
+        //         $insertData = array(
+        //             'seekerId' => $seekerId,
+        //             'educational_qualification' => $educationalQualification,
+        //             'department' => $department,
+        //             'school_college_name' => $school,
+        //             'percentage' => $formData['percentage'][$index],
+        //             'yearOfPassing' => $formData['year_passed'][$index]
+        //         );
+
+        //         // Update or insert educational entry
+        //         if (isset($existingEducationalDetails[$index])) {
+        //             $this->db->where('id', $existingEducationalDetails[$index]['id']);
+        //             $this->db->update('seeker_educational_details', $insertData);
+        //         } else {
+        //             $this->db->insert('seeker_educational_details', $insertData);
+        //         }
+        //     }
+        // }
+
+        public function getEducationalDetails()
         {
-            $formData = $this->input->post(null, true);
-            $seekerId = '107'; // You should get this from the user session or input
+            $seekerId=$_SESSION['seekerId'];
+            $provider = "SELECT * FROM `seeker_educational_details` WHERE `seekerId` = $seekerId";
+            $select = $this->db->query($provider);
+            return $select->result_array();
+            // $this->db->where('seekerId', $seekerId);
+            // $query = $this->db->get('seeker_educational_details');
+            // return $query->result_array();
+        }
+        // public function updateEducationDetails()
+        // {
+        //     $postData = $this->input->post(null, true);
+        //     $updateEducation = array(
+        //         'educational_qualification' =>  $postData['qualification[]'],
+        //         'department' => $postData['department[]'],
+        //         'school_college_name' => $postData['school[]'],
+        //         'percentage' => $postData['percentage[]'],
+        //         'yearOfPassing' => $postDatta['year_passed[]']
+        //     );
+        //     $this->db->where('id', $postData['id']);
+        //     $result = $this->db->update('seeker_educational_details',$updateEducation);
+        // }
 
-            // Retrieve existing educational details for the user
-             $existingEducationalDetails = $this->getEducationalDetails($seekerId);
-
-            foreach ($formData['school'] as $index => $school) {
-                $educationalQualification = isset($formData['qualification'][$index])
-                    ? $formData['qualification'][$index]
-                    : $existingEducationalDetails[$index]['educational_qualification'];
-
-                $department = isset($formData['department'][$index])
-                    ? $formData['department'][$index]
-                    : $existingEducationalDetails[$index]['department'];
-
-                $insertData = array(
-                    'seekerId' => $seekerId,
-                    'educational_qualification' => $educationalQualification,
-                    'department' => $department,
-                    'school_college_name' => $school,
-                    'percentage' => $formData['percentage'][$index],
-                    'yearOfPassing' => $formData['year_passed'][$index]
-                );
-
-                // Update or insert educational entry
-                if (isset($existingEducationalDetails[$index])) {
-                    $this->db->where('id', $existingEducationalDetails[$index]['id']);
-                    $this->db->update('seeker_educational_details', $insertData);
-                } else {
-                    $this->db->insert('seeker_educational_details', $insertData);
-                }
-            }
+        public function updateEducationDetails(){
+            
+            $postData = $this->input->post(null, true);
+            
+            $updateData = array(
+                'educational_qualification' => $postData['qualification[]'],
+                'department' => $postData['department[]'],
+                'school_college_name' => $postData['school[]'],
+                'percentage' => $postData['percentage[]'],
+                'yearOfPassing' => $postData['year_passed[]'],
+            );
+            $this->db->where('seekerId', $postData['seekerId']);
+            $result = $this->db->update(' seeker_educational_details', $updateData);
         }
 
-        public function getEducationalDetails($seekerId)
-        {
-            $this->db->where('seekerId', $seekerId);
-            $query = $this->db->get('seeker_educational_details');
-            return $query->result_array();
-        }
+       
 
 
         public function getExperienceDetails(){
@@ -158,41 +192,62 @@
             return $select->result_array();
         }
 
-
-        public function updateExperienceDetails($seekerId, $formData)
+        public function updateExperienceDetails()
         {
-            $seekerId = '107';
-            $existingExperienceDetails = $this->getExperienceDetails($seekerId);
-
-            // Clean the data
-            $insertData = array(
-                'seekerId' => $seekerId,
-                'job_category_id' => $formData['category'],
-                'job_sub_category_id' => $formData['subcategory'],
-                'other_category' => $formData['othercategory'],
-                'other_sub_category' => $formData['othersubcategory'],
-                'experience' => $formData['experience'],
-                'company_name' => $formData['companyname'],
-                'job_role' => $formData['role'],
-                'previous_employer_name' => $formData['nameofemployer'],
-                'previous_employer_mobile' => $formData['number'],
-                'previous_employer_email' => $formData['emailid'],
+            $postData = $this->input->post(null, true);
+            
+            $updateData = array(
+                'experience' => $postData['experience'],
+                'other_category' => $postData['category'],
+                'other_sub_category' => $postData['subcategory'],
+                'company_name' => $postData['companyname'],
+                'job_role' => $postData['role'],
+                'previous_employer_name' => $postData['nameofemployer'],
+                'previous_employer_mobile' => $postData['number'],
+                'previous_employer_email' => $postData['emailid'],
             );
+            $this->db->where('seekerId', $postData['seekerId']);
+            $result = $this->db->update(' seeker_experience', $updateData);
 
-            if (!empty($existingExperienceDetails)) {
-                // Update only the non-empty fields
-                foreach ($insertData as $key => $value) {
-                    if (!empty($value)) {
-                        $this->db->set($key, $value);
-                    }
-                }
-                $this->db->where('seekerId', $seekerId);
-                $this->db->update('seeker_experience');
-            } else {
-                // Insert new experience entry
-                $this->db->insert('seeker_experience', $insertData);
-            }
         }
+
+
+        
+        // public function updateExperienceDetails($formData)
+        // {
+        //     // $seekerId = '107';
+        //     $seekerId=$_SESSION['seekerId'];
+        //     // $existingExperienceDetails = $this->getExperienceDetails($seekerId);
+
+        //     // Clean the data
+        //     $insertData = array(
+        //         'seekerId' => $seekerId,
+        //         'job_category_id' => $formData['category'],
+        //         'job_sub_category_id' => $formData['subcategory'],
+        //         'other_category' => $formData['othercategory'],
+        //         'other_sub_category' => $formData['othersubcategory'],
+        //         'experience' => $formData['experience'],
+        //         'company_name' => $formData['companyname'],
+        //         'job_role' => $formData['role'],
+        //         'previous_employer_name' => $formData['nameofemployer'],
+        //         'previous_employer_mobile' => $formData['number'],
+        //         'previous_employer_email' => $formData['emailid'],
+        //     );
+
+        //     if (!empty($existingExperienceDetails)) {
+        //         // Update only the non-empty fields
+        //         foreach ($insertData as $key => $value) {
+        //             if (!empty($value)) {
+        //                 $this->db->set($key, $value);
+        //             }
+        //         }
+        //         $this->db->where('seekerId', $seekerId);
+        //         $this->db->update('seeker_experience');
+        //     } else {
+        //         // Insert new experience entry
+        //         $this->db->insert('seeker_experience', $insertData);
+        //     }
+        // }
 
         // public function getExperienceDetails($seekerId)
         // {

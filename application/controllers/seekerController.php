@@ -128,38 +128,63 @@ class seekerController extends CI_Controller
         $updateBasicDetails = $this->seekerModel->updateBasicDetails();
     }
 
-
-
-
     public function educationalDetails()
     {
+        
         $this->load->model('seekerModel');
-        $this->data['method'] = "education";
+        $educationalDetails = $this->seekerModel->getEducationalDetails();
+        $data['educationalDetails'] = $educationalDetails;
+        $this->data['method'] = 'educationalDetails';
+        $this->load->view('seekerView.php', $this->data);
+    }
+        // $this->load->model('seekerModel');
+        // $this->data['method'] = "education";
+        // $seekerId = $this->session->userdata('logged_in_phonenumber');
+        // if ($this->input->post()) {
+        //     $formData = $this->input->post(null, true);
+        //     $educationDetails = $this->seekerModel->educationalDetails($seekerId, $formData);
+        //     $this->data['educationDetails'] = $educationDetails;
+        // }
+        // $this->data['seekerId'] = $seekerId; 
+        // $this->load->view('seekerView', $this->data);
+    // }
 
-        $seekerId = $this->session->userdata('logged_in_phonenumber');
-
-        if ($this->input->post()) {
-            $formData = $this->input->post(null, true);
-            $this->seekerModel->educationalDetails($seekerId, $formData);
-        }
-
-        // Retrieve educational details for the logged-in user
-
-
-        $this->data['seekerId'] = $seekerId; // Assuming $seekerId holds the correct value
-        $this->load->view('seekerView', $this->data);
+    public function updateEducationDetails()
+    {
+        $postData = $this->input->post(null, true);
+        $updateEducationDetails = $this->seekerModel->updateEducationDetails();
     }
 
-    
-
-
-    public function experienceDetails()
+     public function experienceDetails()
     {
         $this->load->model('seekerModel');
-        $experienceDetails=$this->seekerModel->getExperienceDetails();
-        $this->data['experienceDetails']=$experienceDetails;
-        $this->data['method'] = "experience";
-        $this->load->view('seekerView', $this->data);
+        $experienceDetails = $this->seekerModel->getExperienceDetails();
+        // $this->data['experienceDetails'] = $experienceDetails;
+        $this->data['method'] = 'experienceDetails';
+        $this->load->view('seekerView.php', $this->data);
+        // $this->load->model('seekerModel');
+        // $experienceDetails=$this->seekerModel->getExperienceDetails();
+        // // $this->data['experienceDetails']=$experienceDetails;
+        
+        // $this->data['method'] = "experience";
+        // $this->load->view('seekerView', $this->data);
+    }
+
+    public function updateExperienceDetails(){
+
+        $postData = $this->input->post(null, true);
+        $updateExperienceDetails = $this->seekerModel->updateExperienceDetails();
+
+        $this->experienceDetails();
+        // $this->load->model('seekerModel');
+        // $this->data['method'] = "experience";
+
+        // $formData = $this->input->post(null, true);
+        // $this->seekerModel-> updateExperienceDetails($formData);
+       
+        // // $this->data['seekerId'] = $seekerId;
+        // // $this->load->view('seekerView', $this->data);
+        // $this->experienceDetails();
     }
 
     public function projectDetails(){
