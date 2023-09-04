@@ -126,6 +126,8 @@ class seekerController extends CI_Controller
     {
         $postData = $this->input->post(null, true);
         $updateBasicDetails = $this->seekerModel->updateBasicDetails();
+
+        $this->basicDetails();
     }
 
     public function educationalDetails()
@@ -133,7 +135,7 @@ class seekerController extends CI_Controller
         
         $this->load->model('seekerModel');
         $educationalDetails = $this->seekerModel->getEducationalDetails();
-        $data['educationalDetails'] = $educationalDetails;
+        $this->data['educationalDetails'] = $educationalDetails;
         $this->data['method'] = 'educationalDetails';
         $this->load->view('seekerView.php', $this->data);
     }
@@ -151,15 +153,18 @@ class seekerController extends CI_Controller
 
     public function updateEducationDetails()
     {
+        
         $postData = $this->input->post(null, true);
         $updateEducationDetails = $this->seekerModel->updateEducationDetails();
+
+        $this->educationalDetails();
     }
 
      public function experienceDetails()
     {
         $this->load->model('seekerModel');
         $experienceDetails = $this->seekerModel->getExperienceDetails();
-        // $this->data['experienceDetails'] = $experienceDetails;
+        $this->data['experienceDetails'] = $experienceDetails;
         $this->data['method'] = 'experienceDetails';
         $this->load->view('seekerView.php', $this->data);
         // $this->load->model('seekerModel');
@@ -188,91 +193,151 @@ class seekerController extends CI_Controller
     }
 
     public function projectDetails(){
-        $this->load->model('seekerModel');
-        $projectDetails=$this->seekerModel->getProjectDetails();
-        $this->data['projectDetails']=$projectDetails;
-        $this->data['method'] = "project";
-        $this->load->view('seekerView', $this->data);
+        // $this->load->model('seekerModel');
+        // $projectDetails=$this->seekerModel->getProjectDetails();
+        // $this->data['projectDetails']=$projectDetails;
+        // $this->data['method'] = "project";
+        // $this->load->view('seekerView', $this->data);
+          
+        
+            $this->load->model('seekerModel');
+            $provider = $this->seekerModel->getProjectDetails(); 
+            $this->data['projectDetails'] = $provider;
+            $this->data['method'] = "project";
+            $this->load->view('seekerView.php', $this->data);
+           
+          
+            
     }
 
 
     public function updateProjectDetails()
     {
-        $this->load->model('seekerModel');
-        $this->data['method'] = "project";
-        $seekerDetail = $this->seekerModel->update();
-        $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
+        // $this->load->model('seekerModel');
+        // $this->data['method'] = "project";
+        // $seekerDetail = $this->seekerModel->update();
+        // $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
 
-        if ($this->input->post()) {
-            $formData = $this->input->post(null, true);
-            $this->seekerModel->projectDetails($seekerId, $formData);
-        }
+        // if ($this->input->post()) {
+        //     $formData = $this->input->post(null, true);
+        //     $this->seekerModel->projectDetails($seekerId, $formData);
+        // }
 
-        $data['seekerDetail'] = $seekerDetail;
-        $this->data['seekerId'] = $seekerId; // Pass the seekerId to the view
+        // $data['seekerDetail'] = $seekerDetail;
+        // $this->data['seekerId'] = $seekerId; // Pass the seekerId to the view
 
-        $this->load->view('seekerView', $this->data);
+        // $this->load->view('seekerView', $this->data);
+        $postData = $this->input->post(null, true);
+        $updateProjectDetails = $this->seekerModel->updateProjectDetails();
+
+        $this->projectDetails();
     }
 
     public function areaofinterest(){
-        $this->load->model('seekerModel');
-        $areaofinterest=$this->seekerModel->getAreaOfInterest();
-        $this->data['areaofinterest']=$areaofinterest;
+        // $this->load->model('seekerModel');
+        // $areaofinterest=$this->seekerModel->getAreaOfInterest();
+        // $this->data['areaofinterest']=$areaofinterest;
+        // $this->data['method'] = "areaofinterest";
+        // $this->load->view('seekerView', $this->data);
         $this->data['method'] = "areaofinterest";
-        $this->load->view('seekerView', $this->data);
+        $provider = $this->seekerModel->getAreaOfInterest();
+        $this->data['areaofinterest'] = $provider;
+        $this->load->view('seekerView.php', $this->data);
     }
 
 
     public function updateAreaOfInterest()
     {
-        $this->load->model('seekerModel');
-        $this->data['method'] = "areaofinterest";
-        $seekerId = $this->session->userdata('logged_in_phonenumber');
+        // $this->load->model('seekerModel');
+        // $this->data['method'] = "areaofinterest";
+        // $seekerId = $this->session->userdata('logged_in_phonenumber');
 
-        if ($this->input->post()) {
-            $formData = $this->input->post(null, true);
+        // if ($this->input->post()) {
+        //     $formData = $this->input->post(null, true);
 
-            $this->seekerModel->areaOfInterest($seekerId, $formData);
-        }
+        //     $this->seekerModel->areaOfInterest($seekerId, $formData);
+        // }
 
-        $seekerDetail = $this->seekerModel->update();
+        // $seekerDetail = $this->seekerModel->update();
 
-        $data = array(
-            'seekerDetail' => $seekerDetail,
-            'seekerId' => $seekerId
-        );
+        // $data = array(
+        //     'seekerDetail' => $seekerDetail,
+        //     'seekerId' => $seekerId
+        // );
 
-        $this->load->view('seekerView', $data);
+        // $this->load->view('seekerView', $data);
+        $postData = $this->input->post(null, true);
+        $updateAreaOfInterest = $this->seekerModel->updateAreaOfInterest();
+
+        $this->areaofinterest();
     }
 
 
     public function skills()
     {
+        // $this->data['method'] = "skills";
+        // $seekerId = $this->session->userdata('logged_in_phonenumber');
+
+        // if ($this->input->post()) {
+        //     $formData = $this->input->post(null, true);
+        //     $this->seekerModel->skill($seekerId, $formData);
+        // }
+
+        // // Retrieve updated seekerDetail after insertion/update
+        // $seekerDetail = $this->seekerModel->getSkills($seekerId);
+
+        // $data = array(
+        //     'seekerDetail' => $seekerDetail,
+        //     'seekerId' => $seekerId,
+        //     'method' => $this->data['method']
+        // );
+
+        // $this->load->view('seekerView', $this->data);
         $this->data['method'] = "skills";
-        $seekerId = $this->session->userdata('logged_in_phonenumber');
+        $provider = $this->seekerModel->getSkills();
+        $this->data['skills'] = $provider;
+        $this->load->view('seekerView.php', $this->data);
+    }
 
-        if ($this->input->post()) {
-            $formData = $this->input->post(null, true);
-            $this->seekerModel->skill($seekerId, $formData);
-        }
+    public function updateskills(){
+        $postData = $this->input->post(null, true);
+        $updateskills = $this->seekerModel->updateskills();
 
-        // Retrieve updated seekerDetail after insertion/update
-        $seekerDetail = $this->seekerModel->getSkills($seekerId);
-
-        $data = array(
-            'seekerDetail' => $seekerDetail,
-            'seekerId' => $seekerId,
-            'method' => $this->data['method']
-        );
-
-        $this->load->view('seekerView', $this->data);
+        $this->skills();
     }
 
     public function resume(){
         $this->load->model('seekerModel');
-        // $resume = $this->seekerModel->getResume();
-        // $this->data['resume']= $resume;
-        $this->data['method'] = "resume";
-        $this->load->view('seekerView', $this->data);
+        // // $resume = $this->seekerModel->getResume();
+        // // $this->data['resume']= $resume;
+        // $this->data['method'] = "resume";
+        // $this->load->view('seekerView', $this->data);
+
+       
+            $config['upload_path'] = './uploads/';
+            $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
+            $config['encrypt_name'] = TRUE;
+    
+            $this->load->library('upload', $config);
+    
+            if (!$this->upload->do_upload('userfile')) {
+                // File upload failed, handle errors
+                $error = $this->upload->display_errors();
+                echo $error;
+            } else {
+                // File uploaded successfully
+                $data = $this->upload->data();
+    
+                // Insert file details into the database
+                $this->load->model('File_model'); // Load your model
+                $insert_data = array(
+                    'file_name' => $data['file_name'],
+                    'file_path' => $data['full_path'],
+                );
+    
+                $this->File_model->insert_file($insert_data); // Call your model method to insert data
+                
+                echo "File uploaded and data inserted successfully!";
+            }
     }
 }

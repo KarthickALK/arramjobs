@@ -382,7 +382,7 @@
                 <h4> Address : </h3>
                 <div class="form-group">
                   <label for="Door no">Door no/building name </label>
-                  <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['doorno']); ?>" name="doorno">
+                  <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['buildingName']); ?>" name="doorno">
                   <div id="doorno_error" class="error"></div>
                 </div>
                 <div class="form-group">
@@ -579,14 +579,20 @@
             <div id="educationFormsContainer">
               <div class="education-form-container">
 
-                <form name="educationform" action="http://localhost/arramjobs/seekerController/educationalDetails" method="post" onsubmit="return validateForm()" >
+                <form name="educationform" action="http://localhost/arramjobs/seekerController/updateEducationDetails" method="post" onsubmit="return validateForm()" >
                   <?php
-              foreach($educationDetails as $key => $value) {
+              // foreach($educationDetails as $key => $value) {
+                 
+                if (isset($educationalDetails[0]['id'])) {
+                  foreach ($educationalDetails as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+              
               ?>
-             
+                   <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                  <input type="hidden" class="form-control" id="id" value="<?php echo $value['seekerId']; ?>" name="id" placeholder="Enter your name">
                   <div class="form-group">
                     <label for="qualification">Educational Qualification*</label>
-                    <select class="form-control" id="qualification"  name="qualification[]" onchange="toggleFields()">
+                    <select class="form-control" id="qualification"  name="qualification" value="<?php echo $value['educational_qualification']; ?>" onchange="toggleFields()">
                       <option value="">Select Qualification</option>
                       <option value="below_8th">Below 8th</option>
                       <option value="sslc">SSLC</option>
@@ -599,7 +605,7 @@
                   </div>
                   <div class="form-group" id="department-group" style="display: none;">
                     <label for="department">Department</label>
-                    <select class="form-control" id="department" name="department[]">
+                    <select class="form-control" id="department" name="department" value="<?php echo $value['department']; ?>">
                       <option value="">Select Department</option>
                       <option value="Tamil">Tamil</option>
                       <option value="english">English</option>
@@ -612,25 +618,74 @@
                   </div>
                   <div class="form-group" id="school-group" style="display: none;">
                     <label for="school">School Name/collegename</label>
-                    <input type="text" class="form-control" id="school" value="<?php echo $value['school_college_name']; ?>" name="school[]">
+                    <input type="text" class="form-control" id="school" value="<?php echo $value['school_college_name']; ?>" name="school">
                   </div>
                   <div class="form-group" id="percentage-group" style="display: none;">
                     <label for="percentage">Percentage</label>
-                    <input type="number" class="form-control" id="percentage" id="school"  value="<?php echo $value['percentage']; ?>" name="percentage[]">
+                    <input type="text" class="form-control" id="percentage" id="school"  value="<?php echo $value['percentage']; ?>" name="percentage">
                     <div id="percentage_error" class="error"></div>
                   </div>
                   <div class="form-group" id="year-group" style="display: none;">
                     <label for="year_passed">Year of Passed Out</label>
-                    <input type="number" class="form-control" id="year_passed" value="<?php echo $value['yearOfPassing']; ?>" name="year_passed[]">
+                    <input type="number" class="form-control" id="year_passed" value="<?php echo $value['yearOfPassing']; ?>" name="year_passed">
                     <div id="year_error" class="error"></div>
                   </div>
-                  <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button>
+                  <!-- <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button> -->
               </div>
               <button type="submit" id="educationsubmit" class="btn">Submit</button>
               <?php
-              }
-              ?>
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                       <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                       <div class="form-group">
+                    <label for="qualification">Educational Qualification*</label>
+                    <select class="form-control" id="qualification"  name="qualification"  onchange="toggleFields()">
+                      <option value="">Select Qualification</option>
+                      <option value="below_8th">Below 8th</option>
+                      <option value="sslc">SSLC</option>
+                      <option value="hsc">HSC</option>
+                      <option value="bachelors">Bachelors</option>
+                      <option value="masters">Masters</option>
+                      <option value="doctorate">Doctorate</option>
+                    </select>
+                    <div id="qualification_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="department-group" style="display: none;">
+                    <label for="department">Department</label>
+                    <select class="form-control" id="department" name="department" >
+                      <option value="">Select Department</option>
+                      <option value="Tamil">Tamil</option>
+                      <option value="english">English</option>
+                      <option value="maths">Maths</option>
+                      <option value="physics">Physics</option>
+                      <option value="chemistry">Chemistry</option>
+                      <option value="computer_science">Computer Science</option>
+                    </select>
+                    <div id="department_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="school-group" style="display: none;">
+                    <label for="school">School Name/collegename</label>
+                    <input type="text" class="form-control" id="school"  name="school">
+                  </div>
+                  <div class="form-group" id="percentage-group" style="display: none;">
+                    <label for="percentage">Percentage</label>
+                    <input type="number" class="form-control" id="percentage" id="school"  name="percentage">
+                    <div id="percentage_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="year-group" style="display: none;">
+                    <label for="year_passed">Year of Passed Out</label>
+                    <input type="number" class="form-control" id="year_passed"   name="year_passed">
+                    <div id="year_error" class="error"></div>
+                  </div>
+                  <!-- <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button> -->
+              </div>
+              <button type="submit" id="educationsubmit" class="btn">Submit</button>
               </form>
+              <?php
+                  }
+              ?>
             </div>
             <script>
               var educationFormCount = 1;
@@ -761,7 +816,7 @@
 
             <div class="container">
               <h3>Experience Details Form</h3>
-              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="updateExperienceDetails">
+              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="http://localhost/arramjobs/seekerController/updateExperienceDetails">
               <?php
                 if (isset($experienceDetails[0]['id'])) {
                   foreach ($experienceDetails as $key => $value) {
@@ -769,22 +824,22 @@
                 ?>
                  
                  <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
-                  <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
+                  <input type="hidden" class="form-control" id="id" value="<?php echo $value['seekerId']; ?>" name="id" placeholder="Enter your name">
 
                   <div class="form-group">
                     <label for="category">Category:</label>
                     <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
                       <option value="">Select a Category</option>
-                      <option value="it" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'it' ? 'selected' : ''; ?>>Information Technology</option>
-                      <option value="education" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'education' ? 'selected' : ''; ?>>Education</option>
-                      <option value="civil" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'civil' ? 'selected' : ''; ?>>Civil</option>
-                      <option value="healthcare" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'healthcare' ? 'selected' : ''; ?>>Healthcare</option>
-                      <option value="sales and marketing" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sales and marketing' ? 'selected' : ''; ?>>Sales and Marketing</option>
-                      <option value="finance" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'finance' ? 'selected' : ''; ?>>Finance</option>
-                      <option value="textile" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'textile' ? 'selected' : ''; ?>>Textile</option>
-                      <option value="sports" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sports' ? 'selected' : ''; ?>>Sports</option>
-                      <option value="services" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'services' ? 'selected' : ''; ?>>Services</option>
-                      <option value="others" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'others' ? 'selected' : ''; ?>>Others</option>
+                      <option value="it">Information Technology</option>
+                      <option value="education">Education</option>
+                      <option value="civil">Civil</option>
+                      <option value="healthcare">Healthcare</option>
+                      <option value="sales and marketing">Sales and Marketing</option>
+                      <option value="finance">Finance</option>
+                      <option value="textile">Textile</option>
+                      <option value="sports">Sports</option>
+                      <option value="services">Services</option>
+                      <option value="others">Others</option>
                     </select>
                     <div id="category_error" class="error"></div>
                   </div>
@@ -795,42 +850,47 @@
                     </select>
                     <div id="subcategory_error" class="error"></div>
                   </div>
-                  <div class="form-group" id="otherCategoryField" style="display: none;">
-                    <label for="othercategory">Other Category:</label>
-                    <input type="text" class="form-control" id="othercategory" name="othercategory">
-                  </div>
-
-                  <div class="form-group" id="otherSubcategoryField" style="display: none;">
-                    <label for="othersubcategory">Other Subcategory:</label>
-                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory">
-                  </div>
 
 
                   <div class="form-group">
                     <label for="experience">Experience</label>
-                    <select class="form-control" id="experience" name="experience">
+                    <select class="form-control" id="experience" name="experience" value="<?php echo $value['experience']; ?>">
                       <option value="">Select your experience</option>
-                      <option value="fresher" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'fresher' ? 'selected' : ''; ?>>Fresher</option>
-                      <option value="0-2" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '0-2' ? 'selected' : ''; ?>>0-2</option>
-                      <option value="3-5" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '3-5' ? 'selected' : ''; ?>>3-5</option>
-                      <option value="5-10" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '5-10' ? 'selected' : ''; ?>>5-10</option>
-                      <option value="10-15" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '10-15' ? 'selected' : ''; ?>>10-15</option>
-                      <option value="15-20" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '15-20' ? 'selected' : ''; ?>>15-20</option>
-                      <option value="above 20 years" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'above 20 years' ? 'selected' : ''; ?>>Above 20 years</option>
+                      <option value="fresher" >Fresher</option>
+                      <option value="0-2" >0-2</option>
+                      <option value="3-5" >3-5</option>
+                      <option value="5-10">5-10</option>
+                      <option value="10-15">10-15</option>
+                      <option value="15-20">15-20</option>
+                      <option value="above 20 years">Above 20 years</option>
                     </select>
                     <div id="experience_error" class="error"></div>
                   </div>
+                  <div class="form-group" id="otherCategoryField" style="display: none;" >
+                    <label for="othercategory">Other Category:</label>
+                    <select class="form-control" id="experience" name="experience" value="<?php echo $value['other_category']; ?>" >
+                    <input type="text" class="form-control" id="othercategory" name="othercategory" >
+                  </div>
+
+                  <div class="form-group" id="otherSubcategoryField" style="display: none;">
+                    <label for="othersubcategory">Other Subcategory:</label>
+                    <select class="form-control" id="experience" name="experience" value="<?php echo $value['other_sub_category']; ?>" >
+                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory" >
+                  </div>
+
+
+                 
 
 
                   <div class="form-group">
                     <label for="company name">Company Name</label>
-                    <input type="text" class="form-control" id="companyname" name="companyname" value="<?php echo $value['company_name']; ?>" value="<?php echo isset($existingExperience['company_name']) ? $existingExperience['company_name'] : ''; ?>">
+                    <input type="text" class="form-control" id="companyname" name="companyname" value="<?php echo $value['company_name']; ?>" >
                     <div id="companyname_error" class="error"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="role">Role in the company</label>
-                    <input type="text" class="form-control" id="role" name="role" value="<?php echo isset($existingExperience['job_role']) ? $existingExperience['job_role'] : ''; ?>">
+                    <input type="text" class="form-control" id="role" name="role" value="<?php echo $value['job_role']; ?>">
                     <div id="role_error" class="error"></div>
                   </div>
 
@@ -838,18 +898,18 @@
 
                   <div class="form-group">
                     <label for="Name">Name of employer*</label>
-                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" value="<?php echo isset($existingExperience['previous_employer_name']) ? $existingExperience['previous_employer_name'] : ''; ?>">
+                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" value="<?php echo $value['previous_employer_name']; ?>">
                     <div id="name_error" class="error"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="phone number">Phone Number</label>
-                    <input type="text" class="form-control" id="number" name="number" value="<?php echo isset($existingExperience['previous_employer_mobile']) ? $existingExperience['previous_employer_mobile'] : ''; ?>">
+                    <input type="text" class="form-control" id="number" name="number" value="<?php echo $value['previous_employer_mobile']; ?>">
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" id="emailid" name="emailid" value="<?php echo isset($existingExperience['previous_employer_email']) ? $existingExperience['previous_employer_email'] : ''; ?>">
+                    <input type="text" class="form-control" id="emailid" name="emailid" value="<?php echo $value['previous_employer_email']; ?>">
                   </div>
 
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -865,16 +925,16 @@
                     <label for="category">Category:</label>
                     <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
                       <option value="">Select a Category</option>
-                      <option value="it" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'it' ? 'selected' : ''; ?>>Information Technology</option>
-                      <option value="education" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'education' ? 'selected' : ''; ?>>Education</option>
-                      <option value="civil" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'civil' ? 'selected' : ''; ?>>Civil</option>
-                      <option value="healthcare" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'healthcare' ? 'selected' : ''; ?>>Healthcare</option>
-                      <option value="sales and marketing" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sales and marketing' ? 'selected' : ''; ?>>Sales and Marketing</option>
-                      <option value="finance" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'finance' ? 'selected' : ''; ?>>Finance</option>
-                      <option value="textile" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'textile' ? 'selected' : ''; ?>>Textile</option>
-                      <option value="sports" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sports' ? 'selected' : ''; ?>>Sports</option>
-                      <option value="services" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'services' ? 'selected' : ''; ?>>Services</option>
-                      <option value="others" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'others' ? 'selected' : ''; ?>>Others</option>
+                      <option value="it">>Information Technology</option>
+                      <option value="education">Education</option>
+                      <option value="civil">Civil</option>
+                      <option value="healthcare">Healthcare</option>
+                      <option value="sales and marketing">Sales and Marketing</option>
+                      <option value="finance">Finance</option>
+                      <option value="textile">Textile</option>
+                      <option value="sports">Sports</option>
+                      <option value="services">Services</option>
+                      <option value="others">Others</option>
                     </select>
                     <div id="category_error" class="error"></div>
                   </div>
@@ -892,21 +952,21 @@
 
                   <div class="form-group" id="otherSubcategoryField" style="display: none;">
                     <label for="othersubcategory">Other Subcategory:</label>
-                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory">
+                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory" >
                   </div>
 
 
                   <div class="form-group">
                     <label for="experience">Experience</label>
-                    <select class="form-control" id="experience" name="experience">
+                    <select class="form-control" id="experience" name="experience" >
                       <option value="">Select your experience</option>
-                      <option value="fresher" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'fresher' ? 'selected' : ''; ?>>Fresher</option>
-                      <option value="0-2" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '0-2' ? 'selected' : ''; ?>>0-2</option>
-                      <option value="3-5" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '3-5' ? 'selected' : ''; ?>>3-5</option>
-                      <option value="5-10" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '5-10' ? 'selected' : ''; ?>>5-10</option>
-                      <option value="10-15" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '10-15' ? 'selected' : ''; ?>>10-15</option>
-                      <option value="15-20" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '15-20' ? 'selected' : ''; ?>>15-20</option>
-                      <option value="above 20 years" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'above 20 years' ? 'selected' : ''; ?>>Above 20 years</option>
+                      <option value="fresher" >Fresher</option>
+                      <option value="0-2" >0-2</option>
+                      <option value="3-5" >3-5</option>
+                      <option value="5-10" >5-10</option>
+                      <option value="10-15" >10-15</option>
+                      <option value="15-20">15-20</option>
+                      <option value="above 20 years">Above 20 years</option>
                     </select>
                     <div id="experience_error" class="error"></div>
                   </div>
@@ -914,13 +974,13 @@
 
                   <div class="form-group">
                     <label for="company name">Company Name</label>
-                    <input type="text" class="form-control" id="companyname" name="companyname" value="<?php echo isset($existingExperience['company_name']) ? $existingExperience['company_name'] : ''; ?>">
+                    <input type="text" class="form-control" id="companyname" name="companyname" >
                     <div id="companyname_error" class="error"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="role">Role in the company</label>
-                    <input type="text" class="form-control" id="role" name="role" value="<?php echo isset($existingExperience['job_role']) ? $existingExperience['job_role'] : ''; ?>">
+                    <input type="text" class="form-control" id="role" name="role">
                     <div id="role_error" class="error"></div>
                   </div>
 
@@ -928,18 +988,18 @@
 
                   <div class="form-group">
                     <label for="Name">Name of employer*</label>
-                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" value="<?php echo isset($existingExperience['previous_employer_name']) ? $existingExperience['previous_employer_name'] : ''; ?>">
+                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" >
                     <div id="name_error" class="error"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="phone number">Phone Number</label>
-                    <input type="text" class="form-control" id="number" name="number" value="<?php echo isset($existingExperience['previous_employer_mobile']) ? $existingExperience['previous_employer_mobile'] : ''; ?>">
+                    <input type="text" class="form-control" id="number" name="number" >
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" id="emailid" name="emailid" value="<?php echo isset($existingExperience['previous_employer_email']) ? $existingExperience['previous_employer_email'] : ''; ?>">
+                    <input type="text" class="form-control" id="emailid" name="emailid"  >
                   </div>
 
                   <button type="submit" class="btn btn-primary">Submit</button>
@@ -1055,10 +1115,10 @@
                 }
                 if (experience.value === 'fresher') {
                   hideFields();
-                } else if (experience.value === '') {
-                  displayError('Please select a experience.', 'experience_error');
+              } else if (experience.value === '') {
+                  displayError('Please select an experience.', 'experience_error');
                   return false;
-                }
+              }
                 if (companyname.value === '') {
                   displayError('Please enter a company name.', 'companyname_error');
                   return false;
@@ -1108,7 +1168,7 @@
 
             <div class="container">
               <h3 id="projectdeailsform">Project Details Form</h3>
-              <form name="projectform" method="post" onsubmit="return validateForm()" action="projectDetails">
+              <form name="projectform" method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/seekerController/updateProjectDetails">
                 <?php
                 if (isset($projectDetails[0]['id'])) {
                   foreach ($projectDetails as $key => $value) {
@@ -1119,37 +1179,37 @@
                       <div class="project-section">
                         <div class="form-group">
                           <label for="projectname">Project Name</label>
-                          <input type="text" class="form-control" id="projectname" name="projectname[]">
+                          <input type="text" class="form-control" id="projectname" name="projectname" value="<?php echo $value['projectName']; ?>">
                           <div id="projectname_error" class="error"></div>
                           <div class="form-group">
                             <label for="Duration of project">Duration of Project</label>
-                            <input type="text" class="form-control" id="durationofproject" name="durationofproject[]">
+                            <input type="text" class="form-control" id="durationofproject" name="durationofproject"  value="<?php echo $value['projectDuration']; ?>">
                             <div id="durationofproject_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="role in the project">Role in the Project</label>
-                            <input type="text" class="form-control" id="roleofproject" name="roleofproject[]">
+                            <input type="text" class="form-control" id="roleofproject" name="roleofproject"  value="<?php echo $value['roleInProject']; ?>">
                             <div id="roleofproject_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="">start date of project*</label>
-                            <input type="date" class="form-control" id="startdate" name="startdate[]">
+                            <input type="date" class="form-control" id="startdate" name="startdate" value="<?php echo $value['startingDate']; ?>" >
                             <div id="startdate_error" class="error"></div>
                             <label for="">End date of the project*</label>
-                            <input type="date" class="form-control" id="enddate" name="enddate[]">
+                            <input type="date" class="form-control" id="enddate" name="enddate" value="<?php echo $value['endingDate']; ?>" >
                             <div id="enddate_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="Responsibity">My responsibility in project*</label>
-                            <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility[]"></textarea>
+                            <input type="text" class="form-control" rows="3" class="form-control" id="responsibility" value="<?php echo $value['responsibilityInProject']; ?>" name="responsibility">
                             <div id="responsibility_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="Skills used in project">Skills used in project*</label>
-                            <input type="text" class="form-control" id="skillsused" name="skillsused[]">
+                            <input type="text" class="form-control" id="skillsused" name="skillsused" value="<?php echo $value['skillsUsedInProject']; ?>">
                             <div id="skills_error" class="error"></div>
                           </div>
-                          <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
+                          <!-- <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button> -->
                         </div>
                         <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
                       <?php
@@ -1192,7 +1252,7 @@
                               <input type="text" class="form-control" id="skillsused" name="skillsused[]">
                               <div id="skills_error" class="error"></div>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
+                            <!-- <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button> -->
                           </div>
                           <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
                         <?php
@@ -1294,13 +1354,18 @@
 
               <div class="container">
                 <h3>Area of Interest Form</h3>
-                <form method="post" onsubmit="return validateForm()">
-
+                <form method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/seekerController/updateAreaOfInterest">
+                <?php
+                if (isset($areaofinterest[0]['id'])) {
+                  foreach ($areaofinterest as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+                ?>
+                  <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
                   <div id="educationFormsContainer">
                     <div class="education-form-container">
                       <div class="form-group">
                         <label for="category">Category *</label>
-                        <select class="form-control" id="category" name="category[]" value="<?php echo isset($value['interst_category_id']) ? $value['interest_category_id'] : ''; ?>" onchange="toggleCategoryFields()">
+                        <select class="form-control" id="category" name="category" value="<?php echo $value['other_interst_category']; ?>"  onchange="toggleCategoryFields()">
                           <option value="">Select a category</option>
                           <option value="it">Information Technology</option>
                           <option value="health">Health Care</option>
@@ -1309,29 +1374,29 @@
                       </div>
                       <div class="form-group"">
                 <label for=" subcategory">Subcategory *</label>
-                        <select class="form-control" id="subcategory" name="subcategory[]" value="<?php echo isset($value['interst_sub_category_id']) ? $value['interst_sub_category_id'] : ''; ?>">
+                        <select class="form-control" id="subcategory" name="subcategory" value="<?php echo $value['other_sub_interst_category']; ?>" >
                           <option value="">Select a sub category </option>
                         </select>
                       </div>
                       <div class="form-group" id="otherCategoryFields" style="display: none;">
                         <label for="customCategoryInput">Custom Category</label>
-                        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput[]" placeholder="Enter custom category">
+                        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput" placeholder="Enter custom category">
                         <label for="customSubcategoryInput">Custom Subcategory</label>
-                        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput[]" placeholder="Enter custom subcategory">
+                        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput" placeholder="Enter custom subcategory">
                       </div>
                       <div class="form-group" id="customCategory" style="display: none;">
                         <label for="customCategoryInput">Category Name</label>
-                        <input type="text" class="form-control" id="customCategoryInput" value="<?php echo isset($value['other_interst_category']) ? $value['other_interest_category'] : ''; ?>" name="customCategoryInput[]">
+                        <input type="text" class="form-control" id="customCategoryInput"  name="customCategoryInput">
                       </div>
 
                       <div class="form-group" id="customSubcategory" style="display: none;">
                         <label for="customSubcategoryInput"> Subcategory Name</label>
-                        <input type="text" class="form-control" id="customSubcategoryInput" value="<?php echo isset($value['other_sub_interst_category']) ? $value['other_sub_interst_category'] : ''; ?>" name="customSubcategoryInput[]">
+                        <input type="text" class="form-control" id="customSubcategoryInput"  name="customSubcategoryInput">
                       </div>
 
                       <div class="form-group">
                         <label for="preferred-location">Preferred Location to work</label>
-                        <input type="text" class="form-control" id="preferred-location" value="<?php echo isset($value['prefered_location']) ? $value['prefered_location'] : ''; ?>" name="preferred-location[]">
+                        <input type="text" class="form-control" id="preferred-location"  name="preferred-location" value="<?php echo $value['prefered_location']; ?>">
 
                         <!-- <select class="form-control" id="preferred-location" name="preferred-location">
                     <option value="">Select a Preferred location</option>
@@ -1342,15 +1407,15 @@
                       </div>
                       <div class="form-group">
                         <label for="experience">Experience</label>
-                        <input type="text" class="form-control" id="experience" value="<?php echo isset($value['experience']) ? $value['experience'] : ''; ?>" name="experience[]">
+                        <input type="text" class="form-control" id="experience"  name="experience" value="<?php echo $value['experience']; ?>">
                       </div>
                       <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description[]" value="<?php echo isset($value['description']) ? $value['description'] : ''; ?>" rows="3"></textarea>
+                        <input class="form-control" id="description" name="description" value="<?php echo $value['description']; ?>" rows="3">
                       </div>
                       <div class="form-group">
                         <label for="jobtype">Job Type</label>
-                        <select class="form-control" id="jobtype" name="jobtype[]">
+                        <select class="form-control" id="jobtype" name="jobtype" value="<?php echo $value['job_type']; ?>">
                           <option value="">Select a job type</option>
                           <option value="parttime">Part Time</option>
                           <option value="fulltime">Full Time</option>
@@ -1360,11 +1425,89 @@
 
                       <div class="form-group">
                         <label for="expected-salary">Expected Salary</label>
-                        <input type="text" class="form-control" id="expected-salary" name="expected-salary[]">
+                        <input type="text" class="form-control" id="expected-salary" name="expected-salary" value="<?php echo $value['expected_salary']; ?>">
                       </div>
-                      <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button>
+                      <!-- <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button> -->
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                       <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                         <div id="educationFormsContainer">
+                    <div class="education-form-container">
+                      <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select class="form-control" id="category" name="category" onchange="toggleCategoryFields()">
+                          <option value="">Select a category</option>
+                          <option value="it">Information Technology</option>
+                          <option value="health">Health Care</option>
+                          <option value="others">Others</option>
+                        </select>
+                      </div>
+                      <div class="form-group"">
+                <label for=" subcategory">Subcategory *</label>
+                        <select class="form-control" id="subcategory" name="subcategory" >
+                          <option value="">Select a sub category </option>
+                        </select>
+                      </div>
+                      <div class="form-group" id="otherCategoryFields" style="display: none;">
+                        <label for="customCategoryInput">Custom Category</label>
+                        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput" placeholder="Enter custom category">
+                        <label for="customSubcategoryInput">Custom Subcategory</label>
+                        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput" placeholder="Enter custom subcategory">
+                      </div>
+                      <div class="form-group" id="customCategory" style="display: none;">
+                        <label for="customCategoryInput">Category Name</label>
+                        <input type="text" class="form-control" id="customCategoryInput"  name="customCategoryInput">
+                      </div>
+
+                      <div class="form-group" id="customSubcategory" style="display: none;">
+                        <label for="customSubcategoryInput"> Subcategory Name</label>
+                        <input type="text" class="form-control" id="customSubcategoryInput"  name="customSubcategoryInput">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="preferred-location">Preferred Location to work</label>
+                        <input type="text" class="form-control" id="preferred-location" " name="preferred-location">
+
+                        <!-- <select class="form-control" id="preferred-location" name="preferred-location">
+                    <option value="">Select a Preferred location</option>
+                    <option value="chennai">chennai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="others">others</option>
+                </select> -->
+                      </div>
+                      <div class="form-group">
+                        <label for="experience">Experience</label>
+                        <input type="text" class="form-control" id="experience"  name="experience">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description"  rows="3"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="jobtype">Job Type</label>
+                        <select class="form-control" id="jobtype" name="jobtype">
+                          <option value="">Select a job type</option>
+                          <option value="parttime">Part Time</option>
+                          <option value="fulltime">Full Time</option>
+                          <option value="both">Both</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="expected-salary">Expected Salary</label>
+                        <input type="text" class="form-control" id="expected-salary" name="expected-salary">
+                      </div>
+                      <!-- <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button> -->
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <?php
+                  }
+                  ?>
                 </form>
               </div>
               <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -1490,8 +1633,50 @@
               <div class="container">
 
                 <h3>Skill Form</h3>
-                <form id="skillForm" method="post" action="skills">
+                <form id="skillForm" method="post" action="http://localhost/arramjobs/seekerController/updateskills">
+                <?php
+                if (isset($skills[0]['id'])) {
+                  foreach ($skills as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+                ?>
+                 <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
                   <div class="skill-entry">
+                    <div class="form-row">
+                      <div class="col-md-4 mb-3">
+                        <br><label for="skillName">Skill Name</label>
+                        <input type="text" class="form-control" id="skillname" value="<?php echo $value['skill']; ?>" name="skillname" required>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <br><label for="experience">Experience</label>
+                        <select class="form-control" name="experience" value="<?php echo $value['experience']; ?>" id="experience" required><br>
+                          <option value="fresher">Fresher</option>
+                          <option value="0-2">0-2 years</option>
+                          <option value="2-5">2-5 years</option>
+                          <option value="5-10">5-10 years</option>
+                          <option value="10-20">10-20 years</option>
+                          <option value="20-above">20 years above</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <br><label for="skillLevel">Skill Level</label>
+                        <select class="form-control" name="skilllevel" value="<?php echo $value['skill_level']; ?>" id="skilllevel" required>
+                          <option value="beginner">Beginner</option>
+                          <option value="intermediate">Intermediate</option>
+                          <option value="advanced">Advanced</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <br><button class="btn" type="button" id="addSkillBtn">Add Skill</button> -->
+                  <button class="btn" id="addskillsubmit" type="submit">Submit</button>
+                  <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                       <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                               <div class="skill-entry">
                     <div class="form-row">
                       <div class="col-md-4 mb-3">
                         <br><label for="skillName">Skill Name</label>
@@ -1519,8 +1704,11 @@
                     </div>
                   </div>
 
-                  <br><button class="btn" type="button" id="addSkillBtn">Add Skill</button>
+                  <!-- <br><button class="btn" type="button" id="addSkillBtn">Add Skill</button> -->
                   <button class="btn" id="addskillsubmit" type="submit">Submit</button>
+                  <?php
+                  }
+                  ?>
                 </form>
 
                 <ul id="addedSkills"></ul>
@@ -1558,7 +1746,7 @@
             <?php
           } else if ($method == 'resume') {
             ?>
-              <div class="container mt-4">
+              <div class="container">
                 <h2>Upload resume</h2>
                 <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
 

@@ -2709,7 +2709,7 @@
                                             <td><?php echo $pvalue['projectName'] ?> </td>
                                             <td><?php echo $pvalue['projectDuration'] ?></td>
                                             <td> <?php echo $pvalue['roleInProject'] ?></td>
-                                            <td> <?php echo $pvalue['projectDes'] ?></td>
+                                            <td> <?php echo $pvalue['responsibilityInProject'] ?></td>
                                             <td> <?php echo $pvalue['skillsUsedInProject'] ?></td>
                                         </tr>
 
