@@ -1065,7 +1065,7 @@
                     addSubcategoryOption("Architectural Drafter");
                     addSubcategoryOption("Architectural Visualization Artist");
                     addSubcategoryOption("Urban Designer");
-                    addSubcategoryOption("Historic Preservation ");
+                    addSubcategoryOption("Historic Preservation");
                     addSubcategoryOption("Residential Architect");
                     addSubcategoryOption("CAD (Computer-Aided Design) Technician");
                     addSubcategoryOption("Architectural Educator");
@@ -1129,7 +1129,7 @@
                     addSubcategoryOption("MATLAB Software Enginee ");
                     addSubcategoryOption("Data Analyst (using MATLAB) ");
                 } else if (selectedCategory === "tester") {
-                    addSubcategoryOption("Software ");
+                    addSubcategoryOption("Software");
                     addSubcategoryOption("Test Engineer");
                     addSubcategoryOption("QA Analyst (Quality Assurance Analyst)");
                     addSubcategoryOption("Test Automation Engineer");
@@ -1213,7 +1213,7 @@
                     addSubcategoryOption("Database Engineer");
                     addSubcategoryOption("Database Architect");
                     addSubcategoryOption("Database Analyst");
-                    addSubcategoryOption("Data Warehouse ");
+                    addSubcategoryOption("Data Warehouse");
                     addSubcategoryOption("SQL Server ");
                     addSubcategoryOption("Oracle Database ");
                     addSubcategoryOption("MySQL Database ");
@@ -1307,7 +1307,7 @@
                     addSubcategoryOption("University ");
                     addSubcategoryOption("Assistant ");
                     addSubcategoryOption("Associate ");
-                    addSubcategoryOption("Full ");
+                    // addSubcategoryOption("Full ");
                     addSubcategoryOption("Distinguished ");
                     addSubcategoryOption("Adjunct ");
                     addSubcategoryOption("Visiting ");
@@ -1327,7 +1327,7 @@
                     addSubcategoryOption("Mathematics");
                     addSubcategoryOption("Geology");
                     addSubcategoryOption("Astronomy");
-                    addSubcategoryOption(" Environmental Science");
+                    addSubcategoryOption("Environmental Science");
                     addSubcategoryOption("Computer Science");
                     addSubcategoryOption("Electrical Engineering");
                     addSubcategoryOption("Mechanical Engineering");
@@ -2709,7 +2709,7 @@
                                             <td><?php echo $pvalue['projectName'] ?> </td>
                                             <td><?php echo $pvalue['projectDuration'] ?></td>
                                             <td> <?php echo $pvalue['roleInProject'] ?></td>
-                                            <td> <?php echo $pvalue['projectDes'] ?></td>
+                                            <td> <?php echo $pvalue['responsibilityInProject'] ?></td>
                                             <td> <?php echo $pvalue['skillsUsedInProject'] ?></td>
                                         </tr>
 

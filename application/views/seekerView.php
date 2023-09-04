@@ -382,7 +382,7 @@
                 <h4> Address : </h3>
                 <div class="form-group">
                   <label for="Door no">Door no/building name </label>
-                  <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['doorno']); ?>" name="doorno">
+                  <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['buildingName']); ?>" name="doorno">
                   <div id="doorno_error" class="error"></div>
                 </div>
                 <div class="form-group">
@@ -571,16 +571,28 @@
 
 
         <?php
-        } elseif ($method == 'education') {
+        } elseif ($method == 'educationalDetails') {
         ?>
           <div class="container" id="education">
             <h3>Education Form</h3>
+
             <div id="educationFormsContainer">
               <div class="education-form-container">
-                <form name="educationform" action="http://localhost/arramjobs/seekerController/educationalDetails" method="post" onsubmit="return validateForm()" >
+
+                <form name="educationform" action="http://localhost/arramjobs/seekerController/updateEducationDetails" method="post" onsubmit="return validateForm()" >
+                  <?php
+              // foreach($educationDetails as $key => $value) {
+                 
+                if (isset($educationalDetails[0]['id'])) {
+                  foreach ($educationalDetails as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+              
+              ?>
+                   <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                  <input type="hidden" class="form-control" id="id" value="<?php echo $value['seekerId']; ?>" name="id" placeholder="Enter your name">
                   <div class="form-group">
                     <label for="qualification">Educational Qualification*</label>
-                    <select class="form-control" id="qualification" name="qualification[]" onchange="toggleFields()">
+                    <select class="form-control" id="qualification"  name="qualification" value="<?php echo $value['educational_qualification']; ?>" onchange="toggleFields()">
                       <option value="">Select Qualification</option>
                       <option value="below_8th">Below 8th</option>
                       <option value="sslc">SSLC</option>
@@ -593,7 +605,7 @@
                   </div>
                   <div class="form-group" id="department-group" style="display: none;">
                     <label for="department">Department</label>
-                    <select class="form-control" id="department" name="department[]">
+                    <select class="form-control" id="department" name="department" value="<?php echo $value['department']; ?>">
                       <option value="">Select Department</option>
                       <option value="Tamil">Tamil</option>
                       <option value="english">English</option>
@@ -606,23 +618,74 @@
                   </div>
                   <div class="form-group" id="school-group" style="display: none;">
                     <label for="school">School Name/collegename</label>
-                    <input type="text" class="form-control" id="school" name="school[]">
-                    <div id="school_error" class="error"></div>
+                    <input type="text" class="form-control" id="school" value="<?php echo $value['school_college_name']; ?>" name="school">
                   </div>
                   <div class="form-group" id="percentage-group" style="display: none;">
                     <label for="percentage">Percentage</label>
-                    <input type="number" class="form-control" id="percentage" name="percentage[]">
+                    <input type="text" class="form-control" id="percentage" id="school"  value="<?php echo $value['percentage']; ?>" name="percentage">
                     <div id="percentage_error" class="error"></div>
                   </div>
                   <div class="form-group" id="year-group" style="display: none;">
                     <label for="year_passed">Year of Passed Out</label>
-                    <input type="number" class="form-control" id="year_passed" name="year_passed[]">
+                    <input type="number" class="form-control" id="year_passed" value="<?php echo $value['yearOfPassing']; ?>" name="year_passed">
                     <div id="year_error" class="error"></div>
                   </div>
-                  <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button>
+                  <!-- <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button> -->
+              </div>
+              <button type="submit" id="educationsubmit" class="btn">Submit</button>
+              <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                       <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                       <div class="form-group">
+                    <label for="qualification">Educational Qualification*</label>
+                    <select class="form-control" id="qualification"  name="qualification"  onchange="toggleFields()">
+                      <option value="">Select Qualification</option>
+                      <option value="below_8th">Below 8th</option>
+                      <option value="sslc">SSLC</option>
+                      <option value="hsc">HSC</option>
+                      <option value="bachelors">Bachelors</option>
+                      <option value="masters">Masters</option>
+                      <option value="doctorate">Doctorate</option>
+                    </select>
+                    <div id="qualification_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="department-group" style="display: none;">
+                    <label for="department">Department</label>
+                    <select class="form-control" id="department" name="department" >
+                      <option value="">Select Department</option>
+                      <option value="Tamil">Tamil</option>
+                      <option value="english">English</option>
+                      <option value="maths">Maths</option>
+                      <option value="physics">Physics</option>
+                      <option value="chemistry">Chemistry</option>
+                      <option value="computer_science">Computer Science</option>
+                    </select>
+                    <div id="department_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="school-group" style="display: none;">
+                    <label for="school">School Name/collegename</label>
+                    <input type="text" class="form-control" id="school"  name="school">
+                  </div>
+                  <div class="form-group" id="percentage-group" style="display: none;">
+                    <label for="percentage">Percentage</label>
+                    <input type="number" class="form-control" id="percentage" id="school"  name="percentage">
+                    <div id="percentage_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="year-group" style="display: none;">
+                    <label for="year_passed">Year of Passed Out</label>
+                    <input type="number" class="form-control" id="year_passed"   name="year_passed">
+                    <div id="year_error" class="error"></div>
+                  </div>
+                  <!-- <button type="button" class="btn mt-3" id="educationadd" onclick="addEducationForm()">Add</button> -->
               </div>
               <button type="submit" id="educationsubmit" class="btn">Submit</button>
               </form>
+              <?php
+                  }
+              ?>
             </div>
             <script>
               var educationFormCount = 1;
@@ -748,31 +811,130 @@
             <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
             <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
           <?php
-        } elseif ($method == 'experience') {
+        } elseif ($method == 'experienceDetails') {
           ?>
 
             <div class="container">
               <h3>Experience Details Form</h3>
-              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="experienceDetails">
-                <?php
-                foreach ($experienceDetails as $key => $value) {
+              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action="http://localhost/arramjobs/seekerController/updateExperienceDetails">
+              <?php
+                if (isset($experienceDetails[0]['id'])) {
+                  foreach ($experienceDetails as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
                 ?>
-                  <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
+                 
+                 <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                  <input type="hidden" class="form-control" id="id" value="<?php echo $value['seekerId']; ?>" name="id" placeholder="Enter your name">
 
                   <div class="form-group">
                     <label for="category">Category:</label>
                     <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+                      
                       <option value="">Select a Category</option>
-                      <option value="it" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'it' ? 'selected' : ''; ?>>Information Technology</option>
-                      <option value="education" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'education' ? 'selected' : ''; ?>>Education</option>
-                      <option value="civil" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'civil' ? 'selected' : ''; ?>>Civil</option>
-                      <option value="healthcare" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'healthcare' ? 'selected' : ''; ?>>Healthcare</option>
-                      <option value="sales and marketing" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sales and marketing' ? 'selected' : ''; ?>>Sales and Marketing</option>
-                      <option value="finance" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'finance' ? 'selected' : ''; ?>>Finance</option>
-                      <option value="textile" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'textile' ? 'selected' : ''; ?>>Textile</option>
-                      <option value="sports" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'sports' ? 'selected' : ''; ?>>Sports</option>
-                      <option value="services" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'services' ? 'selected' : ''; ?>>Services</option>
-                      <option value="others" <?php echo isset($existingExperience['job_category_id']) && $existingExperience['job_category_id'] === 'others' ? 'selected' : ''; ?>>Others</option>
+                        <option value="architech">Architech</option>
+                        <option value="Developer">Developer</option>
+                        <option value="tester">Tester</option>
+                        <option value="uiux">UI/UX Design</option>
+                        <option value="datascience">Data Scientist</option>
+                        <option value="databaseadmin">Database Admin</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="professor">Professor</option>
+                      <option value="others">Others</option>
+                    </select>
+                    <div id="category_error" class="error"></div>
+                  </div>
+                  <div class="form-group">
+                    <label for="subcategory">Subcategory:</label>
+                    <select class="form-control" id="subcategory" name="subcategory" disabled>
+                      <option value="">Select a Subcategory</option>
+                    </select>
+                    <div id="subcategory_error" class="error"></div>
+                  </div>
+
+
+                  <div class="form-group">
+                    <label for="experience">Experience</label>
+                    <select class="form-control" id="experience" name="experience" value="<?php echo $value['experience']; ?>">
+                      <option value="">Select your experience</option>
+                      <option value="fresher" >Fresher</option>
+                      <option value="0-2" >0-2</option>
+                      <option value="3-5" >3-5</option>
+                      <option value="5-10">5-10</option>
+                      <option value="10-15">10-15</option>
+                      <option value="15-20">15-20</option>
+                      <option value="above 20 years">Above 20 years</option>
+                    </select>
+                    <div id="experience_error" class="error"></div>
+                  </div>
+                  <div class="form-group" id="otherCategoryField" style="display: none;" >
+                    <label for="othercategory">Other Category:</label>
+                    <select class="form-control" id="experience" name="experience" value="<?php echo $value['other_category']; ?>" >
+                    <input type="text" class="form-control" id="othercategory" name="othercategory" >
+                  </div>
+
+                  <div class="form-group" id="otherSubcategoryField" style="display: none;">
+                    <label for="othersubcategory">Other Subcategory:</label>
+                    <select class="form-control" id="experience" name="experience" value="<?php echo $value['other_sub_category']; ?>" >
+                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory" >
+                  </div>
+
+
+                 
+
+
+                  <div class="form-group">
+                    <label for="company name">Company Name</label>
+                    <input type="text" class="form-control" id="companyname" name="companyname" value="<?php echo $value['company_name']; ?>" >
+                    <div id="companyname_error" class="error"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="role">Role in the company</label>
+                    <input type="text" class="form-control" id="role" name="role" value="<?php echo $value['job_role']; ?>">
+                    <div id="role_error" class="error"></div>
+                  </div>
+
+                  <h1>Previous Employer details</h1>
+
+                  <div class="form-group">
+                    <label for="Name">Name of employer*</label>
+                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" value="<?php echo $value['previous_employer_name']; ?>">
+                    <div id="name_error" class="error"></div>
+                  </div>
+
+                  <div class="form-group">
+                    <label for="phone number">Phone Number</label>
+                    <input type="text" class="form-control" id="number" name="number" value="<?php echo $value['previous_employer_mobile']; ?>">
+                  </div>
+
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="emailid" name="emailid" value="<?php echo $value['previous_employer_email']; ?>">
+                  </div>
+
+                  <button type="submit" class="btn btn-primary">Submit</button>
+                  <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                 <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                  <input type="hidden" class="form-control" id="id"  name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
+
+                  <div class="form-group">
+                    <label for="category">Category:</label>
+                    <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+                     
+                    <option value="">Select a Category</option>
+                        <option value="architech">Architech</option>
+                        <option value="Developer">Developer</option>
+                        <option value="tester">Tester</option>
+                        <option value="uiux">UI/UX Design</option>
+                        <option value="datascience">Data Scientist</option>
+                        <option value="databaseadmin">Database Admin</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="professor">Professor</option>
+                      <option value="others">Others</option>
                     </select>
                     <div id="category_error" class="error"></div>
                   </div>
@@ -790,21 +952,21 @@
 
                   <div class="form-group" id="otherSubcategoryField" style="display: none;">
                     <label for="othersubcategory">Other Subcategory:</label>
-                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory">
+                    <input type="text" class="form-control" id="othersubcategory" name="othersubcategory" >
                   </div>
 
 
                   <div class="form-group">
                     <label for="experience">Experience</label>
-                    <select class="form-control" id="experience" name="experience">
+                    <select class="form-control" id="experience" name="experience" >
                       <option value="">Select your experience</option>
-                      <option value="fresher" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'fresher' ? 'selected' : ''; ?>>Fresher</option>
-                      <option value="0-2" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '0-2' ? 'selected' : ''; ?>>0-2</option>
-                      <option value="3-5" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '3-5' ? 'selected' : ''; ?>>3-5</option>
-                      <option value="5-10" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '5-10' ? 'selected' : ''; ?>>5-10</option>
-                      <option value="10-15" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '10-15' ? 'selected' : ''; ?>>10-15</option>
-                      <option value="15-20" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === '15-20' ? 'selected' : ''; ?>>15-20</option>
-                      <option value="above 20 years" <?php echo isset($existingExperience['experience']) && $existingExperience['experience'] === 'above 20 years' ? 'selected' : ''; ?>>Above 20 years</option>
+                      <option value="fresher" >Fresher</option>
+                      <option value="0-2" >0-2</option>
+                      <option value="3-5" >3-5</option>
+                      <option value="5-10" >5-10</option>
+                      <option value="10-15" >10-15</option>
+                      <option value="15-20">15-20</option>
+                      <option value="above 20 years">Above 20 years</option>
                     </select>
                     <div id="experience_error" class="error"></div>
                   </div>
@@ -812,13 +974,13 @@
 
                   <div class="form-group">
                     <label for="company name">Company Name</label>
-                    <input type="text" class="form-control" id="companyname" name="companyname" value="<?php echo isset($existingExperience['company_name']) ? $existingExperience['company_name'] : ''; ?>">
+                    <input type="text" class="form-control" id="companyname" name="companyname" >
                     <div id="companyname_error" class="error"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="role">Role in the company</label>
-                    <input type="text" class="form-control" id="role" name="role" value="<?php echo isset($existingExperience['job_role']) ? $existingExperience['job_role'] : ''; ?>">
+                    <input type="text" class="form-control" id="role" name="role">
                     <div id="role_error" class="error"></div>
                   </div>
 
@@ -826,24 +988,24 @@
 
                   <div class="form-group">
                     <label for="Name">Name of employer*</label>
-                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" value="<?php echo isset($existingExperience['previous_employer_name']) ? $existingExperience['previous_employer_name'] : ''; ?>">
+                    <input type="text" class="form-control" id="nameofemployer" name="nameofemployer" >
                     <div id="name_error" class="error"></div>
                   </div>
 
                   <div class="form-group">
                     <label for="phone number">Phone Number</label>
-                    <input type="text" class="form-control" id="number" name="number" value="<?php echo isset($existingExperience['previous_employer_mobile']) ? $existingExperience['previous_employer_mobile'] : ''; ?>">
+                    <input type="text" class="form-control" id="number" name="number" >
                   </div>
 
                   <div class="form-group">
                     <label for="email">Email</label>
-                    <input type="text" class="form-control" id="emailid" name="emailid" value="<?php echo isset($existingExperience['previous_employer_email']) ? $existingExperience['previous_employer_email'] : ''; ?>">
+                    <input type="text" class="form-control" id="emailid" name="emailid"  >
                   </div>
 
                   <button type="submit" class="btn btn-primary">Submit</button>
-                <?php
-                }
-                ?>
+                  <?php
+                  }
+                  ?>
               </form>
             </div>
 
@@ -855,58 +1017,319 @@
 
                 subcategorySelect.innerHTML = '<option value="">Select a Subcategory</option>';
 
-                if (selectedCategory === "it") {
+                if (selectedCategory === "architech") {
                   addSubcategoryOption("Architect");
-                  addSubcategoryOption("developer");
-                  addSubcategoryOption("Tester");
-                  addSubcategoryOption("UI/UX Design");
+                    addSubcategoryOption("Senior ");
+                    addSubcategoryOption("Design ");
+                    addSubcategoryOption("Project ");
+                    addSubcategoryOption("Principal ");
+                    addSubcategoryOption("Landscape ");
+                    addSubcategoryOption("Urban Planner");
+                    addSubcategoryOption("Interior Designer");
+                    addSubcategoryOption("Architectural Technologist");
+                    addSubcategoryOption("BIM (Building Information Modeling) Specialist");
+                    addSubcategoryOption("Sustainable Design Consultant");
+                    addSubcategoryOption("Architectural Drafter");
+                    addSubcategoryOption("Architectural Visualization Artist");
+                    addSubcategoryOption("Urban Designer");
+                    addSubcategoryOption("Historic Preservation ");
+                    addSubcategoryOption("Residential Architect");
+                    addSubcategoryOption("CAD (Computer-Aided Design) Technician");
+                    addSubcategoryOption("Architectural Educator");
+                    addSubcategoryOption("Construction Project Manage");
+                    addSubcategoryOption("Industrial Designer");
+                    addSubcategoryOption("Healthcare Facility Planner");
+                    addSubcategoryOption("Retail Space Designer");
+
+                    addSubcategoryOption()
+                } else if (selectedCategory === "Developer") {
+                  addSubcategoryOption("Python Software Engineer");
+                    addSubcategoryOption("Python");
+                    addSubcategoryOption("Python Data Scientist");
+                    addSubcategoryOption("Python Machine Learning Engineer");
+                    addSubcategoryOption("Python Automation");
+                    addSubcategoryOption("Java Software Engineer");
+                    addSubcategoryOption("Java");
+                    addSubcategoryOption("Java Full Stack ");
+                    addSubcategoryOption("Java Android ");
+                    addSubcategoryOption("Java Spring ");
+                    addSubcategoryOption("Java Microservices ");
+                    addSubcategoryOption("JavaScript Software Engineer");
+                    addSubcategoryOption("Front-end ");
+                    addSubcategoryOption("Node.js ");
+                    addSubcategoryOption("React ");
+                    addSubcategoryOption("Angular ");
+                    addSubcategoryOption("Vue.js ");
+                    addSubcategoryOption("Full Stack JavaScript ");
+                    addSubcategoryOption("C# Software Engineer");
+                    addSubcategoryOption(".NET ");
+                    addSubcategoryOption("ASP.NET ");
+                    addSubcategoryOption("Unity ");
+                    addSubcategoryOption("Xamarin ");
+                    addSubcategoryOption("C++ Software Engineer");
+                    addSubcategoryOption("Game  (using C++)");
+                    addSubcategoryOption("C++ Systems ");
+                    addSubcategoryOption("PHP Software Engineer");
+                    addSubcategoryOption("PHP Web ");
+                    addSubcategoryOption("WordPress ");
+                    addSubcategoryOption("Laravel ");
+                    addSubcategoryOption("Symfony ");
+                    addSubcategoryOption("Ruby Software Engineer");
+                    addSubcategoryOption("Ruby on Rails ");
+                    addSubcategoryOption("Swift Software Engineer");
+                    addSubcategoryOption("iOS  (using Swift)");
+                    addSubcategoryOption("macOS  (using Swift)");
+                    addSubcategoryOption("Kotlin Software Engineer");
+                    addSubcategoryOption("Android  (using Kotlin)");
+                    addSubcategoryOption("Go Software Engineer");
+                    addSubcategoryOption("Rust Software Engineer");
+                    addSubcategoryOption("Systems  (using Rust");
+                    addSubcategoryOption("TypeScript Software Engineer");
+                    addSubcategoryOption("Front-end  (using TypeScript)");
+                    addSubcategoryOption("SQL ");
+                    addSubcategoryOption("Database ");
+                    addSubcategoryOption("Scala Software Engineer");
+                    addSubcategoryOption("Haskell Software Engineer");
+                    addSubcategoryOption("Perl Software Engineer ");
+                    addSubcategoryOption("Lua Software Engineer ");
+                    addSubcategoryOption("Game  (using Lua) ");
+                    addSubcategoryOption("MATLAB Software Enginee ");
+                    addSubcategoryOption("Data Analyst (using MATLAB) ");
+
+                } else if (selectedCategory === "tester") {
+                  addSubcategoryOption("Software ");
+                    addSubcategoryOption("Test Engineer");
+                    addSubcategoryOption("QA Analyst (Quality Assurance Analyst)");
+                    addSubcategoryOption("Test Automation Engineer");
+                    addSubcategoryOption("Manual ");
+                    addSubcategoryOption("QA Lead (Quality Assurance Lead)");
+                    addSubcategoryOption("Test Manager");
+                    addSubcategoryOption("Performance ");
+                    addSubcategoryOption("Usability ");
+                    addSubcategoryOption("Regression ");
+                    addSubcategoryOption("User Acceptance ");
+                    addSubcategoryOption("Security ");
+                    addSubcategoryOption("Mobile App ");
+                    addSubcategoryOption("Game ");
+                    addSubcategoryOption("Functional ");
+                    addSubcategoryOption("Test Architect");
+                    addSubcategoryOption("Test Coordinator");
+                    addSubcategoryOption("Continuous Integration ");
+                    addSubcategoryOption("Load ");
+                    addSubcategoryOption("Test Designer");
+                    addSubcategoryOption("Test Technician");
+                    addSubcategoryOption("QA Inspector (Quality Assurance Inspector)");
+                    addSubcategoryOption("Test Coordinator");
+                    addSubcategoryOption("Compliance ");
+                } else if (selectedCategory === "uiux") {
+                    addSubcategoryOption("UI/UX Designer");
+                    addSubcategoryOption("User Experience Designer");
+                    addSubcategoryOption("User Interface Designer");
+                    addSubcategoryOption("Interaction Designer");
+                    addSubcategoryOption("Visual Designer");
+                    addSubcategoryOption("UX Researcher");
+                    addSubcategoryOption("UI/UX Architect");
+                    addSubcategoryOption("Information Architect");
+                    addSubcategoryOption("UX Strategist");
+                    addSubcategoryOption("Product Designer");
+                    addSubcategoryOption("User-Centered Design Specialist");
+                    addSubcategoryOption("Usability Analyst");
+                    addSubcategoryOption("UI/UX Developer");
+                    addSubcategoryOption("Mobile App Designer");
+                    addSubcategoryOption("Web Designer");
+                    addSubcategoryOption("Visual Experience Designer");
+                    addSubcategoryOption("UX Content Strategist");
+                    addSubcategoryOption("Interaction Architect");
+                    addSubcategoryOption("UX/UI Illustrator");
+                    addSubcategoryOption("User Interface Animator");
+                    addSubcategoryOption("Conversion Rate Optimization (CRO) Specialist");
+                    addSubcategoryOption("Accessibility Designer ");
+                    addSubcategoryOption("Prototype Designer ");
+                    addSubcategoryOption("UI/UX Lead ");
+                    addSubcategoryOption("Design Systems Manager ");
+
+                } else if (selectedCategory === "datascience") {
                   addSubcategoryOption("Data Scientist");
-                  addSubcategoryOption("Database admin");
-                  addSubcategoryOption("Syatem admin");
-                } else if (selectedCategory === "education") {
-                  addSubcategoryOption("Teachers");
-                  addSubcategoryOption("professors");
-
-                } else if (selectedCategory === "civil") {
-                  addSubcategoryOption("Meshon");
-                  addSubcategoryOption("Painter");
-                  addSubcategoryOption("Plumber");
-                  addSubcategoryOption("Electrician");
-                  addSubcategoryOption("Carpenter");
-
-                } else if (selectedCategory === "healthcare") {
-                  addSubcategoryOption("Doctor");
-                  addSubcategoryOption("Nurse");
-                  addSubcategoryOption("Pharmacist");
-                  addSubcategoryOption("Physiotherapist");
-                } else if (selectedCategory === "sales and marketing") {
-                  addSubcategoryOption("sales");
-                  addSubcategoryOption("Marketing");
-                } else if (selectedCategory === "finance") {
-                  addSubcategoryOption("Accountant");
-                  addSubcategoryOption("Chartered Accountant");
-                } else if (selectedCategory === "textile") {
-                  addSubcategoryOption("Supervisor");
-                  addSubcategoryOption("Floor manager");
-                  addSubcategoryOption("General manager");
-                  addSubcategoryOption("Cutting master");
-                  addSubcategoryOption("Labour");
-                } else if (selectedCategory === "sports") {
-                  addSubcategoryOption("Physical education master");
-                  addSubcategoryOption("Trainer");
-                } else if (selectedCategory === "services") {
-                  addSubcategoryOption("Driver");
-                  addSubcategoryOption("Security");
-                  addSubcategoryOption("Cook");
-                  addSubcategoryOption("House keeping");
-                  addSubcategoryOption("Electrician");
-                  addSubcategoryOption("Plumber");
-                  addSubcategoryOption("Meshon");
-                  addSubcategoryOption("Carpenter");
-                  addSubcategoryOption("Mechanic");
-                } else if (selectedCategory === "others") {
-                  addSubcategoryOption("others")
-                  showOtherCategoryFields();
+                    addSubcategoryOption("Senior Data Scientist");
+                    addSubcategoryOption("Machine Learning Engineer");
+                    addSubcategoryOption("Data Analyst");
+                    addSubcategoryOption("Senior Data Analyst");
+                    addSubcategoryOption("Statistician");
+                    addSubcategoryOption("Business Intelligence Analyst");
+                    addSubcategoryOption("Quantitative Analyst (Quant)");
+                    addSubcategoryOption("Data Engineer");
+                    addSubcategoryOption("Data Architect");
+                    addSubcategoryOption("AI Research");
+                    addSubcategoryOption("Predictive Modeler");
+                    addSubcategoryOption("Natural Language Processing (NLP) Engineer");
+                    addSubcategoryOption("Computer Vision Engineer");
+                    addSubcategoryOption("Big Data Engineer");
+                    addSubcategoryOption("Analytics Manager");
+                    addSubcategoryOption("Data Science Manager");
+                    addSubcategoryOption("Chief Data Officer (CDO)");
+                    addSubcategoryOption("Research Scientist (AI/ML)");
+                    addSubcategoryOption("Decision Scientist");
+                    addSubcategoryOption("Marketing Analyst");
+                    addSubcategoryOption("Operations Research Analyst");
+                    addSubcategoryOption("Data Visualization Specialist");
+                    addSubcategoryOption("Customer Insights Analyst");
+                    addSubcategoryOption("Fraud Analyst");
+                } else if (selectedCategory === "databaseadmin") {
+                  addSubcategoryOption("Database (DBA)");
+                    addSubcategoryOption("Senior ");
+                    addSubcategoryOption("Database Engineer");
+                    addSubcategoryOption("Database Architect");
+                    addSubcategoryOption("Database Analyst");
+                    addSubcategoryOption("Data Warehouse ");
+                    addSubcategoryOption("SQL Server ");
+                    addSubcategoryOption("Oracle Database ");
+                    addSubcategoryOption("MySQL Database ");
+                    addSubcategoryOption("PostgreSQL Database ");
+                    addSubcategoryOption("MongoDB ");
+                    addSubcategoryOption("NoSQL  ");
+                    addSubcategoryOption("DBMS  (Database Management System)");
+                    addSubcategoryOption("Database Operations Manager");
+                    addSubcategoryOption("Database Performance Tuning Specialist");
+                    addSubcategoryOption("Data Migration Specialist");
+                    addSubcategoryOption("Database Security ");
+                    addSubcategoryOption("Database Backup and Recovery Specialist");
+                    addSubcategoryOption("Cloud   (e.g., AWS, Azure, Google Cloud)");
+                    addSubcategoryOption("Database Compliance Officer");
+                    addSubcategoryOption("Database DevOps Engineer");
+                    addSubcategoryOption("Database Automation Engineer");
+                    addSubcategoryOption("Database Replication Specialist");
+                    addSubcategoryOption("Data Governance Manager");
+                    addSubcategoryOption("Data Steward");
+                } else if (selectedCategory === "teacher") {
+                  addSubcategoryOption("Tamil");
+                    addSubcategoryOption("Mathematics ");
+                    addSubcategoryOption("Math Instructor");
+                    addSubcategoryOption("Algebra ");
+                    addSubcategoryOption("Geometry ");
+                    addSubcategoryOption("Calculus ");
+                    addSubcategoryOption("Statistics ");
+                    addSubcategoryOption("Math Tutor");
+                    addSubcategoryOption("Math Coach");
+                    addSubcategoryOption("Math Curriculum Specialist");
+                    addSubcategoryOption("Math Department Chair");
+                    addSubcategoryOption("English ");
+                    addSubcategoryOption("Language Arts ");
+                    addSubcategoryOption("Literature ");
+                    addSubcategoryOption("Writing Instructor");
+                    addSubcategoryOption("Creative Writing ");
+                    addSubcategoryOption("English as a Second Language (ESL) ");
+                    addSubcategoryOption("Reading Specialist");
+                    addSubcategoryOption("English Tutor");
+                    addSubcategoryOption("English Department Chair");
+                    addSubcategoryOption("Science ");
+                    addSubcategoryOption("Biology ");
+                    addSubcategoryOption("Chemistry ");
+                    addSubcategoryOption("Physics ");
+                    addSubcategoryOption("Environmental Science ");
+                    addSubcategoryOption("Earth Science ");
+                    addSubcategoryOption("Anatomy and Physiology ");
+                    addSubcategoryOption("Science Lab Instructor");
+                    addSubcategoryOption("Science Curriculum Specialist");
+                    addSubcategoryOption("Social Studies ");
+                    addSubcategoryOption("History ");
+                    addSubcategoryOption("Geography ");
+                    addSubcategoryOption("Civics ");
+                    addSubcategoryOption("Government ");
+                    addSubcategoryOption("Economics ");
+                    addSubcategoryOption("World History ");
+                    addSubcategoryOption("Social Studies Department Chair");
+                    addSubcategoryOption("Foreign Language ");
+                    addSubcategoryOption("Language Instructor");
+                    addSubcategoryOption("Spanish ");
+                    addSubcategoryOption("French ");
+                    addSubcategoryOption("German ");
+                    addSubcategoryOption("Chinese ");
+                    addSubcategoryOption("Language Lab Coordinator");
+                    addSubcategoryOption("Physical Education ");
+                    addSubcategoryOption("PE Instructor");
+                    addSubcategoryOption("Fitness Coach");
+                    addSubcategoryOption("Health Education ");
+                    addSubcategoryOption("Sports Coach");
+                    addSubcategoryOption("Physical Education Department Chair");
+                    addSubcategoryOption("Art ");
+                    addSubcategoryOption("Music ");
+                    addSubcategoryOption("Drama ");
+                    addSubcategoryOption("Visual Arts ");
+                    addSubcategoryOption("Choir Director");
+                    addSubcategoryOption("Band ");
+                    addSubcategoryOption("Art History ");
+                    addSubcategoryOption("Special Education ");
+                    addSubcategoryOption("Learning Support ");
+                    addSubcategoryOption("Resource ");
+                    addSubcategoryOption("Inclusion ");
+                    addSubcategoryOption("Autism Specialist");
+                    addSubcategoryOption("Behavioral Interventionist");
+                    addSubcategoryOption("Vocational ");
+                    addSubcategoryOption("Career and Technical Education (CTE) Instructor");
+                    addSubcategoryOption("Culinary Arts Instructor");
+                    addSubcategoryOption("Automotive Technology Teacher");
+                    addSubcategoryOption("Computer Science ");
+                    addSubcategoryOption("Digital Media Instructor");
+                } else if (selectedCategory === "professor") {
+                  addSubcategoryOption("University ");
+                    addSubcategoryOption("Assistant ");
+                    addSubcategoryOption("Associate ");
+                    addSubcategoryOption("Full ");
+                    addSubcategoryOption("Distinguished ");
+                    addSubcategoryOption("Adjunct ");
+                    addSubcategoryOption("Visiting ");
+                    addSubcategoryOption("Research ");
+                    addSubcategoryOption("Clinical ");
+                    addSubcategoryOption("Philosophy");
+                    addSubcategoryOption("Professor of History");
+                    addSubcategoryOption("English");
+                    addSubcategoryOption("Psychology");
+                    addSubcategoryOption("Sociology");
+                    addSubcategoryOption("Political Science");
+                    addSubcategoryOption("Anthropology");
+                    addSubcategoryOption("Linguistics");
+                    addSubcategoryOption("Biology");
+                    addSubcategoryOption("Chemistry");
+                    addSubcategoryOption("Physics");
+                    addSubcategoryOption("Mathematics");
+                    addSubcategoryOption("Geology");
+                    addSubcategoryOption("Astronomy");
+                    addSubcategoryOption(" Environmental Science");
+                    addSubcategoryOption("Computer Science");
+                    addSubcategoryOption("Electrical Engineering");
+                    addSubcategoryOption("Mechanical Engineering");
+                    addSubcategoryOption("Civil Engineering");
+                    addSubcategoryOption("Chemical Engineering");
+                    addSubcategoryOption("Information Technology");
+                    addSubcategoryOption("Business Administration");
+                    addSubcategoryOption("Economics");
+                    addSubcategoryOption("Finance");
+                    addSubcategoryOption("Marketing");
+                    addSubcategoryOption("Management");
+                    addSubcategoryOption("Accounting");
+                    addSubcategoryOption("Fine Arts");
+                    addSubcategoryOption("Music");
+                    addSubcategoryOption("Visual Arts");
+                    addSubcategoryOption("Theater");
+                    addSubcategoryOption("Dance");
+                    addSubcategoryOption("Film Studies");
+                    addSubcategoryOption("Educational Psychology");
+                    addSubcategoryOption("Medicine");
+                    addSubcategoryOption("Nursing");
+                    addSubcategoryOption("Public Health");
+                    addSubcategoryOption("Pharmacy");
+                    addSubcategoryOption("Dentistry");
+                    addSubcategoryOption("Law");
+                    addSubcategoryOption("Constitutional Law");
+                    addSubcategoryOption("Criminal Law");
+                    addSubcategoryOption("International Law");
+                    addSubcategoryOption("Environmental Law");
+                    addSubcategoryOption("Social Work");
+                    addSubcategoryOption("Social Welfare");
+                    addSubcategoryOption("Clinical Social Work");
+                    addSubcategoryOption("Library Science");
+                    addSubcategoryOption("Information Studies");
+                
                 } else {
                   hideOtherCategoryFields();
                 }
@@ -953,10 +1376,10 @@
                 }
                 if (experience.value === 'fresher') {
                   hideFields();
-                } else if (experience.value === '') {
-                  displayError('Please select a experience.', 'experience_error');
+              } else if (experience.value === '') {
+                  displayError('Please select an experience.', 'experience_error');
                   return false;
-                }
+              }
                 if (companyname.value === '') {
                   displayError('Please enter a company name.', 'companyname_error');
                   return false;
@@ -1006,7 +1429,7 @@
 
             <div class="container">
               <h3 id="projectdeailsform">Project Details Form</h3>
-              <form name="projectform" method="post" onsubmit="return validateForm()" action="projectDetails">
+              <form name="projectform" method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/seekerController/updateProjectDetails">
                 <?php
                 if (isset($projectDetails[0]['id'])) {
                   foreach ($projectDetails as $key => $value) {
@@ -1017,37 +1440,37 @@
                       <div class="project-section">
                         <div class="form-group">
                           <label for="projectname">Project Name</label>
-                          <input type="text" class="form-control" id="projectname" name="projectname[]">
+                          <input type="text" class="form-control" id="projectname" name="projectname" value="<?php echo $value['projectName']; ?>">
                           <div id="projectname_error" class="error"></div>
                           <div class="form-group">
                             <label for="Duration of project">Duration of Project</label>
-                            <input type="text" class="form-control" id="durationofproject" name="durationofproject[]">
+                            <input type="text" class="form-control" id="durationofproject" name="durationofproject"  value="<?php echo $value['projectDuration']; ?>">
                             <div id="durationofproject_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="role in the project">Role in the Project</label>
-                            <input type="text" class="form-control" id="roleofproject" name="roleofproject[]">
+                            <input type="text" class="form-control" id="roleofproject" name="roleofproject"  value="<?php echo $value['roleInProject']; ?>">
                             <div id="roleofproject_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="">start date of project*</label>
-                            <input type="date" class="form-control" id="startdate" name="startdate[]">
+                            <input type="date" class="form-control" id="startdate" name="startdate" value="<?php echo $value['startingDate']; ?>" >
                             <div id="startdate_error" class="error"></div>
                             <label for="">End date of the project*</label>
-                            <input type="date" class="form-control" id="enddate" name="enddate[]">
+                            <input type="date" class="form-control" id="enddate" name="enddate" value="<?php echo $value['endingDate']; ?>" >
                             <div id="enddate_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="Responsibity">My responsibility in project*</label>
-                            <textarea class="form-control" rows="3" class="form-control" id="responsibility" name="responsibility[]"></textarea>
+                            <input type="text" class="form-control" rows="3" class="form-control" id="responsibility" value="<?php echo $value['responsibilityInProject']; ?>" name="responsibility">
                             <div id="responsibility_error" class="error"></div>
                           </div>
                           <div class="form-group">
                             <label for="Skills used in project">Skills used in project*</label>
-                            <input type="text" class="form-control" id="skillsused" name="skillsused[]">
+                            <input type="text" class="form-control" id="skillsused" name="skillsused" value="<?php echo $value['skillsUsedInProject']; ?>">
                             <div id="skills_error" class="error"></div>
                           </div>
-                          <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
+                          <!-- <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button> -->
                         </div>
                         <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
                       <?php
@@ -1090,7 +1513,7 @@
                               <input type="text" class="form-control" id="skillsused" name="skillsused[]">
                               <div id="skills_error" class="error"></div>
                             </div>
-                            <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button>
+                            <!-- <button type="button" class="btn btn-primary" onclick="addProjectSection()">Add Project</button> -->
                           </div>
                           <button type="submit" class="btn btn-primary" id="finalsubmit">Submit</button>
                         <?php
@@ -1192,44 +1615,55 @@
 
               <div class="container">
                 <h3>Area of Interest Form</h3>
-                <form method="post" onsubmit="return validateForm()">
-
+                <form method="post" onsubmit="return validateForm()" action="http://localhost/arramjobs/seekerController/updateAreaOfInterest">
+                <?php
+                if (isset($areaofinterest[0]['id'])) {
+                  foreach ($areaofinterest as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+                ?>
+                  <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
                   <div id="educationFormsContainer">
                     <div class="education-form-container">
                       <div class="form-group">
                         <label for="category">Category *</label>
-                        <select class="form-control" id="category" name="category[]" value="<?php echo isset($value['interst_category_id']) ? $value['interest_category_id'] : ''; ?>" onchange="toggleCategoryFields()">
+                        <select class="form-control" id="category" name="category" value="<?php echo $value['other_interst_category']; ?>"  onchange="toggleCategoryFields()">
                           <option value="">Select a category</option>
-                          <option value="it">Information Technology</option>
-                          <option value="health">Health Care</option>
-                          <option value="others">Others</option>
+                          <option value="architech">Architech</option>
+                        <option value="Developer">Developer</option>
+                        <option value="tester">Tester</option>
+                        <option value="uiux">UI/UX Design</option>
+                        <option value="datascience">Data Scientist</option>
+                        <option value="databaseadmin">Database Admin</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="professor">Professor</option>
+                          <!-- <option value="others">Others</option> -->
                         </select>
                       </div>
                       <div class="form-group"">
                 <label for=" subcategory">Subcategory *</label>
-                        <select class="form-control" id="subcategory" name="subcategory[]" value="<?php echo isset($value['interst_sub_category_id']) ? $value['interst_sub_category_id'] : ''; ?>">
+                        <select class="form-control" id="subcategory" name="subcategory" value="<?php echo $value['other_sub_interst_category']; ?>" >
                           <option value="">Select a sub category </option>
                         </select>
                       </div>
                       <div class="form-group" id="otherCategoryFields" style="display: none;">
                         <label for="customCategoryInput">Custom Category</label>
-                        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput[]" placeholder="Enter custom category">
+                        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput" placeholder="Enter custom category">
                         <label for="customSubcategoryInput">Custom Subcategory</label>
-                        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput[]" placeholder="Enter custom subcategory">
+                        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput" placeholder="Enter custom subcategory">
                       </div>
                       <div class="form-group" id="customCategory" style="display: none;">
                         <label for="customCategoryInput">Category Name</label>
-                        <input type="text" class="form-control" id="customCategoryInput" value="<?php echo isset($value['other_interst_category']) ? $value['other_interest_category'] : ''; ?>" name="customCategoryInput[]">
+                        <input type="text" class="form-control" id="customCategoryInput"  name="customCategoryInput">
                       </div>
 
                       <div class="form-group" id="customSubcategory" style="display: none;">
                         <label for="customSubcategoryInput"> Subcategory Name</label>
-                        <input type="text" class="form-control" id="customSubcategoryInput" value="<?php echo isset($value['other_sub_interst_category']) ? $value['other_sub_interst_category'] : ''; ?>" name="customSubcategoryInput[]">
+                        <input type="text" class="form-control" id="customSubcategoryInput"  name="customSubcategoryInput">
                       </div>
 
                       <div class="form-group">
                         <label for="preferred-location">Preferred Location to work</label>
-                        <input type="text" class="form-control" id="preferred-location" value="<?php echo isset($value['prefered_location']) ? $value['prefered_location'] : ''; ?>" name="preferred-location[]">
+                        <input type="text" class="form-control" id="preferred-location"  name="preferred-location" value="<?php echo $value['prefered_location']; ?>">
 
                         <!-- <select class="form-control" id="preferred-location" name="preferred-location">
                     <option value="">Select a Preferred location</option>
@@ -1240,15 +1674,15 @@
                       </div>
                       <div class="form-group">
                         <label for="experience">Experience</label>
-                        <input type="text" class="form-control" id="experience" value="<?php echo isset($value['experience']) ? $value['experience'] : ''; ?>" name="experience[]">
+                        <input type="text" class="form-control" id="experience"  name="experience" value="<?php echo $value['experience']; ?>">
                       </div>
                       <div class="form-group">
                         <label for="description">Description</label>
-                        <textarea class="form-control" id="description" name="description[]" value="<?php echo isset($value['description']) ? $value['description'] : ''; ?>" rows="3"></textarea>
+                        <input class="form-control" id="description" name="description" value="<?php echo $value['description']; ?>" rows="3">
                       </div>
                       <div class="form-group">
                         <label for="jobtype">Job Type</label>
-                        <select class="form-control" id="jobtype" name="jobtype[]">
+                        <select class="form-control" id="jobtype" name="jobtype" value="<?php echo $value['job_type']; ?>">
                           <option value="">Select a job type</option>
                           <option value="parttime">Part Time</option>
                           <option value="fulltime">Full Time</option>
@@ -1258,11 +1692,95 @@
 
                       <div class="form-group">
                         <label for="expected-salary">Expected Salary</label>
-                        <input type="text" class="form-control" id="expected-salary" name="expected-salary[]">
+                        <input type="text" class="form-control" id="expected-salary" name="expected-salary" value="<?php echo $value['expected_salary']; ?>">
                       </div>
-                      <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button>
+                      <!-- <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button> -->
                     </div>
                     <button type="submit" class="btn btn-primary">Submit</button>
+                    <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                       <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                         <div id="educationFormsContainer">
+                    <div class="education-form-container">
+                      <div class="form-group">
+                        <label for="category">Category *</label>
+                        <select class="form-control" id="category" name="category" onchange="toggleCategoryFields()">
+                          <option value="">Select a category</option>
+                         <option value="architech">Architech</option>
+                        <option value="Developer">Developer</option>
+                        <option value="tester">Tester</option>
+                        <option value="uiux">UI/UX Design</option>
+                        <option value="datascience">Data Scientist</option>
+                        <option value="databaseadmin">Database Admin</option>
+                        <option value="teacher">Teacher</option>
+                        <option value="professor">Professor</option>
+                          <!-- <option value="others">Others</option> -->
+                        </select>
+                      </div>
+                      <div class="form-group"">
+                <label for=" subcategory">Subcategory *</label>
+                        <select class="form-control" id="subcategory" name="subcategory" >
+                          <option value="">Select a sub category </option>
+                        </select>
+                      </div>
+                      <div class="form-group" id="otherCategoryFields" style="display: none;">
+                        <label for="customCategoryInput">Custom Category</label>
+                        <input type="text" class="form-control" id="customCategoryInput" name="customCategoryInput" placeholder="Enter custom category">
+                        <label for="customSubcategoryInput">Custom Subcategory</label>
+                        <input type="text" class="form-control" id="customSubcategoryInput" name="customSubcategoryInput" placeholder="Enter custom subcategory">
+                      </div>
+                      <div class="form-group" id="customCategory" style="display: none;">
+                        <label for="customCategoryInput">Category Name</label>
+                        <input type="text" class="form-control" id="customCategoryInput"  name="customCategoryInput">
+                      </div>
+
+                      <div class="form-group" id="customSubcategory" style="display: none;">
+                        <label for="customSubcategoryInput"> Subcategory Name</label>
+                        <input type="text" class="form-control" id="customSubcategoryInput"  name="customSubcategoryInput">
+                      </div>
+
+                      <div class="form-group">
+                        <label for="preferred-location">Preferred Location to work</label>
+                        <input type="text" class="form-control" id="preferred-location" " name="preferred-location">
+
+                        <!-- <select class="form-control" id="preferred-location" name="preferred-location">
+                    <option value="">Select a Preferred location</option>
+                    <option value="chennai">chennai</option>
+                    <option value="Bangalore">Bangalore</option>
+                    <option value="others">others</option>
+                </select> -->
+                      </div>
+                      <div class="form-group">
+                        <label for="experience">Experience</label>
+                        <input type="text" class="form-control" id="experience"  name="experience">
+                      </div>
+                      <div class="form-group">
+                        <label for="description">Description</label>
+                        <textarea class="form-control" id="description" name="description"  rows="3"></textarea>
+                      </div>
+                      <div class="form-group">
+                        <label for="jobtype">Job Type</label>
+                        <select class="form-control" id="jobtype" name="jobtype">
+                          <option value="">Select a job type</option>
+                          <option value="parttime">Part Time</option>
+                          <option value="fulltime">Full Time</option>
+                          <option value="both">Both</option>
+                        </select>
+                      </div>
+
+                      <div class="form-group">
+                        <label for="expected-salary">Expected Salary</label>
+                        <input type="text" class="form-control" id="expected-salary" name="expected-salary">
+                      </div>
+                      <!-- <button type="button" class="btn btn-secondary mt-3" onclick="addEducationForm()">Add</button> -->
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                    <?php
+                  }
+                  ?>
                 </form>
               </div>
               <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
@@ -1314,17 +1832,327 @@
                   subcategorySelect.innerHTML = "";
                   otherCategoryFields.style.display = "none";
 
-                  if (category === "it") {
-                    addSubcategoryOption("Architect", subcategorySelect);
-                    addSubcategoryOption("Developer", subcategorySelect);
-                    addSubcategoryOption("Tester", subcategorySelect);
-                  } else if (category === "health") {
-                    addSubcategoryOption("Doctor", subcategorySelect);
-                    addSubcategoryOption("Nurse", subcategorySelect);
-                  } else if (category === "others") {
-                    addSubcategoryOption("others", subcategorySelect);
+                  if (category === "architech") {
+                    // addSubcategoryOption("Architect", subcategorySelect);
+                    addSubcategoryOption("Senior", subcategorySelect);
+                    addSubcategoryOption("Design", subcategorySelect);
+                    addSubcategoryOption("Project", subcategorySelect);
+                    addSubcategoryOption("Principal", subcategorySelect);
+                    addSubcategoryOption("Landscape", subcategorySelect);
+                    addSubcategoryOption("Urban Planner", subcategorySelect);
+                    addSubcategoryOption("Interior Designer", subcategorySelect);
+                    addSubcategoryOption("Architectural Technologist", subcategorySelect);
+                    addSubcategoryOption("BIM (Building Information Modeling) Specialist", subcategorySelect);
+                    addSubcategoryOption("Sustainable Design Consultant", subcategorySelect);
+                    addSubcategoryOption("Architectural Drafter", subcategorySelect);
+                    addSubcategoryOption("Architectural Visualization Artist", subcategorySelect);
+                    addSubcategoryOption("Urban Designer", subcategorySelect);
+                    addSubcategoryOption("Historic Preservation", subcategorySelect);
+                    addSubcategoryOption("Residential Architect", subcategorySelect);
+                    addSubcategoryOption("CAD (Computer-Aided Design) Technician", subcategorySelect);
+                    addSubcategoryOption("Architectural Educator", subcategorySelect);
+                    addSubcategoryOption("Construction Project Manage", subcategorySelect);
+                    addSubcategoryOption("Industrial Designer", subcategorySelect);
+                    addSubcategoryOption("Healthcare Facility Planner", subcategorySelect);
+                    addSubcategoryOption("Retail Space Designer", subcategorySelect);
+                  } else if (category === "Developer") {
+                    addSubcategoryOption("Python Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Python", subcategorySelect);
+                    addSubcategoryOption("Python Data Scientist", subcategorySelect);
+                    addSubcategoryOption("Python Machine Learning Engineer", subcategorySelect);
+                    addSubcategoryOption("Python Automation", subcategorySelect);
+                    addSubcategoryOption("Java Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Java", subcategorySelect);
+                    addSubcategoryOption("Java Full Stack ", subcategorySelect);
+                    addSubcategoryOption("Java Android", subcategorySelect);
+                    addSubcategoryOption("Java Spring ", subcategorySelect);
+                    addSubcategoryOption("Java Microservices", subcategorySelect);
+                    addSubcategoryOption("JavaScript Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Front-end", subcategorySelect);
+                    addSubcategoryOption("Node.js", subcategorySelect);
+                    addSubcategoryOption("React", subcategorySelect);
+                    addSubcategoryOption("Angular", subcategorySelect);
+                    addSubcategoryOption("Vue.js ", subcategorySelect);
+                    addSubcategoryOption("Full Stack JavaScript ", subcategorySelect);
+                    addSubcategoryOption("C# Software Engineer", subcategorySelect);
+                    addSubcategoryOption(".NET", subcategorySelect);
+                    addSubcategoryOption("ASP.NET", subcategorySelect);
+                    addSubcategoryOption("Unity", subcategorySelect);
+                    addSubcategoryOption("Xamarin", subcategorySelect);
+                    addSubcategoryOption("C++ Software Engineerse", subcategorySelect);
+                    addSubcategoryOption("Game  (using C++)", subcategorySelect);
+                    addSubcategoryOption("C++ Systems", subcategorySelect);
+                    addSubcategoryOption("PHP Software Engineer", subcategorySelect);
+                    addSubcategoryOption("PHP Web", subcategorySelect);
+                    addSubcategoryOption("WordPress", subcategorySelect);
+                    addSubcategoryOption("Laravel", subcategorySelect);
+                    addSubcategoryOption("Symfony", subcategorySelect);
+                    addSubcategoryOption("Ruby Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Ruby on Rails ", subcategorySelect);
+                    addSubcategoryOption("Swift Software Engineer", subcategorySelect);
+                    addSubcategoryOption("iOS  (using Swift)", subcategorySelect);
+                    addSubcategoryOption("macOS  (using Swift)", subcategorySelect);
+                    addSubcategoryOption("Kotlin Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Android  (using Kotlin)", subcategorySelect);
+                    addSubcategoryOption("Go Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Rust Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Systems  (using Rust", subcategorySelect);
+                     addSubcategoryOption("TypeScript Software Engineer", subcategorySelect);
+                     addSubcategoryOption("Front-end  (using TypeScript)", subcategorySelect);
+                     addSubcategoryOption("SQL", subcategorySelect);
+                     addSubcategoryOption("Database", subcategorySelect);
+                     addSubcategoryOption("Scala Software Engineer", subcategorySelect);
+                     addSubcategoryOption("Haskell Software Engineer", subcategorySelect);
+                     addSubcategoryOption("Perl Software Engineer ", subcategorySelect);
+                     addSubcategoryOption("Lua Software Engineer", subcategorySelect);
+                     addSubcategoryOption("Game  (using Lua) ", subcategorySelect);
+                     addSubcategoryOption("MATLAB Software Enginee ", subcategorySelect);
+                     addSubcategoryOption("Data Analyst (using MATLAB) ", subcategorySelect);
+                     
+                  } else if (category === "tester") {
+                    addSubcategoryOption("Software", subcategorySelect);
+                    addSubcategoryOption("Test Engineer", subcategorySelect);
+                    addSubcategoryOption("QA Analyst (Quality Assurance Analyst)", subcategorySelect);
+                    addSubcategoryOption("Test Automation Engineer", subcategorySelect);
+                    addSubcategoryOption("Manual", subcategorySelect);
+                    addSubcategoryOption("QA Lead (Quality Assurance Lead)", subcategorySelect);
+                    addSubcategoryOption("Test Manager", subcategorySelect);
+                    addSubcategoryOption("Performance", subcategorySelect);
+                    addSubcategoryOption("Usability", subcategorySelect);
+                    addSubcategoryOption("Regression", subcategorySelect);
+                    addSubcategoryOption("User Acceptance ", subcategorySelect);
+                    addSubcategoryOption("Security", subcategorySelect);
+                    addSubcategoryOption("Mobile App ", subcategorySelect);
+                    addSubcategoryOption("Game", subcategorySelect);
+                    addSubcategoryOption("Functional", subcategorySelect);
+                    addSubcategoryOption("Test Architect", subcategorySelect);
+                    addSubcategoryOption("Test Coordinator", subcategorySelect);
+                    addSubcategoryOption("Continuous Integration", subcategorySelect);
+                    addSubcategoryOption("Load", subcategorySelect);
+                    addSubcategoryOption("Test Designer", subcategorySelect);
+                    addSubcategoryOption("Test Technician", subcategorySelect);
+                    addSubcategoryOption("QA Inspector (Quality Assurance Inspector)", subcategorySelect);
+                    addSubcategoryOption("Test Coordinator", subcategorySelect);
+                    addSubcategoryOption("Compliance", subcategorySelect);
+                    // addSubcategoryOption("Load", subcategorySelect);
                     otherCategoryFields.style.display = "block";
-                  } else {
+                  } 
+                  else if (category === "uiux") {
+                    addSubcategoryOption("UI/UX Designer", subcategorySelect);
+                    addSubcategoryOption("User Experience Designer", subcategorySelect);
+                    addSubcategoryOption("User Interface Designer", subcategorySelect);
+                    addSubcategoryOption("Interaction Designer", subcategorySelect);
+                    addSubcategoryOption("Visual Designer", subcategorySelect);
+                    addSubcategoryOption("UX Researcher", subcategorySelect);
+                    addSubcategoryOption("UI/UX Architect", subcategorySelect);
+                    addSubcategoryOption("Information Architect", subcategorySelect);
+                    addSubcategoryOption("UX Strategist", subcategorySelect);
+                    addSubcategoryOption("Product Designer", subcategorySelect);
+                    addSubcategoryOption("User-Centered Design Specialist", subcategorySelect);
+                    addSubcategoryOption("Usability Analyst", subcategorySelect);
+                    addSubcategoryOption("UI/UX Developer", subcategorySelect);
+                    addSubcategoryOption("Mobile App Designer", subcategorySelect);
+                    addSubcategoryOption("Web Designer", subcategorySelect);
+                    addSubcategoryOption("Visual Experience Designer", subcategorySelect);
+                    addSubcategoryOption("UX Content Strategist", subcategorySelect);
+                    addSubcategoryOption("Interaction Architect", subcategorySelect);
+                    addSubcategoryOption("UX/UI Illustrator", subcategorySelect);
+                    addSubcategoryOption("User Interface Animator", subcategorySelect);
+                    addSubcategoryOption("Conversion Rate Optimization (CRO) Specialist", subcategorySelect);
+                    addSubcategoryOption("Accessibility Designer ", subcategorySelect);
+                    addSubcategoryOption("Prototype Designer", subcategorySelect);
+                    addSubcategoryOption("UI/UX Lead ", subcategorySelect);
+                    addSubcategoryOption("Design Systems Manager", subcategorySelect);
+                    // addSubcategoryOption("Software", subcategorySelect);
+                    
+                  } else if (category === "datascience") {
+                    addSubcategoryOption("Data Scientist", subcategorySelect);
+                    addSubcategoryOption("Senior Data Scientist", subcategorySelect);
+                    addSubcategoryOption("Machine Learning Engineer", subcategorySelect);
+                    addSubcategoryOption("Data Analyst", subcategorySelect);
+                    addSubcategoryOption("Senior Data Analyst", subcategorySelect);
+                    addSubcategoryOption("Statistician", subcategorySelect);
+                    addSubcategoryOption("Business Intelligence Analyst", subcategorySelect);
+                    addSubcategoryOption("Quantitative Analyst (Quant)", subcategorySelect);
+                    addSubcategoryOption("Data Engineer", subcategorySelect);
+                    addSubcategoryOption("Data Architect", subcategorySelect);
+                    addSubcategoryOption("AI Research", subcategorySelect);
+                    addSubcategoryOption("Predictive Modeler", subcategorySelect);
+                    addSubcategoryOption("Natural Language Processing (NLP) Engineer", subcategorySelect);
+                    addSubcategoryOption("Computer Vision Engineer", subcategorySelect);
+                    addSubcategoryOption("Big Data Engineer", subcategorySelect);
+                    addSubcategoryOption("Analytics Manager", subcategorySelect);
+                    addSubcategoryOption("Data Science Manager", subcategorySelect);
+                    addSubcategoryOption("Chief Data Officer (CDO)", subcategorySelect);
+                    addSubcategoryOption("Research Scientist (AI/ML)", subcategorySelect);
+                    addSubcategoryOption("Decision Scientist", subcategorySelect);
+                    addSubcategoryOption("Marketing Analyst", subcategorySelect);
+                    addSubcategoryOption("Operations Research Analyst", subcategorySelect);
+                    addSubcategoryOption("Data Visualization Specialist", subcategorySelect);
+                    addSubcategoryOption("Customer Insights Analyst", subcategorySelect);
+                    addSubcategoryOption("Fraud Analyst", subcategorySelect);
+                  
+                  }else if (category === "databaseadmin") {
+                    addSubcategoryOption("Database (DBA)", subcategorySelect);
+                    addSubcategoryOption("Senior", subcategorySelect);
+                    addSubcategoryOption("Database Engineer", subcategorySelect);
+                    addSubcategoryOption("Database Architect", subcategorySelect);
+                    addSubcategoryOption("Database Analyst", subcategorySelect);
+                    addSubcategoryOption("Data Warehouse", subcategorySelect);
+                    addSubcategoryOption("SQL Server ", subcategorySelect);
+                    addSubcategoryOption("Oracle Database ", subcategorySelect);
+                    addSubcategoryOption("MySQL Database", subcategorySelect);
+                    addSubcategoryOption("PostgreSQL Database", subcategorySelect);
+                    addSubcategoryOption("MongoDB", subcategorySelect);
+                    addSubcategoryOption("NoSQL", subcategorySelect);
+                    addSubcategoryOption("DBMS  (Database Management System)", subcategorySelect);
+                    addSubcategoryOption("Database Operations Manager", subcategorySelect);
+                    addSubcategoryOption("Database Performance Tuning Specialist", subcategorySelect);
+                    addSubcategoryOption("Data Migration Specialist", subcategorySelect);
+                    addSubcategoryOption("Database Security ", subcategorySelect);
+                    addSubcategoryOption("Database Backup and Recovery Specialist", subcategorySelect);
+                    addSubcategoryOption("Cloud   (e.g., AWS, Azure, Google Cloud)", subcategorySelect);
+                    addSubcategoryOption("Database Compliance Officer", subcategorySelect);
+                    addSubcategoryOption("Database DevOps Engineer", subcategorySelect);
+                    addSubcategoryOption("Database Automation Engineer", subcategorySelect);
+                    addSubcategoryOption("Database Replication Specialist", subcategorySelect);
+                    addSubcategoryOption("Data Governance Manager", subcategorySelect);
+                    addSubcategoryOption("Data Steward", subcategorySelect);
+                    // addSubcategoryOption("", subcategorySelect);
+                    // addSubcategoryOption("", subcategorySelect);
+                  }
+                  else if (category === "teacher") {
+                    addSubcategoryOption("Tamil", subcategorySelect);
+                    addSubcategoryOption("Mathematics", subcategorySelect);
+                    addSubcategoryOption("Math Instructor", subcategorySelect);
+                    addSubcategoryOption("Algebra", subcategorySelect);
+                    addSubcategoryOption("Geometry", subcategorySelect);
+                    addSubcategoryOption("Calculus", subcategorySelect);
+                    addSubcategoryOption("Statistics", subcategorySelect);
+                    addSubcategoryOption("Math Tutor", subcategorySelect);
+                    addSubcategoryOption("Math Coach", subcategorySelect);
+                    addSubcategoryOption("Math Curriculum Specialist", subcategorySelect);
+                    addSubcategoryOption("Math Department Chair", subcategorySelect);
+                    addSubcategoryOption("English", subcategorySelect);
+                    addSubcategoryOption("Language Arts ", subcategorySelect);
+                    addSubcategoryOption("Literature", subcategorySelect);
+                    addSubcategoryOption("Writing Instructor", subcategorySelect);
+                    addSubcategoryOption("Creative Writing", subcategorySelect);
+                    addSubcategoryOption("English as a Second Language (ESL) ", subcategorySelect);
+                    addSubcategoryOption("Reading Specialist", subcategorySelect);
+                    addSubcategoryOption("English Tutor", subcategorySelect);
+                    addSubcategoryOption("English Department Chair", subcategorySelect);
+                    addSubcategoryOption("Science", subcategorySelect);
+                    addSubcategoryOption("Biology", subcategorySelect);
+                    addSubcategoryOption("Chemistry", subcategorySelect);
+                    addSubcategoryOption("Physics", subcategorySelect);
+                    addSubcategoryOption("Environmental Science ", subcategorySelect);
+                    addSubcategoryOption("Earth Science ", subcategorySelect);
+                    addSubcategoryOption("Anatomy and Physiology ", subcategorySelect);
+                    addSubcategoryOption("Science Lab Instructor", subcategorySelect);
+                    addSubcategoryOption("Science Curriculum Specialist", subcategorySelect);
+                    addSubcategoryOption("Social Studies ", subcategorySelect);
+                    addSubcategoryOption("History", subcategorySelect);
+                    addSubcategoryOption("Geography", subcategorySelect);
+                    addSubcategoryOption("Civics", subcategorySelect);
+                    addSubcategoryOption("Government", subcategorySelect);
+                    addSubcategoryOption("Economics", subcategorySelect);
+                    addSubcategoryOption("World History ", subcategorySelect);
+                    addSubcategoryOption("Social Studies Department Chair", subcategorySelect);
+                    addSubcategoryOption("Foreign Language", subcategorySelect);
+                    addSubcategoryOption("Language Instructor", subcategorySelect);
+                    addSubcategoryOption("Spanish", subcategorySelect);
+                    addSubcategoryOption("French", subcategorySelect);
+                    addSubcategoryOption("German", subcategorySelect);
+                    addSubcategoryOption("Chinese", subcategorySelect);
+                    addSubcategoryOption("Language Lab Coordinator", subcategorySelect);
+                    addSubcategoryOption("Physical Education ", subcategorySelect);
+                    addSubcategoryOption("PE Instructor", subcategorySelect);
+                    addSubcategoryOption("Fitness Coach", subcategorySelect);
+                    addSubcategoryOption("Health Education ", subcategorySelect);
+                    addSubcategoryOption("Sports Coach", subcategorySelect);
+                    addSubcategoryOption("Physical Education Department Chair", subcategorySelect);
+                    addSubcategoryOption("Art", subcategorySelect);
+                    addSubcategoryOption("Music", subcategorySelect);
+                    addSubcategoryOption("Drama", subcategorySelect);
+                    addSubcategoryOption("Visual Arts ", subcategorySelect);
+                    addSubcategoryOption("Choir Director", subcategorySelect);
+                    addSubcategoryOption("Band", subcategorySelect);
+                    addSubcategoryOption("Art History ", subcategorySelect);
+                    addSubcategoryOption("Special Education ", subcategorySelect);
+                    addSubcategoryOption("Learning Support ", subcategorySelect);
+                    addSubcategoryOption("Resource", subcategorySelect);
+                    addSubcategoryOption("Inclusion", subcategorySelect);
+                    addSubcategoryOption("Autism Specialist", subcategorySelect);
+                    addSubcategoryOption("Behavioral Interventionist", subcategorySelect);
+                    addSubcategoryOption("Vocational", subcategorySelect);
+                    addSubcategoryOption("Career and Technical Education (CTE) Instructor", subcategorySelect);
+                    addSubcategoryOption("Culinary Arts Instructor", subcategorySelect);
+                    addSubcategoryOption("Automotive Technology Teacher", subcategorySelect);
+                    addSubcategoryOption("Computer Science ", subcategorySelect);
+                    addSubcategoryOption("Digital Media Instructor", subcategorySelect);
+            
+                  }
+                  else if (category === "professor") {
+                    addSubcategoryOption("University", subcategorySelect);
+                    addSubcategoryOption("Assistant", subcategorySelect);
+                    addSubcategoryOption("Associate", subcategorySelect);
+                    addSubcategoryOption("Distinguished", subcategorySelect);
+                    addSubcategoryOption("Adjunct", subcategorySelect);
+                    addSubcategoryOption("Visiting", subcategorySelect);
+                    addSubcategoryOption("Research", subcategorySelect);
+                    addSubcategoryOption("Clinical", subcategorySelect);
+                    addSubcategoryOption("Philosophy", subcategorySelect);
+                    addSubcategoryOption("Professor of History", subcategorySelect);
+                    addSubcategoryOption("English", subcategorySelect);
+                    addSubcategoryOption("Psychology", subcategorySelect);
+                    addSubcategoryOption("Sociology", subcategorySelect);
+                    addSubcategoryOption("Political Science", subcategorySelect);
+                    addSubcategoryOption("Anthropology", subcategorySelect);
+                    addSubcategoryOption("Linguistics", subcategorySelect);
+                    addSubcategoryOption("Biology", subcategorySelect);
+                    addSubcategoryOption("Chemistry", subcategorySelect);
+                    addSubcategoryOption("Physics", subcategorySelect);
+                    addSubcategoryOption("Mathematics", subcategorySelect);
+                    addSubcategoryOption("Geology", subcategorySelect);
+                    addSubcategoryOption("Astronomy", subcategorySelect);
+                    addSubcategoryOption("Environmental Science", subcategorySelect);
+                    addSubcategoryOption("Computer Science", subcategorySelect);
+                    addSubcategoryOption("Electrical Engineering", subcategorySelect);
+                    addSubcategoryOption("Mechanical Engineering", subcategorySelect);
+                    addSubcategoryOption("Civil Engineering", subcategorySelect);
+                    addSubcategoryOption("Chemical Engineering", subcategorySelect);
+                    addSubcategoryOption("Information Technology", subcategorySelect);
+                    addSubcategoryOption("Business Administration", subcategorySelect);
+                    addSubcategoryOption("Economics", subcategorySelect);
+                    addSubcategoryOption("Finance", subcategorySelect);
+                    addSubcategoryOption("Marketing", subcategorySelect);
+                    addSubcategoryOption("Management", subcategorySelect);
+                    addSubcategoryOption("Accounting", subcategorySelect);
+                    addSubcategoryOption("Fine Arts", subcategorySelect);
+                    addSubcategoryOption("Music", subcategorySelect);
+                    addSubcategoryOption("Visual Arts", subcategorySelect);
+                    addSubcategoryOption("Theater", subcategorySelect);
+                    addSubcategoryOption("Dance", subcategorySelect);
+                    addSubcategoryOption("Film Studies", subcategorySelect);
+                    addSubcategoryOption("Educational Psychology", subcategorySelect);
+                    addSubcategoryOption("Medicine", subcategorySelect);
+                    addSubcategoryOption("Nursing", subcategorySelect);
+                    addSubcategoryOption("Public Health", subcategorySelect);
+                    addSubcategoryOption("Pharmacy", subcategorySelect);
+                    addSubcategoryOption("Dentistry", subcategorySelect);
+                    addSubcategoryOption("Law", subcategorySelect);
+                     addSubcategoryOption("Constitutional Law", subcategorySelect);
+                     addSubcategoryOption("International Law", subcategorySelect);
+                     addSubcategoryOption("Environmental Law", subcategorySelect);
+                     addSubcategoryOption("Social Work", subcategorySelect);
+                     addSubcategoryOption("Social Welfare", subcategorySelect);
+                     addSubcategoryOption("Clinical Social Work", subcategorySelect);
+                     addSubcategoryOption("Library Science", subcategorySelect);
+                     addSubcategoryOption("Information Studies", subcategorySelect);
+                     
+                  }
+                  else {
                     // Handle other categories here
                     addSubcategoryOption("Other Subcategory", subcategorySelect);
                   }
@@ -1388,8 +2216,50 @@
               <div class="container">
 
                 <h3>Skill Form</h3>
-                <form id="skillForm" method="post" action="skills">
+                <form id="skillForm" method="post" action="http://localhost/arramjobs/seekerController/updateskills">
+                <?php
+                if (isset($skills[0]['id'])) {
+                  foreach ($skills as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+                ?>
+                 <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
                   <div class="skill-entry">
+                    <div class="form-row">
+                      <div class="col-md-4 mb-3">
+                        <br><label for="skillName">Skill Name</label>
+                        <input type="text" class="form-control" id="skillname" value="<?php echo $value['skill']; ?>" name="skillname" required>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <br><label for="experience">Experience</label>
+                        <select class="form-control" name="experience" value="<?php echo $value['experience']; ?>" id="experience" required><br>
+                          <option value="fresher">Fresher</option>
+                          <option value="0-2">0-2 years</option>
+                          <option value="2-5">2-5 years</option>
+                          <option value="5-10">5-10 years</option>
+                          <option value="10-20">10-20 years</option>
+                          <option value="20-above">20 years above</option>
+                        </select>
+                      </div>
+                      <div class="col-md-4 mb-3">
+                        <br><label for="skillLevel">Skill Level</label>
+                        <select class="form-control" name="skilllevel" value="<?php echo $value['skill_level']; ?>" id="skilllevel" required>
+                          <option value="beginner">Beginner</option>
+                          <option value="intermediate">Intermediate</option>
+                          <option value="advanced">Advanced</option>
+                        </select>
+                      </div>
+                    </div>
+                  </div>
+
+                  <!-- <br><button class="btn" type="button" id="addSkillBtn">Add Skill</button> -->
+                  <button class="btn" id="addskillsubmit" type="submit">Submit</button>
+                  <?php
+                    }
+                  } else {
+                    $seekerId = $_SESSION['seekerId'];
+                      ?>
+                       <input type="hidden" name="seekerId" value="<?php echo $seekerId; ?>">
+                               <div class="skill-entry">
                     <div class="form-row">
                       <div class="col-md-4 mb-3">
                         <br><label for="skillName">Skill Name</label>
@@ -1417,8 +2287,11 @@
                     </div>
                   </div>
 
-                  <br><button class="btn" type="button" id="addSkillBtn">Add Skill</button>
+                  <!-- <br><button class="btn" type="button" id="addSkillBtn">Add Skill</button> -->
                   <button class="btn" id="addskillsubmit" type="submit">Submit</button>
+                  <?php
+                  }
+                  ?>
                 </form>
 
                 <ul id="addedSkills"></ul>
@@ -1456,7 +2329,7 @@
             <?php
           } else if ($method == 'resume') {
             ?>
-              <div class="container mt-4">
+              <div class="container">
                 <h2>Upload resume</h2>
                 <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
 
