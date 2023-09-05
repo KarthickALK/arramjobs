@@ -307,8 +307,13 @@ class SeekerController extends CI_Controller
     }
 
     public function resume(){
-        // $this->load->model('SeekerModel');
-        // // // $resume = $this->SeekerModel->getResume();
+
+        $this->data['method'] = "resume";
+        $this->load->view('seekerView', $this->data);
+
+        // $this->load->model('seekerModel');
+        // // // $resume = $this->seekerModel->getResume();
+
         // // $this->data['resume']= $resume;
 
         // $config['upload_path'] = './uploads/';
@@ -338,8 +343,7 @@ class SeekerController extends CI_Controller
         //     echo "File uploaded and data inserted successfully!";
         // }
 
-        $this->data['method'] = "resume";
-        $this->load->view('seekerView', $this->data);
+       
 
        
             // $config['upload_path'] = './uploads/';
@@ -367,5 +371,8 @@ class SeekerController extends CI_Controller
                 
             //     echo "File uploaded and data inserted successfully!";
             // }
+
+
     }
+    
 }
