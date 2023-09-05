@@ -55,18 +55,19 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 
-$route['arramjobs/providerRegistration']='providerController/providerRegistration';
+$route['providerRegistration']='providerController/providerRegistration';
 $route['viewDashboard']='providerController/viewDashboard';
-$route['arramjobs/providerController']='providerController/update_record';
+$route['providerController']='providerController/update_record';
+
 $route['providerRegistration']='customer';
-$route['arramjobs/providerUpdateRegistration'] = 'providerController/providerUpdateRegistration';
-$route['arramjobs/providerController/update_record'] = "providerController/update_record";
+$route['providerUpdateRegistration'] = 'providerController/providerUpdateRegistration';
+$route['providerController/update_record'] = "providerController/update_record";
 // $route['Registration/update_profile'] = 'Registration/update_profile';
-$route['arramjobs/providerController/jobViewTable'] = "providerController/jobViewTable";
-$route['arramjobs/providerController/providerAddJob'] = "providerController/providerAddJob";
-$route['arramjobs/providerController/insertJob'] = "regiproviderControllerstration/insertJob";
-$route['arramjobs/providerController/add_provider_job'] = "providerController/add_provider_job";
-$route['arramjobs/providerController/jobMatchedTable'] = "providerController/jobMatchedTable";
+$route['providerController/jobViewTable'] = "providerController/jobViewTable";
+$route['providerController/providerAddJob'] = "providerController/providerAddJob";
+$route['providerController/insertJob'] = "providerController/insertJob";
+$route['providerController/add_provider_job'] = "providerController/add_provider_job";
+$route['providerController/jobMatchedTable'] = "providerController/jobMatchedTable";
 
 
 

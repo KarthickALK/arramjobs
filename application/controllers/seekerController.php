@@ -307,37 +307,65 @@ class seekerController extends CI_Controller
     }
 
     public function resume(){
-        $this->load->model('seekerModel');
-        // // $resume = $this->seekerModel->getResume();
+        // $this->load->model('seekerModel');
+        // // // $resume = $this->seekerModel->getResume();
         // // $this->data['resume']= $resume;
-        // $this->data['method'] = "resume";
-        // $this->load->view('seekerView', $this->data);
+
+        // $config['upload_path'] = './uploads/';
+        // $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
+        // $config['encrypt_name'] = TRUE;
+
+
+        // $this->load->library('upload', $config);
+
+        // if (!$this->upload->do_upload('userfile')) {
+        //     // File upload failed, handle errors
+        //     $error = $this->upload->display_errors();
+        //     echo $error;
+        // } else {
+        //     // File uploaded successfully
+        //     $data = $this->upload->data();
+
+        //     // Insert file details into the database
+        //     $this->load->seekerModel('File_model'); // Load your model
+        //     $insert_data = array(
+        //         'file_name' => $data['file_name'],
+        //         'file_path' => $data['full_path'],
+        //     );
+
+        //     $this->File_model->insert_file($insert_data); // Call your model method to insert data
+            
+        //     echo "File uploaded and data inserted successfully!";
+        // }
+
+        $this->data['method'] = "resume";
+        $this->load->view('seekerView', $this->data);
 
        
-            $config['upload_path'] = './uploads/';
-            $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
-            $config['encrypt_name'] = TRUE;
+            // $config['upload_path'] = './uploads/';
+            // $config['allowed_types'] = 'gif|jpg|png|pdf|doc|docx';
+            // $config['encrypt_name'] = TRUE;
     
-            $this->load->library('upload', $config);
+            // $this->load->library('upload', $config);
     
-            if (!$this->upload->do_upload('userfile')) {
-                // File upload failed, handle errors
-                $error = $this->upload->display_errors();
-                echo $error;
-            } else {
-                // File uploaded successfully
-                $data = $this->upload->data();
+            // if (!$this->upload->do_upload('userfile')) {
+            //     // File upload failed, handle errors
+            //     $error = $this->upload->display_errors();
+            //     echo $error;
+            // } else {
+            //     // File uploaded successfully
+            //     $data = $this->upload->data();
     
-                // Insert file details into the database
-                $this->load->model('File_model'); // Load your model
-                $insert_data = array(
-                    'file_name' => $data['file_name'],
-                    'file_path' => $data['full_path'],
-                );
+            //     // Insert file details into the database
+            //     $this->load->model('File_model'); // Load your model
+            //     $insert_data = array(
+            //         'file_name' => $data['file_name'],
+            //         'file_path' => $data['full_path'],
+            //     );
     
-                $this->File_model->insert_file($insert_data); // Call your model method to insert data
+            //     $this->File_model->insert_file($insert_data); // Call your model method to insert data
                 
-                echo "File uploaded and data inserted successfully!";
-            }
+            //     echo "File uploaded and data inserted successfully!";
+            // }
     }
 }

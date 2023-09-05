@@ -163,7 +163,7 @@
     </h2>
     <br>
 
-    <form name="registration_form" method="post" onsubmit="return validateForm()" action="process_registration">
+    <form name="registration_form" method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "/seekerController/process_registration"?>">
       <div class="form-group">
         <label for="username">Username</label>
         <input type="text" class="form-control" id="name" name="name" placeholder="Enter your username">
@@ -183,7 +183,7 @@
     </form>
     <br>
     <div id="sign" class="d-flex justify-content-end align-items-center">
-      <p>Already have an account ? <a id="regis" href="http://localhost/arramjobs/seekerController/login">login</a></p>
+      <p>Already have an account ? <a id="regis" href="<?php echo baseUrl . "/seekerController/login"?>/">login</a></p>
     </div>
   </div>
   <script>
