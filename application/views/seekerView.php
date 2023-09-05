@@ -303,43 +303,43 @@
               </a>
             </li><br>
             <li class="nav-item">
-              <a class="nav-link" href="<?php echo baseUrl . "/seekerController/basicDetails"?>">
+              <a class="nav-link" href="<?php echo baseUrl . "seekerController/basicDetails"?>">
                 Basic Details
               </a>
             </li><br>
             <li class="nav-item">
               <!-- <a class="nav-link" href="http://localhost/arramjobs/seekerController/educationalDetails"> -->
-              <a class="nav-link" href="<?php echo baseUrl . "/seekerController/educationalDetails"?>">
+              <a class="nav-link" href="<?php echo baseUrl . "seekerController/educationalDetails"?>">
                 Education Details
               </a>
             </li><br>
             <li class="nav-item">
               <!-- <a class="nav-link" href="http://localhost/arramjobs/seekerController/experienceDetails"> -->
-              <a class="nav-link" href="<?php echo baseUrl . "/seekerController/experienceDetails"?>">
+              <a class="nav-link" href="<?php echo baseUrl . "seekerController/experienceDetails"?>">
                 Experience Details
               </a>
             </li><br>
             <li class="nav-item">
               <!-- <a class="nav-link" href="http://localhost/arramjobs/seekerController/projectDetails"> -->
-              <a class="nav-link" href="<?php echo baseUrl . "/seekerController/projectDetails"?>">
+              <a class="nav-link" href="<?php echo baseUrl . "seekerController/projectDetails"?>">
                 project Details
               </a>
             </li><br>
             <li class="nav-item">
               <!-- <a class="nav-link" href="http://localhost/arramjobs/seekerController/areaOfInterest"> -->
-              <a class="nav-link" href="<?php echo baseUrl . "/seekerController/areaOfInterest"?>">
+              <a class="nav-link" href="<?php echo baseUrl . "seekerController/areaOfInterest"?>">
                 Area Of Interest
               </a>
             </li><br>
             <li class="nav-item">
               <!-- <a class="nav-link" href="http://localhost/arramjobs/seekerController/skills"> -->
-              <a class="nav-link" href="<?php echo baseUrl . "/seekerController/skills"?>">
+              <a class="nav-link" href="<?php echo baseUrl . "seekerController/skills"?>">
                 Skills
               </a>
             </li><br>
             <li class="nav-item">
               <!-- <a class="nav-link" href="http://localhost/arramjobs/seekerController/resume"> -->
-              <a class="nav-link" href="<?php echo baseUrl . "/seekerController/resume"?>">
+              <a class="nav-link" href="<?php echo baseUrl . "seekerController/resume"?>">
                 Upload Resume
               </a>
             </li>
@@ -359,7 +359,7 @@
 
           <div class="container" id="page1">
             <h3>Personal Details</h3>
-            <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='<?php echo baseUrl . "/seekerController/updateBasicDetails"?>'>
+            <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='<?php echo baseUrl . "seekerController/updateBasicDetails"?>'>
               <?php
               foreach ($basicDetails as $key => $value) {
               ?>
@@ -595,7 +595,7 @@
             <div id="educationFormsContainer">
               <div class="education-form-container">
             
-                <form name="educationform" action="<?php echo baseUrl . "/seekerController/updateEducationDetails"?>" method="post" onsubmit="return validateForm()" >
+                <form name="educationform" action="<?php echo baseUrl . "seekerController/updateEducationDetails"?>" method="post" onsubmit="return validateForm()" >
                   <?php
               // foreach($educationDetails as $key => $value) {
                  
@@ -832,7 +832,7 @@
 
             <div class="container">
               <h3>Experience Details Form</h3>
-              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action=" <?php echo baseUrl . "/seekerController/updateExperienceDetails"?>">
+              <form name="experienceform" method="post" onsubmit="return validateexpForm()" action=" <?php echo baseUrl . "seekerController/updateExperienceDetails"?>">
                                                                                            
               <?php
                 if (isset($experienceDetails[0]['id'])) {
@@ -1446,7 +1446,7 @@
 
             <div class="container">
               <h3 id="projectdeailsform">Project Details Form</h3>
-              <form name="projectform" method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "/seekerController/updateProjectDetails"?>">
+              <form name="projectform" method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "seekerController/updateProjectDetails"?>">
                 <?php
                 if (isset($projectDetails[0]['id'])) {
                   foreach ($projectDetails as $key => $value) {
@@ -1632,7 +1632,7 @@
 
               <div class="container">
                 <h3>Area of Interest Form</h3>
-                <form method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "/seekerController/updateAreaOfInterest"?>">
+                <form method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "seekerController/updateAreaOfInterest"?>">
 
                 <?php
                 if (isset($areaofinterest[0]['id'])) {
@@ -2234,7 +2234,7 @@
               <div class="container">
 
                 <h3>Skill Form</h3>
-                <form id="skillForm" method="post" action="<?php echo baseUrl . "/seekerController/updateskills"?>">
+                <form id="skillForm" method="post" action="<?php echo baseUrl . "seekerController/updateskills"?>">
                 <?php
                 if (isset($skills[0]['id'])) {
                   foreach ($skills as $key => $value) {
@@ -2349,7 +2349,7 @@
             ?>
               <div class="container">
                 <h2>Upload resume</h2>
-                <form id="resumeForm" method="post" onsubmit="return validateForm()" action="resume">
+                <form id="resumeForm" method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "seekerController/resume"?>">
 
                   <div class="form-group">
                     <label for="resumeFile">Upload Resume</label>

@@ -179,7 +179,7 @@
 
   <div class="container">
     <h3>Provider Login </h3>
-    <form name="login_form" method="post" action="<?php echo baseUrl . "/providerController/viewDashboard"?>" onsubmit="return validateForm()">
+    <form name="login_form" method="post" action="<?php echo baseUrl . "providerController/viewDashboard"?>" onsubmit="return validateForm()">
       <div class="form-group">
         <label for="userID">User ID</label>
         <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user ID">
@@ -197,7 +197,7 @@
 
     </form>
     <div id="sign">
-      <p>Create an account ? <a id="regis" href="<?php echo baseUrl . "/provider/registration"?>/">Register</a></p>
+      <p>Create an account ? <a id="regis" href="<?php echo baseUrl . "provider/registration"?>">Register</a></p>
     </div>
   </div>
   <br>
