@@ -1,5 +1,5 @@
  <?php
-    class seekerModel extends CI_Model
+    class SeekerModel extends CI_Model
     {
         public function __construct()
         {

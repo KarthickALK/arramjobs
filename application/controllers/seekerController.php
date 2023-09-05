@@ -1,11 +1,11 @@
 <?php
-class seekerController extends CI_Controller
+class SeekerController extends CI_Controller
 {
     private $data = array();
     public function __construct()
     {
         parent::__construct();
-        $this->load->model('seekerModel');
+        $this->load->model('SeekerModel');
         $this->load->library('session');
     }
 
@@ -23,7 +23,7 @@ class seekerController extends CI_Controller
             if ($this->form_validation->run() == true) {
                 // Check if the phone number already exists in the database
                 $phonenumber = $this->input->post('phonenumber');
-                $userExists = $this->seekerModel->checkUserExistence($phonenumber);
+                $userExists = $this->SeekerModel->checkUserExistence($phonenumber);
 
                 if ($userExists) {
                     // User already exists, show an error message
@@ -55,7 +55,7 @@ class seekerController extends CI_Controller
             // if ($this->form_validation->run() == true) {
             //     // Check if the phone number exists in the database
             //     $phonenumber = $this->input->post('phonenumber');
-            //     $userExists = $this->seekerModel->checkUserExistence($phonenumber);
+            //     $userExists = $this->SeekerModel->checkUserExistence($phonenumber);
 
             //     if ($userExists) {
             //         echo "<script>window.location.href = 'otpregister';</script>";
@@ -74,7 +74,7 @@ class seekerController extends CI_Controller
     public function otpregister()
     {
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $response = $this->seekerModel->otp();
+            $response = $this->SeekerModel->otp();
             echo "<script>window.location.href = 'dash';</script>";
         }
 
@@ -84,7 +84,7 @@ class seekerController extends CI_Controller
     public function seekerLogin()
     {
         $postData = $this->input->post(null, true);
-        $login = $this->seekerModel->seekerLogin();
+        $login = $this->SeekerModel->seekerLogin();
         if (isset($login[0]['id'])) {
             $userLoggedIn = array(
                 'seekerId' => $login[0]['id'],
@@ -115,8 +115,8 @@ class seekerController extends CI_Controller
 
     public function basicDetails()
     {
-        $this->load->model('seekerModel');
-        $basicDetails = $this->seekerModel->getBasicDetails();
+        $this->load->model('SeekerModel');
+        $basicDetails = $this->SeekerModel->getBasicDetails();
         $this->data['basicDetails'] = $basicDetails;
         $this->data['method'] = 'basicdetails';
         $this->load->view('seekerView.php', $this->data);
@@ -125,7 +125,7 @@ class seekerController extends CI_Controller
     public function updateBasicDetails()
     {
         $postData = $this->input->post(null, true);
-        $updateBasicDetails = $this->seekerModel->updateBasicDetails();
+        $updateBasicDetails = $this->SeekerModel->updateBasicDetails();
 
         $this->basicDetails();
     }
@@ -133,18 +133,18 @@ class seekerController extends CI_Controller
     public function educationalDetails()
     {
         
-        $this->load->model('seekerModel');
-        $educationalDetails = $this->seekerModel->getEducationalDetails();
+        $this->load->model('SeekerModel');
+        $educationalDetails = $this->SeekerModel->getEducationalDetails();
         $this->data['educationalDetails'] = $educationalDetails;
         $this->data['method'] = 'educationalDetails';
         $this->load->view('seekerView.php', $this->data);
     }
-        // $this->load->model('seekerModel');
+        // $this->load->model('SeekerModel');
         // $this->data['method'] = "education";
         // $seekerId = $this->session->userdata('logged_in_phonenumber');
         // if ($this->input->post()) {
         //     $formData = $this->input->post(null, true);
-        //     $educationDetails = $this->seekerModel->educationalDetails($seekerId, $formData);
+        //     $educationDetails = $this->SeekerModel->educationalDetails($seekerId, $formData);
         //     $this->data['educationDetails'] = $educationDetails;
         // }
         // $this->data['seekerId'] = $seekerId; 
@@ -155,20 +155,20 @@ class seekerController extends CI_Controller
     {
         
         $postData = $this->input->post(null, true);
-        $updateEducationDetails = $this->seekerModel->updateEducationDetails();
+        $updateEducationDetails = $this->SeekerModel->updateEducationDetails();
 
         $this->educationalDetails();
     }
 
      public function experienceDetails()
     {
-        $this->load->model('seekerModel');
-        $experienceDetails = $this->seekerModel->getExperienceDetails();
+        $this->load->model('SeekerModel');
+        $experienceDetails = $this->SeekerModel->getExperienceDetails();
         $this->data['experienceDetails'] = $experienceDetails;
         $this->data['method'] = 'experienceDetails';
         $this->load->view('seekerView.php', $this->data);
-        // $this->load->model('seekerModel');
-        // $experienceDetails=$this->seekerModel->getExperienceDetails();
+        // $this->load->model('SeekerModel');
+        // $experienceDetails=$this->SeekerModel->getExperienceDetails();
         // // $this->data['experienceDetails']=$experienceDetails;
         
         // $this->data['method'] = "experience";
@@ -178,14 +178,14 @@ class seekerController extends CI_Controller
     public function updateExperienceDetails(){
 
         $postData = $this->input->post(null, true);
-        $updateExperienceDetails = $this->seekerModel->updateExperienceDetails();
+        $updateExperienceDetails = $this->SeekerModel->updateExperienceDetails();
 
         $this->experienceDetails();
-        // $this->load->model('seekerModel');
+        // $this->load->model('SeekerModel');
         // $this->data['method'] = "experience";
 
         // $formData = $this->input->post(null, true);
-        // $this->seekerModel-> updateExperienceDetails($formData);
+        // $this->SeekerModel-> updateExperienceDetails($formData);
        
         // // $this->data['seekerId'] = $seekerId;
         // // $this->load->view('seekerView', $this->data);
@@ -193,15 +193,15 @@ class seekerController extends CI_Controller
     }
 
     public function projectDetails(){
-        // $this->load->model('seekerModel');
-        // $projectDetails=$this->seekerModel->getProjectDetails();
+        // $this->load->model('SeekerModel');
+        // $projectDetails=$this->SeekerModel->getProjectDetails();
         // $this->data['projectDetails']=$projectDetails;
         // $this->data['method'] = "project";
         // $this->load->view('seekerView', $this->data);
           
         
-            $this->load->model('seekerModel');
-            $provider = $this->seekerModel->getProjectDetails(); 
+            $this->load->model('SeekerModel');
+            $provider = $this->SeekerModel->getProjectDetails(); 
             $this->data['projectDetails'] = $provider;
             $this->data['method'] = "project";
             $this->load->view('seekerView.php', $this->data);
@@ -213,9 +213,9 @@ class seekerController extends CI_Controller
 
     public function updateProjectDetails()
     {
-        // $this->load->model('seekerModel');
+        // $this->load->model('SeekerModel');
         // $this->data['method'] = "project";
-        // $seekerDetail = $this->seekerModel->update();
+        // $seekerDetail = $this->SeekerModel->update();
         // $seekerId = $this->session->userdata('logged_in_phonenumber'); // Get the seekerId from the session or wherever it's stored
 
         // if ($this->input->post()) {
@@ -228,7 +228,7 @@ class seekerController extends CI_Controller
 
         // $this->load->view('seekerView', $this->data);
         $postData = $this->input->post(null, true);
-        $updateProjectDetails = $this->seekerModel->updateProjectDetails();
+        $updateProjectDetails = $this->SeekerModel->updateProjectDetails();
 
         $this->projectDetails();
     }
@@ -240,7 +240,7 @@ class seekerController extends CI_Controller
         // $this->data['method'] = "areaofinterest";
         // $this->load->view('seekerView', $this->data);
         $this->data['method'] = "areaofinterest";
-        $provider = $this->seekerModel->getAreaOfInterest();
+        $provider = $this->SeekerModel->getAreaOfInterest();
         $this->data['areaofinterest'] = $provider;
         $this->load->view('seekerView.php', $this->data);
     }
@@ -267,7 +267,7 @@ class seekerController extends CI_Controller
 
         // $this->load->view('seekerView', $data);
         $postData = $this->input->post(null, true);
-        $updateAreaOfInterest = $this->seekerModel->updateAreaOfInterest();
+        $updateAreaOfInterest = $this->SeekerModel->updateAreaOfInterest();
 
         $this->areaofinterest();
     }
@@ -294,19 +294,47 @@ class seekerController extends CI_Controller
 
         // $this->load->view('seekerView', $this->data);
         $this->data['method'] = "skills";
-        $provider = $this->seekerModel->getSkills();
+        $provider = $this->SeekerModel->getSkills();
         $this->data['skills'] = $provider;
         $this->load->view('seekerView.php', $this->data);
     }
 
     public function updateskills(){
         $postData = $this->input->post(null, true);
-        $updateskills = $this->seekerModel->updateskills();
+        $updateskills = $this->SeekerModel->updateskills();
 
         $this->skills();
     }
 
     public function resume(){
+        $this->data['method'] = "resume";
+        $this->load->view('seekerView', $this->data);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
         // $this->load->model('seekerModel');
         // // // $resume = $this->seekerModel->getResume();
         // // $this->data['resume']= $resume;
@@ -338,8 +366,7 @@ class seekerController extends CI_Controller
         //     echo "File uploaded and data inserted successfully!";
         // }
 
-        $this->data['method'] = "resume";
-        $this->load->view('seekerView', $this->data);
+       
 
        
             // $config['upload_path'] = './uploads/';
@@ -367,5 +394,8 @@ class seekerController extends CI_Controller
                 
             //     echo "File uploaded and data inserted successfully!";
             // }
+
+
     }
+    
 }

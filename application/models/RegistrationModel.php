@@ -45,9 +45,15 @@ class RegistrationModel extends CI_Model
 
   public function provider_detail()
   {
-    $provider = "SELECT * FROM `provider_registration_form` Where `id`= 131";
+    $jobProviderId=$_SESSION['jobProviderId'];
+    $provider = "SELECT * FROM `provider_registration_form` Where `id`= $jobProviderId";
     $select = $this->db->query($provider);
     return $select->result_array();
+
+    // $seekerId=$_SESSION['seekerId'];
+    // $provider = "SELECT * FROM `seeker_profile_form` WHERE `id` = $seekerId";
+    // $select = $this->db->query($provider);
+    // return $select->result_array();
   }
 
 
@@ -96,9 +102,16 @@ class RegistrationModel extends CI_Model
 
   public function addTab()
   {
-    $providerAdd = "SELECT * FROM `provider_job`";
+    $jobProviderId=$_SESSION['jobProviderId'];
+    $providerAdd = "SELECT * FROM `provider_job` Where `jobProviderId`= $jobProviderId";
     $addtab = $this->db->query($providerAdd);
     return $addtab->result_array();
+
+
+    // $jobProviderId=$_SESSION['jobProviderId'];
+    // $provider = "SELECT * FROM `provider_registration_form` Where `id`= $jobProviderId";
+    // $select = $this->db->query($provider);
+    // return $select->result_array();
   }
 
 
@@ -108,6 +121,8 @@ class RegistrationModel extends CI_Model
     $update = "SELECT * FROM `provider_job` Where `id`=$id";
     $add = $this->db->query($update);
     return $add->result_array();
+
+    
   }
 
   public function update_job()
