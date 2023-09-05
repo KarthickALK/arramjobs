@@ -398,7 +398,7 @@
                 <h4> Address : </h3>
                 <div class="form-group">
                   <label for="Door no">Door no/building name </label>
-                  <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['buildingName']); ?>" name="doorno">
+                  <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['buildingName']) ? $value['buildingName'] : ''; ?>" name="doorno">
                   <div id="doorno_error" class="error"></div>
                 </div>
                 <div class="form-group">

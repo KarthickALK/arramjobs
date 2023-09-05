@@ -85,10 +85,11 @@ class RegistrationModel extends CI_Model
 
   public function addNew()
   {
+    $jobProviderId=$_SESSION['jobProviderId'];
     $post = $this->input->post(null, true);
 
     $add = array(
-      'company_name' => $post['company_name'], 'job_category_id' =>  $post['category'],
+       'jobProviderId' =>  $jobProviderId, 'company_name' => $post['company_name'], 'job_category_id' =>  $post['category'],
       'jobCategory' => $post['category'], 'jobSubCategory' => $post['subcategory'],
       'job_sub_category_id' => $post['subcategory'], 'location' => $post['preferred_location'],
       'job_type' => $post['jobtype'], 'salary' => $post['expected_salary'],
