@@ -409,23 +409,23 @@
                         <br>
 
                         <li class="nav-item">
-                            <a class="nav-link active" href="<?php echo baseUrl . "/providerController/dashboard"?>">
+                            <a class="nav-link active" href="<?php echo baseUrl . "providerController/dashboard"?>">
                                 Provider Dashboard
                             </a>
                         </li>
                         <li class="nav-item">
                             <!-- <a class="nav-link" href="http://localhost/arramjobs/providerController/providerUpdateRegistration"> -->
-                            <a class="nav-link" href="<?php echo baseUrl . "/providerController/providerUpdateRegistration"?>">
+                            <a class="nav-link" href="<?php echo baseUrl . "providerController/providerUpdateRegistration"?>">
                                 Provider Profile
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo baseUrl . "/providerController/jobViewTable"?>">
+                            <a class="nav-link" href="<?php echo baseUrl . "providerController/jobViewTable"?>">
                                 Provider Jobs
                             </a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="<?php echo baseUrl . "/providerController/matchedCandidate"?>">
+                            <a class="nav-link" href="<?php echo baseUrl . "providerController/matchedCandidate"?>">
                                 Candidates List
                             </a>
                         </li>
@@ -455,7 +455,7 @@
                         <h3 class="text-center">Jobs</h3>
                         <!-- <input type="button" class="btn btn-primary float-end" value="+ Add" onclick="registration/provider_addjob"> -->
                         <!-- <a id="regis" href="provider_addjob">+ Add</a></p>> -->
-                        <a id="regis" href="<?php echo baseUrl . "/providerController/providerAddJob"?>">+ Add jobs</a>
+                        <a id="regis" href="<?php echo baseUrl . "providerController/providerAddJob"?>">+ Add jobs</a>
 
                         <div class="clearfix"></div>
                         <br>
@@ -494,10 +494,10 @@
                                             <td>
                                                 <div class="btn-group" role="group">
                                                     <!-- <button class="btn btn-primary">View</button> -->
-                                                    <a id="view" href="<?php echo baseUrl . "/providerController/jobMatchedTable"?>/<?php echo $value['jobCategory'] ?>">View</a>
-                                                    <a id="updates" href="<?php echo baseUrl . "/providerController/updateAddNew"?>/<?php echo $value['id'] ?>">Update</a>
+                                                    <a id="view" href="<?php echo baseUrl . "providerController/jobMatchedTable"?>/<?php echo $value['jobCategory'] ?>">View</a>
+                                                    <a id="updates" href="<?php echo baseUrl . "providerController/updateAddNew"?>/<?php echo $value['id'] ?>">Update</a>
                                                     <!-- <a id="view" onclick="confirm('Are you sure , you want to delete..?')" href="deleteAddJob">delete</a> -->
-                                                    <a id="deletes" onclick="return confirm('Are you sure you want to delete?')" href="<?php echo baseUrl . "/providerController/deleteAddJob"?>/<?php echo $value['id'] ?>">delete</a>
+                                                    <a id="deletes" onclick="return confirm('Are you sure you want to delete?')" href="<?php echo baseUrl . "providerController/deleteAddJob"?>/<?php echo $value['id'] ?>">delete</a>
 
 
                                                 </div>
@@ -543,7 +543,7 @@
                                 <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
                                 <div class="text-center p-2 border bg-secondary rounded-3  bg-opacity-75 ms-5 me-5 text-white fs-5">Company Details</div>
 
-                                <form name="forms" action="<?php echo baseUrl . "/providerController/update_record"?>" method="post">
+                                <form name="forms" action="<?php echo baseUrl . "providerController/update_record"?>" method="post">
                                     <input type="hidden" class="form-control" value=<?php echo $value['id']; ?> id="id" name="id" placeholder="enter name" onkeypress="return allowOnlyLetters(event, this)">
                                     <div class=" mb-3 mt-4  ms-5 me-5 w-55  ">
                                         <label for="name" class="form-label">Name:</label>
@@ -1498,7 +1498,7 @@
     ?>
         <div class="container" id="updateaddnew">
             <h3>Update jobs</h3>
-            <form name="experienceform" method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "/providerController/updateInsert"?>">
+            <form name="experienceform" method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "providerController/updateInsert"?>">
                 <?php
                     foreach ($this->data['updateAddNew'] as $key => $value) {
                 ?>
@@ -2149,7 +2149,7 @@
                                     <td>
                                         <div class="btn-group" role="group">
                                             <!-- <button class="btn btn-primary">View</button> -->
-                                            <a id="view" href="<?php echo baseUrl . "/providerController/resumeCard"?>/<?php echo $value['id'] ?>">View</a>
+                                            <a id="view" href="<?php echo baseUrl . "providerController/resumeCard"?>/<?php echo $value['id'] ?>">View</a>
                                         </div>
                                     </td>
                                 </tr>
@@ -2556,7 +2556,7 @@
                             <td>
                                 <div class="btn-group" role="group">
                                     <!-- <button class="btn btn-primary">View</button> -->
-                                    <a id="view" href="<?php echo baseUrl . "/providerController/resumeCard"?>/">View</a>
+                                    <a id="view" href="<?php echo baseUrl . "providerController/resumeCard"?>">View</a>
                                     <!-- <button class="btn btn-warning">Update</button>
                                 <button class="btn btn-danger">Delete</button> -->
                                 </div>
@@ -2823,7 +2823,7 @@
         </div>
         <tbody>
             <br>
-            <form action="<?php echo baseUrl . "/providerController/filterAllCandidate"?>" method="post">
+            <form action="<?php echo baseUrl . "providerController/filterAllCandidate"?>" method="post">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -2884,7 +2884,7 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <!-- <button class="btn btn-primary">View</button> -->
-                                <a id="view" href="<?php echo baseUrl . "/providerController/resumeCard"?>/<?php echo $value['id'] ?>">View</a>
+                                <a id="view" href="<?php echo baseUrl . "providerController/resumeCard"?>/<?php echo $value['id'] ?>">View</a>
                             </div>
                         </td>
                     </tr>
@@ -3282,7 +3282,7 @@
                 <
                 br >
                 <
-                form action = "<?php echo baseUrl . "/providerController/filterAllCandidate"?>"
+                form action = "<?php echo baseUrl . "providerController/filterAllCandidate"?>"
             method = "post" >
                 <
                 div class = "row" >
@@ -3378,7 +3378,7 @@
             role = "group" >
                 <
                 !-- < button class = "btn btn-primary" > View < /button> --> <
-            a href = "<?php echo baseUrl . "/providerController/resumeCard"?>/<?php echo $value['id'] ?>" > View < /a> < /
+            a href = "<?php echo baseUrl . "providerController/resumeCard"?>/<?php echo $value['id'] ?>" > View < /a> < /
             div > <
                 /td> < /
             tr >
@@ -3770,7 +3770,7 @@
         </div>
         <tbody>
             <br>
-            <form action="<?php echo baseUrl . "/providerController/filterAllCandidate"?>" method="post">
+            <form action="<?php echo baseUrl . "providerController/filterAllCandidate"?>" method="post">
                 <div class="row">
                     <div class="col-md-6">
                         <div class="form-group">
@@ -3831,7 +3831,7 @@
                         <td>
                             <div class="btn-group" role="group">
                                 <!-- <button class="btn btn-primary">View</button> -->
-                                <a href="<?php echo baseUrl . "/providerController/resumeCard"?>/<?php echo $value['id'] ?>">View</a>
+                                <a href="<?php echo baseUrl . "providerController/resumeCard"?>/<?php echo $value['id'] ?>">View</a>
                             </div>
                         </td>
                     </tr>

@@ -131,7 +131,6 @@
 
         public function providerAddJob()
         {
-
             $this->data['method'] = "addnew";
             // $this->load->view('addnew_jobs.php');
             $this->load->view('exampleDashboard.php', $this->data);

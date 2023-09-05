@@ -55,19 +55,72 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 
-$route['providerRegistration']='providerController/providerRegistration';
-$route['viewDashboard']='providerController/viewDashboard';
-$route['providerController']='providerController/update_record';
 
-$route['providerRegistration']='customer';
-$route['providerUpdateRegistration'] = 'providerController/providerUpdateRegistration';
-$route['providerController/update_record'] = "providerController/update_record";
-// $route['Registration/update_profile'] = 'Registration/update_profile';
-$route['providerController/jobViewTable'] = "providerController/jobViewTable";
-$route['providerController/providerAddJob'] = "providerController/providerAddJob";
-$route['providerController/insertJob'] = "providerController/insertJob";
-$route['providerController/add_provider_job'] = "providerController/add_provider_job";
-$route['providerController/jobMatchedTable'] = "providerController/jobMatchedTable";
+$route['viewDashboard']='providerController/viewDashboard';
+$route['registration']='provider/registration';
+$route['login']='provider/login';
+$route['providerRegistration']='providerController/providerRegistration';
+$route['dashboard']='providerController/dashboard';
+$route['providerUpdateRegistration']='providerController/providerUpdateRegistration';
+$route['jobViewTable']='providerController/jobViewTable';
+$route['matchedCandidate']='providerController/matchedCandidate';
+$route['providerAddJob']='providerController/providerAddJob';
+$route['jobMatchedTable']='providerController/jobMatchedTable';
+$route['updateAddNew']='providerController/updateAddNew';
+$route['deleteAddJob']='providerController/deleteAddJob';
+$route['update_record']='providerController/update_record';
+$route['insertJob']='providerController/insertJob';
+$route['updateInsert']='providerController/updateInsert';
+$route['resumeCard']='providerController/resumeCard';
+$route['resumeCard']='providerController/resumeCard';
+$route['filterAllCandidate']='providerController/filterAllCandidate';
+$route['resumeCard']='providerController/resumeCard';
+$route['filterAllCandidate']='providerController/filterAllCandidate';
+$route['resumeCard']='providerController/resumeCard';
+$route['filterAllCandidate']='providerController/filterAllCandidate';
+$route['resumeCard']='providerController/resumeCard';
+
+
+
+          // seeker routes
+
+$route['seekerLogin']='seekerController/seekerLogin';
+$route['registration']='seekerController/registration';
+$route['registration']='seekerController/registration';
+$route['login']='seekerController/login';
+$route['basicDetails']='seekerController/basicDetails';
+$route['educationalDetails']='seekerController/educationalDetails';
+$route['experienceDetails']='seekerController/experienceDetails';
+$route['projectDetails']='seekerController/projectDetails';
+$route['areaOfInterest']='seekerController/areaOfInterest';
+$route['skills']='seekerController/skills';
+$route['resume']='seekerController/resume';
+$route['updateBasicDetails']='seekerController/updateBasicDetails';
+$route['updateEducationDetails']='seekerController/updateEducationDetails';
+$route['updateExperienceDetails']='seekerController/updateExperienceDetails';
+$route['updateProjectDetails']='seekerController/updateProjectDetails';
+$route['updateAreaOfInterest']='seekerController/updateAreaOfInterest';
+$route['updateskills']='seekerController/updateskills';
+$route['resume']='seekerController/resume';
+
+
+
+
+
+
+
+// $route['providerController']='providerController/update_record';
+// $route['providerRegistration']='customer';
+// // $route['providerUpdateRegistration'] = 'providerController/providerUpdateRegistration';
+// $route['providerController/update_record'] = "providerController/update_record";
+// // $route['Registration/update_profile'] = 'Registration/update_profile';
+// $route['providerController/jobViewTable'] = "providerController/jobViewTable";
+// $route['providerController/providerAddJob'] = "providerController/providerAddJob";
+// $route['providerController/insertJob'] = "providerController/insertJob";
+// $route['providerController/add_provider_job'] = "providerController/add_provider_job";
+// $route['providerController/jobMatchedTable'] = "providerController/jobMatchedTable";
+// $route['providerController/updateAddNew'] = "providerController/updateAddNew";
+// $route['providerController/updateInsert'] = "providerController/updateInsert";
 
 
 
