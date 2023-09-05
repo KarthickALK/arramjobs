@@ -1,5 +1,5 @@
 <?php
-class seekerController extends CI_Controller
+class SeekerController extends CI_Controller
 {
     private $data = array();
     public function __construct()

@@ -1,7 +1,7 @@
 <?php
 defined('BASEPATH') or exit('No direct script access allowed');
 
-class provider extends CI_Controller
+class Provider extends CI_Controller
 {
 
 	/**
