@@ -32,7 +32,7 @@ class Welcome extends CI_Controller
 	}
 	public function index()
 	{
-		$this->load->view('providerLogin.php');
+		$this->load->view('home.php');
 		// $this->load->view('dashboard_page.php');
 		// $this->load->model('RegistrationModel');
 		// $provider=$this->RegistrationModel->provider_detail(); 

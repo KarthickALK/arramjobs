@@ -55,7 +55,7 @@ $route['translate_uri_dashes'] = FALSE;
 
 
 
-
+$route['provider/login'] = 'provider/login';
 $route['viewDashboard']='providerController/viewDashboard';
 $route['registration']='provider/registration';
 $route['login']='provider/login';
