@@ -16,7 +16,8 @@
             font-family: Arial, sans-serif;
             background-color: #f1f1f1;
             margin: 0;
-            padding: 0;
+            padding: 10;
+          
 
 
         }
@@ -31,7 +32,7 @@
             background-color: #fff;
             padding: 30px;
             border-radius: 5px;
-
+            margin-left:410px;
             width: 40%;
 
             margin-top: 50px;
@@ -168,10 +169,7 @@
             </ul>
         </nav>
     </header>
-    <br>
-    <br>
-    <br>
-    <br>
+    
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <br>
@@ -214,7 +212,8 @@
                 <h4>Company Details</h4>
             </div>
             <!-- <form  name="forms" action="Registrationcontroller.php" method="post"> -->
-            <form id="h" name="forms" action="http://localhost/arramjobs/providerController/providerRegistration" method="post">
+            <!-- <form id="h" name="forms" action="http://localhost/arramjobs/providerController/providerRegistration" method="post"> -->
+                <form id="h" name="forms" action="<?php echo baseUrl . "/providerController/providerRegistration"?>/" method="post">
 
                 <div class=" ">
                     <label for="name" class="form-label">Name:</label>
@@ -303,7 +302,8 @@
             </form>
             <br>
             <div id="sign" class="">
-                <p>Already have an account ? <a id="regis" href="http://localhost/arramjobs/provider/login">login</a></p>
+                <!-- <p>Already have an account ? <a id="regis" href="http://localhost/arramjobs/provider/login">login</a></p> -->
+                <p>Already have an account ? <a id="regis" href="<?php echo baseUrl . "/provider/login"?>/">login</a></p>
             </div>
 
 

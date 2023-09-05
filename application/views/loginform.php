@@ -171,7 +171,7 @@
 
   <div class="container">
     <h2>Seeker Login </h2>
-    <form id="phoneForm" action="http://localhost/arramjobs/seekerLogin/" method="post" onsubmit="return validateForm()">
+    <form id="phoneForm" action="<?php echo baseUrl . "/seekerController/seekerLogin"?>" method="post" onsubmit="return validateForm()">
       <div class="form-group">
         <label for="phone">Username</label>
         <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
@@ -186,7 +186,7 @@
     </form>
     <br>
     <div id="sign">
-      <p>Create an account ? <a id="regis" href="http://localhost/arramjobs/seekerController/registration">Register</a></p>
+      <p>Create an account ? <a id="regis" href="<?php echo baseUrl . "/seekerController/registration"?>">Register</a></p>
     </div>
     <div class="error">
       <?php if (isset($login_error)) echo $login_error; ?>

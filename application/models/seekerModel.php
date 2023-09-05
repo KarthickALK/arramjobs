@@ -471,14 +471,19 @@
         // }
 
 
-        public function resume($seekerId, $formData)
-        {
-            $seekerId = '107';
-            $insert = array(
-                'resume' => $formData['resumeFile']
-            );
-            $this->db->where('seekerId', $seekerId);
-            $this->db->update('seeker_skill', $insert);
+        // public function resume($seekerId, $formData)
+        // {
+        //     $seekerId = '107';
+        //     $insert = array(
+        //         'resume' => $formData['resumeFile']
+        //     );
+        //     $this->db->where('seekerId', $seekerId);
+        //     $this->db->update('seeker_skill', $insert);
+        // }
+
+
+        public function insert_file($data) {
+            $this->db->insert('files', $data); // Insert data into the 'files' table
         }
     }
     ?>
