@@ -220,7 +220,7 @@ class SeekerController extends CI_Controller
 
         // if ($this->input->post()) {
         //     $formData = $this->input->post(null, true);
-        //     $this->seekerModel->projectDetails($seekerId, $formData);
+        //     $this->SeekerModel->projectDetails($seekerId, $formData);
         // }
 
         // $data['seekerDetail'] = $seekerDetail;
@@ -234,8 +234,8 @@ class SeekerController extends CI_Controller
     }
 
     public function areaofinterest(){
-        // $this->load->model('seekerModel');
-        // $areaofinterest=$this->seekerModel->getAreaOfInterest();
+        // $this->load->model('SeekerModel');
+        // $areaofinterest=$this->SeekerModel->getAreaOfInterest();
         // $this->data['areaofinterest']=$areaofinterest;
         // $this->data['method'] = "areaofinterest";
         // $this->load->view('seekerView', $this->data);
@@ -248,17 +248,17 @@ class SeekerController extends CI_Controller
 
     public function updateAreaOfInterest()
     {
-        // $this->load->model('seekerModel');
+        // $this->load->model('SeekerModel');
         // $this->data['method'] = "areaofinterest";
         // $seekerId = $this->session->userdata('logged_in_phonenumber');
 
         // if ($this->input->post()) {
         //     $formData = $this->input->post(null, true);
 
-        //     $this->seekerModel->areaOfInterest($seekerId, $formData);
+        //     $this->SeekerModel->areaOfInterest($seekerId, $formData);
         // }
 
-        // $seekerDetail = $this->seekerModel->update();
+        // $seekerDetail = $this->SeekerModel->update();
 
         // $data = array(
         //     'seekerDetail' => $seekerDetail,
@@ -280,11 +280,11 @@ class SeekerController extends CI_Controller
 
         // if ($this->input->post()) {
         //     $formData = $this->input->post(null, true);
-        //     $this->seekerModel->skill($seekerId, $formData);
+        //     $this->SeekerModel->skill($seekerId, $formData);
         // }
 
         // // Retrieve updated seekerDetail after insertion/update
-        // $seekerDetail = $this->seekerModel->getSkills($seekerId);
+        // $seekerDetail = $this->SeekerModel->getSkills($seekerId);
 
         // $data = array(
         //     'seekerDetail' => $seekerDetail,
@@ -307,36 +307,13 @@ class SeekerController extends CI_Controller
     }
 
     public function resume(){
+
         $this->data['method'] = "resume";
         $this->load->view('seekerView', $this->data);
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
         // $this->load->model('seekerModel');
         // // // $resume = $this->seekerModel->getResume();
+
         // // $this->data['resume']= $resume;
 
         // $config['upload_path'] = './uploads/';
@@ -355,7 +332,7 @@ class SeekerController extends CI_Controller
         //     $data = $this->upload->data();
 
         //     // Insert file details into the database
-        //     $this->load->seekerModel('File_model'); // Load your model
+        //     $this->load->SeekerModel('File_model'); // Load your model
         //     $insert_data = array(
         //         'file_name' => $data['file_name'],
         //         'file_path' => $data['full_path'],

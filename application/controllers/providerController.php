@@ -1,5 +1,5 @@
  <?php
-    class providerController extends CI_Controller
+    class ProviderController extends CI_Controller
     {
         public function __construct()
         {
