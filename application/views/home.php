@@ -179,7 +179,9 @@ body{
 	<nav class="navbar navbar-expand-lg" style="background-color: navy; padding-top: 30px; padding-bottom: 30px;">
  	 <div class="container">
 	 	<!-- <img src="logo 1.jpeg" alt="Arram Jobs" width="120" height="50"> -->
+		 <a style="text-decoration: none" href="<?php echo baseUrl?>">
          <h4 style="color: white">அறம் வேலைவாய்ப்பு</h4>
+		 </a>
 	      <!-- <a href="" style="color: white">ArramJobs</a> -->
 		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
 		<span class="navbar-toggler-icon"></span>
@@ -230,14 +232,14 @@ body{
   </div>
   <div class="carousel-inner">
     <div class="carousel-item active">
-      <img src="banner 1.jpeg" class="d-block w-100" alt="..." style=" opacity: 0.4;">
+      <img src="<?php echo baseUrl ."assets/banner1.jpeg"?>" class="d-block w-100" alt="..." style=" opacity: 0.4;">
       <div class="carousel-caption ">
         <h2 style="font-size: 80px;"><b>Welcome</b></h2>
         <p>"Find Your Dream Job with Us"</p>
       </div>
     </div>
     <div class="carousel-item">
-      <img src="pexels-fauxels-3184291.jpg" class="d-block w-100" alt="..." style=" opacity: 0.4;">
+      <img src="<?php echo baseUrl ."assets/banner2.jpg"?>" class="d-block w-100" alt="..." style=" opacity: 0.4;">
       <div class="carousel-caption ">
          <h2 style="font-size: 60px;"><b>Find Your Suitable Jobs</b></h2>
         <p>"Your Future Begins on Our Portal"</p>
@@ -260,7 +262,7 @@ body{
 		<div class="row">
 			<div class="col-lg-4 col-md-12 col-12">
 				<div class="about-img">
-					<img src="blog-2.jpg" alt="" class="img-fluid">
+					<img src="<?php echo baseUrl ."assets/blog-2.jpg"?>" alt="" class="img-fluid">
 				</div>
 			</div>
 			<div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-2 justify-content-center" style="text-align: justify; font-size: medium;">
@@ -292,21 +294,20 @@ body{
           <div class="col-xl-4 col-md-6 col-1" data-aos="fade-up" data-aos-delay="100">
             <article>
 			  <div class="card" style="width: 18rem; box-shadow: 0 0 11px rgba(33,33,33,.2);">
-				<img src="photo-1606857521015-7f9fcf423740 (1).jpeg" class="card-img-top" alt="...">
+				<img src="<?php echo baseUrl ."assets/cardimg1.jpeg"?>" class="card-img-top" alt="...">
 				<div class="card-body">
 					<h5 class="card-title" style="font-family:Arial, Helvetica, sans-serif ;"><b>JOB SEARCHING</b></h5>
 					<p class="card-text"  style="text-align:justify; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;">At Arram Job Portal, we're dedicated to helping you unlock your potential. Whether you're a recent graduate starting your career or a seasoned expert seeking new challenges, we're your trusted job search partner.</p>
 					<a href="#seeker" class="btn btn-primary">See More</a>
 				</div>
 				</div>
-
             </article>
           </div><!-- End post list item -->
 
           <div class="col-xl-4 col-md-6" data-aos="fade-up" data-aos-delay="200">
             <article>
 				<div class="card" style="width: 18rem; box-shadow: 0 0 11px rgba(33,33,33,.2);">
-					<img src="chairs-contemporary-daylight-1170412.jpg" class="card-img-top" alt="...">
+					<img src="<?php echo baseUrl ."assets/cardimg2.jpg"?>" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title"><b>JOB PROVIDING</b></h5>
 						<p class="card-text" style="text-align:justify; padding-right: 20px; padding-top: 10px; padding-bottom: 10px;">At Arram Job Providing, our team is dedicated to understanding your staffing needs and delivering tailored solutions. With industry knowledge, we ensure you find the right talent and build lasting connections fostering success.</p>
@@ -320,7 +321,7 @@ body{
             <article>
 
 				<div class="card" style="width: 18rem; box-shadow: 0 0 11px rgba(33,33,33,.2);">
-					<img src="R.jpeg" class="card-img-top" alt="...">
+					<img src="<?php echo baseUrl ."assets/cardimg3.jpeg"?>" class="card-img-top" alt="...">
 					<div class="card-body">
 						<h5 class="card-title"><b>ARRAM UNIQUE FEATURES</b></h5>
 						<p class="card-text"  style="text-align:justify; padding-right: 20px; padding-bottom: 15px;">Arram Job Providing stands out with unique features redefining recruitment. Our platform uses cutting-edge algorithms to match skills, culture, and personality for ideal candidate-employer pairings.</p>
@@ -451,7 +452,7 @@ body{
 		<div class="row">
 			<div class="col-lg-4 col-md-12 col-12">
 				<div class="about-img">
-					<img src="blog-2.jpg" alt="" class="img-fluid">
+					<img src="<?php echo baseUrl ."assets/blog-2.jpg"?>" alt="" class="img-fluid">
 				</div>
 			</div>
 			<div class="col-lg-8 col-md-12 col-12 ps-lg-5 mt-md-2 justify-content-center" style="text-align: justify; font-size: medium;">
@@ -481,7 +482,7 @@ body{
 			    </div>
 				<div class="col-lg-4 col-md-12 col-12">
 				<div class="about-img-img">
-					<img src="blog-4.jpg" alt="" class="img-fluid">
+					<img src="<?php echo baseUrl ."assets/blog-4.jpg"?>" alt="" class="img-fluid">
 				</div>
 			</div>
 		</div>
@@ -504,7 +505,7 @@ body{
 			<div class="col-12 col-md-6 col-lg-3" id="card-sf">
 				<div class="card text-center">
 					<div class="card-body">
-						<img src="team-6.jpg" alt="" class="img-fluid rounded-circle">
+						<img src="<?php echo baseUrl ."assets/team-6.jpg"?>" alt="" class="img-fluid rounded-circle">
 						<h3 class="card-title py-2">Person 1</h3>
 						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, in.</p>
 
@@ -520,7 +521,7 @@ body{
 			<div class="col-12 col-md-6 col-lg-3">
 				<div class="card text-center">
 					<div class="card-body">
-						<img src="team-3.jpg" alt="" class="img-fluid rounded-circle">
+						<img src="<?php echo baseUrl ."assets/team-3.jpg"?>" alt="" class="img-fluid rounded-circle">
 						<h3 class="card-title py-2">Person 2</h3>
 						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, in.</p>
 
@@ -536,7 +537,7 @@ body{
 			<div class="col-12 col-md-6 col-lg-3">
 				<div class="card text-center">
 					<div class="card-body">
-						<img src="team-4.jpg" alt="" class="img-fluid rounded-circle">
+						<img src="<?php echo baseUrl ."assets/team-4.jpg"?>" alt="" class="img-fluid rounded-circle">
 						<h3 class="card-title py-2">Person 3</h3>
 						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, in.</p>
 
@@ -552,7 +553,7 @@ body{
 			<div class="col-12 col-md-6 col-lg-3">
 				<div class="card text-center">
 					<div class="card-body">
-						<img src="team-1.jpg" alt="" class="img-fluid rounded-circle">
+						<img src="<?php echo baseUrl ."assets/team-1.jpg"?>" alt="" class="img-fluid rounded-circle">
 						<h3 class="card-title py-2">Person 4</h3>
 						<p class="card-text">Lorem ipsum dolor sit amet consectetur adipisicing elit. Animi, in.</p>
 
