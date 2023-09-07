@@ -182,6 +182,7 @@
         {
             $id = $this->uri->segment(3);
             $this->data['method'] = "resume";
+            
 
             $education = $this->RegistrationModel->educationalDetails($id);
             $this->data['education'] = $education;
@@ -199,7 +200,7 @@
             $this->data['experienceDetails'] = $experienceDetails;
 
             $seekerName = $this->RegistrationModel->candidate($id);
-            $this->data['seekerName'] = $seekerName;
+            $this->data['basicDetails'] = $seekerName;
 
 
             $this->load->view('exampleDashboard.php', $this->data);

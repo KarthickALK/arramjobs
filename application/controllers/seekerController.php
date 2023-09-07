@@ -308,9 +308,11 @@ class SeekerController extends CI_Controller
 
     public function resume(){
 
-        $this->data['method'] = "resume";
-        $this->load->view('seekerView', $this->data);
+          $this->data['method'] = "resume";
 
+        $resume=$this->SeekerModel->do_upload();
+        $this->data['resume'] = $resume;
+         $this->load->view('seekerView.php',$this->data);
         // $this->load->model('seekerModel');
         // // // $resume = $this->seekerModel->getResume();
 
@@ -372,7 +374,29 @@ class SeekerController extends CI_Controller
             //     echo "File uploaded and data inserted successfully!";
             // }
 
+            
+
 
     }
+    // public function do_upload()
+    //         {
+    //             $config['upload_path']="./uploads/";
+    //             $config['allowed_types']="jpg|png|pdf";
+    //             $config['max_size']=1024;
+
+    //             $this->load->library('upload',$config);
+
+    //             if($this->upload->do_upload('userfile'))
+    //             {
+    //                 $data = $this->upload->data();
+    //                 $error = nul;
+    //             }
+    //             else{
+    //                 $error = $this->upload->display_errors();
+    //                 $data=null;
+    //             }
+
+    //             $this->load->view('seekerView',array('data'=>$data,'error'=>$error));
+    //         }
     
 }

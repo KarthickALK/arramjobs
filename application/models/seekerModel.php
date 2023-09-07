@@ -100,12 +100,53 @@
                 'landmark' => $postData['landmark'],
                 'pincode' => $postData['pincode'],
                 'maritalstatus' => $postData['maritalstatus'],
-                'aadhar_front' => $postData['aadharfrontphoto'],
-                'aadhar_back' => $postData['aadharbackphoto'],
-                'photo' => $postData['photo']
+                // 'aadhar_front' => $postData['aadharfrontphoto'],
+                // 'aadhar_back' => $postData['aadharbackphoto'],
+                // 'photo' => $postData['photo']
             );
             $this->db->where('id', $postData['id']);
+
+            $config['upload_path']="./uploads/";
+            $config['allowed_types']="jpg|png|pdf";
+            $config['max_size']=2048;
+            $config['width']=1024;
+            $config['height']=768;
+
+            $this->load->library('upload',$config);
+           
+            if(!$this->upload->do_upload('aadharfrontphoto'))
+            {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('seekerView.php',$error);
+                // $data = $this->upload->data();
+               
+            }
+            if(!$this->upload->do_upload('aadharbackphoto'))
+           
+            {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('seekerView.php',$error);
+                // $data = $this->upload->data();
+            }
+            if(!$this->upload->do_upload('photo'))
+            
+            {
+                $error = array('error' => $this->upload->display_errors());
+                $this->load->view('seekerView.php',$error);
+                // $data = $this->upload->data();
+            }
+            else{
+                $data = array('data' => $this->upload->data());
+                // $error = $this->upload->display_errors();
+            }
+            
+            
+
             $result = $this->db->update('seeker_profile_form', $updateData);
+        }
+
+        public function uploadAAdhar(){
+            
         }
 
         // public function updateEducationalDetails()
@@ -482,8 +523,31 @@
         // }
 
 
-        public function insert_file($data) {
-            $this->db->insert('files', $data); // Insert data into the 'files' table
+        // public function insert_file($data) {
+        //     $this->db->insert('files', $data); // Insert data into the 'files' table
+        // }
+
+        public function do_upload()
+        {
+            // $seekerId = $_SESSION['seekerId'];
+
+            $config['upload_path']="./uploads/";
+            $config['allowed_types']="jpg|png|pdf";
+            $config['max_size']=1024;
+
+            $this->load->library('upload',$config);
+           
+            if($this->upload->do_upload('file'))
+            {
+                $data = $this->upload->data();
+               
+            }
+            else{
+                $error = $this->upload->display_errors();
+            
+            }
+
+            // $this->load->view('seekerView',array('data'=>$data,'error'=>$error));
         }
     }
     ?>

@@ -357,11 +357,12 @@
         } else if ($method == 'basicdetails') {
         ?>
 
-          <div class="container" id="page1">
+          <div class="container" id="page1" >
             <h3>Personal Details</h3>
-            <form name="applicationform" method="post" onsubmit="return validateFormPage()" action='<?php echo baseUrl . "seekerController/updateBasicDetails"?>'>
+           
+            <form name="applicationform"  enctype="multipart/form-data" method="post" onsubmit="return validateFormPage()" action='<?php echo baseUrl . "seekerController/updateBasicDetails"?>'>
               <?php
-              foreach ($basicDetails as $key => $value) {
+               foreach ($basicDetails as $key => $value) {
               ?>
                 <input type="hidden" class="form-control" id="id" value="<?php echo $value['id']; ?>" name="id" placeholder="Enter your name" onkeypress="return allowOnltLetters(event,this)">
                 <div class="form-group">
@@ -448,6 +449,7 @@
                 </div>
                 <button type="submit" name="submitBtn" class="btn btn-primary">submit</button>
             </form>
+           
           <?php
               }
           ?>
@@ -2329,17 +2331,17 @@
                   $("#skillForm").submit(function() {
                     const skillDetails = [];
 
-                    $(".skill-entry").each(function() {
-                      const skillName = $(this).find('input[name="skillname[]"]').val();
-                      const experience = $(this).find('select[name="experience[]"]').val();
-                      const skillLevel = $(this).find('select[name="skilllevel[]"]').val();
-                      skillDetails.push(`${skillName} - Experience: ${experience}, Skill Level: ${skillLevel}`);
-                    });
+                    // $(".skill-entry").each(function() {
+                    //   const skillName = $(this).find('input[name="skillname[]"]').val();
+                    //   const experience = $(this).find('select[name="experience[]"]').val();
+                    //   const skillLevel = $(this).find('select[name="skilllevel[]"]').val();
+                    //   skillDetails.push(`${skillName} - Experience: ${experience}, Skill Level: ${skillLevel}`);
+                    // });
 
                     $("#addedSkills").empty();
                     skillDetails.forEach(skill => {
                       $("#addedSkills").append(`<li>${skill}</li>`);
-                    });
+                    }); 
                   });
                 });
               </script>
@@ -2349,17 +2351,42 @@
             ?>
               <div class="container">
                 <h2>Upload resume</h2>
-                <form id="resumeForm" method="post" onsubmit="return validateForm()" action="<?php echo baseUrl . "seekerController/resume"?>">
-
+                <form id="resumeForm" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo baseUrl . "seekerController/resume"?>">
+                
                   <div class="form-group">
-                    <label for="resumeFile">Upload Resume</label>
-                      <input type="file" name="userfile" accept=".pdf,.doc,.docx">
+                    <label for="file">Upload Resume</label>
+                      <input type="file" name="file" placeholder="upload file...." >
                     </div>
-                    <!-- <input type="file" name="userfile"> -->
-                   <input type="submit" value="Upload">
-                  <!-- <button class="btn btn-primary" type="submit">Upload</button> -->
-                </form>
-              </div>
+                  
+                   <input type="submit" value="submit">
+                  
+               </div>
+               <table>
+              
+                <!-- <tr>
+                  <th>File Name</th>
+                  <th>Type</th>
+                  <th>Size</th>
+                  <th>path</th>
+                  <tr> -->
+                  <?php
+                if (isset($resume[0]['id'])) {
+                  foreach ($resume as $key => $value) {
+                    $seekerId = $_SESSION['seekerId'];
+                ?>
+                  <tr>
+                  <th><?=$data['file_name']?></th>
+                  <th><?=$data['file_type']?></th>
+                  <th><?=$data['file_size']?></th>
+                  <th><?=$data['file_path']?></th>
+                  <tr>
+                    <?php
+                }
+                ?>
+                <?php
+                  }
+                ?>
+              </table>
               <script>
                 reusme = document.getElementById('resumeFile');
 
@@ -2368,6 +2395,7 @@
                     alert('please choose a resume!');
                   }
                 }
+                
               </script>
               <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
               <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
@@ -2376,8 +2404,10 @@
           }
             ?>
       </main>
+      
     </div>
   </div>
+ 
 </body>
 
 </html>

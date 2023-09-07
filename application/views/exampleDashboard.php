@@ -8,6 +8,10 @@
     <!-- Link to Bootstrap CSS -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
     <style>
+        
+        
+        
+
         /* #education{
         color:
     } */
@@ -2598,22 +2602,56 @@
                         </div>
                     </div>
 
-                    <?php
-                    foreach ($this->data['seekerName'] as $nkey => $nvalue) {
-                    ?>
+                    <!-- <?php
+                    // foreach ($this->data['basicDetails'] as $nkey => $nvalue) {
+                    ?> -->
 
                         <!-- <h1><center>Candidate Profile</center></h1> -->
                         <br>
-                        <h2 class=" bg-black p-5 mb-0" id="candidateResume">
-                            <center>Candidate Resume</center>
-                        </h2>
+                        <h2 class=" bg-black p-5 mb-0" id="candidateResume"><center>Candidate Resume</center> </h2>
+                        <ul>
                         <br>
-                        <h4 class="">Candidate Name : <?php echo $nvalue['name'] ?></h4>
                         <br>
+                    <div class="table-responsive">
+                        <table class="table table-bordered table-striped">
+                            <thead>
+                                <tr>
+                                    <th>Candidate Name</th>
+                                    <th>Photo</th>
+                                   
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <?php
+                                foreach ($this->data['basicDetails'] as $nkey => $nvalue) {
+                                ?>  
+                                    <form method="POST" >
+                                    <tr>
+                                        <td><?php echo $nvalue['name'] ?></td>
+                                        <td><img src="<?php echo base_url('uploads'.$nvalue['photo']) ?>" width="200" height="160"></td>
+                                       
+                                        
+                                    </tr>
+                                <?php
+                                }
+                                ?>
+                                </form>
+                            </tbody>
+                        </table>
+                    </div>
 
-                    <?php
-                    }
-                    ?>
+
+</ul>
+
+                            
+                       
+                        <!-- <br> -->
+                        <!-- <h4 class="">Candidate Name : <?php echo $nvalue['name'] ?></h4>
+                        <img src="<?php base_url().'/uploads/'.$data['photo']?>" width="200" height="160"> -->
+                        
+                       
+                        <!-- <br> -->
+
                     </ul>
 
 
@@ -2799,7 +2837,7 @@
                                             <td> <?php echo $ivalue['previous_employer_email'] ?></td>
                                         </tr>
                                     <?php
-                                    }
+                                    } 
                                     ?>
                                 </tbody>
                             </table>
