@@ -132,7 +132,6 @@
         public function providerAddJob()
         {
             $this->data['method'] = "addnew";
-            // $this->load->view('addnew_jobs.php');
             $this->load->view('exampleDashboard.php', $this->data);
         }
 
@@ -146,6 +145,7 @@
             // $this->load->view('jobs.php');
             $this->load->view('exampleDashboard.php', $this->data);
             echo "Record added seccessfuly";
+            // $this->jobViewTable();
         }
 
         public function updateAddNew()

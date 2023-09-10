@@ -22,6 +22,7 @@ class RegistrationModel extends CI_Model
       'role' => $postData['role'],
       'mobile_number' => $postData['mobile1'], 'email' => $postData['email1'],
     );
+    
 
     $this->db->insert('provider_registration_form', $insert);
   }
