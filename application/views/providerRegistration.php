@@ -56,7 +56,7 @@
             background-color: #fff;
             padding: 30px;
             border-radius: 5px;
-            /* margin-left:310px;  */
+            margin-left:450px; 
             width: 40%;
             /* align-items:center; */
             margin-top: 50px;
@@ -395,7 +395,7 @@
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <br>
 
-    <div id="google_translate_element"></div>
+    <!-- <div id="google_translate_element"></div>
     <script src="https://translate.Google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>
     <script>
         function googleTranslateElementInit() {
@@ -403,7 +403,7 @@
                 pageLanguage: 'en'
             }, 'google_translate_element');
         }
-    </script>
+    </script> -->
     <br>
 
     <div class="">

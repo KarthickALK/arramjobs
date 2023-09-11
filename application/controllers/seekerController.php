@@ -13,30 +13,9 @@ class SeekerController extends CI_Controller
     {
         $this->load->view('registrationform.php');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->load->library('form_validation');
+           $register=$this->SeekerModel->register();
+           $this->index();
 
-            // Define validation rules for registration form fields
-            $this->form_validation->set_rules('name', 'Name', 'required');
-            $this->form_validation->set_rules('email', 'Email', 'required|valid_email');
-            $this->form_validation->set_rules('phonenumber', 'Phone Number', 'required');
-
-            if ($this->form_validation->run() == true) {
-                // Check if the phone number already exists in the database
-                $phonenumber = $this->input->post('phonenumber');
-                $userExists = $this->SeekerModel->checkUserExistence($phonenumber);
-
-                if ($userExists) {
-                    // User already exists, show an error message
-                    echo "<script>alert('The user already exist login to continue.');</script>";
-                    echo "<script>window.location.href = 'index';</script>";
-                    $this->index();
-                } else {
-
-                    $this->session->set_userdata('logged_in_phonenumber', $phonenumber);
-                    echo "<script>alert('successfully registered login to continue.');</script>";
-                    echo "<script>window.location.href = 'index';</script>";
-                }
-            }
         }
     }
 
@@ -111,6 +90,8 @@ class SeekerController extends CI_Controller
         $data['method'] = "dash";
         $this->load->view('seekerView.php', $data);
     }
+
+   
 
 
     public function basicDetails()
@@ -648,14 +629,14 @@ class SeekerController extends CI_Controller
     //     $this->skills();
     // }
 
-    // public function resume(){
+    public function resume(){
 
-    //       $this->data['method'] = "resume";
+          $this->data['method'] = "resume";
 
-    //     $resume=$this->SeekerModel->do_upload();
-    //     $this->data['resume'] = $resume;
-    //      $this->load->view('seekerView.php',$this->data);
-    //     }
+        $resume=$this->SeekerModel->do_upload();
+        $this->data['resume'] = $resume;
+         $this->load->view('seekerView.php',$this->data);
+        }
    
 }
 

@@ -31,12 +31,23 @@ class RegistrationModel extends CI_Model
 
 
 
-  public function database_login()
+  // public function database_login()
+  // {
+  //   $postData = $this->input->post(null, true);
+  //   $user_id = $postData['userID'];
+  //   $password = $postData['password'];
+  //   $query = "SELECT * FROM provider_login WHERE user_id='$user_id' AND password='$password'";
+  //   $count = $this->db->query($query);
+  //   return $count->result_array();
+  // }
+
+  
+  public function providerLogin()
   {
     $postData = $this->input->post(null, true);
-    $user_id = $postData['userID'];
-    $password = $postData['password'];
-    $query = "SELECT * FROM provider_login WHERE user_id='$user_id' AND password='$password'";
+    $companyName = $postData['userName'];
+    $companyMobile = $postData['number'];
+    $query = "SELECT * FROM provider_registration_form WHERE company_name='$companyName' AND company_mobile_number='$companyMobile'";
     $count = $this->db->query($query);
     return $count->result_array();
   }
@@ -165,8 +176,8 @@ class RegistrationModel extends CI_Model
 
   public function candidates($jobCategory)
   {
-    $query = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
-        saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id WHERE  saoi.other_interst_category = '" . $jobCategory . "'";
+    $query = "SELECT spf.id as seekerId, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+        saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.seekerId = spf.id INNER JOIN seeker_skill sk ON sk.seekerId = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.seekerId=spf.id WHERE  saoi.other_interst_category = '" . $jobCategory . "'";
     $result = $this->db->query($query);
     return $result->result_array();
   }
@@ -262,16 +273,16 @@ class RegistrationModel extends CI_Model
 
   public function matchedAllCandidate()
   {
-    $allTableJoins = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
-        saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id";
+    $allTableJoins = "SELECT spf.id as seekerId, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+        saoi.id as id, saoi.other_interst_category as oic FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.seekerId = spf.id INNER JOIN seeker_skill sk ON sk.seekerId = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.seekerId=spf.id";
     $result = $this->db->query($allTableJoins);
     return $result->result_array();
   }
 
   public function filterCandidate($jobCategory, $jobSubCategory)
   {
-    $query = "SELECT spf.id as id, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
-        saoi.id as id, saoi.other_interst_category as oic, saoi.other_sub_interst_category as osic  FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.id = spf.id INNER JOIN seeker_skill sk ON sk.id = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.id=spf.id WHERE  saoi.other_interst_category = '" . $jobCategory . "' AND  saoi.other_sub_interst_category = '" . $jobSubCategory . "'";
+    $query = "SELECT spf.id as seekerId, spf.name as name, sed.educational_qualification as eq, sed.percentage as per, sk.experience as exp, sk.skill as skill,
+        saoi.id as id, saoi.other_interst_category as oic, saoi.other_sub_interst_category as osic  FROM seeker_profile_form spf INNER JOIN seeker_educational_details sed ON sed.seekerId = spf.id INNER JOIN seeker_skill sk ON sk.seekerId = spf.id INNER JOIN seeker_area_of_interst saoi ON saoi.seekerId=spf.id WHERE  saoi.other_interst_category = '" . $jobCategory . "' AND  saoi.other_sub_interst_category = '" . $jobSubCategory . "'";
     $result = $this->db->query($query);
     return $result->result_array();
   }

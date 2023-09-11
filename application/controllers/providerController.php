@@ -45,12 +45,12 @@
         public function viewDashboard()
         {
             $postData = $this->input->post(null, true);
-            $response = $this->RegistrationModel->database_login();
+            $response = $this->RegistrationModel->providerLogin();
             if (isset($response[0]['id'])) {
                 $userLoggedIn = array(
-                    'jobProviderId' => $response[0]['jobProviderId'],
-                    'jobProviderUserId' => $response[0]['user_id'],
-                    'jobProviderPassword' => $response[0]['password']
+                    'jobProviderId' => $response[0]['id'],
+                    'jobProviderUsername' => $response[0]['company_name'],
+                    'jobProviderNumber' => $response[0]['company_mobile_number']
                 );
                 $this->session->set_userdata($userLoggedIn);
                 $this->data['method'] = "dashboard";
@@ -60,6 +60,25 @@
                 $this->load->view('providerLogin.php');
             }
         }
+        // public function viewDashboard()
+        // {
+        //     $postData = $this->input->post(null, true);
+        //     $response = $this->RegistrationModel->database_login();
+        //     if (isset($response[0]['id'])) {
+        //         $userLoggedIn = array(
+        //             'jobProviderId' => $response[0]['jobProviderId'],
+        //             'jobProviderUserId' => $response[0]['user_id'],
+        //             'jobProviderPassword' => $response[0]['password']
+        //         );
+        //         $this->session->set_userdata($userLoggedIn);
+        //         $this->data['method'] = "dashboard";
+        //         $this->load->view('exampleDashboard.php', $this->data);
+        //     } else {
+
+        //         $this->load->view('providerLogin.php');
+        //     }
+        // }
+
 
         public function dashboard()
         {

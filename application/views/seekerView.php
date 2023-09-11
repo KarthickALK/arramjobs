@@ -264,6 +264,47 @@
       margin-top:160px;
 
     }
+    #regis {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 2px solid navy;
+            /* Border color (adjust as needed) */
+            background-color: navy;
+            /* Background color (adjust as needed) */
+            color: #fff;
+            /* Text color */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        #regis:hover {
+            background-color: transparent;
+            /* Change background on hover */
+            color: navy;
+            /* Change text color on hover */
+        }
+        
+        #deletes {
+            display: inline-block;
+            padding: 8px 16px;
+            border: 2px solid red;
+            /* Border color (adjust as needed) */
+            background-color: red;
+            /* Background color (adjust as needed) */
+            color: #fff;
+            /* Text color */
+            text-decoration: none;
+            border-radius: 4px;
+            transition: background-color 0.3s, border-color 0.3s;
+        }
+
+        #deletes:hover {
+            background-color: transparent;
+            /* Change background on hover */
+            color: red;
+            /* Change text color on hover */
+        }
   </style>
 </head>
 
@@ -390,16 +431,17 @@
                   <div id="dob_error" class="error"></div>
                 </div>
                 <div class="form-group">
-                  <label for="gender">Gender *</label>
-                  <select class="form-control" id="gender" value="<?php echo isset($value['gender']) ? $value['gender'] : ''; ?>" name="gender" required>
-                    <option value="">Select your Gender</option>
-                    <option value="male">male</option>
-                    <option value="female">female</option>
-                    <option value="others">others</option>
-                  </select>
-                  <div id="gender_error" class="error"></div>
-                </div>
-                <h4> Address : </h3>
+  <label for="gender">Gender *</label>
+  <select class="form-control" id="gender" name="gender" required>
+    <option value="">Select your Gender</option>
+    <option value="male" <?php if (isset($value['gender']) && $value['gender'] === 'male') echo 'selected'; ?>>Male</option>
+    <option value="female" <?php if (isset($value['gender']) && $value['gender'] === 'female') echo 'selected'; ?>>Female</option>
+    <option value="others" <?php if (isset($value['gender']) && $value['gender'] === 'others') echo 'selected'; ?>>Others</option>
+  </select>
+  <div id="gender_error" class="error"></div>
+</div>
+
+                <h4> Address : </h4>
                 <div class="form-group">
                   <label for="Door no">Door no/building name </label>
                   <input type="text" class="form-control" id="doorno" value="<?php echo isset($value['buildingName']) ? $value['buildingName'] : ''; ?>" name="doorno">
@@ -427,14 +469,16 @@
                 </div>
                 <div class="form-group">
                   <label for="maritalstatus">Marital Status*</label>
+              
                   <select class="form-control" id="maritalstatus" value="<?php echo isset($value['maritalStatus']) ? $value['maritalStatus'] : ''; ?>" name="maritalstatus">
                     <option value="">Select your marital status</option>
-                    <option value="single">Single</option>
-                    <option value="married">Married</option>
+
+                    <option value="single"<?php if (isset($value['maritalStatus']) && $value['maritalStatus'] === 'single') echo 'selected'; ?>>Single</option>
+                    <option value="married"<?php if (isset($value['maritalStatus']) && $value['maritalStatus'] === 'married') echo 'selected'; ?>>Married</option>
                   </select>
                   <div id="maritalstatus_error" class="error"></div>
                 </div>
-                <h1>Identification Details</h1>
+                <h4>Identification Details :</h4>
                 <div class="form-group">
                   <label for="aadharfrontphoto">Aadhar front photo </label>
                   <input type="file" class="form-control" id="aadharfrontphoto" value="<?php echo isset($value['aadhar_front']) ? $value['aadhar_front'] : ''; ?>" name="aadharfrontphoto">
@@ -1048,19 +1092,20 @@
                         <label for="category">Category *</label>
                         <select class="form-control" id="category" name="category" value="<?php echo $value['other_interst_category']; ?>"  onchange="toggleCategoryFields()">
                           <option value="">Select a category</option>
-                          <option value="architech">Architech</option>
-                        <option value="Developer">Developer</option>
-                        <option value="tester">Tester</option>
-                        <option value="uiux">UI/UX Design</option>
-                        <option value="datascience">Data Scientist</option>
-                        <option value="databaseadmin">Database Admin</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="professor">Professor</option>
-                          <!-- <option value="others">Others</option> -->
+                        
+                          <option value="architech"<?php if ($value['other_interst_category'] === 'architech') echo ' selected'; ?>>Architech</option>
+                        <option value="developer">Developer</option>
+                        <option value="tester"<?php if ($value['other_interst_category'] === 'tester') echo ' selected'; ?>>Tester</option>
+                        <option value="uiux"<?php if ($value['other_interst_category'] === 'uiux') echo ' selected'; ?>>UI/UX Design</option>
+                        <option value="datascience"<?php if ($value['other_interst_category'] === 'datascience') echo ' selected'; ?>>Data Scientist</option>
+                        <option value="databaseadmin"<?php if ($value['other_interst_category'] === 'databaseadmin') echo ' selected'; ?>>Database Admin</option>
+                        <option value="teacher"<?php if ($value['other_interst_category'] === 'teacher') echo ' selected'; ?>>Teacher</option>
+                        <option value="professor"<?php if ($value['other_interst_category'] === 'professor') echo ' selected'; ?>>Professor</option>
+                          <option value="others"<?php if ($value['other_interst_category'] === 'others') echo ' selected'; ?>>Others</option>
                         </select>
                       </div>
-                      <div class="form-group"">
-                <label for=" subcategory">Subcategory *</label>
+                      <div class="form-group">
+                <label for="subcategory">Subcategory *</label>
                         <select class="form-control" id="subcategory" name="subcategory" value="<?php echo $value['other_sub_interst_category']; ?>" >
                           <option value="">Select a sub category </option>
                         </select>
@@ -1104,8 +1149,8 @@
                         <label for="jobtype">Job Type</label>
                         <select class="form-control" id="jobtype" name="jobtype" value="<?php echo $value['job_type']; ?>">
                           <option value="">Select a job type</option>
-                          <option value="parttime">Part Time</option>
-                          <option value="fulltime">Full Time</option>
+                          <option value="parttime"<?php if ($value['job_type'] === 'parttime') echo ' selected'; ?>>Part Time</option>
+                          <option value="fulltime"<?php if ($value['job_type'] === 'fulltime') echo ' selected'; ?>>Full Time</option>
                           <option value="both">Both</option>
                         </select>
                       </div>
@@ -1131,7 +1176,7 @@
                         <select class="form-control" id="category" name="category" onchange="toggleCategoryFields()">
                           <option value="">Select a category</option>
                          <option value="architech">Architech</option>
-                        <option value="Developer">Developer</option>
+                        <option value="developer">Developer</option>
                         <option value="tester">Tester</option>
                         <option value="uiux">UI/UX Design</option>
                         <option value="datascience">Data Scientist</option>
@@ -1141,7 +1186,7 @@
                           <!-- <option value="others">Others</option> -->
                         </select>
                       </div>
-                      <div class="form-group"">
+                      <div class="form-group">
                 <label for=" subcategory">Subcategory *</label>
                         <select class="form-control" id="subcategory" name="subcategory" >
                           <option value="">Select a sub category </option>
@@ -1253,326 +1298,320 @@
                   subcategorySelect.innerHTML = "";
                   otherCategoryFields.style.display = "none";
 
-                  if (category === "architech") {
-                    // addSubcategoryOption("Architect", subcategorySelect);
-                    addSubcategoryOption("Senior", subcategorySelect);
-                    addSubcategoryOption("Design", subcategorySelect);
-                    addSubcategoryOption("Project", subcategorySelect);
-                    addSubcategoryOption("Principal", subcategorySelect);
-                    addSubcategoryOption("Landscape", subcategorySelect);
-                    addSubcategoryOption("Urban Planner", subcategorySelect);
-                    addSubcategoryOption("Interior Designer", subcategorySelect);
-                    addSubcategoryOption("Architectural Technologist", subcategorySelect);
-                    addSubcategoryOption("BIM (Building Information Modeling) Specialist", subcategorySelect);
-                    addSubcategoryOption("Sustainable Design Consultant", subcategorySelect);
-                    addSubcategoryOption("Architectural Drafter", subcategorySelect);
-                    addSubcategoryOption("Architectural Visualization Artist", subcategorySelect);
-                    addSubcategoryOption("Urban Designer", subcategorySelect);
-                    addSubcategoryOption("Historic Preservation", subcategorySelect);
-                    addSubcategoryOption("Residential Architect", subcategorySelect);
-                    addSubcategoryOption("CAD (Computer-Aided Design) Technician", subcategorySelect);
-                    addSubcategoryOption("Architectural Educator", subcategorySelect);
-                    addSubcategoryOption("Construction Project Manage", subcategorySelect);
-                    addSubcategoryOption("Industrial Designer", subcategorySelect);
-                    addSubcategoryOption("Healthcare Facility Planner", subcategorySelect);
-                    addSubcategoryOption("Retail Space Designer", subcategorySelect);
-                  } else if (category === "Developer") {
-                    addSubcategoryOption("Python Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Python", subcategorySelect);
-                    addSubcategoryOption("Python Data Scientist", subcategorySelect);
-                    addSubcategoryOption("Python Machine Learning Engineer", subcategorySelect);
-                    addSubcategoryOption("Python Automation", subcategorySelect);
-                    addSubcategoryOption("Java Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Java", subcategorySelect);
-                    addSubcategoryOption("Java Full Stack ", subcategorySelect);
-                    addSubcategoryOption("Java Android", subcategorySelect);
-                    addSubcategoryOption("Java Spring ", subcategorySelect);
-                    addSubcategoryOption("Java Microservices", subcategorySelect);
-                    addSubcategoryOption("JavaScript Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Front-end", subcategorySelect);
-                    addSubcategoryOption("Node.js", subcategorySelect);
-                    addSubcategoryOption("React", subcategorySelect);
-                    addSubcategoryOption("Angular", subcategorySelect);
-                    addSubcategoryOption("Vue.js ", subcategorySelect);
-                    addSubcategoryOption("Full Stack JavaScript ", subcategorySelect);
-                    addSubcategoryOption("C# Software Engineer", subcategorySelect);
-                    addSubcategoryOption(".NET", subcategorySelect);
-                    addSubcategoryOption("ASP.NET", subcategorySelect);
-                    addSubcategoryOption("Unity", subcategorySelect);
-                    addSubcategoryOption("Xamarin", subcategorySelect);
-                    addSubcategoryOption("C++ Software Engineerse", subcategorySelect);
-                    addSubcategoryOption("Game  (using C++)", subcategorySelect);
-                    addSubcategoryOption("C++ Systems", subcategorySelect);
-                    addSubcategoryOption("PHP Software Engineer", subcategorySelect);
-                    addSubcategoryOption("PHP Web", subcategorySelect);
-                    addSubcategoryOption("WordPress", subcategorySelect);
-                    addSubcategoryOption("Laravel", subcategorySelect);
-                    addSubcategoryOption("Symfony", subcategorySelect);
-                    addSubcategoryOption("Ruby Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Ruby on Rails ", subcategorySelect);
-                    addSubcategoryOption("Swift Software Engineer", subcategorySelect);
-                    addSubcategoryOption("iOS  (using Swift)", subcategorySelect);
-                    addSubcategoryOption("macOS  (using Swift)", subcategorySelect);
-                    addSubcategoryOption("Kotlin Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Android  (using Kotlin)", subcategorySelect);
-                    addSubcategoryOption("Go Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Rust Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Systems  (using Rust", subcategorySelect);
-                     addSubcategoryOption("TypeScript Software Engineer", subcategorySelect);
-                     addSubcategoryOption("Front-end  (using TypeScript)", subcategorySelect);
-                     addSubcategoryOption("SQL", subcategorySelect);
-                     addSubcategoryOption("Database", subcategorySelect);
-                     addSubcategoryOption("Scala Software Engineer", subcategorySelect);
-                     addSubcategoryOption("Haskell Software Engineer", subcategorySelect);
-                     addSubcategoryOption("Perl Software Engineer ", subcategorySelect);
-                     addSubcategoryOption("Lua Software Engineer", subcategorySelect);
-                     addSubcategoryOption("Game  (using Lua) ", subcategorySelect);
-                     addSubcategoryOption("MATLAB Software Enginee ", subcategorySelect);
-                     addSubcategoryOption("Data Analyst (using MATLAB) ", subcategorySelect);
-                     
-                  } else if (category === "tester") {
-                    addSubcategoryOption("Software", subcategorySelect);
-                    addSubcategoryOption("Test Engineer", subcategorySelect);
-                    addSubcategoryOption("QA Analyst (Quality Assurance Analyst)", subcategorySelect);
-                    addSubcategoryOption("Test Automation Engineer", subcategorySelect);
-                    addSubcategoryOption("Manual", subcategorySelect);
-                    addSubcategoryOption("QA Lead (Quality Assurance Lead)", subcategorySelect);
-                    addSubcategoryOption("Test Manager", subcategorySelect);
-                    addSubcategoryOption("Performance", subcategorySelect);
-                    addSubcategoryOption("Usability", subcategorySelect);
-                    addSubcategoryOption("Regression", subcategorySelect);
-                    addSubcategoryOption("User Acceptance ", subcategorySelect);
-                    addSubcategoryOption("Security", subcategorySelect);
-                    addSubcategoryOption("Mobile App ", subcategorySelect);
-                    addSubcategoryOption("Game", subcategorySelect);
-                    addSubcategoryOption("Functional", subcategorySelect);
-                    addSubcategoryOption("Test Architect", subcategorySelect);
-                    addSubcategoryOption("Test Coordinator", subcategorySelect);
-                    addSubcategoryOption("Continuous Integration", subcategorySelect);
-                    addSubcategoryOption("Load", subcategorySelect);
-                    addSubcategoryOption("Test Designer", subcategorySelect);
-                    addSubcategoryOption("Test Technician", subcategorySelect);
-                    addSubcategoryOption("QA Inspector (Quality Assurance Inspector)", subcategorySelect);
-                    addSubcategoryOption("Test Coordinator", subcategorySelect);
-                    addSubcategoryOption("Compliance", subcategorySelect);
-                    // addSubcategoryOption("Load", subcategorySelect);
-                    otherCategoryFields.style.display = "block";
-                  } 
-                  else if (category === "uiux") {
-                    addSubcategoryOption("UI/UX Designer", subcategorySelect);
-                    addSubcategoryOption("User Experience Designer", subcategorySelect);
-                    addSubcategoryOption("User Interface Designer", subcategorySelect);
-                    addSubcategoryOption("Interaction Designer", subcategorySelect);
-                    addSubcategoryOption("Visual Designer", subcategorySelect);
-                    addSubcategoryOption("UX Researcher", subcategorySelect);
-                    addSubcategoryOption("UI/UX Architect", subcategorySelect);
-                    addSubcategoryOption("Information Architect", subcategorySelect);
-                    addSubcategoryOption("UX Strategist", subcategorySelect);
-                    addSubcategoryOption("Product Designer", subcategorySelect);
-                    addSubcategoryOption("User-Centered Design Specialist", subcategorySelect);
-                    addSubcategoryOption("Usability Analyst", subcategorySelect);
-                    addSubcategoryOption("UI/UX Developer", subcategorySelect);
-                    addSubcategoryOption("Mobile App Designer", subcategorySelect);
-                    addSubcategoryOption("Web Designer", subcategorySelect);
-                    addSubcategoryOption("Visual Experience Designer", subcategorySelect);
-                    addSubcategoryOption("UX Content Strategist", subcategorySelect);
-                    addSubcategoryOption("Interaction Architect", subcategorySelect);
-                    addSubcategoryOption("UX/UI Illustrator", subcategorySelect);
-                    addSubcategoryOption("User Interface Animator", subcategorySelect);
-                    addSubcategoryOption("Conversion Rate Optimization (CRO) Specialist", subcategorySelect);
-                    addSubcategoryOption("Accessibility Designer ", subcategorySelect);
-                    addSubcategoryOption("Prototype Designer", subcategorySelect);
-                    addSubcategoryOption("UI/UX Lead ", subcategorySelect);
-                    addSubcategoryOption("Design Systems Manager", subcategorySelect);
-                    // addSubcategoryOption("Software", subcategorySelect);
-                    
-                  } else if (category === "datascience") {
-                    addSubcategoryOption("Data Scientist", subcategorySelect);
-                    addSubcategoryOption("Senior Data Scientist", subcategorySelect);
-                    addSubcategoryOption("Machine Learning Engineer", subcategorySelect);
-                    addSubcategoryOption("Data Analyst", subcategorySelect);
-                    addSubcategoryOption("Senior Data Analyst", subcategorySelect);
-                    addSubcategoryOption("Statistician", subcategorySelect);
-                    addSubcategoryOption("Business Intelligence Analyst", subcategorySelect);
-                    addSubcategoryOption("Quantitative Analyst (Quant)", subcategorySelect);
-                    addSubcategoryOption("Data Engineer", subcategorySelect);
-                    addSubcategoryOption("Data Architect", subcategorySelect);
-                    addSubcategoryOption("AI Research", subcategorySelect);
-                    addSubcategoryOption("Predictive Modeler", subcategorySelect);
-                    addSubcategoryOption("Natural Language Processing (NLP) Engineer", subcategorySelect);
-                    addSubcategoryOption("Computer Vision Engineer", subcategorySelect);
-                    addSubcategoryOption("Big Data Engineer", subcategorySelect);
-                    addSubcategoryOption("Analytics Manager", subcategorySelect);
-                    addSubcategoryOption("Data Science Manager", subcategorySelect);
-                    addSubcategoryOption("Chief Data Officer (CDO)", subcategorySelect);
-                    addSubcategoryOption("Research Scientist (AI/ML)", subcategorySelect);
-                    addSubcategoryOption("Decision Scientist", subcategorySelect);
-                    addSubcategoryOption("Marketing Analyst", subcategorySelect);
-                    addSubcategoryOption("Operations Research Analyst", subcategorySelect);
-                    addSubcategoryOption("Data Visualization Specialist", subcategorySelect);
-                    addSubcategoryOption("Customer Insights Analyst", subcategorySelect);
-                    addSubcategoryOption("Fraud Analyst", subcategorySelect);
-                  
-                  }else if (category === "databaseadmin") {
-                    addSubcategoryOption("Database (DBA)", subcategorySelect);
-                    addSubcategoryOption("Senior", subcategorySelect);
-                    addSubcategoryOption("Database Engineer", subcategorySelect);
-                    addSubcategoryOption("Database Architect", subcategorySelect);
-                    addSubcategoryOption("Database Analyst", subcategorySelect);
-                    addSubcategoryOption("Data Warehouse", subcategorySelect);
-                    addSubcategoryOption("SQL Server ", subcategorySelect);
-                    addSubcategoryOption("Oracle Database ", subcategorySelect);
-                    addSubcategoryOption("MySQL Database", subcategorySelect);
-                    addSubcategoryOption("PostgreSQL Database", subcategorySelect);
-                    addSubcategoryOption("MongoDB", subcategorySelect);
-                    addSubcategoryOption("NoSQL", subcategorySelect);
-                    addSubcategoryOption("DBMS  (Database Management System)", subcategorySelect);
-                    addSubcategoryOption("Database Operations Manager", subcategorySelect);
-                    addSubcategoryOption("Database Performance Tuning Specialist", subcategorySelect);
-                    addSubcategoryOption("Data Migration Specialist", subcategorySelect);
-                    addSubcategoryOption("Database Security ", subcategorySelect);
-                    addSubcategoryOption("Database Backup and Recovery Specialist", subcategorySelect);
-                    addSubcategoryOption("Cloud   (e.g., AWS, Azure, Google Cloud)", subcategorySelect);
-                    addSubcategoryOption("Database Compliance Officer", subcategorySelect);
-                    addSubcategoryOption("Database DevOps Engineer", subcategorySelect);
-                    addSubcategoryOption("Database Automation Engineer", subcategorySelect);
-                    addSubcategoryOption("Database Replication Specialist", subcategorySelect);
-                    addSubcategoryOption("Data Governance Manager", subcategorySelect);
-                    addSubcategoryOption("Data Steward", subcategorySelect);
-                    // addSubcategoryOption("", subcategorySelect);
-                    // addSubcategoryOption("", subcategorySelect);
-                  }
-                  else if (category === "teacher") {
-                    addSubcategoryOption("Tamil", subcategorySelect);
-                    addSubcategoryOption("Mathematics", subcategorySelect);
-                    addSubcategoryOption("Math Instructor", subcategorySelect);
-                    addSubcategoryOption("Algebra", subcategorySelect);
-                    addSubcategoryOption("Geometry", subcategorySelect);
-                    addSubcategoryOption("Calculus", subcategorySelect);
-                    addSubcategoryOption("Statistics", subcategorySelect);
-                    addSubcategoryOption("Math Tutor", subcategorySelect);
-                    addSubcategoryOption("Math Coach", subcategorySelect);
-                    addSubcategoryOption("Math Curriculum Specialist", subcategorySelect);
-                    addSubcategoryOption("Math Department Chair", subcategorySelect);
-                    addSubcategoryOption("English", subcategorySelect);
-                    addSubcategoryOption("Language Arts ", subcategorySelect);
-                    addSubcategoryOption("Literature", subcategorySelect);
-                    addSubcategoryOption("Writing Instructor", subcategorySelect);
-                    addSubcategoryOption("Creative Writing", subcategorySelect);
-                    addSubcategoryOption("English as a Second Language (ESL) ", subcategorySelect);
-                    addSubcategoryOption("Reading Specialist", subcategorySelect);
-                    addSubcategoryOption("English Tutor", subcategorySelect);
-                    addSubcategoryOption("English Department Chair", subcategorySelect);
-                    addSubcategoryOption("Science", subcategorySelect);
-                    addSubcategoryOption("Biology", subcategorySelect);
-                    addSubcategoryOption("Chemistry", subcategorySelect);
-                    addSubcategoryOption("Physics", subcategorySelect);
-                    addSubcategoryOption("Environmental Science ", subcategorySelect);
-                    addSubcategoryOption("Earth Science ", subcategorySelect);
-                    addSubcategoryOption("Anatomy and Physiology ", subcategorySelect);
-                    addSubcategoryOption("Science Lab Instructor", subcategorySelect);
-                    addSubcategoryOption("Science Curriculum Specialist", subcategorySelect);
-                    addSubcategoryOption("Social Studies ", subcategorySelect);
-                    addSubcategoryOption("History", subcategorySelect);
-                    addSubcategoryOption("Geography", subcategorySelect);
-                    addSubcategoryOption("Civics", subcategorySelect);
-                    addSubcategoryOption("Government", subcategorySelect);
-                    addSubcategoryOption("Economics", subcategorySelect);
-                    addSubcategoryOption("World History ", subcategorySelect);
-                    addSubcategoryOption("Social Studies Department Chair", subcategorySelect);
-                    addSubcategoryOption("Foreign Language", subcategorySelect);
-                    addSubcategoryOption("Language Instructor", subcategorySelect);
-                    addSubcategoryOption("Spanish", subcategorySelect);
-                    addSubcategoryOption("French", subcategorySelect);
-                    addSubcategoryOption("German", subcategorySelect);
-                    addSubcategoryOption("Chinese", subcategorySelect);
-                    addSubcategoryOption("Language Lab Coordinator", subcategorySelect);
-                    addSubcategoryOption("Physical Education ", subcategorySelect);
-                    addSubcategoryOption("PE Instructor", subcategorySelect);
-                    addSubcategoryOption("Fitness Coach", subcategorySelect);
-                    addSubcategoryOption("Health Education ", subcategorySelect);
-                    addSubcategoryOption("Sports Coach", subcategorySelect);
-                    addSubcategoryOption("Physical Education Department Chair", subcategorySelect);
-                    addSubcategoryOption("Art", subcategorySelect);
-                    addSubcategoryOption("Music", subcategorySelect);
-                    addSubcategoryOption("Drama", subcategorySelect);
-                    addSubcategoryOption("Visual Arts ", subcategorySelect);
-                    addSubcategoryOption("Choir Director", subcategorySelect);
-                    addSubcategoryOption("Band", subcategorySelect);
-                    addSubcategoryOption("Art History ", subcategorySelect);
-                    addSubcategoryOption("Special Education ", subcategorySelect);
-                    addSubcategoryOption("Learning Support ", subcategorySelect);
-                    addSubcategoryOption("Resource", subcategorySelect);
-                    addSubcategoryOption("Inclusion", subcategorySelect);
-                    addSubcategoryOption("Autism Specialist", subcategorySelect);
-                    addSubcategoryOption("Behavioral Interventionist", subcategorySelect);
-                    addSubcategoryOption("Vocational", subcategorySelect);
-                    addSubcategoryOption("Career and Technical Education (CTE) Instructor", subcategorySelect);
-                    addSubcategoryOption("Culinary Arts Instructor", subcategorySelect);
-                    addSubcategoryOption("Automotive Technology Teacher", subcategorySelect);
-                    addSubcategoryOption("Computer Science ", subcategorySelect);
-                    addSubcategoryOption("Digital Media Instructor", subcategorySelect);
-            
-                  }
-                  else if (category === "professor") {
-                    addSubcategoryOption("University", subcategorySelect);
-                    addSubcategoryOption("Assistant", subcategorySelect);
-                    addSubcategoryOption("Associate", subcategorySelect);
-                    addSubcategoryOption("Distinguished", subcategorySelect);
-                    addSubcategoryOption("Adjunct", subcategorySelect);
-                    addSubcategoryOption("Visiting", subcategorySelect);
-                    addSubcategoryOption("Research", subcategorySelect);
-                    addSubcategoryOption("Clinical", subcategorySelect);
-                    addSubcategoryOption("Philosophy", subcategorySelect);
-                    addSubcategoryOption("Professor of History", subcategorySelect);
-                    addSubcategoryOption("English", subcategorySelect);
-                    addSubcategoryOption("Psychology", subcategorySelect);
-                    addSubcategoryOption("Sociology", subcategorySelect);
-                    addSubcategoryOption("Political Science", subcategorySelect);
-                    addSubcategoryOption("Anthropology", subcategorySelect);
-                    addSubcategoryOption("Linguistics", subcategorySelect);
-                    addSubcategoryOption("Biology", subcategorySelect);
-                    addSubcategoryOption("Chemistry", subcategorySelect);
-                    addSubcategoryOption("Physics", subcategorySelect);
-                    addSubcategoryOption("Mathematics", subcategorySelect);
-                    addSubcategoryOption("Geology", subcategorySelect);
-                    addSubcategoryOption("Astronomy", subcategorySelect);
-                    addSubcategoryOption("Environmental Science", subcategorySelect);
-                    addSubcategoryOption("Computer Science", subcategorySelect);
-                    addSubcategoryOption("Electrical Engineering", subcategorySelect);
-                    addSubcategoryOption("Mechanical Engineering", subcategorySelect);
-                    addSubcategoryOption("Civil Engineering", subcategorySelect);
-                    addSubcategoryOption("Chemical Engineering", subcategorySelect);
-                    addSubcategoryOption("Information Technology", subcategorySelect);
-                    addSubcategoryOption("Business Administration", subcategorySelect);
-                    addSubcategoryOption("Economics", subcategorySelect);
-                    addSubcategoryOption("Finance", subcategorySelect);
-                    addSubcategoryOption("Marketing", subcategorySelect);
-                    addSubcategoryOption("Management", subcategorySelect);
-                    addSubcategoryOption("Accounting", subcategorySelect);
-                    addSubcategoryOption("Fine Arts", subcategorySelect);
-                    addSubcategoryOption("Music", subcategorySelect);
-                    addSubcategoryOption("Visual Arts", subcategorySelect);
-                    addSubcategoryOption("Theater", subcategorySelect);
-                    addSubcategoryOption("Dance", subcategorySelect);
-                    addSubcategoryOption("Film Studies", subcategorySelect);
-                    addSubcategoryOption("Educational Psychology", subcategorySelect);
-                    addSubcategoryOption("Medicine", subcategorySelect);
-                    addSubcategoryOption("Nursing", subcategorySelect);
-                    addSubcategoryOption("Public Health", subcategorySelect);
-                    addSubcategoryOption("Pharmacy", subcategorySelect);
-                    addSubcategoryOption("Dentistry", subcategorySelect);
-                    addSubcategoryOption("Law", subcategorySelect);
-                     addSubcategoryOption("Constitutional Law", subcategorySelect);
-                     addSubcategoryOption("International Law", subcategorySelect);
-                     addSubcategoryOption("Environmental Law", subcategorySelect);
-                     addSubcategoryOption("Social Work", subcategorySelect);
-                     addSubcategoryOption("Social Welfare", subcategorySelect);
-                     addSubcategoryOption("Clinical Social Work", subcategorySelect);
-                     addSubcategoryOption("Library Science", subcategorySelect);
-                     addSubcategoryOption("Information Studies", subcategorySelect);
-                     
-                  }
+                  // if (category === "architech") {
+                  //   addSubcategoryOption("Architect", subcategorySelect);
+                    if (category === "architech") {
+                    addSubcategoryOption("Architect",subcategorySelect);
+                    addSubcategoryOption("Senior ",subcategorySelect);
+                    addSubcategoryOption("Design ",subcategorySelect);
+                    addSubcategoryOption("Project ",subcategorySelect);
+                    addSubcategoryOption("Principal ",subcategorySelect);
+                    addSubcategoryOption("Landscape",subcategorySelect);
+                    addSubcategoryOption("Urban Planner",subcategorySelect);
+                    addSubcategoryOption("Interior Designer",subcategorySelect);
+                    addSubcategoryOption("Architectural Technologist",subcategorySelect);
+                    addSubcategoryOption("BIM (Building Information Modeling) Specialist",subcategorySelect);
+                    addSubcategoryOption("Sustainable Design Consultant",subcategorySelect);
+                    addSubcategoryOption("Architectural Drafter",subcategorySelect);
+                    addSubcategoryOption("Architectural Visualization Artist",subcategorySelect);
+                    addSubcategoryOption("Urban Designer",subcategorySelect);
+                    addSubcategoryOption("Historic Preservation",subcategorySelect);
+                    addSubcategoryOption("Residential Architect",subcategorySelect);
+                    addSubcategoryOption("CAD (Computer-Aided Design) Technician",subcategorySelect);
+                    addSubcategoryOption("Architectural Educator",subcategorySelect);
+                    addSubcategoryOption("Construction Project Manage",subcategorySelect);
+                    addSubcategoryOption("Industrial Designer",subcategorySelect);
+                    addSubcategoryOption("Healthcare Facility Planner",subcategorySelect);
+                    addSubcategoryOption("Retail Space Designer",subcategorySelect);
+
+                    addSubcategoryOption()
+                } else if (category === "developer") {
+                    addSubcategoryOption("Python Software Engineer",subcategorySelect);
+                    addSubcategoryOption("Python",subcategorySelect);
+                    addSubcategoryOption("Python Data Scientist",subcategorySelect);
+                    addSubcategoryOption("Python Machine Learning Engineer",subcategorySelect);
+                    addSubcategoryOption("Python Automation",subcategorySelect);
+                    addSubcategoryOption("Java Software ",subcategorySelect);
+                    addSubcategoryOption("Java",subcategorySelect);
+                    addSubcategoryOption("Java Full Stack ",subcategorySelect);
+                    addSubcategoryOption("Java Android ",subcategorySelect);
+                    addSubcategoryOption("Java Spring ",subcategorySelect);
+                    addSubcategoryOption("Java Microservices ",subcategorySelect);
+                    addSubcategoryOption("JavaScript ",subcategorySelect);
+                    addSubcategoryOption("Front-end ",subcategorySelect);
+                    addSubcategoryOption("Node.js ",subcategorySelect);
+                    addSubcategoryOption("React ",subcategorySelect);
+                    addSubcategoryOption("Angular ",subcategorySelect);
+                    addSubcategoryOption("Vue.js ",subcategorySelect);
+                    addSubcategoryOption("Full Stack JavaScript ",subcategorySelect);
+                    addSubcategoryOption("C#  ",subcategorySelect);
+                    addSubcategoryOption(".NET ",subcategorySelect);
+                    addSubcategoryOption("ASP.NET ",subcategorySelect);
+                    addSubcategoryOption("Unity ",subcategorySelect);
+                    addSubcategoryOption("Xamarin ",subcategorySelect);
+                    addSubcategoryOption("C++  ",subcategorySelect);
+                    addSubcategoryOption("Game(using C++)",subcategorySelect);
+                    addSubcategoryOption("C++ Systems ",subcategorySelect);
+                    addSubcategoryOption("PHP",subcategorySelect);
+                    addSubcategoryOption("WordPress",subcategorySelect);
+                    addSubcategoryOption("Laravel ",subcategorySelect);
+                    addSubcategoryOption("Symfony ",subcategorySelect);
+                    addSubcategoryOption("Ruby ",subcategorySelect);
+                    addSubcategoryOption("Ruby on Rails ",subcategorySelect);
+                    addSubcategoryOption("Swift ",subcategorySelect);
+                    addSubcategoryOption("iOS (using Swift)",subcategorySelect);
+                    addSubcategoryOption("macOS (using Swift)",subcategorySelect);
+                    addSubcategoryOption("Kotlin ",subcategorySelect);
+                    addSubcategoryOption("Android  (using Kotlin)",subcategorySelect);
+                    addSubcategoryOption("Go  ",subcategorySelect);
+                    addSubcategoryOption("Rust  ",subcategorySelect);
+                    addSubcategoryOption("Systems  (using Rust",subcategorySelect);
+                    addSubcategoryOption("TypeScript  ",subcategorySelect);
+                    addSubcategoryOption("Front-end  (using TypeScript)",subcategorySelect);
+                    addSubcategoryOption("SQL ",subcategorySelect);
+                    addSubcategoryOption("Database ",subcategorySelect);
+                    addSubcategoryOption("Scala  ",subcategorySelect);
+                    addSubcategoryOption("Haskell  ",subcategorySelect);
+                    addSubcategoryOption("Perl   ",subcategorySelect);
+                    addSubcategoryOption("Lua   ",subcategorySelect);
+                    addSubcategoryOption("Game  (using Lua) ",subcategorySelect);
+                    addSubcategoryOption("MATLAB   ",subcategorySelect);
+                    addSubcategoryOption("Data Analyst (using MATLAB) ",subcategorySelect);
+                } else if (category === "tester") {
+                    addSubcategoryOption("Software ",subcategorySelect);
+                    addSubcategoryOption("Test Engineer",subcategorySelect);
+                    addSubcategoryOption("QA Analyst (Quality Assurance Analyst)",subcategorySelect);
+                    addSubcategoryOption("Test Automation Engineer",subcategorySelect);
+                    addSubcategoryOption("Manual ",subcategorySelect);
+                    addSubcategoryOption("QA Lead (Quality Assurance Lead)",subcategorySelect);
+                    addSubcategoryOption("Test Manager",subcategorySelect);
+                    addSubcategoryOption("Performance ",subcategorySelect);
+                    addSubcategoryOption("Usability ",subcategorySelect);
+                    addSubcategoryOption("Regression ",subcategorySelect);
+                    addSubcategoryOption("User Acceptance ",subcategorySelect);
+                    addSubcategoryOption("Security ",subcategorySelect);
+                    addSubcategoryOption("Mobile App ",subcategorySelect);
+                    addSubcategoryOption("Game ",subcategorySelect);
+                    addSubcategoryOption("Functional ",subcategorySelect);
+                    addSubcategoryOption("Test Architect",subcategorySelect);
+                    addSubcategoryOption("Test Coordinator",subcategorySelect);
+                    addSubcategoryOption("Continuous Integration ",subcategorySelect);
+                    addSubcategoryOption("Load ",subcategorySelect);
+                    addSubcategoryOption("Test Designer",subcategorySelect);
+                    addSubcategoryOption("Test Technician",subcategorySelect);
+                    addSubcategoryOption("QA Inspector (Quality Assurance Inspector)",subcategorySelect);
+                    addSubcategoryOption("Test Coordinator",subcategorySelect);
+                    addSubcategoryOption("Compliance ",subcategorySelect);
+                } else if (selectedCategory === "uiux") {
+                    addSubcategoryOption("UI/UX Designer",subcategorySelect);
+                    addSubcategoryOption("User Experience Designer",subcategorySelect);
+                    addSubcategoryOption("User Interface Designer",subcategorySelect);
+                    addSubcategoryOption("Interaction Designer",subcategorySelect);
+                    addSubcategoryOption("Visual Designer",subcategorySelect);
+                    addSubcategoryOption("UX Researcher",subcategorySelect);
+                    addSubcategoryOption("UI/UX Architect",subcategorySelect);
+                    addSubcategoryOption("Information Architect",subcategorySelect);
+                    addSubcategoryOption("UX Strategist",subcategorySelect);
+                    addSubcategoryOption("Product Designer",subcategorySelect);
+                    addSubcategoryOption("User-Centered Design Specialist",subcategorySelect);
+                    addSubcategoryOption("Usability Analyst",subcategorySelect);
+                    addSubcategoryOption("UI/UX Developer",subcategorySelect);
+                    addSubcategoryOption("Mobile App Designer",subcategorySelect);
+                    addSubcategoryOption("Web Designer",subcategorySelect);
+                    addSubcategoryOption("Visual Experience Designer",subcategorySelect);
+                    addSubcategoryOption("UX Content Strategist",subcategorySelect);
+                    addSubcategoryOption("Interaction Architect",subcategorySelect);
+                    addSubcategoryOption("UX/UI Illustrator",subcategorySelect);
+                    addSubcategoryOption("User Interface Animator",subcategorySelect);
+                    addSubcategoryOption("Conversion Rate Optimization (CRO) Specialist",subcategorySelect);
+                    addSubcategoryOption("Accessibility Designer ",subcategorySelect);
+                    addSubcategoryOption("Prototype Designer ",subcategorySelect);
+                    addSubcategoryOption("UI/UX Lead ",subcategorySelect);
+                    addSubcategoryOption("Design Systems Manager ",subcategorySelect);
+
+                } else if (category === "datascience") {
+                    addSubcategoryOption("Data Scientist",subcategorySelect);
+                    addSubcategoryOption("Senior",subcategorySelect);
+                    addSubcategoryOption("Machine Learning Engineer",subcategorySelect);
+                    addSubcategoryOption("Data Analyst",subcategorySelect);
+                    addSubcategoryOption("Senior Data Analyst",subcategorySelect);
+                    addSubcategoryOption("Statistician",subcategorySelect);
+                    addSubcategoryOption("Business Intelligence Analyst",subcategorySelect);
+                    addSubcategoryOption("Quantitative Analyst (Quant)",subcategorySelect);
+                    addSubcategoryOption("Data Engineer",subcategorySelect);
+                    addSubcategoryOption("Data Architect",subcategorySelect);
+                    addSubcategoryOption("AI Research Scientist",subcategorySelect);
+                    addSubcategoryOption("Predictive Modeler",subcategorySelect);
+                    addSubcategoryOption("Natural Language Processing (NLP) Engineer",subcategorySelect);
+                    addSubcategoryOption("Computer Vision Engineer",subcategorySelect);
+                    addSubcategoryOption("Big Data Engineer",subcategorySelect);
+                    addSubcategoryOption("Analytics Manager",subcategorySelect);
+                    addSubcategoryOption("Data Science Manager",subcategorySelect);
+                    addSubcategoryOption("Chief Data Officer (CDO)",subcategorySelect);
+                    addSubcategoryOption("Research Scientist (AI/ML)",subcategorySelect);
+                    addSubcategoryOption("Decision Scientist",subcategorySelect);
+                    addSubcategoryOption("Marketing Analyst",subcategorySelect);
+                    addSubcategoryOption("Operations Research Analyst",subcategorySelect);
+                    addSubcategoryOption("Data Visualization Specialist",subcategorySelect);
+                    addSubcategoryOption("Customer Insights Analyst",subcategorySelect);
+                    addSubcategoryOption("Fraud Analyst",subcategorySelect);
+
+                } else if (category === "databaseadmin") {
+                    addSubcategoryOption("Database  (DBA)",subcategorySelect);
+                    addSubcategoryOption("Senior  Administrator",subcategorySelect);
+                    addSubcategoryOption("Database Engineer",subcategorySelect);
+                    addSubcategoryOption("Database Architect",subcategorySelect);
+                    addSubcategoryOption("Database Analyst",subcategorySelect);
+                    addSubcategoryOption("Data Warehouse ",subcategorySelect);
+                    addSubcategoryOption("SQL Server",subcategorySelect);
+                    addSubcategoryOption("Oracle Database Administrator",subcategorySelect);
+                    addSubcategoryOption("MySQL Database Administrator",subcategorySelect);
+                    addSubcategoryOption("PostgreSQL Database Administrator",subcategorySelect);
+                    addSubcategoryOption("MongoDB Administrator",subcategorySelect);
+                    addSubcategoryOption("NoSQL Database Administrator",subcategorySelect);
+                    addSubcategoryOption("DBMS Administrator (Database Management System)",subcategorySelect);
+                    addSubcategoryOption("Database Operations Manager",subcategorySelect);
+                    addSubcategoryOption("Database Performance Tuning Specialist",subcategorySelect);
+                    addSubcategoryOption("Data Migration Specialist",subcategorySelect);
+                    addSubcategoryOption("Database Security Administrator",subcategorySelect);
+                    addSubcategoryOption("Database Backup and Recovery Specialist",subcategorySelect);
+                    addSubcategoryOption("Cloud Database Administrator (e.g., AWS, Azure, Google Cloud)",subcategorySelect);
+                    addSubcategoryOption("Database Compliance Officer",subcategorySelect);
+                    addSubcategoryOption("Database DevOps Engineer",subcategorySelect);
+                    addSubcategoryOption("Database Automation Engineer",subcategorySelect);
+                    addSubcategoryOption("Database Replication Specialist",subcategorySelect);
+                    addSubcategoryOption("Data Governance Manager",subcategorySelect);
+                    addSubcategoryOption("Data Steward",subcategorySelect);
+                } else if (category === "teacher") {
+                    addSubcategoryOption("Tamil",subcategorySelect);
+                    addSubcategoryOption("Mathematics ",subcategorySelect);
+                    addSubcategoryOption("Math Instructor",subcategorySelect);
+                    addSubcategoryOption("Algebra ",subcategorySelect);
+                    addSubcategoryOption("Geometry ",subcategorySelect);
+                    addSubcategoryOption("Calculus ",subcategorySelect);
+                    addSubcategoryOption("Statistics ",subcategorySelect);
+                    addSubcategoryOption("Math Tutor",subcategorySelect);
+                    addSubcategoryOption("Math Coach",subcategorySelect);
+                    addSubcategoryOption("Math Curriculum Specialist",subcategorySelect);
+                    addSubcategoryOption("Math Department Chair",subcategorySelect);
+                    addSubcategoryOption("English ",subcategorySelect);
+                    addSubcategoryOption("Language Arts ",subcategorySelect);
+                    addSubcategoryOption("Literature ",subcategorySelect);
+                    addSubcategoryOption("Writing Instructor",subcategorySelect);
+                    addSubcategoryOption("Creative Writing ",subcategorySelect);
+                    addSubcategoryOption("English as a Second Language (ESL) ",subcategorySelect);
+                    addSubcategoryOption("Reading Specialist",subcategorySelect);
+                    addSubcategoryOption("English Tutor",subcategorySelect);
+                    addSubcategoryOption("English Department Chair",subcategorySelect);
+                    addSubcategoryOption("Science ",subcategorySelect);
+                    addSubcategoryOption("Biology ",subcategorySelect);
+                    addSubcategoryOption("Chemistry ",subcategorySelect);
+                    addSubcategoryOption("Physics ",subcategorySelect);
+                    addSubcategoryOption("Environmental Science ",subcategorySelect);
+                    addSubcategoryOption("Earth Science ",subcategorySelect);
+                    addSubcategoryOption("Anatomy and Physiology ",subcategorySelect);
+                    addSubcategoryOption("Science Lab Instructor",subcategorySelect);
+                    addSubcategoryOption("Science Curriculum Specialist",subcategorySelect);
+                    addSubcategoryOption("Social Studies ",subcategorySelect);
+                    addSubcategoryOption("History ",subcategorySelect);
+                    addSubcategoryOption("Geography ",subcategorySelect);
+                    addSubcategoryOption("Civics ",subcategorySelect);
+                    addSubcategoryOption("Government ",subcategorySelect);
+                    addSubcategoryOption("Economics ",subcategorySelect);
+                    addSubcategoryOption("World History ",subcategorySelect);
+                    addSubcategoryOption("Social Studies Department Chair",subcategorySelect);
+                    addSubcategoryOption("Foreign Language ",subcategorySelect);
+                    addSubcategoryOption("Language Instructor",subcategorySelect);
+                    addSubcategoryOption("Spanish ",subcategorySelect);
+                    addSubcategoryOption("French ",subcategorySelect);
+                    addSubcategoryOption("German ",subcategorySelect);
+                    addSubcategoryOption("Chinese ",subcategorySelect);
+                    addSubcategoryOption("Language Lab Coordinator",subcategorySelect);
+                    addSubcategoryOption("Physical Education ",subcategorySelect);
+                    addSubcategoryOption("PE Instructor",subcategorySelect);
+                    addSubcategoryOption("Fitness Coach",subcategorySelect);
+                    addSubcategoryOption("Health Education ",subcategorySelect);
+                    addSubcategoryOption("Sports Coach",subcategorySelect);
+                    addSubcategoryOption("Physical Education Department Chair",subcategorySelect);
+                    addSubcategoryOption("Art ",subcategorySelect);
+                    addSubcategoryOption("Music ",subcategorySelect);
+                    addSubcategoryOption("Drama ",subcategorySelect);
+                    addSubcategoryOption("Visual Arts ",subcategorySelect);
+                    addSubcategoryOption("Choir Director",subcategorySelect);
+                    addSubcategoryOption("Band ",subcategorySelect);
+                    addSubcategoryOption("Art History ",subcategorySelect);
+                    addSubcategoryOption("Special Education ",subcategorySelect);
+                    addSubcategoryOption("Learning Support ",subcategorySelect);
+                    addSubcategoryOption("Resource ",subcategorySelect);
+                    addSubcategoryOption("Inclusion ",subcategorySelect);
+                    addSubcategoryOption("Autism Specialist",subcategorySelect);
+                    addSubcategoryOption("Behavioral Interventionist",subcategorySelect);
+                    addSubcategoryOption("Vocational Teacher",subcategorySelect);
+                    addSubcategoryOption("Career and Technical Education (CTE) Instructor",subcategorySelect);
+                    addSubcategoryOption("Culinary Arts Instructor",subcategorySelect);
+                    addSubcategoryOption("Automotive Technology ",subcategorySelect);
+                    addSubcategoryOption("Computer Science ",subcategorySelect);
+                    addSubcategoryOption("Digital Media Instructor",subcategorySelect);
+                } else if (category === "professor") {
+                    addSubcategoryOption("University ",subcategorySelect);
+                    addSubcategoryOption("Assistant ",subcategorySelect);
+                    addSubcategoryOption("Associate ",subcategorySelect);
+                    addSubcategoryOption("Full ",subcategorySelect);
+                    addSubcategoryOption("Distinguished ",subcategorySelect);
+                    addSubcategoryOption("Adjunct ",subcategorySelect);
+                    addSubcategoryOption("Visiting ",subcategorySelect);
+                    addSubcategoryOption("Research ",subcategorySelect);
+                    addSubcategoryOption("Clinical ",subcategorySelect);
+                    addSubcategoryOption("Philosophy",subcategorySelect);
+                    addSubcategoryOption("Professor of History",subcategorySelect);
+                    addSubcategoryOption("English",subcategorySelect);
+                    addSubcategoryOption("Psychology",subcategorySelect);
+                    addSubcategoryOption("Sociology",subcategorySelect);
+                    addSubcategoryOption("Political Science",subcategorySelect);
+                    addSubcategoryOption("Anthropology",subcategorySelect);
+                    addSubcategoryOption("Linguistics",subcategorySelect);
+                    addSubcategoryOption("Biology",subcategorySelect);
+                    addSubcategoryOption("Chemistry",subcategorySelect);
+                    addSubcategoryOption("Physics",subcategorySelect);
+                    addSubcategoryOption("Mathematics",subcategorySelect);
+                    addSubcategoryOption("Geology",subcategorySelect);
+                    addSubcategoryOption("Astronomy",subcategorySelect);
+                    addSubcategoryOption(" Environmental Science",subcategorySelect);
+                    addSubcategoryOption("Computer Science",subcategorySelect);
+                    addSubcategoryOption("Electrical Engineering",subcategorySelect);
+                    addSubcategoryOption("Mechanical Engineering",subcategorySelect);
+                    addSubcategoryOption("Civil Engineering",subcategorySelect);
+                    addSubcategoryOption("Chemical Engineering",subcategorySelect);
+                    addSubcategoryOption("Information Technology",subcategorySelect);
+                    addSubcategoryOption("Business Administration",subcategorySelect);
+                    addSubcategoryOption("Economics",subcategorySelect);
+                    addSubcategoryOption("Finance",subcategorySelect);
+                    addSubcategoryOption("Marketing",subcategorySelect);
+                    addSubcategoryOption("Management",subcategorySelect);
+                    addSubcategoryOption("Accounting",subcategorySelect);
+                    addSubcategoryOption("Fine Arts",subcategorySelect);
+                    addSubcategoryOption("Music",subcategorySelect);
+                    addSubcategoryOption("Visual Arts",subcategorySelect);
+                    addSubcategoryOption("Theater",subcategorySelect);
+                    addSubcategoryOption("Dance",subcategorySelect);
+                    addSubcategoryOption("Film Studies",subcategorySelect);
+                    addSubcategoryOption("Educational Psychology",subcategorySelect);
+                    addSubcategoryOption("Medicine",subcategorySelect);
+                    addSubcategoryOption("Nursing",subcategorySelect);
+                    addSubcategoryOption("Public Health",subcategorySelect);
+                    addSubcategoryOption("Pharmacy",subcategorySelect);
+                    addSubcategoryOption("Dentistry",subcategorySelect);
+                    addSubcategoryOption("Law",subcategorySelect);
+                    addSubcategoryOption("Constitutional Law",subcategorySelect);
+                    addSubcategoryOption("Criminal Law",subcategorySelect);
+                    addSubcategoryOption("International Law",subcategorySelect);
+                    addSubcategoryOption("Environmental Law",subcategorySelect);
+                    addSubcategoryOption("Social Work",subcategorySelect);
+                    addSubcategoryOption("Social Welfare",subcategorySelect);
+                    addSubcategoryOption("Clinical Social Work",subcategorySelect);
+                    addSubcategoryOption("Library Science",subcategorySelect);
+                    addSubcategoryOption("Information Studies",subcategorySelect);
+                }
                   else {
                     // Handle other categories here
                     addSubcategoryOption("Other Subcategory", subcategorySelect);
@@ -1654,20 +1693,20 @@
                       <div class="col-md-4 mb-3">
                         <br><label for="experience">Experience</label>
                         <select class="form-control" name="experience" value="<?php echo $value['experience']; ?>" id="experience" required><br>
-                          <option value="fresher">Fresher</option>
-                          <option value="0-2">0-2 years</option>
-                          <option value="2-5">2-5 years</option>
-                          <option value="5-10">5-10 years</option>
-                          <option value="10-20">10-20 years</option>
-                          <option value="20-above">20 years above</option>
+                          <option value="fresher" <?php if ($value['experience'] === 'fresher') echo ' selected'; ?>>Fresher</option>
+                          <option value="0-2"<?php if ($value['experience'] === '0-2') echo ' selected'; ?>>0-2 years</option>
+                          <option value="2-5"<?php if ($value['experience'] === '2-5') echo ' selected'; ?>>2-5 years</option>
+                          <option value="5-10"<?php if ($value['experience'] === '5-10') echo ' selected'; ?>>5-10 years</option>
+                          <option value="10-20"<?php if ($value['experience'] === '10-20') echo ' selected'; ?>>10-20 years</option>
+                          <option value="20-above"<?php if ($value['experience'] === '20-above') echo ' selected'; ?>>20 years above</option>
                         </select>
                       </div>
                       <div class="col-md-4 mb-3">
                         <br><label for="skillLevel">Skill Level</label>
                         <select class="form-control" name="skilllevel" value="<?php echo $value['skill_level']; ?>" id="skilllevel" required>
-                          <option value="beginner">Beginner</option>
-                          <option value="intermediate">Intermediate</option>
-                          <option value="advanced">Advanced</option>
+                          <option value="beginner" <?php if ($value['skill_level'] === 'beginner') echo ' selected'; ?>>Beginner</option>
+                          <option value="intermediate" <?php if ($value['skill_level'] === 'intermediate') echo ' selected'; ?>>Intermediate</option>
+                          <option value="advanced" <?php if ($value['skill_level'] === 'advanced') echo ' selected'; ?>>Advanced</option>
                         </select>
                       </div>
                     </div>
@@ -1752,7 +1791,7 @@
           } else if ($method == 'resume') {
             ?>
               <div class="container">
-                <h2>Upload resume</h2>
+                <h3>Upload resume</h3>
                 <form id="resumeForm" method="POST" enctype="multipart/form-data" onsubmit="return validateForm()" action="<?php echo baseUrl . "seekerController/resume"?>">
                 
                   <div class="form-group">
@@ -1828,15 +1867,15 @@
             
                     <tr>
                         <th>ID</th>
-                        <th>category</th>
-                        <th>subcategory</th>
-                        <th>experience</th>
-                        <th>companyname</th>
-                        <th>role</th>
-                        <th>nameofemployer</th>
-                        <th>number</th>
-                        <th>emailid</th> 
-                        <th>action</th>
+                        <th>Job Category</th>
+                        <th>Job Subcategory</th>
+                        <th>Experience</th>
+                        <th>Companyname</th>
+                        <th>Role</th>
+                        <th>Name Of Employer</th>
+                        <th>Mobile Number Of Employer</th>
+                        <th>Email Id</th> 
+                        <th>Action</th>
                     </tr>
                 </thead>
                 <tbody>
@@ -1862,7 +1901,7 @@
                                 <!-- <button class="btn btn-primary">View</button> -->
                                 <!-- <button class="btn btn-warning">Update</button> -->
                                 <!-- <button class="btn btn-danger">Delete</button> -->
-                                <a id="regis" href="<?php echo baseUrl . "seekerController/updateExperience"?>/<?php echo $value['id'] ?>">Update</a>
+                                <a id="regis"id="updates" href="<?php echo baseUrl . "seekerController/updateExperience"?>/<?php echo $value['id'] ?>">Update</a>
                                 <a id="deletes" onclick="return confirm('Are you sure you want to delete?')" href="<?php echo baseUrl . "seekerController/deleteExperience"?>/<?php echo $value['id'] ?>">delete</a>
                             </div>
                         </td>
@@ -1893,7 +1932,7 @@
                       
                       <option value="">Select a Category</option>
                         <option value="architech">Architech</option>
-                        <option value="Developer">Developer</option>
+                        <option value="developer">Developer</option>
                         <option value="tester">Tester</option>
                         <option value="uiux">UI/UX Design</option>
                         <option value="datascience">Data Scientist</option>
@@ -1988,7 +2027,7 @@
                 subcategorySelect.innerHTML = '<option value="">Select a Subcategory</option>';
 
                 if (selectedCategory === "architech") {
-                  addSubcategoryOption("Architect");
+                    addSubcategoryOption("Architect");
                     addSubcategoryOption("Senior ");
                     addSubcategoryOption("Design ");
                     addSubcategoryOption("Project ");
@@ -2002,7 +2041,7 @@
                     addSubcategoryOption("Architectural Drafter");
                     addSubcategoryOption("Architectural Visualization Artist");
                     addSubcategoryOption("Urban Designer");
-                    addSubcategoryOption("Historic Preservation ");
+                    addSubcategoryOption("Historic Preservation");
                     addSubcategoryOption("Residential Architect");
                     addSubcategoryOption("CAD (Computer-Aided Design) Technician");
                     addSubcategoryOption("Architectural Educator");
@@ -2010,64 +2049,61 @@
                     addSubcategoryOption("Industrial Designer");
                     addSubcategoryOption("Healthcare Facility Planner");
                     addSubcategoryOption("Retail Space Designer");
-
                     addSubcategoryOption()
-                } else if (selectedCategory === "Developer") {
-                  addSubcategoryOption("Python Software Engineer");
+                } else if (selectedCategory === "developer") {
+                    addSubcategoryOption("Python Software Engineer");
                     addSubcategoryOption("Python");
                     addSubcategoryOption("Python Data Scientist");
                     addSubcategoryOption("Python Machine Learning Engineer");
                     addSubcategoryOption("Python Automation");
-                    addSubcategoryOption("Java Software Engineer");
+                    addSubcategoryOption("Java Software ");
                     addSubcategoryOption("Java");
                     addSubcategoryOption("Java Full Stack ");
                     addSubcategoryOption("Java Android ");
                     addSubcategoryOption("Java Spring ");
                     addSubcategoryOption("Java Microservices ");
-                    addSubcategoryOption("JavaScript Software Engineer");
+                    addSubcategoryOption("JavaScript ");
                     addSubcategoryOption("Front-end ");
                     addSubcategoryOption("Node.js ");
                     addSubcategoryOption("React ");
                     addSubcategoryOption("Angular ");
                     addSubcategoryOption("Vue.js ");
                     addSubcategoryOption("Full Stack JavaScript ");
-                    addSubcategoryOption("C# Software Engineer");
+                    addSubcategoryOption("C#  ");
                     addSubcategoryOption(".NET ");
                     addSubcategoryOption("ASP.NET ");
                     addSubcategoryOption("Unity ");
                     addSubcategoryOption("Xamarin ");
-                    addSubcategoryOption("C++ Software Engineer");
-                    addSubcategoryOption("Game  (using C++)");
+                    addSubcategoryOption("C++  ");
+                    addSubcategoryOption("Game(using C++)");
                     addSubcategoryOption("C++ Systems ");
-                    addSubcategoryOption("PHP Software Engineer");
-                    addSubcategoryOption("PHP Web ");
-                    addSubcategoryOption("WordPress ");
+                    addSubcategoryOption("PHP");
+                    addSubcategoryOption("WordPress");
                     addSubcategoryOption("Laravel ");
                     addSubcategoryOption("Symfony ");
-                    addSubcategoryOption("Ruby Software Engineer");
+                    addSubcategoryOption("Ruby ");
                     addSubcategoryOption("Ruby on Rails ");
-                    addSubcategoryOption("Swift Software Engineer");
-                    addSubcategoryOption("iOS  (using Swift)");
-                    addSubcategoryOption("macOS  (using Swift)");
-                    addSubcategoryOption("Kotlin Software Engineer");
+                    addSubcategoryOption("Swift ");
+                    addSubcategoryOption("iOS (using Swift)");
+                    addSubcategoryOption("macOS (using Swift)");
+                    addSubcategoryOption("Kotlin ");
                     addSubcategoryOption("Android  (using Kotlin)");
-                    addSubcategoryOption("Go Software Engineer");
-                    addSubcategoryOption("Rust Software Engineer");
+                    addSubcategoryOption("Go  ");
+                    addSubcategoryOption("Rust  ");
                     addSubcategoryOption("Systems  (using Rust");
-                    addSubcategoryOption("TypeScript Software Engineer");
+                    addSubcategoryOption("TypeScript  ");
                     addSubcategoryOption("Front-end  (using TypeScript)");
                     addSubcategoryOption("SQL ");
                     addSubcategoryOption("Database ");
-                    addSubcategoryOption("Scala Software Engineer");
-                    addSubcategoryOption("Haskell Software Engineer");
-                    addSubcategoryOption("Perl Software Engineer ");
-                    addSubcategoryOption("Lua Software Engineer ");
+                    addSubcategoryOption("Scala  ");
+                    addSubcategoryOption("Haskell  ");
+                    addSubcategoryOption("Perl   ");
+                    addSubcategoryOption("Lua   ");
                     addSubcategoryOption("Game  (using Lua) ");
-                    addSubcategoryOption("MATLAB Software Enginee ");
+                    addSubcategoryOption("MATLAB   ");
                     addSubcategoryOption("Data Analyst (using MATLAB) ");
-
                 } else if (selectedCategory === "tester") {
-                  addSubcategoryOption("Software ");
+                    addSubcategoryOption("Software ");
                     addSubcategoryOption("Test Engineer");
                     addSubcategoryOption("QA Analyst (Quality Assurance Analyst)");
                     addSubcategoryOption("Test Automation Engineer");
@@ -2119,8 +2155,8 @@
                     addSubcategoryOption("Design Systems Manager ");
 
                 } else if (selectedCategory === "datascience") {
-                  addSubcategoryOption("Data Scientist");
-                    addSubcategoryOption("Senior Data Scientist");
+                    addSubcategoryOption("Data Scientist");
+                    addSubcategoryOption("Senior");
                     addSubcategoryOption("Machine Learning Engineer");
                     addSubcategoryOption("Data Analyst");
                     addSubcategoryOption("Senior Data Analyst");
@@ -2129,7 +2165,7 @@
                     addSubcategoryOption("Quantitative Analyst (Quant)");
                     addSubcategoryOption("Data Engineer");
                     addSubcategoryOption("Data Architect");
-                    addSubcategoryOption("AI Research");
+                    addSubcategoryOption("AI Research Scientist");
                     addSubcategoryOption("Predictive Modeler");
                     addSubcategoryOption("Natural Language Processing (NLP) Engineer");
                     addSubcategoryOption("Computer Vision Engineer");
@@ -2145,25 +2181,25 @@
                     addSubcategoryOption("Customer Insights Analyst");
                     addSubcategoryOption("Fraud Analyst");
                 } else if (selectedCategory === "databaseadmin") {
-                  addSubcategoryOption("Database (DBA)");
-                    addSubcategoryOption("Senior ");
+                    addSubcategoryOption("Database  (DBA)");
+                    addSubcategoryOption("Senior  Administrator");
                     addSubcategoryOption("Database Engineer");
                     addSubcategoryOption("Database Architect");
                     addSubcategoryOption("Database Analyst");
                     addSubcategoryOption("Data Warehouse ");
-                    addSubcategoryOption("SQL Server ");
-                    addSubcategoryOption("Oracle Database ");
-                    addSubcategoryOption("MySQL Database ");
-                    addSubcategoryOption("PostgreSQL Database ");
-                    addSubcategoryOption("MongoDB ");
-                    addSubcategoryOption("NoSQL  ");
-                    addSubcategoryOption("DBMS  (Database Management System)");
+                    addSubcategoryOption("SQL Server");
+                    addSubcategoryOption("Oracle Database Administrator");
+                    addSubcategoryOption("MySQL Database Administrator");
+                    addSubcategoryOption("PostgreSQL Database Administrator");
+                    addSubcategoryOption("MongoDB Administrator");
+                    addSubcategoryOption("NoSQL Database Administrator");
+                    addSubcategoryOption("DBMS Administrator (Database Management System)");
                     addSubcategoryOption("Database Operations Manager");
                     addSubcategoryOption("Database Performance Tuning Specialist");
                     addSubcategoryOption("Data Migration Specialist");
-                    addSubcategoryOption("Database Security ");
+                    addSubcategoryOption("Database Security Administrator");
                     addSubcategoryOption("Database Backup and Recovery Specialist");
-                    addSubcategoryOption("Cloud   (e.g., AWS, Azure, Google Cloud)");
+                    addSubcategoryOption("Cloud Database Administrator (e.g., AWS, Azure, Google Cloud)");
                     addSubcategoryOption("Database Compliance Officer");
                     addSubcategoryOption("Database DevOps Engineer");
                     addSubcategoryOption("Database Automation Engineer");
@@ -2171,7 +2207,7 @@
                     addSubcategoryOption("Data Governance Manager");
                     addSubcategoryOption("Data Steward");
                 } else if (selectedCategory === "teacher") {
-                  addSubcategoryOption("Tamil");
+                    addSubcategoryOption("Tamil");
                     addSubcategoryOption("Mathematics ");
                     addSubcategoryOption("Math Instructor");
                     addSubcategoryOption("Algebra ");
@@ -2234,14 +2270,14 @@
                     addSubcategoryOption("Inclusion ");
                     addSubcategoryOption("Autism Specialist");
                     addSubcategoryOption("Behavioral Interventionist");
-                    addSubcategoryOption("Vocational ");
+                    addSubcategoryOption("Vocational Teacher");
                     addSubcategoryOption("Career and Technical Education (CTE) Instructor");
                     addSubcategoryOption("Culinary Arts Instructor");
-                    addSubcategoryOption("Automotive Technology Teacher");
+                    addSubcategoryOption("Automotive Technology ");
                     addSubcategoryOption("Computer Science ");
                     addSubcategoryOption("Digital Media Instructor");
                 } else if (selectedCategory === "professor") {
-                  addSubcategoryOption("University ");
+                    addSubcategoryOption("University ");
                     addSubcategoryOption("Assistant ");
                     addSubcategoryOption("Associate ");
                     addSubcategoryOption("Full ");
@@ -2299,7 +2335,6 @@
                     addSubcategoryOption("Clinical Social Work");
                     addSubcategoryOption("Library Science");
                     addSubcategoryOption("Information Studies");
-                
                 } else {
                   hideOtherCategoryFields();
                 }
@@ -2410,22 +2445,22 @@
                
                   
                   <div class="form-group">
-                    <label for="category">Category:</label>
-                    <select class="form-control" id="category" value="<?php echo $value['other_category']; ?>" name="category" onchange="updateSubcategories()">
-                      
-                      <option value="">Select a Category</option>
-                        <option value="architech">Architech</option>
-                        <option value="Developer">Developer</option>
-                        <option value="tester">Tester</option>
-                        <option value="uiux">UI/UX Design</option>
-                        <option value="datascience">Data Scientist</option>
-                        <option value="databaseadmin">Database Admin</option>
-                        <option value="teacher">Teacher</option>
-                        <option value="professor">Professor</option>
-                      <option value="others">Others</option>
-                    </select>
-                    <div id="category_error" class="error"></div>
-                  </div>
+  <label for="category">Category:</label>
+  <select class="form-control" id="category" name="category" onchange="updateSubcategories()">
+    <option value="">Select a Category</option>
+    <option value="architech"<?php if ($value['other_category'] === 'architech') echo ' selected'; ?>>Architect</option>
+    <option value="developer"<?php if ($value['other_category'] === 'Developer') echo ' selected'; ?>>Developer</option>
+    <option value="tester"<?php if ($value['other_category'] === 'tester') echo ' selected'; ?>>Tester</option>
+    <option value="uiux"<?php if ($value['other_category'] === 'uiux') echo ' selected'; ?>>UI/UX Design</option>
+    <option value="datascience"<?php if ($value['other_category'] === 'datascience') echo ' selected'; ?>>Data Scientist</option>
+    <option value="databaseadmin"<?php if ($value['other_category'] === 'databaseadmin') echo ' selected'; ?>>Database Admin</option>
+    <option value="teacher"<?php if ($value['other_category'] === 'teacher') echo ' selected'; ?>>Teacher</option>
+    <option value="professor"<?php if ($value['other_category'] === 'professor') echo ' selected'; ?>>Professor</option>
+    <option value="others"<?php if ($value['other_category'] === 'others') echo ' selected'; ?>>Others</option>
+  </select>
+  <div id="category_error" class="error"></div>
+</div>
+
                   <div class="form-group">
                     <label for="subcategory">Subcategory:</label>
                     <select class="form-control" id="subcategory" value="<?php echo $value['other_sub_category']; ?>" name="subcategory" disabled>
@@ -2436,19 +2471,20 @@
 
 
                   <div class="form-group">
-                    <label for="experience">Experience</label>
-                    <select class="form-control" id="experience" value="<?php echo $value['experience']; ?>" name="experience">
-                      <option value="">Select your experience</option>
-                      <option value="fresher" >Fresher</option>
-                      <option value="0-2" >0-2</option>
-                      <option value="3-5" >3-5</option>
-                      <option value="5-10">5-10</option>
-                      <option value="10-15">10-15</option>
-                      <option value="15-20">15-20</option>
-                      <option value="above 20 years">Above 20 years</option>
-                    </select>
-                    <div id="experience_error" class="error"></div>
-                  </div>
+  <label for="experience">Experience</label>
+  <select class="form-control" id="experience" name="experience">
+    <option value="">Select your experience</option>
+    <option value="fresher"<?php if ($value['experience'] === 'fresher') echo ' selected'; ?>>Fresher</option>
+    <option value="0-2"<?php if ($value['experience'] === '0-2') echo ' selected'; ?>>0-2</option>
+    <option value="3-5"<?php if ($value['experience'] === '3-5') echo ' selected'; ?>>3-5</option>
+    <option value="5-10"<?php if ($value['experience'] === '5-10') echo ' selected'; ?>>5-10</option>
+    <option value="10-15"<?php if ($value['experience'] === '10-15') echo ' selected'; ?>>10-15</option>
+    <option value="15-20"<?php if ($value['experience'] === '15-20') echo ' selected'; ?>>15-20</option>
+    <option value="above 20 years"<?php if ($value['experience'] === 'above 20 years') echo ' selected'; ?>>Above 20 years</option>
+  </select>
+  <div id="experience_error" class="error"></div>
+</div>
+
                  
 
               <div class="form-group">
@@ -2495,7 +2531,7 @@
                       
                       <option value="">Select a Category</option>
                         <option value="architech">Architech</option>
-                        <option value="Developer">Developer</option>
+                        <option value="developer">Developer</option>
                         <option value="tester">Tester</option>
                         <option value="uiux">UI/UX Design</option>
                         <option value="datascience">Data Scientist</option>
@@ -2586,7 +2622,7 @@
                 subcategorySelect.innerHTML = '<option value="">Select a Subcategory</option>';
 
                 if (selectedCategory === "architech") {
-                  addSubcategoryOption("Architect");
+                    addSubcategoryOption("Architect");
                     addSubcategoryOption("Senior ");
                     addSubcategoryOption("Design ");
                     addSubcategoryOption("Project ");
@@ -2600,7 +2636,7 @@
                     addSubcategoryOption("Architectural Drafter");
                     addSubcategoryOption("Architectural Visualization Artist");
                     addSubcategoryOption("Urban Designer");
-                    addSubcategoryOption("Historic Preservation ");
+                    addSubcategoryOption("Historic Preservation");
                     addSubcategoryOption("Residential Architect");
                     addSubcategoryOption("CAD (Computer-Aided Design) Technician");
                     addSubcategoryOption("Architectural Educator");
@@ -2609,63 +2645,62 @@
                     addSubcategoryOption("Healthcare Facility Planner");
                     addSubcategoryOption("Retail Space Designer");
 
+
                     addSubcategoryOption()
-                } else if (selectedCategory === "Developer") {
-                  addSubcategoryOption("Python Software Engineer");
+                } else if (selectedCategory === "developer") {
+                    addSubcategoryOption("Python Software Engineer");
                     addSubcategoryOption("Python");
                     addSubcategoryOption("Python Data Scientist");
                     addSubcategoryOption("Python Machine Learning Engineer");
                     addSubcategoryOption("Python Automation");
-                    addSubcategoryOption("Java Software Engineer");
+                    addSubcategoryOption("Java Software ");
                     addSubcategoryOption("Java");
                     addSubcategoryOption("Java Full Stack ");
                     addSubcategoryOption("Java Android ");
                     addSubcategoryOption("Java Spring ");
                     addSubcategoryOption("Java Microservices ");
-                    addSubcategoryOption("JavaScript Software Engineer");
+                    addSubcategoryOption("JavaScript ");
                     addSubcategoryOption("Front-end ");
                     addSubcategoryOption("Node.js ");
                     addSubcategoryOption("React ");
                     addSubcategoryOption("Angular ");
                     addSubcategoryOption("Vue.js ");
                     addSubcategoryOption("Full Stack JavaScript ");
-                    addSubcategoryOption("C# Software Engineer");
+                    addSubcategoryOption("C#  ");
                     addSubcategoryOption(".NET ");
                     addSubcategoryOption("ASP.NET ");
                     addSubcategoryOption("Unity ");
                     addSubcategoryOption("Xamarin ");
-                    addSubcategoryOption("C++ Software Engineer");
-                    addSubcategoryOption("Game  (using C++)");
+                    addSubcategoryOption("C++  ");
+                    addSubcategoryOption("Game(using C++)");
                     addSubcategoryOption("C++ Systems ");
-                    addSubcategoryOption("PHP Software Engineer");
-                    addSubcategoryOption("PHP Web ");
-                    addSubcategoryOption("WordPress ");
+                    addSubcategoryOption("PHP");
+                    addSubcategoryOption("WordPress");
                     addSubcategoryOption("Laravel ");
                     addSubcategoryOption("Symfony ");
-                    addSubcategoryOption("Ruby Software Engineer");
+                    addSubcategoryOption("Ruby ");
                     addSubcategoryOption("Ruby on Rails ");
-                    addSubcategoryOption("Swift Software Engineer");
-                    addSubcategoryOption("iOS  (using Swift)");
-                    addSubcategoryOption("macOS  (using Swift)");
-                    addSubcategoryOption("Kotlin Software Engineer");
+                    addSubcategoryOption("Swift ");
+                    addSubcategoryOption("iOS (using Swift)");
+                    addSubcategoryOption("macOS (using Swift)");
+                    addSubcategoryOption("Kotlin ");
                     addSubcategoryOption("Android  (using Kotlin)");
-                    addSubcategoryOption("Go Software Engineer");
-                    addSubcategoryOption("Rust Software Engineer");
+                    addSubcategoryOption("Go  ");
+                    addSubcategoryOption("Rust  ");
                     addSubcategoryOption("Systems  (using Rust");
-                    addSubcategoryOption("TypeScript Software Engineer");
+                    addSubcategoryOption("TypeScript  ");
                     addSubcategoryOption("Front-end  (using TypeScript)");
                     addSubcategoryOption("SQL ");
                     addSubcategoryOption("Database ");
-                    addSubcategoryOption("Scala Software Engineer");
-                    addSubcategoryOption("Haskell Software Engineer");
-                    addSubcategoryOption("Perl Software Engineer ");
-                    addSubcategoryOption("Lua Software Engineer ");
+                    addSubcategoryOption("Scala  ");
+                    addSubcategoryOption("Haskell  ");
+                    addSubcategoryOption("Perl   ");
+                    addSubcategoryOption("Lua   ");
                     addSubcategoryOption("Game  (using Lua) ");
-                    addSubcategoryOption("MATLAB Software Enginee ");
+                    addSubcategoryOption("MATLAB   ");
                     addSubcategoryOption("Data Analyst (using MATLAB) ");
-
                 } else if (selectedCategory === "tester") {
-                  addSubcategoryOption("Software ");
+                    addSubcategoryOption("Software ");
                     addSubcategoryOption("Test Engineer");
                     addSubcategoryOption("QA Analyst (Quality Assurance Analyst)");
                     addSubcategoryOption("Test Automation Engineer");
@@ -2689,7 +2724,7 @@
                     addSubcategoryOption("QA Inspector (Quality Assurance Inspector)");
                     addSubcategoryOption("Test Coordinator");
                     addSubcategoryOption("Compliance ");
-                } else if (selectedCategory === "uiux") {
+                }else if (selectedCategory === "uiux") {
                     addSubcategoryOption("UI/UX Designer");
                     addSubcategoryOption("User Experience Designer");
                     addSubcategoryOption("User Interface Designer");
@@ -2717,8 +2752,8 @@
                     addSubcategoryOption("Design Systems Manager ");
 
                 } else if (selectedCategory === "datascience") {
-                  addSubcategoryOption("Data Scientist");
-                    addSubcategoryOption("Senior Data Scientist");
+                    addSubcategoryOption("Data Scientist");
+                    addSubcategoryOption("Senior");
                     addSubcategoryOption("Machine Learning Engineer");
                     addSubcategoryOption("Data Analyst");
                     addSubcategoryOption("Senior Data Analyst");
@@ -2727,7 +2762,7 @@
                     addSubcategoryOption("Quantitative Analyst (Quant)");
                     addSubcategoryOption("Data Engineer");
                     addSubcategoryOption("Data Architect");
-                    addSubcategoryOption("AI Research");
+                    addSubcategoryOption("AI Research Scientist");
                     addSubcategoryOption("Predictive Modeler");
                     addSubcategoryOption("Natural Language Processing (NLP) Engineer");
                     addSubcategoryOption("Computer Vision Engineer");
@@ -2742,26 +2777,27 @@
                     addSubcategoryOption("Data Visualization Specialist");
                     addSubcategoryOption("Customer Insights Analyst");
                     addSubcategoryOption("Fraud Analyst");
+
                 } else if (selectedCategory === "databaseadmin") {
-                  addSubcategoryOption("Database (DBA)");
-                    addSubcategoryOption("Senior ");
+                    addSubcategoryOption("Database  (DBA)");
+                    addSubcategoryOption("Senior  Administrator");
                     addSubcategoryOption("Database Engineer");
                     addSubcategoryOption("Database Architect");
                     addSubcategoryOption("Database Analyst");
                     addSubcategoryOption("Data Warehouse ");
-                    addSubcategoryOption("SQL Server ");
-                    addSubcategoryOption("Oracle Database ");
-                    addSubcategoryOption("MySQL Database ");
-                    addSubcategoryOption("PostgreSQL Database ");
-                    addSubcategoryOption("MongoDB ");
-                    addSubcategoryOption("NoSQL  ");
-                    addSubcategoryOption("DBMS  (Database Management System)");
+                    addSubcategoryOption("SQL Server");
+                    addSubcategoryOption("Oracle Database Administrator");
+                    addSubcategoryOption("MySQL Database Administrator");
+                    addSubcategoryOption("PostgreSQL Database Administrator");
+                    addSubcategoryOption("MongoDB Administrator");
+                    addSubcategoryOption("NoSQL Database Administrator");
+                    addSubcategoryOption("DBMS Administrator (Database Management System)");
                     addSubcategoryOption("Database Operations Manager");
                     addSubcategoryOption("Database Performance Tuning Specialist");
                     addSubcategoryOption("Data Migration Specialist");
-                    addSubcategoryOption("Database Security ");
+                    addSubcategoryOption("Database Security Administrator");
                     addSubcategoryOption("Database Backup and Recovery Specialist");
-                    addSubcategoryOption("Cloud   (e.g., AWS, Azure, Google Cloud)");
+                    addSubcategoryOption("Cloud Database Administrator (e.g., AWS, Azure, Google Cloud)");
                     addSubcategoryOption("Database Compliance Officer");
                     addSubcategoryOption("Database DevOps Engineer");
                     addSubcategoryOption("Database Automation Engineer");
@@ -2769,7 +2805,7 @@
                     addSubcategoryOption("Data Governance Manager");
                     addSubcategoryOption("Data Steward");
                 } else if (selectedCategory === "teacher") {
-                  addSubcategoryOption("Tamil");
+                    addSubcategoryOption("Tamil");
                     addSubcategoryOption("Mathematics ");
                     addSubcategoryOption("Math Instructor");
                     addSubcategoryOption("Algebra ");
@@ -2832,14 +2868,14 @@
                     addSubcategoryOption("Inclusion ");
                     addSubcategoryOption("Autism Specialist");
                     addSubcategoryOption("Behavioral Interventionist");
-                    addSubcategoryOption("Vocational ");
+                    addSubcategoryOption("Vocational Teacher");
                     addSubcategoryOption("Career and Technical Education (CTE) Instructor");
                     addSubcategoryOption("Culinary Arts Instructor");
-                    addSubcategoryOption("Automotive Technology Teacher");
+                    addSubcategoryOption("Automotive Technology ");
                     addSubcategoryOption("Computer Science ");
                     addSubcategoryOption("Digital Media Instructor");
                 } else if (selectedCategory === "professor") {
-                  addSubcategoryOption("University ");
+                    addSubcategoryOption("University ");
                     addSubcategoryOption("Assistant ");
                     addSubcategoryOption("Associate ");
                     addSubcategoryOption("Full ");
@@ -2897,7 +2933,6 @@
                     addSubcategoryOption("Clinical Social Work");
                     addSubcategoryOption("Library Science");
                     addSubcategoryOption("Information Studies");
-                
                 } else {
                   hideOtherCategoryFields();
                 }
@@ -3210,11 +3245,11 @@
             
                     <tr>
                         <th>ID</th>
-                        <th>educational_qualification</th>
-                        <th>department</th>
-                        <th>school_college_name</th>
-                        <th>percentage</th>
-                        <th>yearOfPassing</th>
+                        <th>Educational Qualification</th>
+                        <th>Department</th>
+                        <th>School (OR) College Name</th>
+                        <th>Percentage</th>
+                        <th>YearOfPassing</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -3699,13 +3734,13 @@
             
                     <tr>
                         <th>ID</th>
-                        <th>projectName</th>
-                        <th>projectDuration</th>
-                        <th>roleInProject</th>
-                        <th>startingDate</th>
-                        <th>endingDate</th>
-                        <th>responsibilityInProject</th>
-                        <th>skillsUsedInProject</th>
+                        <th>Project Name</th>
+                        <th>Project Duration</th>
+                        <th>Role In Project</th>
+                        <th>Starting Date</th>
+                        <th>Ending Date</th>
+                        <th>Responsibility In Project</th>
+                        <th>Skills Used In Project</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -3904,13 +3939,13 @@
             
                     <tr>
                         <th>ID</th>
-                        <th>other_interst_category</th>
-                        <th>other_sub_interst_category</th>
-                        <th>prefered_location</th>
-                        <th>experience</th>
-                        <th>job_type</th>
-                        <th>description</th>
-                        <th>expected_salary</th>
+                        <th>Job Category</th>
+                        <th>Job Sub Category</th>
+                        <th>Prefered Location</th>
+                        <th>Experience</th>
+                        <th>Job Type</th>
+                        <th>Description</th>
+                        <th>Expected_salary</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -3960,7 +3995,7 @@
                         <select class="form-control" id="category" name="category"   onchange="toggleCategoryFields()">
                           <option value="">Select a category</option>
                           <option value="architech">Architech</option>
-                        <option value="Developer">Developer</option>
+                        <option value="developer">Developer</option>
                         <option value="tester">Tester</option>
                         <option value="uiux">UI/UX Design</option>
                         <option value="datascience">Data Scientist</option>
@@ -4081,7 +4116,7 @@
                   otherCategoryFields.style.display = "none";
 
                   if (category === "architech") {
-                    // addSubcategoryOption("Architect", subcategorySelect);
+                    addSubcategoryOption("Architect", subcategorySelect);
                     addSubcategoryOption("Senior", subcategorySelect);
                     addSubcategoryOption("Design", subcategorySelect);
                     addSubcategoryOption("Project", subcategorySelect);
@@ -4103,87 +4138,86 @@
                     addSubcategoryOption("Industrial Designer", subcategorySelect);
                     addSubcategoryOption("Healthcare Facility Planner", subcategorySelect);
                     addSubcategoryOption("Retail Space Designer", subcategorySelect);
-                  } else if (category === "Developer") {
+                  } else if (category === "developer") {
                     addSubcategoryOption("Python Software Engineer", subcategorySelect);
                     addSubcategoryOption("Python", subcategorySelect);
                     addSubcategoryOption("Python Data Scientist", subcategorySelect);
                     addSubcategoryOption("Python Machine Learning Engineer", subcategorySelect);
                     addSubcategoryOption("Python Automation", subcategorySelect);
-                    addSubcategoryOption("Java Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Java Software ", subcategorySelect);
                     addSubcategoryOption("Java", subcategorySelect);
                     addSubcategoryOption("Java Full Stack ", subcategorySelect);
-                    addSubcategoryOption("Java Android", subcategorySelect);
+                    addSubcategoryOption("Java Android ", subcategorySelect);
                     addSubcategoryOption("Java Spring ", subcategorySelect);
-                    addSubcategoryOption("Java Microservices", subcategorySelect);
-                    addSubcategoryOption("JavaScript Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Front-end", subcategorySelect);
-                    addSubcategoryOption("Node.js", subcategorySelect);
-                    addSubcategoryOption("React", subcategorySelect);
+                    addSubcategoryOption("Java Microservices ", subcategorySelect);
+                    addSubcategoryOption("JavaScript", subcategorySelect);
+                    addSubcategoryOption("Front-end ", subcategorySelect);
+                    addSubcategoryOption("Node.js ", subcategorySelect);
+                    addSubcategoryOption("React ", subcategorySelect);
                     addSubcategoryOption("Angular", subcategorySelect);
                     addSubcategoryOption("Vue.js ", subcategorySelect);
                     addSubcategoryOption("Full Stack JavaScript ", subcategorySelect);
-                    addSubcategoryOption("C# Software Engineer", subcategorySelect);
-                    addSubcategoryOption(".NET", subcategorySelect);
-                    addSubcategoryOption("ASP.NET", subcategorySelect);
-                    addSubcategoryOption("Unity", subcategorySelect);
-                    addSubcategoryOption("Xamarin", subcategorySelect);
-                    addSubcategoryOption("C++ Software Engineerse", subcategorySelect);
-                    addSubcategoryOption("Game  (using C++)", subcategorySelect);
-                    addSubcategoryOption("C++ Systems", subcategorySelect);
-                    addSubcategoryOption("PHP Software Engineer", subcategorySelect);
-                    addSubcategoryOption("PHP Web", subcategorySelect);
+                    addSubcategoryOption("C#  ", subcategorySelect);
+                    addSubcategoryOption(".NET ", subcategorySelect);
+                    addSubcategoryOption("ASP.NET ", subcategorySelect);
+                    addSubcategoryOption("Unity ", subcategorySelect);
+                    addSubcategoryOption("Xamarin ", subcategorySelect);
+                    addSubcategoryOption("C++  ", subcategorySelect);
+                    addSubcategoryOption("Game(using C++)", subcategorySelect);
+                    addSubcategoryOption("C++ Systems ", subcategorySelect);
+                    addSubcategoryOption("PHP", subcategorySelect);
                     addSubcategoryOption("WordPress", subcategorySelect);
-                    addSubcategoryOption("Laravel", subcategorySelect);
-                    addSubcategoryOption("Symfony", subcategorySelect);
-                    addSubcategoryOption("Ruby Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Laravel ", subcategorySelect);
+                    addSubcategoryOption("Symfony ", subcategorySelect);
+                    addSubcategoryOption("Ruby ", subcategorySelect);
                     addSubcategoryOption("Ruby on Rails ", subcategorySelect);
-                    addSubcategoryOption("Swift Software Engineer", subcategorySelect);
-                    addSubcategoryOption("iOS  (using Swift)", subcategorySelect);
-                    addSubcategoryOption("macOS  (using Swift)", subcategorySelect);
-                    addSubcategoryOption("Kotlin Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Swift ", subcategorySelect);
+                    addSubcategoryOption("iOS (using Swift)", subcategorySelect);
+                    addSubcategoryOption("macOS (using Swift)", subcategorySelect);
+                    addSubcategoryOption("Kotlin ", subcategorySelect);
                     addSubcategoryOption("Android  (using Kotlin)", subcategorySelect);
-                    addSubcategoryOption("Go Software Engineer", subcategorySelect);
-                    addSubcategoryOption("Rust Software Engineer", subcategorySelect);
+                    addSubcategoryOption("Go  ", subcategorySelect);
+                    addSubcategoryOption("Rust  ", subcategorySelect);
                     addSubcategoryOption("Systems  (using Rust", subcategorySelect);
-                     addSubcategoryOption("TypeScript Software Engineer", subcategorySelect);
+                     addSubcategoryOption("TypeScript  ", subcategorySelect);
                      addSubcategoryOption("Front-end  (using TypeScript)", subcategorySelect);
-                     addSubcategoryOption("SQL", subcategorySelect);
-                     addSubcategoryOption("Database", subcategorySelect);
-                     addSubcategoryOption("Scala Software Engineer", subcategorySelect);
-                     addSubcategoryOption("Haskell Software Engineer", subcategorySelect);
-                     addSubcategoryOption("Perl Software Engineer ", subcategorySelect);
-                     addSubcategoryOption("Lua Software Engineer", subcategorySelect);
+                     addSubcategoryOption("SQL ", subcategorySelect);
+                     addSubcategoryOption("Database ", subcategorySelect);
+                     addSubcategoryOption("Scala  ", subcategorySelect);
+                     addSubcategoryOption("Haskell  ", subcategorySelect);
+                     addSubcategoryOption("Perl   ", subcategorySelect);
+                     addSubcategoryOption("Lua   ", subcategorySelect);
                      addSubcategoryOption("Game  (using Lua) ", subcategorySelect);
-                     addSubcategoryOption("MATLAB Software Enginee ", subcategorySelect);
+                     addSubcategoryOption("MATLAB   ", subcategorySelect);
                      addSubcategoryOption("Data Analyst (using MATLAB) ", subcategorySelect);
                      
                   } else if (category === "tester") {
-                    addSubcategoryOption("Software", subcategorySelect);
+                    addSubcategoryOption("Software ", subcategorySelect);
                     addSubcategoryOption("Test Engineer", subcategorySelect);
                     addSubcategoryOption("QA Analyst (Quality Assurance Analyst)", subcategorySelect);
                     addSubcategoryOption("Test Automation Engineer", subcategorySelect);
-                    addSubcategoryOption("Manual", subcategorySelect);
+                    addSubcategoryOption("Manual ", subcategorySelect);
                     addSubcategoryOption("QA Lead (Quality Assurance Lead)", subcategorySelect);
                     addSubcategoryOption("Test Manager", subcategorySelect);
-                    addSubcategoryOption("Performance", subcategorySelect);
-                    addSubcategoryOption("Usability", subcategorySelect);
-                    addSubcategoryOption("Regression", subcategorySelect);
+                    addSubcategoryOption("Performance ", subcategorySelect);
+                    addSubcategoryOption("Usability ", subcategorySelect);
+                    addSubcategoryOption("Regression ", subcategorySelect);
                     addSubcategoryOption("User Acceptance ", subcategorySelect);
-                    addSubcategoryOption("Security", subcategorySelect);
+                    addSubcategoryOption("Security ", subcategorySelect);
                     addSubcategoryOption("Mobile App ", subcategorySelect);
-                    addSubcategoryOption("Game", subcategorySelect);
-                    addSubcategoryOption("Functional", subcategorySelect);
+                    addSubcategoryOption("Game ", subcategorySelect);
+                    addSubcategoryOption("Functional ", subcategorySelect);
                     addSubcategoryOption("Test Architect", subcategorySelect);
                     addSubcategoryOption("Test Coordinator", subcategorySelect);
                     addSubcategoryOption("Continuous Integration", subcategorySelect);
-                    addSubcategoryOption("Load", subcategorySelect);
+                    addSubcategoryOption("Load ", subcategorySelect);
                     addSubcategoryOption("Test Designer", subcategorySelect);
                     addSubcategoryOption("Test Technician", subcategorySelect);
                     addSubcategoryOption("QA Inspector (Quality Assurance Inspector)", subcategorySelect);
                     addSubcategoryOption("Test Coordinator", subcategorySelect);
-                    addSubcategoryOption("Compliance", subcategorySelect);
+                    addSubcategoryOption("Compliance ", subcategorySelect);
                     // addSubcategoryOption("Load", subcategorySelect);
-                    otherCategoryFields.style.display = "block";
+                    // otherCategoryFields.style.display = "block";
                   } 
                   else if (category === "uiux") {
                     addSubcategoryOption("UI/UX Designer", subcategorySelect);
@@ -4208,14 +4242,14 @@
                     addSubcategoryOption("User Interface Animator", subcategorySelect);
                     addSubcategoryOption("Conversion Rate Optimization (CRO) Specialist", subcategorySelect);
                     addSubcategoryOption("Accessibility Designer ", subcategorySelect);
-                    addSubcategoryOption("Prototype Designer", subcategorySelect);
+                    addSubcategoryOption("Prototype Designer ", subcategorySelect);
                     addSubcategoryOption("UI/UX Lead ", subcategorySelect);
-                    addSubcategoryOption("Design Systems Manager", subcategorySelect);
+                    addSubcategoryOption("Design Systems Manager ", subcategorySelect);
                     // addSubcategoryOption("Software", subcategorySelect);
                     
                   } else if (category === "datascience") {
                     addSubcategoryOption("Data Scientist", subcategorySelect);
-                    addSubcategoryOption("Senior Data Scientist", subcategorySelect);
+                    addSubcategoryOption("Senior", subcategorySelect);
                     addSubcategoryOption("Machine Learning Engineer", subcategorySelect);
                     addSubcategoryOption("Data Analyst", subcategorySelect);
                     addSubcategoryOption("Senior Data Analyst", subcategorySelect);
@@ -4224,7 +4258,7 @@
                     addSubcategoryOption("Quantitative Analyst (Quant)", subcategorySelect);
                     addSubcategoryOption("Data Engineer", subcategorySelect);
                     addSubcategoryOption("Data Architect", subcategorySelect);
-                    addSubcategoryOption("AI Research", subcategorySelect);
+                    addSubcategoryOption("AI Research Scientist", subcategorySelect);
                     addSubcategoryOption("Predictive Modeler", subcategorySelect);
                     addSubcategoryOption("Natural Language Processing (NLP) Engineer", subcategorySelect);
                     addSubcategoryOption("Computer Vision Engineer", subcategorySelect);
@@ -4241,25 +4275,25 @@
                     addSubcategoryOption("Fraud Analyst", subcategorySelect);
                   
                   }else if (category === "databaseadmin") {
-                    addSubcategoryOption("Database (DBA)", subcategorySelect);
-                    addSubcategoryOption("Senior", subcategorySelect);
+                    addSubcategoryOption("Database  (DBA)", subcategorySelect);
+                    addSubcategoryOption("Senior  Administrator", subcategorySelect);
                     addSubcategoryOption("Database Engineer", subcategorySelect);
                     addSubcategoryOption("Database Architect", subcategorySelect);
                     addSubcategoryOption("Database Analyst", subcategorySelect);
-                    addSubcategoryOption("Data Warehouse", subcategorySelect);
-                    addSubcategoryOption("SQL Server ", subcategorySelect);
-                    addSubcategoryOption("Oracle Database ", subcategorySelect);
-                    addSubcategoryOption("MySQL Database", subcategorySelect);
-                    addSubcategoryOption("PostgreSQL Database", subcategorySelect);
-                    addSubcategoryOption("MongoDB", subcategorySelect);
-                    addSubcategoryOption("NoSQL", subcategorySelect);
-                    addSubcategoryOption("DBMS  (Database Management System)", subcategorySelect);
+                    addSubcategoryOption("Data Warehouse ", subcategorySelect);
+                    addSubcategoryOption("SQL Server", subcategorySelect);
+                    addSubcategoryOption("Oracle Database Administrator", subcategorySelect);
+                    addSubcategoryOption("MySQL Database Administrator", subcategorySelect);
+                    addSubcategoryOption("PostgreSQL Database Administrator", subcategorySelect);
+                    addSubcategoryOption("MongoDB Administrator", subcategorySelect);
+                    addSubcategoryOption("NoSQL Database Administrator", subcategorySelect);
+                    addSubcategoryOption("DBMS Administrator (Database Management System)", subcategorySelect);
                     addSubcategoryOption("Database Operations Manager", subcategorySelect);
                     addSubcategoryOption("Database Performance Tuning Specialist", subcategorySelect);
                     addSubcategoryOption("Data Migration Specialist", subcategorySelect);
-                    addSubcategoryOption("Database Security ", subcategorySelect);
+                    addSubcategoryOption("Database Security Administrator", subcategorySelect);
                     addSubcategoryOption("Database Backup and Recovery Specialist", subcategorySelect);
-                    addSubcategoryOption("Cloud   (e.g., AWS, Azure, Google Cloud)", subcategorySelect);
+                    addSubcategoryOption("Cloud Database Administrator (e.g., AWS, Azure, Google Cloud)", subcategorySelect);
                     addSubcategoryOption("Database Compliance Officer", subcategorySelect);
                     addSubcategoryOption("Database DevOps Engineer", subcategorySelect);
                     addSubcategoryOption("Database Automation Engineer", subcategorySelect);
@@ -4271,48 +4305,48 @@
                   }
                   else if (category === "teacher") {
                     addSubcategoryOption("Tamil", subcategorySelect);
-                    addSubcategoryOption("Mathematics", subcategorySelect);
+                    addSubcategoryOption("Mathematics ", subcategorySelect);
                     addSubcategoryOption("Math Instructor", subcategorySelect);
-                    addSubcategoryOption("Algebra", subcategorySelect);
-                    addSubcategoryOption("Geometry", subcategorySelect);
-                    addSubcategoryOption("Calculus", subcategorySelect);
-                    addSubcategoryOption("Statistics", subcategorySelect);
+                    addSubcategoryOption("Algebra ", subcategorySelect);
+                    addSubcategoryOption("Geometry ", subcategorySelect);
+                    addSubcategoryOption("Calculus ", subcategorySelect);
+                    addSubcategoryOption("Statistics ", subcategorySelect);
                     addSubcategoryOption("Math Tutor", subcategorySelect);
                     addSubcategoryOption("Math Coach", subcategorySelect);
                     addSubcategoryOption("Math Curriculum Specialist", subcategorySelect);
                     addSubcategoryOption("Math Department Chair", subcategorySelect);
-                    addSubcategoryOption("English", subcategorySelect);
+                    addSubcategoryOption("English ", subcategorySelect);
                     addSubcategoryOption("Language Arts ", subcategorySelect);
-                    addSubcategoryOption("Literature", subcategorySelect);
+                    addSubcategoryOption("Literature ", subcategorySelect);
                     addSubcategoryOption("Writing Instructor", subcategorySelect);
-                    addSubcategoryOption("Creative Writing", subcategorySelect);
+                    addSubcategoryOption("Creative Writing ", subcategorySelect);
                     addSubcategoryOption("English as a Second Language (ESL) ", subcategorySelect);
                     addSubcategoryOption("Reading Specialist", subcategorySelect);
                     addSubcategoryOption("English Tutor", subcategorySelect);
                     addSubcategoryOption("English Department Chair", subcategorySelect);
-                    addSubcategoryOption("Science", subcategorySelect);
-                    addSubcategoryOption("Biology", subcategorySelect);
-                    addSubcategoryOption("Chemistry", subcategorySelect);
-                    addSubcategoryOption("Physics", subcategorySelect);
+                    addSubcategoryOption("Science ", subcategorySelect);
+                    addSubcategoryOption("Biology ", subcategorySelect);
+                    addSubcategoryOption("Chemistry ", subcategorySelect);
+                    addSubcategoryOption("Physics ", subcategorySelect);
                     addSubcategoryOption("Environmental Science ", subcategorySelect);
                     addSubcategoryOption("Earth Science ", subcategorySelect);
                     addSubcategoryOption("Anatomy and Physiology ", subcategorySelect);
                     addSubcategoryOption("Science Lab Instructor", subcategorySelect);
                     addSubcategoryOption("Science Curriculum Specialist", subcategorySelect);
                     addSubcategoryOption("Social Studies ", subcategorySelect);
-                    addSubcategoryOption("History", subcategorySelect);
-                    addSubcategoryOption("Geography", subcategorySelect);
-                    addSubcategoryOption("Civics", subcategorySelect);
-                    addSubcategoryOption("Government", subcategorySelect);
-                    addSubcategoryOption("Economics", subcategorySelect);
+                    addSubcategoryOption("History ", subcategorySelect);
+                    addSubcategoryOption("Geography ", subcategorySelect);
+                    addSubcategoryOption("Civics ", subcategorySelect);
+                    addSubcategoryOption("Government ", subcategorySelect);
+                    addSubcategoryOption("Economics ", subcategorySelect);
                     addSubcategoryOption("World History ", subcategorySelect);
                     addSubcategoryOption("Social Studies Department Chair", subcategorySelect);
-                    addSubcategoryOption("Foreign Language", subcategorySelect);
+                    addSubcategoryOption("Foreign Language ", subcategorySelect);
                     addSubcategoryOption("Language Instructor", subcategorySelect);
-                    addSubcategoryOption("Spanish", subcategorySelect);
-                    addSubcategoryOption("French", subcategorySelect);
-                    addSubcategoryOption("German", subcategorySelect);
-                    addSubcategoryOption("Chinese", subcategorySelect);
+                    addSubcategoryOption("Spanish ", subcategorySelect);
+                    addSubcategoryOption("French ", subcategorySelect);
+                    addSubcategoryOption("German ", subcategorySelect);
+                    addSubcategoryOption("Chinese ", subcategorySelect);
                     addSubcategoryOption("Language Lab Coordinator", subcategorySelect);
                     addSubcategoryOption("Physical Education ", subcategorySelect);
                     addSubcategoryOption("PE Instructor", subcategorySelect);
@@ -4320,36 +4354,37 @@
                     addSubcategoryOption("Health Education ", subcategorySelect);
                     addSubcategoryOption("Sports Coach", subcategorySelect);
                     addSubcategoryOption("Physical Education Department Chair", subcategorySelect);
-                    addSubcategoryOption("Art", subcategorySelect);
-                    addSubcategoryOption("Music", subcategorySelect);
-                    addSubcategoryOption("Drama", subcategorySelect);
+                    addSubcategoryOption("Art ", subcategorySelect);
+                    addSubcategoryOption("Music ", subcategorySelect);
+                    addSubcategoryOption("Drama ", subcategorySelect);
                     addSubcategoryOption("Visual Arts ", subcategorySelect);
                     addSubcategoryOption("Choir Director", subcategorySelect);
-                    addSubcategoryOption("Band", subcategorySelect);
+                    addSubcategoryOption("Band ", subcategorySelect);
                     addSubcategoryOption("Art History ", subcategorySelect);
                     addSubcategoryOption("Special Education ", subcategorySelect);
                     addSubcategoryOption("Learning Support ", subcategorySelect);
-                    addSubcategoryOption("Resource", subcategorySelect);
-                    addSubcategoryOption("Inclusion", subcategorySelect);
+                    addSubcategoryOption("Resource ", subcategorySelect);
+                    addSubcategoryOption("Inclusion ", subcategorySelect);
                     addSubcategoryOption("Autism Specialist", subcategorySelect);
                     addSubcategoryOption("Behavioral Interventionist", subcategorySelect);
-                    addSubcategoryOption("Vocational", subcategorySelect);
+                    addSubcategoryOption("Vocational Teacher", subcategorySelect);
                     addSubcategoryOption("Career and Technical Education (CTE) Instructor", subcategorySelect);
                     addSubcategoryOption("Culinary Arts Instructor", subcategorySelect);
-                    addSubcategoryOption("Automotive Technology Teacher", subcategorySelect);
+                    addSubcategoryOption("Automotive Technology ", subcategorySelect);
                     addSubcategoryOption("Computer Science ", subcategorySelect);
                     addSubcategoryOption("Digital Media Instructor", subcategorySelect);
             
                   }
                   else if (category === "professor") {
-                    addSubcategoryOption("University", subcategorySelect);
-                    addSubcategoryOption("Assistant", subcategorySelect);
-                    addSubcategoryOption("Associate", subcategorySelect);
-                    addSubcategoryOption("Distinguished", subcategorySelect);
-                    addSubcategoryOption("Adjunct", subcategorySelect);
-                    addSubcategoryOption("Visiting", subcategorySelect);
-                    addSubcategoryOption("Research", subcategorySelect);
-                    addSubcategoryOption("Clinical", subcategorySelect);
+                    addSubcategoryOption("University ", subcategorySelect);
+                    addSubcategoryOption("Assistant ", subcategorySelect);
+                    addSubcategoryOption("Associate ", subcategorySelect);
+                    addSubcategoryOption("Full ",subcategorySelect);
+                    addSubcategoryOption("Distinguished ", subcategorySelect);
+                    addSubcategoryOption("Adjunct ", subcategorySelect);
+                    addSubcategoryOption("Visiting ", subcategorySelect);
+                    addSubcategoryOption("Research ", subcategorySelect);
+                    addSubcategoryOption("Clinical ", subcategorySelect);
                     addSubcategoryOption("Philosophy", subcategorySelect);
                     addSubcategoryOption("Professor of History", subcategorySelect);
                     addSubcategoryOption("English", subcategorySelect);
@@ -4364,7 +4399,7 @@
                     addSubcategoryOption("Mathematics", subcategorySelect);
                     addSubcategoryOption("Geology", subcategorySelect);
                     addSubcategoryOption("Astronomy", subcategorySelect);
-                    addSubcategoryOption("Environmental Science", subcategorySelect);
+                    addSubcategoryOption(" Environmental Science", subcategorySelect);
                     addSubcategoryOption("Computer Science", subcategorySelect);
                     addSubcategoryOption("Electrical Engineering", subcategorySelect);
                     addSubcategoryOption("Mechanical Engineering", subcategorySelect);
@@ -4391,6 +4426,7 @@
                     addSubcategoryOption("Dentistry", subcategorySelect);
                     addSubcategoryOption("Law", subcategorySelect);
                      addSubcategoryOption("Constitutional Law", subcategorySelect);
+                     addSubcategoryOption("Criminal Law",subcategorySelect);
                      addSubcategoryOption("International Law", subcategorySelect);
                      addSubcategoryOption("Environmental Law", subcategorySelect);
                      addSubcategoryOption("Social Work", subcategorySelect);
@@ -4485,9 +4521,9 @@
             
                     <tr>
                         <th>ID</th>
-                        <th>skill</th>
-                        <th>experience</th>
-                        <th>skill_level</th>
+                        <th>Skill</th>
+                        <th>Experience</th>
+                        <th>Skill Level</th>
                         <th>Action</th>
                     </tr>
                 </thead>
@@ -4590,7 +4626,238 @@
                   });
                 });
               </script>
-              <?php  } ?>
+             
+              <?php 
+        } else if ($method == 'insertBasicdetails') {
+        ?>
+
+          <div class="container" id="page1" >
+            <h3>Personal Details</h3>
+           
+            <form name="applicationform"  enctype="multipart/form-data" method="post" onsubmit="return validateFormPage()" action='<?php echo baseUrl . "seekerController/updateBasicDetails"?>'>
+             
+              
+                <div class="form-group">
+                  <label for="Name">Name *</label>
+                  <input type="text" class="form-control" id="name"  name="name" placeholder="Enter your name" required>
+                  <div id="Name_error" class="error"></div>
+
+                </div>
+                <div class="form-group">
+                  <label for="emailid">Email *</label><br>
+                  <input type="text" class="form-control" id="email"  name="email" placeholder="Enter your email" required>
+                  <div id="emailid_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="phonenumber">Phone Number *</label>
+                  <input type="tel" class="form-control" id="phonenumber"  name="phonenumber" placeholder="Enter your phonenumber" value="<?= isset($updateData['phonenumber']) ? $updateData['phonenumber'] : ''; ?>" required>
+                  <div id="phonenumber_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="dob">Date of Birth *</label>
+                  <input type="date" class="form-control" id="dateofbirth"  name="dateofbirth" required>
+                  <div id="dob_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="gender">Gender *</label>
+                  <select class="form-control" id="gender"  name="gender" required>
+                    <option value="">Select your Gender</option>
+                    <option value="male">male</option>
+                    <option value="female">female</option>
+                    <option value="others">others</option>
+                  </select>
+                  <div id="gender_error" class="error"></div>
+                </div>
+                <h4> Address : </h3>
+                <div class="form-group">
+                  <label for="Door no">Door no/building name </label>
+                  <input type="text" class="form-control" id="doorno"  name="doorno">
+                  <div id="doorno_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="street address">Street address </label>
+                  <input type="text" class="form-control" id="streetaddress"  name="streetaddress">
+                  <div id="streetaddress_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="landmark">Landmark </label>
+                  <input type="text" class="form-control" id="landmark" name="landmark">
+                  <div id="landmark_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="pincode">Pin Code</label>
+                  <input type="text" class="form-control" id="pincode" name="pincode">
+                  <div id="pincode_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="district">District *</label>
+                  <input type="text" class="form-control" id="district" name="district" value="Erode" disabled>
+                  <div id="district_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="maritalstatus">Marital Status*</label>
+                  <select class="form-control" id="maritalstatus"  name="maritalstatus">
+                    <option value="">Select your marital status</option>
+                    <option value="single">Single</option>
+                    <option value="married">Married</option>
+                  </select>
+                  <div id="maritalstatus_error" class="error"></div>
+                </div>
+                <h4>Identification Details</h4>
+                <div class="form-group">
+                  <label for="aadharfrontphoto">Aadhar front photo </label>
+                  <input type="file" class="form-control" id="aadharfrontphoto"  name="aadharfrontphoto">
+                  <div id="aadharfrontphoto_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="aadharbackphoto">Aadhar back Photo</label>
+                  <input type="file" class="form-control" id="aadharbackphoto"  name="aadharbackphoto">
+                  <div id="aadharbackphoto_error" class="error"></div>
+                </div>
+                <div class="form-group">
+                  <label for="photo">Photo</label>
+                  <input type="file" class="form-control" id="photo"  name="photo">
+                  <div id="photo_error" class="error"></div>
+                </div>
+                <button type="submit" name="submitBtn" class="btn btn-primary">submit</button>
+            </form>
+           
+         
+          </div>
+
+          <script>
+            function validateFormPage() {
+
+              var Name = document.getElementById('name').value;
+              var email = document.getElementById('email').value;
+              var phoneNumber = document.getElementById('phonenumber').value;
+              var dob = document.getElementById('dob').value;
+              var gender = document.getElementById('gender').value;
+              var doorno = document.getElementById('doorno').value;
+              var streetaddress = document.getElementById('streetaddress').value;
+              var landmark = document.getElementById('landmark').value;
+              var pincode = document.getElementById('pincode').value;
+              var maritalstatus = document.getElementById('maritalstatus').value;
+              var aadharFrontPhoto = document.getElementById('aadharfrontphoto').value;
+              var aadharBackPhoto = document.getElementById('aadharbackphoto').value;
+              var photo = document.getElementById('photo').value;
+              var nameRegex = /^[A-Za-z\s]/;
+              clearErrorMessages();
+
+              if (Name.trim() === '') {
+                displayError('Name is required.', 'Name_error');
+                return false;
+              } else if (!nameRegex.test(Name)) {
+                displayError('Please enter a valid name.', 'Name_error');
+                return false;
+              }
+
+              if (email.trim() === '') {
+                displayError('Email is required.', 'emailid_error');
+                return false;
+              } else if (!validateEmail(email)) {
+                displayError('Please enter a valid email address.', 'emailid_error');
+                return false;
+              }
+
+              if (phoneNumber.trim() === '') {
+                displayError('Phone Number is required.', 'phonenumber_error');
+                return false;
+              } else if (!validatePhoneNumber(phoneNumber)) {
+                displayError('Please enter a valid phone number.', 'phonenumber_error');
+                return false;
+              }
+
+              if (dob.trim() === '') {
+                displayError('Date of Birth is required.', 'dob_error');
+                return false;
+              }
+              if (gender.trim() === '') {
+                displayError('Gender is required.', 'gender_error');
+                return false;
+              }
+
+              if (doorno.trim() === '') {
+                displayError('First line is required.', 'firstline_error');
+                return false;
+              }
+
+              if (streetaddress.trim() === '') {
+                displayError('Street address is required.', 'streetaddress_error');
+                return false;
+              }
+
+              if (landmark.trim() === '') {
+                displayError('City is required.', 'city_error');
+                return false;
+              }
+
+              if (pincode.trim() === '') {
+                displayError('Pin Code is required.', 'pincode_error');
+                return false;
+              }
+              if (maritalstatus.trim() === '') {
+                displayError('marital status is required.', 'maritalstatus_error');
+                return false;
+              }
+              if (aadharFrontPhoto.trim() === '') {
+                displayError('Aadhar front photo is required.', 'aadharfrontphoto_error');
+                return false;
+              }
+
+              if (aadharBackPhoto.trim() === '') {
+                displayError('Aadhar back photo is required.', 'aadharbackphoto_error');
+                return false;
+              }
+
+              if (photo.trim() === '') {
+                displayError('Photo is required.', 'photo_error');
+                return false;
+              }
+              return true;
+            }
+
+            function isValidDate(dateString) {
+              var currentDate = new Date();
+              var inputDate = new Date(dateString);
+              return inputDate <= currentDate;
+            }
+
+            function validateEmail(email) {
+              var regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+              return regex.test(email);
+            }
+
+            function validatePhoneNumber(phoneNumber) {
+              var regex = /^\d{10}$/;
+              return regex.test(phoneNumber);
+            }
+
+
+            function clearErrorMessages() {
+              var errorElements = document.querySelectorAll('.error');
+              errorElements.forEach(function(errorElement) {
+                errorElement.textContent = '';
+              });
+            }
+
+            function displayError(errorMessage, errorElementId) {
+              var errorElement = document.getElementById(errorElementId);
+              errorElement.textContent = errorMessage;
+            }
+
+            function resetForm() {
+              document.getElementById('application_form').reset();
+              clearErrorMessages();
+              document.getElementById('successMessage').textContent = '';
+              document.getElementById('submitBtn').disabled = false;
+            }
+          </script>
+          <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+          <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.12.9/umd/popper.min.js"></script>
+          <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+          <?php } ?>
+
 
     </div>
    

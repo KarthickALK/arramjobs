@@ -73,7 +73,6 @@
             return $userData;
         }
 
-
         public function getBasicDetails()
         {
             $seekerId=$_SESSION['seekerId'];
@@ -82,7 +81,7 @@
             return $select->result_array();
         }
 
-
+      
 
         public function updateBasicDetails()
         {
@@ -100,9 +99,9 @@
                 'landmark' => $postData['landmark'],
                 'pincode' => $postData['pincode'],
                 'maritalstatus' => $postData['maritalstatus'],
-                'aadhar_front' => $postData['aadharfrontphoto'],
-                'aadhar_back' => $postData['aadharbackphoto'],
-                'photo' => $postData['photo']
+                // 'aadhar_front' => $postData['aadharfrontphoto'],
+                // 'aadhar_back' => $postData['aadharbackphoto'],
+                // 'photo' => $postData['photo']
             );
             $this->db->where('id', $postData['id']);
 
@@ -655,27 +654,27 @@
     //     }
 
        
-    //     public function do_upload()
-    //     {
+        public function do_upload()
+        {
             
-    //         $config['upload_path']="./uploads/";
-    //         $config['allowed_types']="jpg|png|pdf";
-    //         $config['max_size']=1024;
+            $config['upload_path']="./uploads/";
+            $config['allowed_types']="jpg|png|pdf";
+            $config['max_size']=1024;
 
-    //         $this->load->library('upload',$config);
+            $this->load->library('upload',$config);
            
-    //         if($this->upload->do_upload('file'))
-    //         {
-    //             $data = $this->upload->data();
+            if($this->upload->do_upload('file'))
+            {
+                $data = $this->upload->data();
                
-    //         }
-    //         else{
-    //             $error = $this->upload->display_errors();
+            }
+            else{
+                $error = $this->upload->display_errors();
             
-    //         }
+            }
 
            
-    //     }
+        }
     }
 
     ?>
