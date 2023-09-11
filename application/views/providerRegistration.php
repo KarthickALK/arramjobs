@@ -8,37 +8,69 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
     <link rel="stylesheet" href="path/to/bootstrap.min.css">
     <style>
-        .btn-primary {
+        
+@media only screen and (max-width:1762px) {
+    /* .navbar-nav{
+        text-align: center;
+    }
+    .carousel-caption{
+        bottom: 125px;
+    }
+    .carousel-caption h2{
+        font-size: 17px;
+    }
+    .carousel-caption a {
+        padding: 10px 15px;
+    }
+    .carousel-caption p{
+        width: 100%;
+        line-height:  1.6;
+        font-size: 12px;
+    }
+    .card-sec{
+        margin-top: 30px;
+    }
+    .about-img-img{
+        padding-top: 30px;
+    } */
+    
+
+    .btn-primary {
             background-color: #f39c12 !important;
         }
 
         body {
             font-family: Arial, sans-serif;
             background-color: #f1f1f1;
-            margin: 0;
-            padding: 10;
-          
-
-
+            width:100%;
         }
 
         #providerregistraton {
             background-color: #F8802A;
             color: white;
             font-size: large;
+            
         }
 
-        .container {
+        .containers{
             background-color: #fff;
             padding: 30px;
             border-radius: 5px;
-            margin-left:410px;
+            margin-left:450px; 
             width: 40%;
-
+            /* align-items:center; */
             margin-top: 50px;
+            justify-content:center;
 
         }
-
+        /* .center-container {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        } */
+      
+       
         h2 {
             text-align: center;
             margin-bottom: 30px;
@@ -59,14 +91,14 @@
             margin-top: 5px;
         }
 
-        /* Form input styles */
+        
         .form-control {
             border-radius: 3px;
 
             padding: 10px;
         }
 
-        /* Form button style */
+        
         .btn-primary {
             background-color: #4285f4;
             border: none;
@@ -128,8 +160,8 @@
         }
 
         nav ul li a:hover {
-            background-color: #f39c12 !important;
-            text-decoration: none;
+           
+            color:#F8802A !important;
         }
 
         .logo {
@@ -147,13 +179,202 @@
             margin-left: -20px;
             color: navy;
         }
+   
+   
+}
+
+/* 
+
+        .btn-primary {
+            background-color: #f39c12 !important;
+        }
+
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f1f1;
+            margin: 0;
+            padding: 10;
+          
+
+
+        }
+
+        #providerregistraton {
+            background-color: #F8802A;
+            color: white;
+            font-size: large;
+        }
+
+        .containers{
+            background-color: #fff;
+            padding: 30px;
+            border-radius: 5px;
+            margin-left:410px;
+            width: 40%;
+
+            margin-top: 50px;
+
+        }
+
+        h2 {
+            text-align: center;
+            margin-bottom: 30px;
+
+            color: navy;
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            font-weight: bold;
+        }
+
+        .error {
+            color: red;
+            margin-top: 5px;
+        }
+
+        
+        .form-control {
+            border-radius: 3px;
+
+            padding: 10px;
+        }
+
+        
+        .btn-primary {
+            background-color: #4285f4;
+            border: none;
+        }
+
+        .btn-primary:hover {
+            background-color: #2d76d9;
+        }
+
+        button[type="submit"] {
+            width: 100%;
+            margin-top: 20px;
+            padding: 12px;
+            font-weight: bold;
+        }
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 120px;
+            z-index: 1000;
+            background-color: navy;
+            box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.1);
+        }
+
+        header h2 {
+            color: white;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            left: 25%;
+            transform: translate(-50%, -50%);
+            color: white;
+        }
+
+        header nav ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            right: 20px;
+            transform: translateY(-50%);
+        }
+
+        header nav ul li {
+            display: inline-block;
+            margin-left: 50px;
+        }
+
+        header nav ul li a {
+            color: white;
+            font-weight: bold;
+            text-decoration: none;
+            padding: 10px 15px;
+            border-radius: 5px;
+        }
+
+        nav ul li a:hover {
+           
+            color:#F8802A !important;
+        }
+
+        .logo {
+            margin-top: 50px;
+        }
+
+        #tamil {
+            color: white;
+            margin-left: 30px;
+        }
+
+        h3 {
+            text-align: center;
+            margin-bottom: 30px;
+            margin-left: -20px;
+            color: navy;
+        } */
     </style>
 
 
 </head>
 
 <body>
-    <header>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.1/dist/js/bootstrap.bundle.min.js" integrity="sha384-HwwvtgBNo3bZJJLYd8oVXjrBZt8cqVSpeBNS5n7C8IVInixGAoxmnlMuBnhbgrkm" crossorigin="anonymous"></script>
+
+
+<nav class="navbar navbar-expand-lg" style="background-color: navy; padding-top: 30px; padding-bottom: 30px;">
+  <div class="container">
+     <!-- <img src="logo 1.jpeg" alt="Arram Jobs" width="120" height="50"> -->
+     <h4 style="color: white">அறம் வேலைவாய்ப்பு</h4>
+      <!-- <a href="" style="color: white">ArramJobs</a> -->
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse justify-content-end" id="navbarNav">
+        <ul class="navbar-nav">
+            <!-- <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white; padding-right: 40px;">Home</a>
+            </li> -->
+            <li class="nav-item">
+            <a class="nav-link" href="#about" style="color: white; padding-right: 40px;">About Us</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#provider" style="color: white; padding-right: 40px;">Provider</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#seeker" style="color: white; padding-right: 40px;">Seeker</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white; padding-right: 40px;">BLOG</a>
+            </li>
+            <li class="nav-item">
+            <a class="nav-link" href="#" style="color: white; padding-right: 40px;">Contact</a>
+            </li>
+        </ul>
+    <div>
+    <!-- <form class="d-flex" role="search">
+     <button class="btn btn-danger btn-lg">LogIn</button>
+      </form> -->
+    <div class="dropdown" style="margin-left: 15px;">
+        <button class="btn btn-light dropdown-toggle"  data-bs-toggle="dropdown" aria-expanded="false">
+            LogIn
+        </button>
+    </div>
+  </div>
+</nav> 
+
+    <!-- <header>
         <div class="logo">
             <h5 id="tamil"> அறம் வேலைவாய்ப்பு</h5>
         </div>
@@ -165,16 +386,16 @@
                 <li><a href="#job-seekers">Seekers</a></li>
                 <li><a href="#job-providers">Providers</a></li>
                 <li><a href="#blog">Blog</a></li>
-                <!-- <li><a href="#login">Login</a></li> -->
+              
             </ul>
         </nav>
     </header>
-    
+     -->
 
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-kenU1KFdBIe4zVF0s0G1M5b4hcpxyD9F7jL+jjXkk+Q2h455rYXK/7HAuoJl+0I4" crossorigin="anonymous"></script>
     <br>
 
-    <div id="google_translate_element"></div>
+    <!-- <div id="google_translate_element"></div>
     <script src="https://translate.Google.com/translate_a/element.js?cb=googleTranslateElementInit"> </script>
     <script>
         function googleTranslateElementInit() {
@@ -182,7 +403,7 @@
                 pageLanguage: 'en'
             }, 'google_translate_element');
         }
-    </script>
+    </script> -->
     <br>
 
     <div class="">
@@ -201,11 +422,11 @@
     <br>
 
 
-    <div class="container ">
+    <div class="containers" >
         <div class="">
             <br>
             <!-- <h4 class="grid-text-center d-flex justify-content-start text-dark bg-secondary bg-opacity-5 rounded-3 ms-5 me-5 mt-3"><center>Company Details</center></h4> -->
-            <div class=" y" style="font-size: x-large">
+            <div class="" style="font-size: x-large">
                 <h3>Provider Registration Form<h3>
             </div>
             <div class="">

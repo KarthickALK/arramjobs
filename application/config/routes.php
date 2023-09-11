@@ -102,6 +102,7 @@ $route['updateProjectDetails']='seekerController/updateProjectDetails';
 $route['updateAreaOfInterest']='seekerController/updateAreaOfInterest';
 $route['updateskills']='seekerController/updateskills';
 $route['resume']='seekerController/resume';
+$route['educationTable']='seekerController/educationTable';
 
 
 

@@ -73,7 +73,6 @@
             return $userData;
         }
 
-
         public function getBasicDetails()
         {
             $seekerId=$_SESSION['seekerId'];
@@ -82,7 +81,7 @@
             return $select->result_array();
         }
 
-
+      
 
         public function updateBasicDetails()
         {
@@ -100,391 +99,583 @@
                 'landmark' => $postData['landmark'],
                 'pincode' => $postData['pincode'],
                 'maritalstatus' => $postData['maritalstatus'],
-                'aadhar_front' => $postData['aadharfrontphoto'],
-                'aadhar_back' => $postData['aadharbackphoto'],
-                'photo' => $postData['photo']
+                // 'aadhar_front' => $postData['aadharfrontphoto'],
+                // 'aadhar_back' => $postData['aadharbackphoto'],
+                // 'photo' => $postData['photo']
             );
             $this->db->where('id', $postData['id']);
+
+            $config['upload_path']="./uploads/";
+            $config['allowed_types']="jpg|png|pdf";
+            $config['max_size']=1024;
+
+            $this->load->library('upload',$config);
+           
+            if(!$this->upload->do_upload('aadharfrontphoto'))
+            {
+                $data = $this->upload->data();
+               
+            }
+            if($this->upload->do_upload('aadharbackphoto'))
+            {
+                $data = $this->upload->data();
+            }
+            if($this->upload->do_upload('photo'))
+            {
+                $data = $this->upload->data();
+            }
+            else{
+                $error = $this->upload->display_errors();
+            
+            }
+
             $result = $this->db->update('seeker_profile_form', $updateData);
         }
 
-        // public function updateEducationalDetails()
-        // {
-        //     $formData = $this->input->post(null, true);
-        //     $seekerId = '107'; // You should get this from the user session or input
 
-        //     // Retrieve existing educational details for the user
-        //      $existingEducationalDetails = $this->getEducationalDetails($seekerId);
+            public function educationTable()
+            {
+                $seekerId=$_SESSION['seekerId'];
+                $seekerId = "SELECT * FROM `seeker_educational_details` Where `seekerId`= $seekerId";
+                $addtab = $this->db->query($seekerId);
+                return $addtab->result_array();
 
-        //     foreach ($formData['school'] as $index => $school) {
-        //         $educationalQualification = isset($formData['qualification'][$index])
-        //             ? $formData['qualification'][$index]
-        //             : $existingEducationalDetails[$index]['educational_qualification'];
+            }
 
-        //         $department = isset($formData['department'][$index])
-        //             ? $formData['department'][$index]
-        //             : $existingEducationalDetails[$index]['department'];
+            public function insertEducationForm()
+            {
+                $seekerId=$_SESSION['seekerId'];
+                $post = $this->input->post(null, true);
 
-        //         $insertData = array(
-        //             'seekerId' => $seekerId,
-        //             'educational_qualification' => $educationalQualification,
-        //             'department' => $department,
-        //             'school_college_name' => $school,
-        //             'percentage' => $formData['percentage'][$index],
-        //             'yearOfPassing' => $formData['year_passed'][$index]
-        //         );
+                $add = array(
+                'seekerId' =>  $seekerId, 'educational_qualification' => $post['qualification'], 'department' =>  $post['department'],
+                'school_college_name' => $post['school'], 'percentage' => $post['percentage'],
+                'yearOfPassing' => $post['year_passed']
+                );
 
-        //         // Update or insert educational entry
-        //         if (isset($existingEducationalDetails[$index])) {
-        //             $this->db->where('id', $existingEducationalDetails[$index]['id']);
-        //             $this->db->update('seeker_educational_details', $insertData);
-        //         } else {
-        //             $this->db->insert('seeker_educational_details', $insertData);
-        //         }
-        //     }
-        // }
+                $this->db->insert('seeker_educational_details', $add);
+                 }
 
-        public function getEducationalDetails()
-        {
-            $seekerId=$_SESSION['seekerId'];
-            $provider = "SELECT * FROM `seeker_educational_details` WHERE `seekerId` = $seekerId";
-            $select = $this->db->query($provider);
-            return $select->result_array();
+                            
+                public function updateEducation($educationId)
+                {
+                    $update = "SELECT * FROM `seeker_educational_details` Where `id`=$educationId";
+                    $add = $this->db->query($update);
+                    return $add->result_array();
+                }
+                            
+                public function updateInsertEducation()
+                {
+                    $post = $this->input->post(null, true);
+                    $educationId = $post['id'];
+                    $updateInsertEducation = array(
+                    'educational_qualification' => $post['qualification'], 'department' =>  $post['department'],
+                    'school_college_name' => $post['school'], 'percentage' => $post['percentage'],
+                    'yearOfPassing' => $post['year_passed']
+                    );
+                    $this->db->where('id', $educationId);
+                    $this->db->update('seeker_educational_details', $updateInsertEducation);
+                }
 
-           
-            // $this->db->where('seekerId', $seekerId);
-            // $query = $this->db->get('seeker_educational_details');
-            // return $query->result_array();
-        }
-        // public function updateEducationDetails()
-        // {
-        //     $postData = $this->input->post(null, true);
-        //     $updateEducation = array(
-        //         'educational_qualification' =>  $postData['qualification[]'],
-        //         'department' => $postData['department[]'],
-        //         'school_college_name' => $postData['school[]'],
-        //         'percentage' => $postData['percentage[]'],
-        //         'yearOfPassing' => $postDatta['year_passed[]']
-        //     );
-        //     $this->db->where('id', $postData['id']);
-        //     $result = $this->db->update('seeker_educational_details',$updateEducation);
-        // }
+                public function deleteEducation($deleteEducationId)
+                {
 
-        public function updateEducationDetails(){
+                    $delete = "DELETE FROM `seeker_educational_details` WHERE `id`=$deleteEducationId";
+                    $del = $this->db->query($delete);
+                }
+
+
+
+                
+            public function experienceTable()
+            {
+                $seekerId=$_SESSION['seekerId'];
+                $seekerId = "SELECT * FROM `seeker_experience` Where `seekerId`= $seekerId";
+                $addtab = $this->db->query($seekerId);
+                return $addtab->result_array();
+
+            }
+            public function insertExperienceForm()
+            {
+                $seekerId=$_SESSION['seekerId'];
+                $post = $this->input->post(null, true);
+
+                $add = array(
+                'seekerId' =>  $seekerId, 'experience' => $post['experience'], 'other_category' =>  $post['category'],
+                'other_sub_category' => $post['subcategory'], 'company_name' => $post['companyname'],
+                'job_role' => $post['role'], 'previous_employer_name' => $post['nameofemployer'],
+                'previous_employer_mobile' => $post['number'],'previous_employer_email' => $post['emailid'],
+                );
+
+                $this->db->insert('seeker_experience', $add);
+                 }
+
+
+                 public function updateExperience($experienceId)
+                {
+                    $update = "SELECT * FROM `seeker_experience` Where `id`=$experienceId";
+                    $add = $this->db->query($update);
+                    return $add->result_array();
+                }
+
+
+                public function updateInsertExperience()
+                {
+                    $post = $this->input->post(null, true);
+                    $experienceId = $post['id'];
+                    $updateInsertExperience = array(
+                         'experience' => $post['experience'], 'other_category' =>  $post['category'],
+                        'other_sub_category' => $post['subcategory'], 'company_name' => $post['companyname'],
+                        'job_role' => $post['role'], 'previous_employer_name' => $post['nameofemployer'],
+                        'previous_employer_mobile' => $post['number'],'previous_employer_email' => $post['emailid'],
+                        );
+                    
+                    $this->db->where('id', $experienceId);
+                    $this->db->update('seeker_experience', $updateInsertExperience);
+                }
+
+                public function deleteExperience($deleteExperienceId)
+                {
+
+                    $delete = "DELETE FROM `seeker_experience` WHERE `id`=$deleteExperienceId";
+                    $del = $this->db->query($delete);
+                }
+
+
+                // project
+
+
+                public function projectTable()
+                {
+                    $seekerId=$_SESSION['seekerId'];
+                    $seekerId = "SELECT * FROM `seeker_projects` Where `seekerId`= $seekerId";
+                    $addtab = $this->db->query($seekerId);
+                    return $addtab->result_array();
+                }
+
+
+                public function insertProjectForm()
+                {
+                    $seekerId=$_SESSION['seekerId'];
+                    $post = $this->input->post(null, true);
+    
+                    $add = array(
+                    'seekerId' =>  $seekerId, 'projectName' => $post['projectname'], 'projectDuration' =>  $post['durationofproject'],
+                    'roleInProject' => $post['roleofproject'], 'startingDate' => $post['startdate'],
+                    'endingDate' => $post['enddate'], 'responsibilityInProject' => $post['responsibility'],
+                    'skillsUsedInProject' => $post['skillsused'],
+                    );
+    
+                    $this->db->insert('seeker_projects', $add);
+                     }
+
+
+                
+                     public function updateProject($projectId)
+                     {
+                         $update = "SELECT * FROM `seeker_projects` Where `id`= $projectId";
+                         $add = $this->db->query($update);
+                         return $add->result_array();
+                     }
+
+                     public function updateInsertProject()
+                     {
+                         $post = $this->input->post(null, true);
+                         $projectId = $post['id'];
+                         $updateInsertProject = array(
+                              'projectName' => $post['projectname'], 'projectDuration' =>  $post['durationofproject'],
+                             'roleInProject' => $post['roleofproject'], 'startingDate' => $post['startdate'],
+                             'endingDate' => $post['enddate'], 'responsibilityInProject' => $post['responsibility'],
+                             'skillsUsedInProject' => $post['skillsused']
+                             );
+                         
+                         $this->db->where('id', $projectId);
+                         $this->db->update('seeker_projects', $updateInsertProject);
+                     }
+
+                     public function deleteProject($deleteProjectId)
+                     {
+     
+                         $delete = "DELETE FROM `seeker_projects` WHERE `id`=$deleteProjectId";
+                         $del = $this->db->query($delete);
+                     }
+
+                
+
+                    //  areaOfIntrest
+
+                    public function areaOfIntrestTable()
+                    {
+                        $seekerId=$_SESSION['seekerId'];
+                        $seekerId = "SELECT * FROM `seeker_area_of_interst` Where `seekerId`= $seekerId";
+                        $addtab = $this->db->query($seekerId);
+                        return $addtab->result_array();
+                    }
+
+                    public function insertAreaOfIntrest()
+                    {
+                        $seekerId=$_SESSION['seekerId'];
+                        $post = $this->input->post(null, true);
+        
+                        $add = array(
+                        'seekerId' =>  $seekerId, 'other_interst_category' => $post['category'], 'other_sub_interst_category' =>  $post['subcategory'],
+                        'prefered_location' => $post['preferred-location'], 'experience' => $post['experience'],
+                        'job_type' => $post['jobtype'], 'description' => $post['description'],
+                        'expected_salary' => $post['expected-salary'],
+                        );
+        
+                        $this->db->insert('seeker_area_of_interst', $add);
+                         }
+
+                         public function updateAreaOfIntrest($updateAreaOfIntrestId)
+                         {
+                             $update = "SELECT * FROM `seeker_area_of_interst` Where `id`= $updateAreaOfIntrestId";
+                             $add = $this->db->query($update);
+                             return $add->result_array();
+                         }
+                         
+                         public function updateInsertAreaOfIntrest()
+                         {
+                             $post = $this->input->post(null, true);
+                             $areaOfIntrest = $post['id'];
+                             $updateInsertAreaOfIntrest = array(
+                             'other_interst_category' => $post['category'], 'other_sub_interst_category' =>  $post['subcategory'],
+                                'prefered_location' => $post['preferred-location'], 'experience' => $post['experience'],
+                                'job_type' => $post['jobtype'], 'description' => $post['description'],
+                                'expected_salary' => $post['expected-salary']
+                                 );
+                             
+                             $this->db->where('id', $areaOfIntrest);
+                             $this->db->update('seeker_area_of_interst', $updateInsertAreaOfIntrest);
+                         }
+
+                         public function deleteAreaOfIntrest($deleteAreaOfIntrestId)
+                         {
+         
+                             $delete = "DELETE FROM `seeker_area_of_interst` WHERE `id`=$deleteAreaOfIntrestId";
+                             $del = $this->db->query($delete);
+                         }
+
+
+
+                        //  skill,
+
+                        public function skillTable()
+                        {
+                            $seekerId=$_SESSION['seekerId'];
+                            $seekerId = "SELECT * FROM `seeker_skill` Where `seekerId`= $seekerId";
+                            $addtab = $this->db->query($seekerId);
+                            return $addtab->result_array();
+                        }
+
+                        public function insertSkillForm()
+                        {
+                            $seekerId=$_SESSION['seekerId'];
+                            $post = $this->input->post(null, true);
             
-            $postData = $this->input->post(null, true);
+                            $add = array(
+                            'seekerId' =>  $seekerId, 'skill' => $post['skillname'], 'experience' =>  $post['experience'],
+                            'skill_level' => $post['skilllevel']
+                            );
             
-            $updateData = array(
-                'educational_qualification' => $postData['qualification'],
-                'department' => $postData['department'],
-                'school_college_name' => $postData['school'],
-                'percentage' => $postData['percentage'],
-                'yearOfPassing' => $postData['year_passed'],
-            );
-            $this->db->where('id', $postData['id']);
-            $result = $this->db->update(' seeker_educational_details', $updateData);
-        }
+                            $this->db->insert('seeker_skill', $add);
+                             }
+
+                             public function updateSkill($updateSkillId)
+                             {
+                                 $update = "SELECT * FROM `seeker_skill` Where `id`= $updateSkillId";
+                                 $add = $this->db->query($update);
+                                 return $add->result_array();
+                             }
+
+
+                              
+                         public function updateInsertSkill()
+                         {
+                             $post = $this->input->post(null, true);
+                             $areaOfIntrest = $post['id'];
+                             $updateInsertSkill = array(
+                                'skill' => $post['skillname'], 'experience' =>  $post['experience'],
+                                'skill_level' => $post['skilllevel']
+                                 );
+                             
+                             $this->db->where('id', $areaOfIntrest);
+                             $this->db->update('seeker_skill', $updateInsertSkill);
+                         }
+    
+                         public function deleteSkill($deleteSkillId)
+                         {
+         
+                             $delete = "DELETE FROM `seeker_skill` WHERE `id`=$deleteSkillId";
+                             $del = $this->db->query($delete);
+                         }
+    
+    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
        
+    //     public function insertEducation()
+    //     {
+    //       $postData = $this->input->post(null, true);
+      
+    //       $insert = array(
+    //         'educational_qualification' => $postData['qualification'], 'department' => $postData['department'],
+    //         'school_college_name' => $postData['school'], 'percentage' => $postData['percentage'],
+    //         'yearOfPassing' => $postData['year_passed']
+    //       );
+      
+    //       $this->db->insert('seeker_educational_details', $insert);
+    //     }
 
+    //     public function getEducationalDetails()
+    //     {
+    //         $seekerId=$_SESSION['seekerId'];
+    //         $provider = "SELECT * FROM `seeker_educational_details` WHERE `seekerId` = $seekerId";
+    //         $select = $this->db->query($provider);
+    //         return $select->result_array();
 
-        public function getExperienceDetails(){
-
-            // $seekerId=$_SESSION['seekerId'];
-            // $provider = "SELECT * FROM `seeker_experience` WHERE `seekerId` = 1";
-            // $select = $this->db->query($provider);
-            // return $select->result_array();
-           
-            $seekerId=$_SESSION['seekerId'];
-            $provider = "SELECT * FROM `seeker_experience` Where `seekerId`= $seekerId";
-            $select = $this->db->query($provider);
-            return $select->result_array();
-         }
-
-        public function updateExperienceDetails()
-        {
-            $postData = $this->input->post(null, true);
+    //     public function updateEducationDetails(){
             
-            $updateData = array(
-                
-                'other_category' => $postData['category'],
-                'other_sub_category' => $postData['subcategory'],
-                'experience' => $postData['experience'],
-                'company_name' => $postData['companyname'],
-                'job_role' => $postData['role'],
-                'previous_employer_name' => $postData['nameofemployer'],
-                'previous_employer_mobile' => $postData['number'],
-                'previous_employer_email' => $postData['emailid'],
-            );
-            $this->db->where('id', $postData['id']);
-            $result = $this->db->update(' seeker_experience', $updateData);
-           
-            // $postData = $this->input->post(null, true);
-            // $id = $postData['id'];
-            // $data = array(
-            //   'experience' => $postData['experience'], 'other_category' => $postData['category'],
-            //   'other_sub_category' => $postData['subcategory'], 'company_name' => $postData['companyname'],
-            //   'job_role' => $postData['role'], 'previous_employer_name' => $postData['nameofemployer'], 'previous_employer_mobile' => $postData['number'],
-            //   'previous_employer_email' => $postData['emailid']
-        
-            // );
-            // $this->db->where('id', $id);
-            // $this->db->update('seeker_experience', $data);
-
-        }
-
-
-        
-        // public function updateExperienceDetails($formData)
-        // {
-        //     // $seekerId = '107';
-        //     $seekerId=$_SESSION['seekerId'];
-        //     // $existingExperienceDetails = $this->getExperienceDetails($seekerId);
-
-        //     // Clean the data
-        //     $insertData = array(
-        //         'seekerId' => $seekerId,
-        //         'job_category_id' => $formData['category'],
-        //         'job_sub_category_id' => $formData['subcategory'],
-        //         'other_category' => $formData['othercategory'],
-        //         'other_sub_category' => $formData['othersubcategory'],
-        //         'experience' => $formData['experience'],
-        //         'company_name' => $formData['companyname'],
-        //         'job_role' => $formData['role'],
-        //         'previous_employer_name' => $formData['nameofemployer'],
-        //         'previous_employer_mobile' => $formData['number'],
-        //         'previous_employer_email' => $formData['emailid'],
-        //     );
-
-        //     if (!empty($existingExperienceDetails)) {
-        //         // Update only the non-empty fields
-        //         foreach ($insertData as $key => $value) {
-        //             if (!empty($value)) {
-        //                 $this->db->set($key, $value);
-        //             }
-        //         }
-        //         $this->db->where('seekerId', $seekerId);
-        //         $this->db->update('seeker_experience');
-        //     } else {
-        //         // Insert new experience entry
-        //         $this->db->insert('seeker_experience', $insertData);
-        //     }
-        // }
-
-        // public function getExperienceDetails($seekerId)
-        // {
-        //     $this->db->where('seekerId', $seekerId);
-        //     $query = $this->db->get('seeker_experience');
-        //     return $query->row_array();
-        // }
-
-        public function getProjectDetails(){
-            $seekerId=$_SESSION['seekerId'];
-            $provider = "SELECT * FROM `seeker_projects` Where `seekerId` = $seekerId";
-            $select = $this->db->query($provider);
-            return $select->result_array();
-
-           
-        }
-
-
-        public function updateProjectDetails()
-        {
-            // $formData = $this->input->post(null, true);
-            // $seekerId = '107';
-            // foreach ($formData['projectname'] as $index => $projectname) {
-            //     $insertData = array(
-            //         'seekerId' => $seekerId,
-            //         'projectName' => $projectname,
-            //         'projectDuration' => $formData['durationofproject'][$index],
-            //         'roleInProject' => $formData['roleofproject'][$index],
-            //         'projectDes' => $formData['responsibility'][$index],
-            //         'skillsUsedInProject' => $formData['skillsused'][$index],
-            //     );
-            //     $this->db->where('seekerId', $formData['seekerId']);
-            //     $this->db->insert('seeker_projects', $insertData);
-            // }
-            $postData = $this->input->post(null, true);
-            
-            $updateData = array(
-                // 'experience' => $postData['experience'],
-                'projectName' => $postData['projectname'],
-                'projectDuration' => $postData['durationofproject'],
-                'roleInProject' => $postData['roleofproject'],
-                'startingDate' => $postData['startdate'],
-                'endingDate' => $postData['enddate'],
-                'responsibilityInProject' => $postData['responsibility'],
-                'skillsUsedInProject' => $postData['skillsused'],
-            );
-            $this->db->where('seekerId', $postData['seekerId']);
-            $result = $this->db->update('seeker_projects', $updateData);
-        }
-
-
-
-
-        public function getAreaOfInterest(){
-            // $seekerId=$_SESSION['seekerId'];
-            // $provider = "SELECT * FROM `seeker_area_of_interst` WHERE `seekerId` = $seekerId";
-            // $select = $this->db->query($provider);
-            // return $select->result_array();
-            $seekerId=$_SESSION['seekerId'];
-            $provider = "SELECT * FROM `seeker_area_of_interst` Where `seekerId` = $seekerId";
-            $select = $this->db->query($provider);
-            return $select->result_array();
-
-        }
-
-
-        public function updateAreaOfInterest()
-        {
-            // $formData = $this->input->post(null, true);
-            // $seekerId = '107';
-            // foreach ($formData['category'] as $index => $category) {
-            //     // Check if part-time and full-time checkboxes are set, otherwise default to 0
-            //     $jobType = 0; // Default job type value
-
-            //     if (isset($formData['jobtype'][$index])) {
-            //         if ($formData['jobtype'][$index] === 'fulltime') {
-            //             $jobType = 0; // Set to full-time value
-            //         } elseif ($formData['jobtype'][$index] === 'parttime') {
-            //             $jobType = 1; // Set to part-time value
-            //         } elseif ($formData['jobtype'][$index] === 'both') {
-            //             $jobType = 2;
-            //         }
-            //     }
-
-            //     $insertData = array(
-            //         'seekerId' => $seekerId,
-            //         'interst_category_id' => $category,
-            //         'interst_sub_category_id' => $formData['subcategory'][$index],
-            //         'other_interst_category' => $formData['customCategoryInput'][$index],
-            //         'other_sub_interst_category' => $formData['customSubcategoryInput'][$index],
-            //         'prefered_location' => $formData['preferred-location'][$index],
-            //         'experience' => $formData['experience'][$index],
-            //         'description' => $formData['description'][$index],
-            //         'job_type' => $jobType, // Use $jobType instead of $formData['jobType']
-            //         'expected_salary' => $formData['expected-salary'][$index],
-            //     );
-            //     $this->db->where('seekerId', $formData['seekerId']);
-            //     $this->db->insert('seeker_area_of_interst', $insertData);
-            // }
-            $postData = $this->input->post(null, true);
-                // $id = $postData['id'];
-                $updateData = array(
-                'other_interst_category' => $postData['category'],
-                'other_sub_interst_category' => $postData['subcategory'],
-                'prefered_location' => $postData['preferred-location'],
-                'experience' => $postData['experience'],
-                'job_type' => $postData['jobtype'],
-                'description' => $postData['description'],
-                'expected_salary' => $postData['expected-salary']
-            );
-            $this->db->where('seekerId', $postData['seekerId']);
-            $this->db->update('seeker_area_of_interst', $updateData);
-
-            
-
     //         $postData = $this->input->post(null, true);
-    //             $id = $postData['id'];
-    //             $data = array(
-    //             'company_name' => $postData['name'], 'company_mobile_number' => $postData['phno'],
-    //             'company_email' => $postData['email'], 'street_address' => $postData['addr'],
-    //             'Landmark' => $postData['landmark1'], 'City' => $postData['city1'], 'district' => $postData['district1'],
-    //             'state' => $postData['state1'], 'pincode' => $postData['pincode1'],
-    //             'company_logo' => $postData['file'], 'name' => $postData['name1'],
-    //             'role' => $postData['role'],
-    //             'mobile_number' => $postData['phno1'], 'email' => $postData['mail1'],
-
-    // );
-    // $this->db->where('id', $id);
-    // $this->db->update('provider_registration_form', $data);
-        }
-
-        public function getSkills()
-        {
-            // $formData = $this->input->post(null, true);
-            // $seekerId = '107'; // You should get this from the user session or input
-
-            // // Retrieve existing skill entries for the user
-            // $existingSkills = $this->getSkills($seekerId);
-
-            // foreach ($formData['skillname'] as $index => $skillname) {
-            //     $experience = $formData['experience'][$index];
-            //     $skillLevel = $formData['skilllevel'][$index];
-
-            //     $insertData = array(
-            //         'seekerId' => $seekerId,
-            //         'skill' => $skillname,
-            //         'experience' => $experience,
-            //         'skill_level' => $skillLevel
-            //     );
-
-            //     // Check if a skill entry already exists for the user
-            //     $existingSkill = isset($existingSkills[$index]) ? $existingSkills[$index] : null;
-
-            //     if ($existingSkill) {
-            //         $this->updateSkill($existingSkill['id'], $insertData);
-            //     } else {
-            //         // Insert new skill entry
-            //         $this->insertSkill($insertData);
-            //     }
-            // }
-            $seekerId=$_SESSION['seekerId'];
-            $provider = "SELECT * FROM `seeker_skill` Where `seekerId` = $seekerId";
-            $select = $this->db->query($provider);
-            return $select->result_array();
-
-        }
-
-        public function updateskills()
-        {
-        //     $postData = $this->input->post(null, true);
-        //     $updateData = array(
-        //     'skill' => $postData['skillname[]'],
-        //     'experience' => $postData['experience'],
-        //     'skill_level' => $postData['skilllevel'],
             
-        // );
-        // $this->db->where('id', $postData['id']);
-        // $result = $this->db->update('seeker_skill', $updateData);
-        // }
+    //         $updateData = array(
+    //             'educational_qualification' => $postData['qualification'],
+    //             'department' => $postData['department'],
+    //             'school_college_name' => $postData['school'],
+    //             'percentage' => $postData['percentage'],
+    //             'yearOfPassing' => $postData['year_passed'],
+    //         );
+    //         $this->db->where('id', $postData['id']);
+    //         $result = $this->db->update(' seeker_educational_details', $updateData);
+    //     }
 
-        // public function insertSkill($insertData)
-        // {
-        //     $this->db->insert('seeker_skill', $insertData);
-        $postData = $this->input->post(null, true);
-        // $id = $postData['id'];
-        $updateData = array(
-        'skill' => $postData['skillname'],
-        'experience' => $postData['experience'],
-        'skill_level' => $postData['skilllevel'],
-    );
-    $this->db->where('seekerId', $postData['seekerId']);
-    $this->db->update('seeker_skill', $updateData);
-        }
-
-        // public function updateSkill($skillId, $updateData)
-        // {
-        //     $this->db->where('id', $skillId);
-        //     $this->db->update('seeker_skill', $updateData);
-        // }
-
-
-        // public function resume($seekerId, $formData)
-        // {
-        //     $seekerId = '107';
-        //     $insert = array(
-        //         'resume' => $formData['resumeFile']
-        //     );
-        //     $this->db->where('seekerId', $seekerId);
-        //     $this->db->update('seeker_skill', $insert);
-        // }
+    //     public function experienceTable()
+    //     {
+    //       $seekerId=$_SESSION['seekerId'];
+    //       $provider = "SELECT * FROM `seeker_experience` Where `seekerId`= $seekerId";
+    //       $addtab = $this->db->query($provider);
+    //       return $addtab->result_array();
+      
+    //     }
+    //     public function insertExperience()
+    //     {
+       
+    //       $post = $this->input->post(null, true);
+      
+    //       $addExperience = array(
+    //          'seekerId' =>  $seekerId, 'experience' => $post['experience'], 'other_category' =>  $post['category'],
+    //         'other_sub_category' => $post['subcategory'], 'company_name' => $post['companyname'],
+    //         'job_role' => $post['role'], 'previous_employer_name' => $post['nameofemployer'],
+    //         'previous_employer_mobile' => $post['number'], 'previous_employer_email' => $post['emailid'],
+    //       );
+      
+    //       $this->db->insert('seeker_experience', $addExperience);
+    //     }
+      
 
 
-        public function insert_file($data) {
-            $this->db->insert('files', $data); // Insert data into the 'files' table
+    //     public function getExperienceDetails(){
+
+    //         $seekerId=$_SESSION['seekerId'];
+    //         $provider = "SELECT * FROM `seeker_experience` Where `id`= $seekerId";
+    //         $select = $this->db->query($provider);
+    //         return $select->result_array();
+    //      }
+
+    //     public function updateExperienceDetails()
+    //     {
+    //         $postData = $this->input->post(null, true);
+            
+    //         $updateData = array(
+                
+    //             'other_category' => $postData['category'],
+    //             'other_sub_category' => $postData['subcategory'],
+    //             'experience' => $postData['experience'],
+    //             'company_name' => $postData['companyname'],
+    //             'job_role' => $postData['role'],
+    //             'previous_employer_name' => $postData['nameofemployer'],
+    //             'previous_employer_mobile' => $postData['number'],
+    //             'previous_employer_email' => $postData['emailid'],
+    //         );
+    //         $this->db->where('id', $postData['id']);
+    //         $result = $this->db->update('seeker_experience', $updateData);
+           
+
+
+
+
+
+
+
+
+
+
+
+           
+    //     }
+    //     public function getProjectDetails(){
+    //         $seekerId=$_SESSION['seekerId'];
+    //         $provider = "SELECT * FROM `seeker_projects` Where `seekerId` = $seekerId";
+    //         $select = $this->db->query($provider);
+    //         return $select->result_array();
+
+           
+    //     }
+
+
+    //     public function updateProjectDetails()
+    //     {
+           
+    //         $postData = $this->input->post(null, true);
+            
+    //         $updateData = array(
+               
+    //             'projectName' => $postData['projectname'],
+    //             'projectDuration' => $postData['durationofproject'],
+    //             'roleInProject' => $postData['roleofproject'],
+    //             'startingDate' => $postData['startdate'],
+    //             'endingDate' => $postData['enddate'],
+    //             'responsibilityInProject' => $postData['responsibility'],
+    //             'skillsUsedInProject' => $postData['skillsused'],
+    //         );
+    //         $this->db->where('seekerId', $postData['seekerId']);
+    //         $result = $this->db->update('seeker_projects', $updateData);
+    //     }
+
+
+
+
+    //     public function getAreaOfInterest(){
+            
+    //         $seekerId=$_SESSION['seekerId'];
+    //         $provider = "SELECT * FROM `seeker_area_of_interst` Where `seekerId` = $seekerId";
+    //         $select = $this->db->query($provider);
+    //         return $select->result_array();
+
+    //     }
+
+
+    //     public function updateAreaOfInterest()
+    //     {
+          
+    //         $postData = $this->input->post(null, true);
+                
+    //             $updateData = array(
+    //             'other_interst_category' => $postData['category'],
+    //             'other_sub_interst_category' => $postData['subcategory'],
+    //             'prefered_location' => $postData['preferred-location'],
+    //             'experience' => $postData['experience'],
+    //             'job_type' => $postData['jobtype'],
+    //             'description' => $postData['description'],
+    //             'expected_salary' => $postData['expected-salary']
+    //         );
+    //         $this->db->where('seekerId', $postData['seekerId']);
+    //         $this->db->update('seeker_area_of_interst', $updateData);
+
+            
+
+    //     }
+
+    //     public function getSkills()
+    //     {
+            
+    //         $seekerId=$_SESSION['seekerId'];
+    //         $provider = "SELECT * FROM `seeker_skill` Where `seekerId` = $seekerId";
+    //         $select = $this->db->query($provider);
+    //         return $select->result_array();
+
+    //     }
+
+    //     public function updateskills()
+    //     {
+       
+    //     $postData = $this->input->post(null, true);
+        
+    //     $updateData = array(
+    //     'skill' => $postData['skillname'],
+    //     'experience' => $postData['experience'],
+    //     'skill_level' => $postData['skilllevel'],
+    // );
+    // $this->db->where('seekerId', $postData['seekerId']);
+    // $this->db->update('seeker_skill', $updateData);
+    //     }
+
+       
+        public function do_upload()
+        {
+            
+            $config['upload_path']="./uploads/";
+            $config['allowed_types']="jpg|png|pdf";
+            $config['max_size']=1024;
+
+            $this->load->library('upload',$config);
+           
+            if($this->upload->do_upload('file'))
+            {
+                $data = $this->upload->data();
+               
+            }
+            else{
+                $error = $this->upload->display_errors();
+            
+            }
+
+           
         }
     }
+
     ?>
  

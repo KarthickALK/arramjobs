@@ -4,6 +4,8 @@
 <head>
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <style>
+    
+
     .btn-primary {
       background-color: #f39c12 !important;
     }
@@ -174,27 +176,24 @@
   <br>
   <br>
   <br>
-
-
-
-  <div class="container">
+<div class="container">
     <h3>Provider Login </h3>
     <form name="login_form" method="post" action="<?php echo baseUrl . "providerController/viewDashboard"?>" onsubmit="return validateForm()">
       <div class="form-group">
-        <label for="userID">User ID</label>
-        <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user ID">
+        <label for="userID">Company Name</label>
+        <!-- <input type="text" class="form-control" id="userID" name="userID" placeholder="Enter your user name"> -->
+       <input type="text" class="form-control" id="userID" name="userName" placeholder="Enter your user name"> 
         <div id="userID_error" class="error"></div>
       </div>
       <div class="form-group">
-        <label for="password">Password</label>
-        <input type="password" class="form-control" id="password" name="password" placeholder="Enter your password">
+        <label for="password">Company Mobile Number</label>
+        <!-- <input type="password" class="form-control" id="password" name="password"> -->
+        <input type="number" class="form-control" id="password" name="number">
         <div id="password_error" class="error"></div>
-
       </div>
       <button type="submit" class="btn btn-primary">Login</button>
       <br>
       <br>
-
     </form>
     <div id="sign">
       <p>Create an account ? <a id="regis" href="<?php echo baseUrl . "provider/registration"?>">Register</a></p>
