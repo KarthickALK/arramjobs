@@ -305,6 +305,11 @@
             color: red;
             /* Change text color on hover */
         }
+        #resumeButton{
+          background-color: #F8802A;
+          color:white;
+          border:#F8802A;
+        }
   </style>
 </head>
 
@@ -1799,7 +1804,7 @@
                       <input type="file" name="file" placeholder="upload file...." >
                     </div>
                   
-                   <input type="submit" value="submit">
+                   <input id="resumeButton"type="submit" value="submit">
                   
                </div>
                <table>
@@ -1855,7 +1860,7 @@
             <br>
              <div class="">
         <h2 class="text-center">Experience Details</h2>
-        <a id="regis" href="<?php echo baseUrl . "seekerController/addExperirenceForm"?>">+ Add jobs</a>
+        <a id="regis" href="<?php echo baseUrl . "seekerController/addExperirenceForm"?>">+ Add Experience Details</a>
        
         <div class="clearfix"></div>
         <br>
@@ -1994,7 +1999,7 @@
                     <div id="role_error" class="error"></div>
                   </div>
 
-                  <h1>Previous Employer details</h1>
+                  <h4>Previous Employer details</h4>
 
                   <div class="form-group">
                     <label for="Name">Name of employer*</label>
@@ -3233,7 +3238,7 @@
             <br>
              <div class="">
         <h2 class="text-center">Educational Details</h2>
-        <a id="regis" href="<?php echo baseUrl . "seekerController/addEducationForm"?>">+ Add jobs</a>
+        <a id="regis" href="<?php echo baseUrl . "seekerController/addEducationForm"?>">+ Add Educational Details</a>
        
         <div class="clearfix"></div>
         <br>
@@ -3722,7 +3727,7 @@
             <br>
              <div class="">
         <h2 class="text-center">Project Details</h2>
-        <a id="regis" href="<?php echo baseUrl . "seekerController/addProjectForm"?>">+ Add jobs</a>
+        <a id="regis" href="<?php echo baseUrl . "seekerController/addProjectForm"?>">+ Add Project Details</a>
        
         <div class="clearfix"></div>
         <br>
@@ -3927,7 +3932,7 @@
             <br>
              <div class="">
         <h2 class="text-center">Area Of Intrest Details</h2>
-        <a id="regis" href="<?php echo baseUrl . "seekerController/addAreaOfIntrestForm"?>">+ Add jobs</a>
+        <a id="regis" href="<?php echo baseUrl . "seekerController/addAreaOfIntrestForm"?>">+ Add Area Of Interest Details</a>
        
         <div class="clearfix"></div>
         <br>
@@ -4509,7 +4514,7 @@
             <br>
              <div class="">
         <h2 class="text-center">Skills</h2>
-        <a id="regis" href="<?php echo baseUrl . "seekerController/addSkillForm"?>">+ Add jobs</a>
+        <a id="regis" href="<?php echo baseUrl . "seekerController/addSkillForm"?>">+ Add Skills Details</a>
        
         <div class="clearfix"></div>
         <br>

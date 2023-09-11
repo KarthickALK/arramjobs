@@ -11,7 +11,7 @@ class SeekerController extends CI_Controller
 
     public function registration()
     {
-        $this->load->view('registrationform.php');
+        // $this->load->view('registrationform.php');
         if ($_SERVER['REQUEST_METHOD'] === 'POST') {
            $register=$this->SeekerModel->register();
            $this->index();

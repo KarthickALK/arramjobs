@@ -711,7 +711,7 @@
                 var r = document.forms.role.value;
 
                 if (x != "") {
-                    if (x.length < 4) {
+                    if (x.length < 2) {
                         document.getElementById("nameerr").innerHTML = "* Name should be in atleast 4 characters";
                         return false;
                     } else if (x.length > 50) {
