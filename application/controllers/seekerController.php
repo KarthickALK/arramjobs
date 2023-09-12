@@ -11,12 +11,8 @@ class SeekerController extends CI_Controller
 
     public function registration()
     {
-        // $this->load->view('registrationform.php');
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-           $register=$this->SeekerModel->register();
-           $this->index();
-
-        }
+        
+        $this->load->view('registrationform.php');
     }
 
 
@@ -25,29 +21,6 @@ class SeekerController extends CI_Controller
     public function index()
     {
         $this->load->view('loginform.php');
-        if ($_SERVER['REQUEST_METHOD'] === 'POST') {
-            $this->load->library('form_validation');
-
-            // Define validation rules for login form fields
-            $this->form_validation->set_rules('phonenumber', 'Phone Number', 'required');
-
-            // if ($this->form_validation->run() == true) {
-            //     // Check if the phone number exists in the database
-            //     $phonenumber = $this->input->post('phonenumber');
-            //     $userExists = $this->SeekerModel->checkUserExistence($phonenumber);
-
-            //     if ($userExists) {
-            //         echo "<script>window.location.href = 'otpregister';</script>";
-            //         $this->load->view('seekerOtp.php');
-            //     }
-            //     else {
-            //         // User doesn't exist, show an error message
-            //         echo "<script>alert('This phone number is not registered. Please register first.');</script>";
-            //         echo "<script>window.location.href = 'registration';</script>";
-            //         $this->load->view('loginForm.php');
-            //     }
-            // } 
-        }
     }
 
     public function otpregister()
@@ -79,8 +52,10 @@ class SeekerController extends CI_Controller
         }
     }
 
-    public function login()
+    public function seekerRegistration()
     {
+        $postData = $this->input->post(null, true);
+        $register = $this->SeekerModel->register();
         $this->load->view('loginform.php');
     }
 
