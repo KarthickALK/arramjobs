@@ -162,9 +162,8 @@
             $addJob = $this->RegistrationModel->addNew();
 
             // $this->load->view('jobs.php');
-            $this->load->view('exampleDashboard.php', $this->data);
             echo "Record added seccessfuly";
-            // $this->jobViewTable();
+            $this->jobViewTable();
         }
 
         public function updateAddNew()
