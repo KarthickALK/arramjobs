@@ -7,19 +7,21 @@
   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
   <title>Login Form</title>
   <!-- karthickchanged -->
+  <!-- karthickchanged2 -->
+
   <style>
     .btn-primary {
       background-color: #f39c12 !important;
     }
-    
+
     header nav ul li a:hover {
-            /* background-color: #007bff;
+      /* background-color: #007bff;
     .btn-primary{ */
-            /* background-color: #f39c12 ; */
-            color: #F8802A;
-            text-decoration: none;
-            /* } */
-        }
+      /* background-color: #f39c12 ; */
+      color: #F8802A;
+      text-decoration: none;
+      /* } */
+    }
 
     body {
       font-family: Arial, sans-serif;
@@ -172,14 +174,17 @@
 
   <div class="container">
     <h2>Seeker Login </h2>
-    <form id="phoneForm" action="<?php echo baseUrl . "seekerController/seekerLogin"?>" method="post" onsubmit="return validateForm()">
+    <form id="phoneForm" action="<?php echo baseUrl . "seekerController/seekerLogin" ?>" method="post"
+      onsubmit="return validateForm()">
       <div class="form-group">
         <label for="phone">Username</label>
-        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username" required>
+        <input type="text" class="form-control" id="username" name="username" placeholder="Enter your username"
+          required>
       </div>
       <div class="form-group">
         <label for="phone">Phone Number</label>
-        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number" required>
+        <input type="tel" class="form-control" id="phonenumber" name="phonenumber" placeholder="Enter your phone number"
+          required>
       </div>
       <!--  <button type="button" class="btn btn-link">New User</a> -->
       <button type="submit" class="btn btn-primary">Submit</button>
@@ -187,10 +192,12 @@
     </form>
     <br>
     <div id="sign">
-      <p>Create an account ? <a id="regis" href="<?php echo baseUrl . "seekerController/registration"?>">Register</a></p>
+      <p>Create an account ? <a id="regis" href="<?php echo baseUrl . "seekerController/registration" ?>">Register</a>
+      </p>
     </div>
     <div class="error">
-      <?php if (isset($login_error)) echo $login_error; ?>
+      <?php if (isset($login_error))
+        echo $login_error; ?>
     </div>
   </div>
 
